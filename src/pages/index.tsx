@@ -22,7 +22,14 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="">
-            Aula Virtual - fpadistancia
+            Aula Virtual - DAW
+          </Link>
+        </div>
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="">
+            Aula Virtual - ASIR
           </Link>
         </div>
         <div className={styles.buttons}>
