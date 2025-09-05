@@ -179,6 +179,8 @@ En realidad, XML es un conjunto de estándares relacionados entre sí. Algunos d
 </biblioteca>
 ```
 
+:::
+
 ## Otros lenguajes relacionados: JSON, YAML, TOML
 
 Aunque no son lenguajes de marcado como XML, **JSON**, **YAML** y **TOML** son formatos de serialización de datos que se utilizan comúnmente en aplicaciones modernas, y que están estrechamente relacionados con los lenguajes de marcado.
