@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'Futura LT';
+  src: url('/fonts/FuturaLT-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('/fonts/FuturaLT-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura LT';
+    src: url('/fonts/FuturaLT-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura LT';
+    src: url('/fonts/FuturaLT-Book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@media print {
+
+    /* Ajustar tipografía general */
+    body {
+        font-family: 'Arial', sans-serif, 'Futura LT';
+        font-size: 11pt;
+        line-height: 1.6;
+        color: #000;
+        background: white;
+    }
+
+    /* Justificar texto de párrafos */
+    p {
+        text-align: justify;
+    }
+
+    /* Justificar listas */
+    ul,
+    ol {
+        text-align: justify;
+        margin-left: 1.5em;
+    }
+
+    /* Reducir tamaño de títulos */
+    h1 {
+        font-size: 20pt;
+        margin-bottom: 0.5em;
+    }
+
+    h2 {
+        font-size: 16pt;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 13pt;
+    }
+
+    img {
+        display: block !important;
+        max-width: 100% !important;
+        height: auto !important;
+        break-inside: avoid;
+    }
+
+    picture {
+        display: contents;
+    }
+
+
+
+    /* Ocultar el botón de descarga (asumiendo que tiene una clase o id) */
+    .pdf-download-button,
+    #pdf-download,
+    .no-print {
+        display: none !important;
+    }
+
+    /* Ocultar navegación, TOC, footer, breadcrumb */
+    .navbar,
+    .footer,
+    .theme-doc-breadcrumbs,
+    .theme-doc-footer,
+    .table-of-contents,
+    .theme-edit-this-page,
+    nav,
+    aside {
+        display: none !important;
+    }
+
+
+    /* Márgenes */
+    @page {
+        margin: 20mm;
+    }
+
+    /* Estilos para que las tablas no se corten */
+    table {
+        width: 100% !important;
+        table-layout: fixed !important;
+        border-collapse: collapse;
+        word-break: break-word;
+        font-size: 10pt;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    th,
+    td {
+        padding: 6px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    /* Opcional: quitar márgenes laterales de contenedores si afectan */
+    .markdown,
+    .theme-doc-markdown {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Opcional: evitar que algunas celdas se estiren en exceso */
+    th,
+    td {
+        max-width: 150px;
+    }
+
+    /* Si alguna tabla sigue desbordando, permite scroll horizontal (último recurso) */
+    .markdown table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    /* Evitar que los bloques de código se dividan entre páginas */
+    pre,
+    code {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    }
+
+    /* También para que no empiecen partidas al final de página */
+    pre {
+    page-break-before: auto;
+    page-break-after: auto;
+    }
+
+}

@@ -1,0 +1,50 @@
+# .github/workflows/generar-pdfs.yml
+name: Generar PDFs con Puppeteer y desplegar en Vercel
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  generar-pdfs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: ⬇️ Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🟢 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 🏗️ Compilar el sitio
+        run: npm run build
+
+      - name: 🚀 Iniciar servidor Docusaurus en segundo plano
+        run: |
+          npm run serve &
+          sleep 5  # tiempo para que el server arranque
+
+      - name: 🖨️ Generar PDFs con Puppeteer
+        run: node scripts/generate-pdf-puppeteer.js
+
+      - name: 📤 Commit y push de los PDFs generados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add static/pdfs
+          if git diff --cached --quiet; then
+            echo "✅ No hay cambios en los PDFs. Nada que commitear."
+          else
+            git commit -m "📄 Actualización automática de PDFs"
+            git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          fi
