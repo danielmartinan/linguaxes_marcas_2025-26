@@ -212,7 +212,9 @@ Es la **parte principal** de un **documento XML**, ya que contiene los datos rea
 
 Los **elementos** son los distintos bloques de información que permiten definir la estructura de un documento XML. Por ejemplo:
 
-`<libro>XML práctico</libro>`
+```xml
+<libro>XML práctico</libro>
+```
 
 Los elementos están delimitados por una etiqueta de **apertura** y una etiqueta de **cierre**. En el ejemplo mostrado:
 
@@ -221,27 +223,19 @@ Los elementos están delimitados por una etiqueta de **apertura** y una etiqueta
 
 A su vez, los elementos pueden estar formados por otros **elementos** y/o por [**atributos**](https://mp0373-lmsxi.vercel.app/docs/unidades/01/contenidos/xml/atributos). Por ejemplo:
 
-*`<?xml version="1.0" encoding="UTF-8"?>`*
-
-*`<!DOCTYPE libro>`*
-
-`<libro>`
-
-   `<titulo>XML practico</titulo>`
-
-   `<autor>Sebastien Lecomte</autor>`
-
-   `<autor>Thierry Boulanger</autor>`
-
-   `<editorial>Ediciones Eni</editorial>`
-
-   `<isbn>978-2-7460-4958-1</isbn>`
-
-   `<edicion>1</edicion>`
-
-   `<paginas>347</paginas>`
-
-`<libro>`
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE libro>
+<libro>
+   <titulo>XML practico</titulo>
+   <autor>Sebastien Lecomte</autor>
+   <autor>Thierry Boulanger</autor>
+   <editorial>Ediciones Eni</editorial>
+   <isbn>978-2-7460-4958-1</isbn>
+   <edicion>1</edicion>
+   <paginas>347</paginas>
+<libro>
+```
 
 En este caso, el ejemplar es el elemento `<libro>`. A su vez, `<libro>` está compuesto de los elementos:
 
@@ -267,57 +261,57 @@ En todo documento XML debe existir **un elemento raíz** (*root element*), y só
 
 Por ejemplo, el siguiente ejemplo sería un XML no válido (tiene dos elementos raíz):
 
-`<libro>XML Práctico</libro>`
-
-`<cuaderno>Lenguaje de marcas</libro>`
+```xml
+<libro>XML Práctico</libro>
+<cuaderno>Lenguaje de marcas</libro>
+```
 
 El hecho de que tenga un elemento raíz, permite representar los datos en forma de árbol.
 
 Supongamos el siguiente documento XML:
 
-`<persona>`
-
-   `<nombre>Elsa</nombre>`
-
-   `<mujer/>`
-
-   `<fecha-de-nacimiento>`
-
-       `<día>18</día>`
-
-       `<mes>6</mes>`
-
-       `<año>1996</año>`
-
-   `</fecha-de-nacimiento>`
-
-   `<ciudad>Pamplona</ciudad>`
-
-`</persona>`
+```xml
+<persona>
+   <nombre>Elsa</nombre>
+   <mujer/>
+   <fecha-de-nacimiento>
+      <día>18</día>
+      <mes>6</mes>
+      <año>1996</año>
+   </fecha-de-nacimiento>
+   <ciudad>Pamplona</ciudad>
+</persona>
+```
 
 Se podría representar gráficamente de la siguiente manera:
 
-**Probar en el navegador**
-
-[Documento XML](https://mp0373-lmsxi.vercel.app/assets/files/elements-91ec24dc0de765ddd6f98f188d00ebfe.xml)
+![xml_arbol](/img/linguaxes-marcas/ud1/resources/xml_arbol.png)
 
 #### **Etiqueta de apertura y cierre**
 
 Todos los elementos tienen una etiqueta de inicio y otra de cierre. Por ejemplo:
 
-`<libro>XML Práctico</libro>`
+```xml
+<libro>XML Práctico</libro>
+```
 
 Lo que sería incorrecto es lo siguiente (falta la etiqueta de cierre):
 
-`<libro>XML Práctico`
+```xml
+<libro>XML Práctico
+```
 
 En el caso de que en el documento existan **elementos vacíos** (*empty elements*), se pueden sustituir las etiquetas de inicio y cierre por una de elemento vacío. Ésta se construye como la etiqueta de inicio, pero sustituyendo el carácter `>` por `/>`. Por ejemplo, supongamos el siguiente elemento:
 
-`<libro></libro>`
+```xml
+<libro></libro>
+```
 
 Sería equivalente a:
 
-`<libro/>`
+```xml
+<libro/>
+```
 
 #### **Anidación de elementos**
 
@@ -325,19 +319,19 @@ Al **anidar elementos** (introducir unos dentro de otros), hay que tener en cuen
 
 Por ejemplo, esto es incorrecto (se cierra el elemento `libro` antes de `titulo`):
 
-`<libro>`
-
-   `<titulo>XML Práctico</libro>`
-
-`</titulo>`
+```xml
+<libro>
+   <titulo>XML Práctico</libro>
+</titulo>
+```
 
 Lo correcto es:
 
-`<libro>`
-
-   `<titulo>XML Práctico</titulo>`
-
-`</libro>`
+```xml
+<libro>
+   <titulo>XML Práctico</titulo>
+</libro>
+```
 
 #### **Nomenclatura de etiquetas**
 
@@ -362,7 +356,7 @@ Las normas de sintaxis básicas en relación a los nombres de etiquetas son:
 
 No se pueden utilizar directamente los caracteres `>`, `<`, `&`, `"` y `'` en el contenido de los elementos, ya que son caracteres reservados.
 
-**Uso de comillas simples y dobles**
+**Uso de comillas simples y dobles**:
 
 En el caso de las comillas simples (`'`) y dobles (`"`), existe un caso donde sí se pueden utilizar: en **atributos**. Aunque respetando ciertas restricciones.
 
@@ -392,7 +386,8 @@ Para utilizar caracteres especiales (como `£`, `©`, `®`, etc.) hay que usar l
 
 Por ejemplo, para incluir `€`, se usarían las cadenas `&#8364;` o `&#x20AC;`.
 
-**Caracteres ASCII**  
+:::note[Caracteres ASCII]
 En el siguiente enlace encontrarás una tabla con los caracteres ASCII, el nombre HTML, y el número HTML de cada uno de ellos que te será imprescindible a la hora de realizar documentos en HTML y XML.
 
 [**http://ascii.cl/es/codigos-html.htm**](http://ascii.cl/es/codigos-html.htm)
+:::
