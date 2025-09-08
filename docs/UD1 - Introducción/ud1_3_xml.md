@@ -133,7 +133,7 @@ En el siguiente ejemplo, las dos primeras lineas se corresponden con el prólogo
     </libro>
 ```
 
-### **Prólogo**
+## **Prólogo**
 
 El prólogo es una parte **opcional** de un documento XML que, si se incluye, debe preceder al ejemplar. Su inclusión facilita el procesado de la información del ejemplar.
 
@@ -142,7 +142,7 @@ El **prólogo** está dividido en dos partes:
 - La declaración XML.  
 - La declaración del tipo de documento.
 
-#### **Declaración XML**
+### **Declaración XML**
 
 En el caso de incluirse, ha de ser **la primera línea del documento**. De no ser así, se genera un error que impide que el documento sea procesado. El hecho de que sea opcional, permite el procesamiento de documentos HTML y SGML como si fueran XML. Si fuera obligatoria, éstos deberían incluir una declaración de versión XML que no tienen.
 
@@ -156,7 +156,7 @@ De base, una declaración XML tiene el siguiente aspecto:
 
 *`<?xml ?>`*
 
-##### **Versión de XML**
+#### **Versión de XML**
 
 La declaración de la versión de XML usada para elaborar el documento se indica con el atributo `version`:
 
@@ -164,7 +164,7 @@ La declaración de la versión de XML usada para elaborar el documento se indica
 
 En este caso, se indica que el documento fue creado para la versión `1.0` de XML.
 
-##### **Codificación de caracteres**
+#### **Codificación de caracteres**
 
 La declaración de la codificación empleada para representar los caracteres se indica con el atributo `encoding`:
 
@@ -188,7 +188,7 @@ En este caso, se indica que el conjunto de caracteres que se utiliza en el docum
 | ISO-8859-9 | Turco |
 | ISO-8859-10 | Lapón. Nórdico, esquimal |
 
-##### **Autonomía del documento**
+#### **Autonomía del documento**
 
 La declaración de la autonomía del documento informa de si el documento necesita de otro para su interpretación. Para esto, se utiliza el atributo `standalone`:
 
@@ -390,4 +390,205 @@ Por ejemplo, para incluir `€`, se usarían las cadenas `&#8364;` o `&#x20AC;`.
 En el siguiente enlace encontrarás una tabla con los caracteres ASCII, el nombre HTML, y el número HTML de cada uno de ellos que te será imprescindible a la hora de realizar documentos en HTML y XML.
 
 [**http://ascii.cl/es/codigos-html.htm**](http://ascii.cl/es/codigos-html.htm)
+:::
+
+#### Atributos
+
+Los atributos permiten añadir propiedades a los elementos de un documento.
+
+Supongamos que tenemos el siguiente elemento:
+
+```xml
+<precio>14.95</precio>
+```
+
+El elemento anterior indica que el precio es 14.95. Si queremos indicar que el precio está en euros, podemos añadir un atributo `divisa` de la siguiente forma:
+
+```xml  
+<precio divisa="euro">14.95</precio>
+```
+
+A un elemento, podemos añadir uno o más atributos. Por ejemplo:
+
+```xml
+<precio divisa="euro" descuento="no">14.95</precio>
+```
+
+Características de los atributos son:
+
+- No pueden organizarse en ninguna jerarquía.  
+- No pueden contener ningún otro elemento o atributo.  
+- No reflejan ninguna estructura lógica.
+
+:::note[Uso de atributos]
+
+No se debe utilizar un atributo para contener información susceptible de ser dividida.
+
+:::
+
+Un ejemplo completo de elementos con atributos es el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>  
+<!DOCTYPE biblioteca>  
+<biblioteca>  
+   <ejemplar tipo_ejem="libro" titulo="XML práctico" editorial="Ediciones Eni">  
+       <tipo>  
+           <libro isbn="978-2-7460-4958-1" edicion="1" paginas="347"></libro>  
+       </tipo>  
+       <autor nombre="Sebastien Lecomte"></autor>  
+       <autor nombre="Thierry Boulanger"></autor>  
+       <autor nombre="Angel Belinchon Calleja" funcion="traductor"></autor>  
+       <prestado lector="Pepito Grillo">  
+           <fecha_pres dia="13" mes="mar" año="2009"></fecha_pres>  
+           <fecha_devol dia="21" mes="jun" año="2009"></fecha_devol>  
+       </prestado>  
+   </ejemplar>  
+</biblioteca>
+```
+
+Como se observa en el ejemplo, los atributos se definen siempre en la etiqueta de apertura (o bien de un elemento vacio).
+
+```xml
+<precio divisa="euro">14.95</precio>    <!-- Correcto -->  
+<precio divisa="euro" />                <!-- Correcto -->  
+<precio>14.95</precio divisa="euro">    <!-- Incorrecto -->
+```
+
+A continuación del nombre del elemento o de la definición de otro atributo, siempre separado de ellos por un espacio. Los valores del atributo van precedidos de `=`, seguido del valor. El valor debe definirse entre comillas simples o dobles. En cualquier caso, cuando se utiliza un tipo de comillas, éstas no pueden utilizarse dentro del contenido.
+
+Por ejemplo, si queremos que el valor de un atributo sea `"Titanic"` (el título incluye comillas dobles), podemos definirlo de la siguiente manera:
+
+```xml
+<película nombre='"Titanic"' />                 <!-- Correcto -->  
+<película nombre="&quot;Titanic&quot;" />       <!-- Correcto -->  
+<película nombre=""Titanic"" />                 <!-- Incorrecto -->
+```
+
+Si queremos que el valor de un atributo sea `'Titanic'` (el título incluye comillas simples), podemos definirlo de la siguiente manera:
+
+```xml
+<película nombre="'Titanic'" />                 <!-- Correcto -->  
+<película nombre='&apos;Titanic&apos;' />       <!-- Correcto -->  
+<película nombre=''Titanic'' />                 <!-- Incorrecto -->  
+```
+
+Recuerda que:
+
+- `&quot;` es la entidad para representar las comillas dobles (`"`).  
+- `&apos;` es la entidad para representar las comillas simples (`'`).
+
+Aun así, muchos navegadores representan los documentos XML empleando comillas dobles independientemente de qué tipo de comilla se ha incluído.
+
+Los nombres de los atributos han de cumplir las mismas reglas que los de los elementos.
+
+### **Espacios en blanco**
+
+En un documento XML, los espacios en blanco, las tabulaciones y los retornos de carro (salto de línea) pueden ser tratados de un modo especial.
+
+### Interpretado de los espacios en blanco
+
+En este apartado, se analizará el comportamiento predeterminado de los espacios en blanco, tabulaciones y retornos de carro en las diferentes ítems de XML.
+
+#### Contenido
+
+Varios espacios en blanco en el **contenido** de un elemento, se interpretan como uno solo.
+
+Por ejemplo, los dos siguientes documentos se interpretarían de la misma forma:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<peliculas>  
+  <pelicula>El discurso del rey</pelicula>  
+  <pelicula>En   tierra           hostil</pelicula>  
+  <pelicula>Una  
+     mente
+
+maravillosa</pelicula>  
+</peliculas>  
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<peliculas>  
+  <pelicula>El discurso del rey</pelicula>  
+  <pelicula>En tierra hostil</pelicula>  
+  <pelicula>Una mente maravillosa</pelicula>  
+</peliculas>  
+```
+
+#### Atributos
+
+De igual modo ocurre con los valores de los atributos.
+
+Por ejemplo, los dos siguientes documentos se interpretarían de la misma forma: 
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<series>  
+  <serie numeros="2 4 6 8"/>  
+  <serie numeros="3  
+6
+
+  9  
+ 12 15"/>  
+</series>
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<series>  
+  <serie numeros="2 4 6 8"/>  
+  <serie numeros="3 6 9 12 15"/>  
+</series>
+```  
+
+#### Elementos
+
+Los espacios en blanco entre elementos no se tienen en cuenta.
+
+Por ejemplo, los tres siguientes documentos se interpretarían de la misma forma:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<datos>  
+  <dato>1</dato>  
+  <dato>2</dato>  
+  <dato>3</dato>  
+</datos>  
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<datos><dato>1</dato><dato>2</dato><dato>3</dato></datos>  
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<datos><dato>1</dato>   <dato>2</dato>
+
+<dato>3</dato></datos>  
+```
+
+#### `xml:space`
+
+Para modificar el interpretado de los espacios en blanco, tabulaciones y retornos de carro en un documento XML, se puede utilizar el atributo predefinido `xml:space` con el valor `preserve`. De esta forma, se le indica al intérprete que los espacios en blanco en el contenido de dicho elemento (y de sus hijos) deben ser conservados.
+
+```xml
+<clasificacion xml:space="preserve">  
+1       Fernando Alonso       1:55.341  
+2       Lewis Hamilton        1:55.729  
+3       Sebastian Vettel      1:56.122  
+</clasificacion>  
+```
+
+Los valores que acepta el atributo `xml:space` son:
+
+- `preserve`  
+- `default`
+
+El valor `default` indica al intérpete que es él quien decide cómo tratar los espacios en blanco.  
+
+:::danger[Ojo]
+Aún indicando el valor `preserve`, hay que tener en cuenta que no todos los intérpretes reconocen este atributo. Es el caso de Mozilla Firefox y Google Chrome.
 :::
