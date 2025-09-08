@@ -8,7 +8,7 @@ Los mínimos exigibles son los señalados como tal en cada uno de los criterios 
 
 Criterios de calificación:
 
-- - Por cuestións organizativas do centro, a fin de poder reservar e organizar os espazos e recursos necesarios para a realización de cada exame, faise necesario obter previamente información do número de
+- Por cuestións organizativas do centro, a fin de poder reservar e organizar os espazos e recursos necesarios para a realización de cada exame, faise necesario obter previamente información do número de
 alumnado vai a asistir ao exame. De modo que a realización de cada unha das probas ou exames de avaliación estará suxeita á inscrición previa a mesma mediante a realización dun formulario de inscrición que
 será colgado na aula a distancia da titoría do ciclo ao que pertence o módulo. O alumnado que non se inscriba no formulario para a realización do exame, non terá acceso ao mesmo. O formulario de inscrición a
 cada exame estará aberto na aula a distancia da titoría do ciclo unha cantidade de días con anterioridade suficiente, un mínimo de dez días naturais antes da data de comenzo da semana de exames.
