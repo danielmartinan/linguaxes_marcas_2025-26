@@ -12,9 +12,7 @@ Criterios de calificación:
 alumnado vai a asistir ao exame. De modo que a realización de cada unha das probas ou exames de avaliación estará suxeita á inscrición previa a mesma mediante a realización dun formulario de inscrición que
 será colgado na aula a distancia da titoría do ciclo ao que pertence o módulo. O alumnado que non se inscriba no formulario para a realización do exame, non terá acceso ao mesmo. O formulario de inscrición a
 cada exame estará aberto na aula a distancia da titoría do ciclo unha cantidade de días con anterioridade suficiente, un mínimo de dez días naturais antes da data de comenzo da semana de exames.
-
 - Por cuestiones organizativas del centro, a fin de poder reservar y organizar los espacios y recursos necesarios para la realización de cada examen, será necesario obtener previamente la información del número de alumando que asistirá al esamen. De esta forma, la realización de cada prueba o examen de evaluación estará sujeta a la inscripción previa a la misma mediante la realización de un formulario de inscripción que estará colgado en el aula virtual a distancia de la tutoría del ciclo al que pertenece el módulo. El alumnado que no se inscriba en el formulario, no tendrá acceso al mismo. Este formulario estará abierto en el aula virtual de distancia de la tutoría una cantidad de días con anterioridad suficientes para la correcta realización por parte del alumnado.
-
 - Como instrumentos de evaluación se podrán emplear:
   - Pruebas escritas de carácter teórico o práctico: pruebas de tipo test o con preguntas de desarrollo  contenidos de la unidad didáctica.
   - Pruebas prácticas: realización de ejercicios viculados con los contenidos de la unidad didáctica, realizados en papel o sobre el ordenador.
