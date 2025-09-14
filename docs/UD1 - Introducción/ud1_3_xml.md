@@ -1,6 +1,6 @@
 # UD1.3 Descripción de XML
 
-## **Introducción**
+## Introducción
 
 XML (*eXtensible Markup Language*) es un lenguaje de etiquetas o un lenguaje de marcado que **estructura** y guarda de forma ordenada la **información**. No representa datos por sí mismo, solamente organiza la estructura. En XML, las etiquetas son creadas por el programador.
 
@@ -11,7 +11,7 @@ XML **ahorra tiempos de desarrollo** y proporciona **ventajas**, dotando a webs 
 - [Tutorial de XML](https://www.w3schools.com/xml/) de W3C Schools  
 - [Introducción a XML](https://developer.mozilla.org/es/docs/Web/XML/XML_introduction) de Mozilla Developer Network (MDN)
 
-### **Características del documento XML**
+### Características del documento XML
 
 Un documento XML es un **documento de texto** que tiene las siguientes características:
 
@@ -20,7 +20,7 @@ Un documento XML es un **documento de texto** que tiene las siguientes caracter�
 - Puede editarse con cualquier editor de texto.  
 - Es interpretado por los navegadores web.
 
-### **Características del lenguaje XML**
+### Características del lenguaje XML
 
 Las características básicas de XML son:
 
@@ -41,7 +41,7 @@ El **proceso de creación** de un documento XML pasa por varias etapas, en las q
 - Diseño de etiquetas.  
 - Marcado de los documentos.  
   
-## **Marcado**
+## Marcado
 
 El **marcado** en XML son etiquetas que se añaden a un texto para estructurar el contenido del documento. Esta información extra permite a los ordenadores *interpretar* los textos. El marcado es todo lo que se sitúa entre:
 
@@ -70,7 +70,7 @@ Por ejemplo, en el siguiente documento, el **dato** es `12.39`:
 
 El marcado puede ser tan rico como se quiera. Puede ser interesante detectar necesidades futuras y crear documentos con una estructura fácilmente actualizables
 
-## **Comentarios**
+## Comentarios
 
 Los documentos XML pueden tener **comentarios**, que se utilizan para incluir información para el desarrollador, ya que éstos **no son interpretados** por el interprete XML.
 
@@ -110,7 +110,7 @@ Los comentarios no pueden contener dos guiones medios seguidos (`--`).
 <!-- Comentario incorrecto -- (contiene dos guiones medios seguidos dentro del comentario) -->
 ```
 
-## **Estructura de un documento XML**
+## Estructura de un documento XML
 
 Los documentos XML están formados por las siguientes partes:
 
@@ -133,7 +133,7 @@ En el siguiente ejemplo, las dos primeras lineas se corresponden con el prólogo
     </libro>
 ```
 
-## **Prólogo**
+## Prólogo
 
 El prólogo es una parte **opcional** de un documento XML que, si se incluye, debe preceder al ejemplar. Su inclusión facilita el procesado de la información del ejemplar.
 
@@ -142,7 +142,7 @@ El **prólogo** está dividido en dos partes:
 - La declaración XML.  
 - La declaración del tipo de documento.
 
-### **Declaración XML**
+### Declaración XML
 
 En el caso de incluirse, ha de ser **la primera línea del documento**. De no ser así, se genera un error que impide que el documento sea procesado. El hecho de que sea opcional, permite el procesamiento de documentos HTML y SGML como si fueran XML. Si fuera obligatoria, éstos deberían incluir una declaración de versión XML que no tienen.
 
@@ -156,7 +156,7 @@ De base, una declaración XML tiene el siguiente aspecto:
 
 *`<?xml ?>`*
 
-#### **Versión de XML**
+#### Versión de XML
 
 La declaración de la versión de XML usada para elaborar el documento se indica con el atributo `version`:
 
@@ -164,7 +164,7 @@ La declaración de la versión de XML usada para elaborar el documento se indica
 
 En este caso, se indica que el documento fue creado para la versión `1.0` de XML.
 
-#### **Codificación de caracteres**
+#### Codificación de caracteres
 
 La declaración de la codificación empleada para representar los caracteres se indica con el atributo `encoding`:
 
@@ -188,7 +188,7 @@ En este caso, se indica que el conjunto de caracteres que se utiliza en el docum
 | ISO-8859-9 | Turco |
 | ISO-8859-10 | Lapón. Nórdico, esquimal |
 
-#### **Autonomía del documento**
+#### Autonomía del documento
 
 La declaración de la autonomía del documento informa de si el documento necesita de otro para su interpretación. Para esto, se utiliza el atributo `standalone`:
 
@@ -198,7 +198,7 @@ En este caso, se indica que el documento es independiente. De no ser así, el at
 
 Para declarar el atributo `standalone`, hay que definir el prólogo completo.
 
-#### **Declaración del tipo de documento**
+#### Declaración del tipo de documento
 
 Define qué tipo de documento estamos creando con la finalidad de ser procesado correctamente. Toda declaración de tipo de documento comienza por `<!DOCTYPE` seguido del nombre del tipo y el caracter `>`. Por ejemplo:
 
@@ -208,7 +208,7 @@ Define qué tipo de documento estamos creando con la finalidad de ser procesado 
 
 Es la **parte principal** de un **documento XML**, ya que contiene los datos reales del documento. Está formado por elementos anidados.
 
-### **Elementos**
+### Elementos
 
 Los **elementos** son los distintos bloques de información que permiten definir la estructura de un documento XML. Por ejemplo:
 
@@ -249,13 +249,13 @@ En realidad, el ejemplar es el **elemento raíz** (*root*) de un documento XML (
 
 Los **nombres** de las etiquetas han de ser **autodescriptivos**, lo que facilita el trabajo que se hace con ellas.
 
-### **Sintaxis**
+### Sintaxis
 
 La formación de elementos ha de cumplir ciertas normas para que queden perfectamente definidos y que el documento XML al que pertenecen pueda ser interpretado por los procesadores XML sin generar ningún error fatal.
 
 A continuación, se describen las reglas de sintaxis del lenguaje XML.
 
-#### **Único elemento raíz**
+#### Único elemento raíz
 
 En todo documento XML debe existir **un elemento raíz** (*root element*), y sólo uno.
 
@@ -287,7 +287,7 @@ Se podría representar gráficamente de la siguiente manera:
 
 ![xml_arbol](/img/linguaxes-marcas/ud1/resources/xml_arbol.png)
 
-#### **Etiqueta de apertura y cierre**
+#### Etiqueta de apertura y cierre
 
 Todos los elementos tienen una etiqueta de inicio y otra de cierre. Por ejemplo:
 
@@ -313,7 +313,7 @@ Sería equivalente a:
 <libro/>
 ```
 
-#### **Anidación de elementos**
+#### Anidación de elementos
 
 Al **anidar elementos** (introducir unos dentro de otros), hay que tener en cuenta que no puede cerrarse un elemento que contenga algún otro elemento que aún no se haya cerrado.
 
@@ -333,7 +333,7 @@ Lo correcto es:
 </libro>
 ```
 
-#### **Nomenclatura de etiquetas**
+#### Nomenclatura de etiquetas
 
 Los nombres de las etiquetas de **inicio** y de **cierre** de un mismo elemento han de ser **idénticos**, **respetando** las **mayúsculas y minúsculas**. Por ejemplo:
 
@@ -352,7 +352,7 @@ Las normas de sintaxis básicas en relación a los nombres de etiquetas son:
 - Las letras no inglesas (`á`, `Á`, `ñ`, `Ñ`, etc.) están permitidas. Pero, al igual que el carácter guion medio (`-`) y el punto (`.`), se recomienda no utilizarlos para reducir posibles incompatibilidades o errores en programas que no los interpreten bien.  
 - No puede comenzar por la cadena `xml`, ni ninguna de sus versiones en que se cambien mayúsculas y minúsculas (`XML`, `XmL`, `xML`, etc.).
 
-#### **Contenido de los elementos**
+#### Contenido de los elementos
 
 No se pueden utilizar directamente los caracteres `>`, `<`, `&`, `"` y `'` en el contenido de los elementos, ya que son caracteres reservados.
 
@@ -380,7 +380,7 @@ El contenido del elemento `libro` sería:
 
 `Elemento <libro>`
 
-#### **Caracteres especiales**
+#### Caracteres especiales
 
 Para utilizar caracteres especiales (como `£`, `©`, `®`, etc.) hay que usar las expresiones `&#D;` o `&#H;`, donde `D` y `H` se corresponden respectivamente con el número decimal o hexadecimal asociado al caracter que se quiere representar en el **código UNICODE**.
 
@@ -482,7 +482,7 @@ Aun así, muchos navegadores representan los documentos XML empleando comillas d
 
 Los nombres de los atributos han de cumplir las mismas reglas que los de los elementos.
 
-### **Espacios en blanco**
+### Espacios en blanco
 
 En un documento XML, los espacios en blanco, las tabulaciones y los retornos de carro (salto de línea) pueden ser tratados de un modo especial.
 
@@ -592,3 +592,195 @@ El valor `default` indica al intérpete que es él quien decide cómo tratar los
 :::danger[Ojo]
 Aún indicando el valor `preserve`, hay que tener en cuenta que no todos los intérpretes reconocen este atributo. Es el caso de Mozilla Firefox y Google Chrome.
 :::
+
+## Documentos XML bien formados
+
+Un documento bien formado es aquel que cumple las reglas sintáticas que define la recomendación del W3C para el estándar XML.
+
+### Herramienta de validación
+
+La W3C ofrece un [**validador online**](https://www.w3schools.com/xml/xml_validator.asp) de documentos XML bien formados. Es de utilidad para verificar si un documento está bien formado.
+
+Supongamos el siguiente documento:
+
+```xml
+<?xml version="1.0"?>
+<mensaje>
+   <destinatario>Tomas</ destinatario>
+   <remitente>Juan</ remitente>
+   <asunto>
+   <contenido> No olvides ir a recogerme al aeropuerto mañana por la mañana!</contenido>
+</mensaje>
+```
+
+No es válido por los siguientes motivos:
+
+- Las etiquetas de cierre `</ destinatario>` y `</ remitente>` contienen espacios en su nombre. Los espacios no son válidos.  
+- El elemento `<asunto>` no está cerrado.
+
+**Validator online**
+
+Para el documento anterior, el validador online de la W3C nos mostraría el siguiente mensaje:
+
+![error de validación](../../static/img/linguaxes-marcas/ud1/resources/error_validacion.png)
+
+Como se puede observar, indica que hay un error en la tercera línea, pero no nos especifica cuál es el error. Es labor del programador identificarlo.
+
+Como alternativa, se puede obtener información más significativa empleando **validadores más avanzados** como [**XML Validation**](https://www.xmlvalidation.com/).
+
+La forma válida del documento XML sería la siguiente:
+
+```xml
+<?xml version="1.0"?>
+<mensaje>
+   <destinatario>Tomas</destinatario>
+   <remitente>Juan</remitente>
+   <asunto/>
+   <contenido> No olvides ir a recogerme al aeropuerto mañana por la mañana!</contenido>
+</mensaje>
+```
+
+## Espacios de nombres
+
+Los espacios de nombres (*namespaces*) permiten resoler las **ambigüedades** que se pueden producir al juntar dos documentos XML distintos que han utilizado el mismo nombre de etiqueta para representar cosas distintas. Los *namespaces* definen la **pertenencia** de los elementos y los atributos de un documento XML a un **contexto** de un vocabulario XML.
+
+Supongamos los siguientes documentos (`baraja.xml` y `restaurante.xml`):
+
+```xml
+baraja.xml
+
+<carta>
+  <palo>Corazones</palo>
+  <numero>7</numero>
+</carta>
+```
+
+```xml
+restaurante.xml
+
+<carta>
+  <carnes>
+     <filete_de_ternera precio="12.95"/>
+     <solomillo_a_la_pimienta precio="13.60"/>
+  </carnes>
+  <pescados>
+     <lenguado_al_horno precio="16.20"/>
+     <merluza_en_salsa_verde precio="15.85"/>
+  </pescados>
+</carta>
+```
+
+Si juntamos ambos documentos en un solo, quedaría de la siguiente forma:
+
+```xml
+<ejemplo> <!-- Debemos añadir un elemento raíz para poder juntarlos -->
+   <carta>
+       <palo>Corazones</palo>
+       <numero>7</numero>
+   </carta>
+   <carta>
+      <carnes>
+         <filete_de_ternera precio="12.95"/>
+         <solomillo_a_la_pimienta precio="13.60"/>
+      </carnes>
+      <pescados>
+         <lenguado_al_horno precio="16.20"/>
+         <merluza_en_salsa_verde precio="15.85"/>
+      </pescados>
+   </carta>
+</ejemplo>
+```
+
+Como se puede observar, al fusionar los dos documentos en uno, tenemos un elemento `<carta>` que tiene varios significados dentro del documento. Esto **no implica** que el **documento XML no sea válido**, sino que a **nivel semántico** tenemos un elemento que significa cosas diferentes.
+
+Si se incluyen ambos elementos `<carta>` en un documento XML, se origina un conflicto de nombres. Para resolverlo, se pueden utilizar espacios de nombres. Por ejemplo, escribiendo:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ejemplo xmlns:e1="https://www.lmsgi.com/baraja" xmlns:e2="https://www.lmsgi.com/restaurante">
+  <e1:carta>
+     <e1:palo>Corazones</e1:palo>
+     <e1:numero>7</e1:numero>
+  </e1:carta>
+  <e2:carta>
+     <e2:carnes>
+        <e2:filete_de_ternera precio="12.95"/>
+        <e2:solomillo_a_la_pimienta precio="13.60"/>
+     </e2:carnes>
+     <e2:pescados>
+        <e2:lenguado_al_horno precio="16.20"/>
+        <e2:merluza_en_salsa_verde precio="15.85"/>
+     </e2:pescados>
+  </e2:carta>
+</ejemplo>
+```
+
+Los espacios de nombres permiten dar un nombre único a cada elemento, indexándolos según el nombre del vocabulario adecuado. Además están asociados a un [URI](https://es.wikipedia.org/wiki/Identificador_de_recursos_uniforme) (*Uniform Resource Identifier*) que los identifica de forma única.
+
+En el documento, las etiquetas ambigüas se sustituyen por otras en las que el nombre del elemento está precedido de un **prefijo**, el cual determina el contexto al que pertenece la etiqueta. El prefijo debe ir separado del nombre de la etiqueta por dos puntos (`:`).
+
+Por ejemplo, supongamos que tenemos el siguiente elemento:
+
+`<palo>Corazones</palo>`
+
+Si quisiésemos añadir un prefijo `e1`, se indicaría de la siguiente manera:
+
+`<e1:palo>Corazones</e1:palo>`
+
+Esta etiqueta se denomina **nombre cualificado**. Al definir el prefijo, hay que tener en cuenta que:
+
+- No puede contener espacios ni caracteres especiales.  
+- No puede comenzar por un dígito.
+
+Antes de poder utilizar un prefijo de un *namespace*, para resolver la ambigüedad de dos o más etiquetas, es necesario **declarar el espacio de nombres**, es decir, asociar un índice con el URI asignado al espacio de nombres. Esto se realiza mediante un atributo especial `xmlns`.
+
+La declaración debe hacerse entre el prólogo y el ejemplar de un documento XML. Por norma general, lo que se utiliza es una URL (un enlace a una web).
+
+Los espacios de nombres pueden definirse en el elemento raíz o, directamente, en los elementos que los vayan a utilizar, aunque lo más habitual es definirlos en el elemento raíz. Por ejemplo, los siguientes documentos definen correctamente el *namespace*:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ejemplo xmlns:e1="https://www.lmsgi.com/baraja">
+  <e1:carta>
+     <e1:palo>Corazones</e1:palo>
+     <e1:numero>7</e1:numero>
+  </e1:carta>
+</ejemplo>
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ejemplo>
+  <e1:carta xmlns:e1="https://www.lmsgi.com/baraja">
+     <e1:palo>Corazones</e1:palo>
+     <e1:numero>7</e1:numero>
+  </e1:carta>
+</ejemplo>  
+```
+
+## CDATA
+
+Un documento XML puede contener secciones CDATA (*Character DATA*) para escribir texto que **no** se desea que sea **analizado**. Por ejemplo, esto puede ser útil cuando se quiere escribir texto que contenga alguno de los caracteres problemáticos: `<` o `&`.
+
+En un documento XML, para incluir una sección CDATA, esta se escribe comenzando con la cadena de caracteres `<![CDATA[` y terminando con los caracteres `]]>`.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ejemplo_CDATA>
+<![CDATA[
+#include <stdio.h>
+int main() {
+  float nota;
+  printf( "\n   Introduzca nota (real): " );
+  scanf( "%f", &nota );
+  if ( 5 <= nota )
+     printf( "\n   APROBADO" );
+  return 0;
+}
+]]>
+</ejemplo_CDATA>
+```
+
+Dentro de una sección CDATA no se puede escribir la cadena `]]>`. En consecuencia, no se pueden anidar secciones CDATA, es decir, introducir secciones CDATA dentro de otras.
+
+Por otra parte, no está permitido escribir espacios en blanco o saltos de línea en las cadenas de inicio `<![CDATA[` o fin `]]>` de una sección CDATA.
