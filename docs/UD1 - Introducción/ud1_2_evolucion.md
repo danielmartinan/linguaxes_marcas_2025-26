@@ -1,6 +1,6 @@
 # UD1.2 Evolución de los lenguajes de marcas
 
-## **Introducción**
+## Introducción
 
 En los años 70 surgieron unos lenguajes informáticos (distintos de los lenguajes de programación) orientados a la **gestión de información**. Con el desarrollo de los editores y procesadores de texto:
 
@@ -28,7 +28,7 @@ Posteriormente, se añadieron este tipo de características, como medio de prese
 
 Este marcado estaba exclusivamente orientado a la presentación de la información, aunque pronto se percataron de las posibilidades del marcado y le dieron nuevos usos que resolvían una gran variedad de necesidades. De este modo apareció el **formato generalizado**.
 
-## **GML**
+## GML
 
 Uno de los problemas que se conocen desde hace décadas en la informática es la **falta de estandarización** en los formatos de información usados por los distintos programas.
 
@@ -367,7 +367,7 @@ Ejemplo de un documento **HTML**:
 </html>
 ```
 
-## **XML vs SGML**
+## XML vs SGML
 
 A continuación, se muestra una comparativa entre los lenguajes XML y SGML:
 
@@ -387,12 +387,50 @@ En el contexto de XML, es importante entender la diferencia entre un documento *
 
 **Documento bien formado**
 
-Un documento **bien formado** es aquel que **verifica las reglas** establecidas por la recomendación del W3C.
+Un documento **bien formado** es aquel que **verifica las reglas** establecidas por la recomendación del W3C. Son las reglas XML que veremos en el siguiente apartado de esta unidad didáctica.
 
 **Documento válido**  
-Un documento **válido** es aquel, que además de estar bien formado, **verifica las restricciones de otro elemento del que depende para su interpretación**.
+Un documento **válido** es aquel, que además de estar bien formado, **verifica las restricciones de otro elemento del que depende para su interpretación**. Estos elementos pueden ser:
 
-En la sección propia de XML, se dará más información sobre estos conceptos y se **profundizará en su importancia**.
+- Una [**DTD**](https://es.wikipedia.org/wiki/Document_Type_Definition) (*Document Type Definition*): es un conjunto de reglas que definen la estructura y los elementos permitidos en un documento XML.  
+- Un [**XML Schema**](https://es.wikipedia.org/wiki/XML_Schema): es un lenguaje que permite definir la estructura, el contenido y los tipos de datos de un documento XML de manera más detallada y precisa que una DTD.
+- Otros esquemas como [RELAX NG](https://es.wikipedia.org/wiki/RELAX_NG) o [Schematron](https://es.wikipedia.org/wiki/Schematron).
+
+Para entender mejor estos conceptos, veamos un ejemplo:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE libro>
+<libro>
+   <titulo>XML practico</titulo>
+   <autor>Sebastien Lecomte</autor>
+   <autor>Thierry Boulanger</autor>
+   <editorial>Ediciones Eni</editorial>
+   <isbn>978-2-7460-4958-1</isbn>
+   <edicion>1</edicion>
+   <paginas>347</paginas>
+</libro>
+```
+
+El documento anterior permite describir un libro, incluyendo su título, autores, editorial, ISBN, edición y número de páginas. Es un **documento bien formado** porque cumple las reglas de sintaxis de XML (uso correcto de etiquetas, atributos, etc.). Destacar de nuevo que aun no conocemos estas reglas y que las veremos en el siguiente apartado de esta unidad didáctica.
+
+Supongamos ahora que queremos asegurarnos de que el documento cumple ciertas reglas adicionales, como que el título es obligatorio, que debe haber al menos un autor, que el ISBN debe seguir un formato específico, etc. Para ello, podemos definir una DTD o un XML Schema que establezca estas reglas. Por tanto, si definieramos un libro como el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE libro>
+<libro>
+   <titulo>XML practico</titulo>
+   <editorial>Ediciones Eni</editorial>
+   <isbn>978-2-7460-4958-1</isbn>
+   <edicion>1</edicion>
+   <paginas>347</paginas>
+</libro>
+```
+
+aunque sigue siendo un documento bien formado, no sería un **documento válido**, al no tener un autor, que es un campo obligatorio según las reglas que habríamos definido en la DTD o XML Schema.
+
+Sobre documentos XML bien formados, profundizaremos en próximas unidades didácticas.
 
 ## **Etiquetas**
 

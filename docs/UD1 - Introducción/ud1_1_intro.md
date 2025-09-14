@@ -2,7 +2,28 @@
 
 ## Introducción
 
-Un [**lenguaje de marcas**](https://es.wikipedia.org/wiki/Lenguaje_de_marcado) (o lenguaje de marcado) es un modo de **codificar un documento** donde, junto con el texto, se incorporan **etiquetas, marcas o anotaciones** con información adicional relativa a la estructura del texto o su formato de presentación. Permiten hacer explícita la estructura de un documento, su contenido semántico o cualquier otra información lingüística o extralingüística que se quiera hacer patente.
+Un [**lenguaje de marcas**](https://es.wikipedia.org/wiki/Lenguaje_de_marcado) (o **lenguaje de marcado**) es un sistema para codificar documentos que combina texto con etiquetas, marcas o anotaciones que aportan información adicional sobre la estructura, el significado o el formato del contenido. Estas marcas permiten hacer explícita la composición lógica y semántica de un documento, facilitando su interpretación, visualización, almacenamiento o intercambio entre sistemas diversos. 
+
+A diferencia de los **lenguajes de programación**, que están orientados a expresar algoritmos y lógica de ejecución para resolver problemas computacionales, los lenguajes de marcas están dirigidos principalmente a la **organización y descripción de la información**. Mientras que un lenguaje de programación define instrucciones para que una máquina realice operaciones y cálculos, un lenguaje de marcas define cómo está estructurado un documento o un conjunto de datos, sin especificar algoritmos ni procesos de control.
+
+### Diferencias con los lenguajes de programación
+
+Las principales diferencias entre los lenguajes de marcas y los lenguajes de programación son:
+
+- **Propósito**: Los lenguajes de marcas están diseñados para describir y estructurar contenidos, mientras que los lenguajes de programación se usan para definir comportamientos y lógica operativa.
+- **Sintaxis y semántica**: Los lenguajes de marcas utilizan etiquetas y atributos para identificar partes del contenido y sus propiedades, pero carecen de lógica de control, loops o funciones. En cambio, los lenguajes de programación tienen una sintaxis orientada a operaciones, variables, funciones, condiciones y bucles.
+- **Interpretación**: Los documentos en lenguajes de marcas son procesados para mostrar, almacenar o transmitir la información, mientras que los programas en lenguajes de programación son ejecutados para realizar cálculos y tareas específicas.
+
+## Ámbitos de aplicación
+
+Los lenguajes de marcas tienen una amplia variedad de aplicaciones, entre las que destacan:
+
+- **Documentación electrónica**: Como Markdown, LaTeX o DocBook, para redactar textos, informes, libros o artículos donde la estructura del documento es clave.
+- **Tecnologías web**: HTML, XHTML y XML permiten la creación, estructuración e intercambio de páginas web y datos entre servidores y navegadores.
+- **Multimedia**: Lenguajes como SVG para gráficos vectoriales, MusicXML para partituras musicales, o VoiceXML para interacción por voz.
+- **Configuración y serialización de datos**: Formatos como JSON, YAML o TOML, aunque no son lenguajes de marcas per se, están relacionados por su función de estructurar información para ser compartida entre aplicaciones.
+
+## Estructura de un lenguaje de marcas
 
 Todo lenguaje de marcas está definido en un documento denominado [**DTD**](https://es.wikipedia.org/wiki/Definici%C3%B3n_de_tipo_de_documento) (*Document Type Definition*). En él se establecen:
 
