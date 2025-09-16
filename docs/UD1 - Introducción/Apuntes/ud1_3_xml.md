@@ -622,7 +622,7 @@ No es válido por los siguientes motivos:
 
 Para el documento anterior, el validador online de la W3C nos mostraría el siguiente mensaje:
 
-![error de validación](../../static/img/linguaxes-marcas/ud1/resources/error_validacion.png)
+![error de validación](/img/linguaxes-marcas/ud1/resources/error_validacion.png)
 
 Como se puede observar, indica que hay un error en la tercera línea, pero no nos especifica cuál es el error. Es labor del programador identificarlo.
 
