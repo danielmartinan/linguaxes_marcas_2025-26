@@ -41,7 +41,7 @@ Indica por qué los siguientes ejemplos XML son incorrectos e indica una alterna
 
 ## Ejercicio 2
 
-Escribe un documento XML válido que permita estructurar la información de una agenda de teléfonos.
+Escribe un documento **XML válido** que permita estructurar la información de una agenda de teléfonos.
 
 Debemos suponer que la información que podemos tener de una persona es:
 
@@ -54,7 +54,7 @@ El documento debe contener al menos 3 personas con toda la información posible.
 
 ## Ejercicio 3
 
-Escribe un documento XML válido que permita estructurar la información de las recetas de cocina de un restaurante y aplicarlo a la siguiente receta de cocina.
+Escribe un documento **XML válido** que permita estructurar la información de las recetas de cocina de un restaurante y aplicarlo a la siguiente receta de cocina.
 
 Hay que hacerlo de modo que un sistema informático pueda realizar búsquedas por ingredientes, cantidad de comensales o nombre de la receta.
 
@@ -84,7 +84,7 @@ Elaboración:
 
 ## Ejercicio 4
 
-Escribe un documento XML válido que permita estructurar la información de los alumnos de un modulo del ciclo formativo DAM con el objetivo de facilitar su gestión informática.
+Escribe un documento **XML válido** que permita estructurar la información de los alumnos de un modulo del ciclo formativo DAM con el objetivo de facilitar su gestión informática.
 
 Debemos aplicarlo al módulo de Lenguajes de Marcas y Sistemas de Gestión de Información.
 
@@ -120,3 +120,16 @@ La tarea debe entregarse en un único archivo comprimido ZIP que contenga
 - Un archivo XML con la solución al ejercicio 4, con el nombre `ud1_tarea_ejercicio4.xml`.
 
 con el nombre `ud1_tarea_nombre_apellidos.zip`.
+
+## Evaluación
+
+La evaluación de esta tarea se realizará de la siguiente manera:
+
+| Ejercicio | Puntuacion |
+| --- | --- |
+| Ejercicio 1 | 1 punto |
+| Ejercicio 2 | 2.5 punto |
+| Ejercicio 3 | 2.5 punto |
+| Ejercicio 4 | 4 punto |
+
+Se valorará en cualquier caso el uso de la notación xml correcta, así como definir y utilizar las etiquetas adecuadas.
