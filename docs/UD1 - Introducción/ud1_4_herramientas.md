@@ -4,7 +4,17 @@
 
 Como se ha comentado previamente, los documentos XML y HTML son archivos de texto plano que pueden ser editados con cualquier editor de texto. Sin embargo, existen editores específicos que facilitan la creación y edición de estos documentos, proporcionando funcionalidades adicionales como la validación de la sintaxis, el autocompletado de etiquetas, la visualización en tiempo real del resultado, entre otras. No es objetivo de este módulo profundizar en el uso de los entornos de desarrollo inteegrados, pero veremos algunos aspectos básicos relevantes y útiles para la edición de documentos XML y HTML.
 
+En esta sección describiremos el uso de los editores de textos modernos para la creación y modificación de archivos xml y html. Aunque no hemos visto la sintaxis HTML (la veremos más adelante), se introduce en este apartado el uso de los editores para ambos lenguajes de marcado.
+
 ## Editores de texto recomendados
+
+Existen numerosos editores de texto que pueden utilizarse para trabajar con documentos XML y HTML. A continuación, se describen algunos de los más populares y recomendados, destacando sus características principales y ventajas.
+
+- **Visual Studio Code**: Un editor de código fuente multiplataforma desarrollado por Microsoft, que permite editar, depurar y gestionar proyectos en diversos lenguajes de programación, siendo especialmente útil para trabajar con HTML, XML y otros lenguajes de marcas. Es seguro que lo utilizaréis en más módulos, por lo que es recomendable empezar a familiarizarse con él desde ahora.
+- **Notepad++**: Un editor de texto gratuito y de código abierto para Windows, que ofrece una amplia gama de funcionalidades, incluyendo resaltado de sintaxis, autocompletado y soporte para múltiples lenguajes de programación. Es ligero y fácil de usar, ideal para tareas rápidas. Si sólo necesitas un editor sencillo y rápido, es una buena opción.
+- **Sublime Text**: Un editor de texto sofisticado y altamente personalizable, disponible para Windows, macOS y Linux. Ofrece una interfaz limpia y minimalista, con soporte para múltiples lenguajes de programación y una amplia gama de plugins. Es una opción popular entre desarrolladores web.
+
+A continuación describiremos con más detalle Visual Studio Code, que es el editor recomendado para este módulo y otros del ciclo.
 
 ### Visual Studio Code
 
@@ -30,6 +40,8 @@ VSCode destaca en el ámbito educativo y profesional por proporcionar:
 - **Terminal integrada**, que permite ejecutar comandos sin salir del entorno de edición.
 - **Gestión de proyectos**, con explorador de archivos y control de versiones integrado (Git).
 - Gran comunidad y abundantes recursos en español e inglés (tutoriales, foros, documentación).
+
+Estas y otras ventajas de VSCode (y de otros IDEs), los veréis con detalle en el módulo de Entornos de Desarrollo (sólo DAW).
 
 ### Por qué elegir VSCode para el módulo
 
@@ -88,6 +100,7 @@ Para sacar el máximo provecho de Visual Studio Code (VSCode) es fundamental con
   En VSCode se trabaja habitualmente abriendo una carpeta que contiene todos los archivos relacionados con un proyecto o práctica.  
     - Menú: Archivo → Abrir carpeta...  
     - Permite organizar varios archivos juntos y navegar fácilmente entre ellos.  
+    - También puedes abrir una carpeta arrastrándola desde el explorador de archivos del sistema operativo hacia la ventana de VSCode.
   
 - **Estructura del Explorador:**  
   El panel lateral izquierdo muestra la jerarquía de archivos y carpetas.  
@@ -99,7 +112,7 @@ Para sacar el máximo provecho de Visual Studio Code (VSCode) es fundamental con
 
 ### Gestión de proyectos
 
-Aunque no es objeto de este módulo, es interesante el uso de sistemas de control de versiones como Git para el versionado y respaldo de los trabajos realizados.
+Aunque no es objeto de este módulo, es interesante el uso de sistemas de control de versiones como Git para el versionado y respaldo de los trabajos realizados. Es posible que en otros módulos del ciclo se profundice en este aspecto.
 
 ### Edición simultánea y pestañas
 
@@ -111,7 +124,7 @@ Aunque no es objeto de este módulo, es interesante el uso de sistemas de contro
 
 - **Terminal integrada:**  
   Permite ejecutar comandos de sistema, scripts, usar Git, y lanzar servidores locales sin salir del editor.  
-    - Se abre con `` Ctrl+` `` (tecla de tilde invertida debajo de Esc).
+    - Se abre con `` Ctrl+` `` (tecla de tilde invertida).
 
 - **Panel de problemas y salida:**  
   Indica errores y advertencias detectados en tiempo real o durante compilación/validación.  
@@ -150,6 +163,70 @@ Visual Studio Code (VSCode) ofrece potentes prestaciones para la edición de doc
 - VSCode integra Emmet, un sistema de abreviaturas que permite generar bloques de código HTML/XML con pocas teclas, por ejemplo: escribir `div.container>ul>li*5` y pulsar `Tab` genera una estructura HTML lista para usar.
 
 - Los fragmentos (snippets) personalizados o por defecto aportan plantillas para código frecuente.
+
+#### Sintaxis Emmet
+
+Emmet es una potente herramienta integrada en la mayoría de editores modernos (incluido VSCode) que permite escribir abreviaturas para generar rápidamente estructuras completas de HTML y XML. Su sintaxis está pensada para ahorrar tiempo y reducir errores al crear documentos de lenguajes de marcas.
+
+##### Principios básicos de la sintaxis Emmet
+
+- **Etiquetas**: Escribe el nombre de la etiqueta y pulsa `Tab` para expandirla.  
+  Ejemplo: `div` → `<div></div>`
+- **Anidación**: Usa el símbolo `>` para anidar elementos.  
+  Ejemplo: `ul>li` → `<ul><li></li></ul>`
+- **Hermanos**: Usa el símbolo `+` para crear elementos hermanos al mismo nivel.  
+  Ejemplo: `h1+p` → `<h1></h1><p></p>`
+- **Multiplicación**: Usa `*` para repetir un elemento varias veces.  
+  Ejemplo: `li*3` → `<li></li><li></li><li></li>`
+- **Clases e identificadores**: Usa `.` para clases y `#` para identificadores.  
+  Ejemplo: `div#cabecera.menu` → `<div id="cabecera" class="menu"></div>`
+- **Atributos**: Usa corchetes `[]` para añadir atributos.  
+  Ejemplo: `input[type="text" placeholder="Nombre"]` → `<input type="text" placeholder="Nombre">`
+
+##### Ejemplos prácticos para HTML
+
+- `nav>ul.menu>li.item*4>a`  
+  Expande a:
+  ```html
+  <nav>
+    <ul class="menu">
+      <li class="item"><a href=""></a></li>
+      <li class="item"><a href=""></a></li>
+      <li class="item"><a href=""></a></li>
+      <li class="item"><a href=""></a></li>
+    </ul>
+  </nav>
+  ```
+
+- `form>label+input[type="text"]+button`  
+  Expande a:
+  ```html
+  <form>
+    <label></label>
+    <input type="text">
+    <button></button>
+  </form>
+  ```
+
+##### Ejemplo para XML
+
+- `libro>titulo+autor+anio`  
+  Expande a:
+  ```xml
+  <libro>
+    <titulo></titulo>
+    <autor></autor>
+    <anio></anio>
+  </libro>
+  ```
+
+##### Consejos de uso
+
+- Escribe la abreviatura y pulsa `Tab` para expandirla (en VSCode y la mayoría de editores compatibles).
+- Puedes combinar varias reglas para crear estructuras complejas en segundos.
+- Emmet también permite expandir abreviaturas dentro de archivos `.xml` y otros lenguajes de marcas, no solo HTML.
+
+Para más información y ejemplos puedes consultar la [documentación oficial de Emmet](https://docs.emmet.io/cheat-sheet/).
 
 ### Validación y formato automático
 
