@@ -1,4 +1,4 @@
-# UD1.4 - Herramientas para la edición de documentos xml y html
+# UD1.4 Herramientas para la edición de documentos xml y html
 
 ## Introducción
 
