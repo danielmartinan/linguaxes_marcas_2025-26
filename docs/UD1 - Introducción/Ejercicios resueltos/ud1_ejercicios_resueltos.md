@@ -160,7 +160,6 @@ Escribe un **documento XML bien formado** que guarde la siguiente información:
 
 ![Tabla ejercicio 4](/img/linguaxes-marcas/ud1/resources/tabla_ejer4.png)
 
-
 <details>
 <summary>Ver solución</summary>
 
@@ -224,12 +223,5 @@ Otra posible solución sería:
     </hecho>
 </hechos_historicos>
 ```
-
-
-</details>
-
-<details>
-<summary> </summary>
-
 
 </details>
