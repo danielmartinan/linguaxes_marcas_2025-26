@@ -287,6 +287,8 @@ biblioteca:
         fecha_pres: 2010-01-12
 ```
 
+:::
+
 YAML es muy utilizado en la configuración de aplicaciones, en la definición de flujos de trabajo y en la serialización de datos. Por ejemplo, las automatizaciones en herramientas de CI/CD, como Github, a menudo utilizan YAML para definir sus pipelines.
 
 ### TOML
@@ -366,6 +368,8 @@ Ejemplo de un documento **HTML**:
    </body>
 </html>
 ```
+
+:::
 
 ## XML vs SGML
 

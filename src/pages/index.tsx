@@ -21,14 +21,14 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="">
+            to="https://fpadistancia.edu.xunta.gal/course/view.php?id=9940">
             Aula Virtual - DAW
           </Link>
         </div>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="">
+            to="https://fpadistancia.edu.xunta.gal/course/view.php?id=9939">
             Aula Virtual - ASIR
           </Link>
         </div>
