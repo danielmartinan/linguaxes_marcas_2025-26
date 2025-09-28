@@ -216,3 +216,40 @@ Para la correcta visualiazación de acentos y caracteres especiales como la `ñ`
 ```
 
 :::
+
+### Cuerpo
+
+El cuerpo (*body*) contiene la información que se va a presentar en la pantalla.
+
+El elemento [`<body>`](https://developer.mozilla.org/es/docs/Web/HTML/Element/body) define el cuerpo de un documento HTML. Permite definir formatos que se aplican a los elementos de la página de manera global como, por ejemplo, el color de fondo del texto o la anchura de los márgenes.
+
+Las etiquetas de apertura y cierre son las siguientes:  
+
+```html
+<body></body>  
+```
+
+### Comentarios
+
+Existe la posibilidad de introducir comentarios en los ficheros HTML:  
+
+```html
+<!-- comentario -->
+```
+
+También pueden ser mulitlínea:  
+
+```html
+<!-- comentario  
+ de varias  
+ líneas -->
+```
+
+Los comentarios no son procesados por los navegadores. Solo sirven para documentar el código.  
+
+:::info[UBICACIÓN DE LOS COMENTARIOS]
+
+Los comentarios solo se deben escribir en el ejemplar y nunca en el prólogo.
+
+:::
+
