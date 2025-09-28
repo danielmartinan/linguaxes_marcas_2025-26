@@ -41,7 +41,7 @@ Un navegador web lo mostraría así:
 
 ![ejemplo](ejemplo_html.png)
 
-Prúebalo en el navegador pulsando [aquí](/img/linguaxes-marcas/ud2/htmls/ud2_4_1.html)
+Prúebalo en el navegador pulsando [aquí](pathname:///img/linguaxes-marcas/ud2/htmls/ud2_4_1.html)
 
 ## Secciones
 
