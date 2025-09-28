@@ -39,7 +39,7 @@ El siguiente ejemplo muestra la diferencia entre ambos comportamientos:
 
 Un navegador web lo mostraría así:
 
-![ejemplo](/static/img/linguaxes-marcas/ud2/img/ejemplo_html.png)
+![ejemplo](/img/linguaxes-marcas/ud2/img/ejemplo_html.png)
 
 Prúebalo en el navegador pulsando [aquí](pathname:///img/linguaxes-marcas/ud2/htmls/ud2_4_1.html)
 
