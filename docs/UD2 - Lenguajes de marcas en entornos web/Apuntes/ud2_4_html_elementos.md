@@ -39,7 +39,7 @@ El siguiente ejemplo muestra la diferencia entre ambos comportamientos:
 
 Un navegador web lo mostraría así:
 
-![ejemplo](ejemplo_html.png)
+![ejemplo](/static/img/linguaxes-marcas/ud2/img/ejemplo_html.png)
 
 Prúebalo en el navegador pulsando [aquí](pathname:///img/linguaxes-marcas/ud2/htmls/ud2_4_1.html)
 
@@ -84,9 +84,11 @@ Un ejemplo utilizando etiquetas semánticas:
 </html>
 ```
 
-La siguiente imagen muestra una disposición posible para estos elementos. Para obtenerla, hay que usar CSS.
+La siguiente imagen muestra una disposición posible para estos elementos. Pero ojo, porque para obtenerla, hay que usar CSS.
 
-### **Elemento `<header>`
+![estructura_html5](/img/linguaxes-marcas/ud2/img/estructura_html5.png)
+
+### Elemento `<header>`
 
 El elemento [`<header>`](https://developer.mozilla.org/es/docs/Web/HTML/Element/header) contiene la cabecera con contenido introductorio para la sección de la página en que aparece.
 
@@ -128,4 +130,63 @@ El elemento [`<nav>`](https://developer.mozilla.org/es/docs/Web/HTML/Element/nav
 
 Ejemplos comunes de secciones de navegación son: menús, tablas de contenido e índices.
 
-* 
+## Elementos tipo texto
+
+### Encabezados y párrafos
+
+Para agrupar el texto en párrafos se usa el elemento [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p). Es un elemento de bloque (*block*).  
+
+```html
+<p>Texto del párrafo</p>
+```
+
+Para los [encabezados](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements), en HTML se definen 6 elementos (6 niveles):  
+\<h1\>Encabezado de nivel 1\</h1\>  
+\<h2\>Encabezado de nivel 2\</h2\>  
+\<h3\>Encabezado de nivel 3\</h3\>  
+\<h4\>Encabezado de nivel 4\</h4\>  
+\<h5\>Encabezado de nivel 5\</h5\>  
+\<h6\>Encabezado de nivel 6\</h6\>
+
+Cuanto menor es el número, mayor es la importancia del encabezado. Es decir, el `<h1>` es el de mayor relevancia. El texto marcado debe servir como encabezado a la sección en la que aparece.
+
+Los encabezados se pueden utilizar para organizar jerárquicamente el contenido de la página.
+
+Un ejemplo en el cual se muestra el uso de los encabezados y párrafos:
+
+```html
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <title>Párrafos y encabezados</title>
+ </head>
+ <body>
+   <h1>Ciclos formativos de la familia de IFC</h1>
+
+   <h2>Ciclos medios (CM)</h2>
+
+   <h3>SMR</h3>
+   <p>Sistemas Microinformáticos y Redes es un ciclo formativo de grado medio.</p>
+   <p>Incluye módulos como: Hardware, Software, Redes, etc.</p>
+
+   <h2>Ciclos superiores (CS)</h2>
+
+   <h3>ASIR</h3>
+   <p>Administración de Sistemas Informáticos en Red es un ciclo formativo de grado superior.</p>
+
+   <h3>DAM</h3>
+   <p>Desarrollo de Aplicaciones Multiplataforma es un ciclo formativo de grado superior.</p>
+
+   <h3>DAW</h3>
+   <p>Desarrollo de Aplicaciones Web es un ciclo formativo de grado superior.</p>
+ </body>
+</html>
+```
+
+El navegador lo muestra de la siguiente manera:
+
+![elementos tipo texto](/img/linguaxes-marcas/ud2/img/text_elements.png)
+
+Pruébalo en el navegador pulsando [aquí](pathname:///img/linguaxes-marcas/ud2/htmls/ud2_4_2.html)
+

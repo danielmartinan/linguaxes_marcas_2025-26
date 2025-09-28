@@ -33,7 +33,7 @@ Un documento HTML tiene el siguiente aspecto:
 
 Podemos ver el documento HTML correspondiente a una web que estamos visualizando si pulsamos con el botón derecho del ratón y escogemos la opción *Ver código fuente de la página*. El nombre de la opción varía dependiendo del navegador.
 
-![alt text](ver_codigo_fuente.png)
+![alt text](/img/linguaxes-marcas/ud2/img/ver_codigo_fuente.png)
 
 ## Versiones de HTML
 
