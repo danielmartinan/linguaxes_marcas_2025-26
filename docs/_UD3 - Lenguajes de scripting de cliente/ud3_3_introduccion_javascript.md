@@ -34,9 +34,15 @@ A pesar del nombre similar, **JavaScript y Java son lenguajes completamente dife
 
 ## Sintaxis básica de JavaScript
 
+A continuación, se presentan los conceptos básicos de la sintaxis de JavaScript con ejemplos prácticos.
+
 ### 1. Incluir JavaScript en HTML
 
+Para añadir funcionalidad JavaScript a una página web, se puede incluir el código de dos formas principales:
+
 #### Mediante etiqueta script interna
+
+Añadimos un bloque de código JavaScript directamente dentro de la etiqueta `<script>` en el HTML.
 
 ```html
 <!DOCTYPE html>
@@ -56,6 +62,8 @@ A pesar del nombre similar, **JavaScript y Java son lenguajes completamente dife
 
 #### Mediante archivo externo
 
+Referenciamos un archivo `.js` externo usando la etiqueta `<script>` con el atributo `src`.
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -70,7 +78,13 @@ A pesar del nombre similar, **JavaScript y Java son lenguajes completamente dife
 </html>
 ```
 
+#### ¿Cual es la mejor práctica?
+
+Es recomendable colocar las etiquetas `<script>` justo antes del cierre de la etiqueta `</body>`. Esto asegura que el HTML se cargue primero, mejorando el rendimiento y evitando errores si el script intenta acceder a elementos del DOM que aún no existen.
+
 ### 2. Variables en JavaScript
+
+Las variables se utilizan para almacenar datos que pueden cambiar durante la ejecución del programa. En JavaScript, existen tres formas principales de declarar variables: `var`, `let` y `const`.
 
 #### var, let y const
 
@@ -88,6 +102,8 @@ const PI = 3.14159;
 ```
 
 #### Reglas de nomenclatura
+
+Debemos seguir ciertas reglas al nombrar variables:
 
 ```javascript
 // ✅ Correcto
@@ -107,7 +123,7 @@ let class;          // Palabra reservada
 
 #### Tipos primitivos
 
-Los tipos primitivos son los tipos de datos básicos que no son objetos y no tienen métodos. En JavaScript, los principales tipos primitivos son:
+Son los tipos de datos básicos en JavaScript:
 
 ```javascript
 // String (cadenas de texto)
@@ -132,18 +148,7 @@ console.log(sinValor); // undefined
 let valorNulo = null;
 ```
 
-:::note[Undefined vs Null]
-
-`undefined` y `null` son dos conceptos ampliamente utilizados en programación y concretamente en JavaScript, pero tienen significados diferentes:
-
-- `undefined` es un tipo de dato que indica que una variable no ha sido inicializada o no tiene un valor asignado.
-- `null` es un tipo de dato que indica que una variable tiene un valor nulo intencionado. Tener valor nulo significa que la variable está vacía o no apunta a ningún objeto.
-
-:::
-
 #### Verificar tipos
-
-Para verificar tipos de datos, disponemos del operador `typeof`:
 
 ```javascript
 let edad = 25;
@@ -155,34 +160,11 @@ console.log(typeof nombre); // "string"
 
 ### 4. Operadores
 
-Como en la mayoría de lenguajes de programación, JavaScript dispone de varios tipos de operadores:
-
-- Aritméticos: operan con números y devuelven un valor numérico
-- Comparación: comparan dos valores y devuelven un booleano
-- Lógicos: combinan expresiones booleanas
-- Bit a bit: operan a nivel de bits
-- Asignación: asignan valores a variables
-
-#### Operador de asignación
-
-Para asignar un valor a una variable se utiliza el operador `=`. También existen operadores compuestos para asignar y operar aritméticamente al mismo tiempo:
-
-```javascript
-let x = 10;      // Asignación simple
-x += 5;         // x = x + 5
-x -= 3;         // x = x - 3
-x *= 2;         // x = x * 2
-x /= 4;         // x = x / 4
-x %= 3;         // x = x % 3
-```
-
 #### Operadores aritméticos
 
-Son los operadores que permiten realizar operaciones matemáticas básicas:
-
 ```javascript
-let a = 10; // Asignación del valor 10 a la variable a
-let b = 3; // Asignación del valor 3 a la variable b
+let a = 10;
+let b = 3;
 
 console.log(a + b);  // 13 - Suma
 console.log(a - b);  // 7  - Resta
@@ -198,10 +180,6 @@ contador--;    // Decrementa en 1
 ```
 
 #### Operadores de comparación
-
-Permiten comparar dos valores y devuelven un valor booleano (`true` o `false`). Para poder comparar "cosas", estas deben tener concepto de orden y ser del mismo tipo. Por ejemplo, no puedo comparar un número con un String (en realidad el lenguaje sí lo permite, haciendo conversiones implícitas, pero no es recomendable).
-
-Javascript dispone además de dos tipos de igualdad: la igualdad simple (`==`) que compara solo el valor, y la igualdad estricta (`===`) que compara tanto el valor como el tipo.
 
 ```javascript
 let x = 5;
@@ -226,8 +204,6 @@ console.log(x <= 4);  // false
 
 #### Operadores lógicos
 
-Permiten combinar expresiones booleanas (`true`, `false`)
-
 ```javascript
 let tieneLicencia = true;
 let tieneCoche = false;
@@ -243,32 +219,9 @@ let puedeViajar = tieneCoche || tieneLicencia; // true
 let noTieneCoche = !tieneCoche; // true
 ```
 
-### 5. Estructuras de control y repetición
-
-Los lenguajes de programación que soportan el paradigma de [**programación estructurada**](https://es.wikipedia.org/wiki/Programaci%C3%B3n_estructurada) (como JavaScript) disponen de estructuras de control que permiten alterar el flujo de ejecución del programa según ciertas condiciones o repetir bloques de código.
-
-Cuando queremos resolver un problema, nos podemos encontrar con tres situaciones:
-
-- Querer realizar operaciones en secuencia (una tras otra)
-- Querer realizar operaciones sólamente si se cumple cierta condición.
-- Querer repetir operaciones varias veces (bucles). El número de veces puede ser determinado o indeterminado, dependiendo de cierta condición.
-
-Por ello, en los lenguajes de programación estructurada disponemos de tres tipos de estructuras:
-
-1. Estructuras secuenciales.
-2. Estructuras condicionales.
-3. Estructuras repetitivas (bucles).
-
-El teorema de Böhm-Jacopini establece que **cualquier algoritmo puede ser implementado utilizando únicamente estas tres estructuras**. Esto demuestra lo potente y versátil que es la programación estructurada.
+### 5. Estructuras de control
 
 #### Condicionales
-
-Permiten evaluar una condición y ejecutar diferentes bloques de código según el resultado (verdadero o falso). Disponemos de varias opciones:
-
-- `if`: ejecuta un bloque si la condición es verdadera.
-- `if-else`: ejecuta un bloque si la condición es verdadera y otro si es falsa.
-- `if-else if-else`: permite múltiples condiciones anidadas.
-- `switch`: evalúa una expresión y ejecuta el bloque correspondiente al caso que coincida.
 
 ```javascript
 let edad = 18;
@@ -313,8 +266,6 @@ switch (dia) {
 
 #### Operador ternario
 
-Es una alternativa compacta al `if-else` cuando solo necesitamos asignar un valor según una condición.
-
 ```javascript
 let edad = 20;
 let mensaje = edad >= 18 ? "Mayor de edad" : "Menor de edad";
@@ -322,12 +273,6 @@ console.log(mensaje); // "Mayor de edad"
 ```
 
 #### Bucles
-
-Permiten repetir un bloque de código varias veces, ya sea un número determinado de veces o mientras se cumpla una condición. Existen 3 tipos de bucles:
-
-- `for`: se utiliza cuando sabemos de antemano cuántas veces queremos repetir el bloque. Indicamos la inicialización, condición y actualización en una sola línea.
-- `while`: se utiliza cuando queremos repetir el bloque mientras se cumpla una condición. La condición se evalúa **antes** de cada iteración.
-- `do-while`: similar al `while`, pero la condición se evalúa **después** de cada iteración, garantizando que el bloque se ejecute al menos una vez.
 
 ```javascript
 // for - cuando sabemos las repeticiones
@@ -351,15 +296,6 @@ do {
 ```
 
 ### 6. Funciones
-
-Las funciones son bloques de código reutilizables que realizan una tarea específica. Permiten organizar el código, evitar repeticiones y mejorar la legibilidad.
-
-Cuando definimos una función debemos:
-
-- Darle un **nombre** descriptivo. Cuando querramos usar una función, nos referiremos a ella por este nombre.
-- Indicar los **parámetros** (opcional). Son valores que la función puede recibir para trabajar con ellos. Son los datos con los que dicha función podrá operar para realizar su cometido.
-- Definir el cuerpo de la función. Es el bloque de código que se ejecutará cuando se llame a la función. Dentro del cuerpo podemos usar los parámetros y otras variables locales. Nos referiremos a los parámetros por el nombre que le hayamos dado al definir la función.
-- Retornar un valor (opcional). Si la función debe devolver un resultado, utilizamos la palabra clave `return` seguida del valor o expresión a devolver. Si no se especifica `return`, la función devolverá `undefined` por defecto.
 
 #### Declaración de funciones
 
@@ -412,8 +348,6 @@ let sumar = (a, b) => a + b;
 
 #### Parámetros por defecto
 
-Cuando definimos una lista de parámetros, podemos asignarles valores por defecto. Si al llamar a la función no se proporciona un valor para ese parámetro, se usará el valor por defecto.
-
 ```javascript
 function saludar(nombre = "Usuario") {
     console.log("¡Hola, " + nombre + "!");
@@ -424,16 +358,6 @@ saludar("Ana");   // "¡Hola, Ana!"
 ```
 
 ### 7. Arrays (Arreglos)
-
-Un array es una **colección ordenada** de elementos que pueden ser de cualquier tipo (números, cadenas, objetos, etc.). Los arrays en JavaScript son dinámicos, lo que significa que pueden crecer y reducirse según sea necesario. Además, los arrays pueden contener elementos de diferentes tipos (esta característica no es propia de otros lenguajes como Java o C++).
-
-Los podemos imaginar como una lista de elementos, donde cada elemento tiene un índice (posición) que empieza en 0.
-
-Las operaciones comunes con arrays incluyen:
-
-- Crear y acceder a elementos. Se realizar utilizando un índice, un número que indica la posición del elemento en el array. En JavaScript, los índices empiezan en 0 (muy común en otros lenguajes como C, Java, Python, etc.).
-- Modificar elementos. Podemos cambiar el valor de un elemento accediendo a él mediante su índice.
-- Propiedades y métodos útiles. Los arrays en JavaScript tienen varias propiedades y métodos incorporados que facilitan su manipulación, como `length`, `push()`, `pop()`, `shift()`, `unshift()`, entre otros.
 
 #### Crear y usar arrays
 
@@ -460,8 +384,6 @@ frutas.shift();               // Quitar del inicio
 ```
 
 #### Recorrer arrays
-
-Podemos recorrer los elementos de un array utilizando diferentes tipos de bucles:
 
 ```javascript
 let numeros = [1, 2, 3, 4, 5];

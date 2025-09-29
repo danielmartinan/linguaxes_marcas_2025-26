@@ -43,7 +43,7 @@ El **pseudocódigo** es una forma de escribir algoritmos usando un lenguaje entr
 
 **Ejemplo**: Algoritmo para encontrar el mayor de dos números
 
-```
+```plaintext
 ALGORITMO Mayor_de_dos
 INICIO
     ESCRIBIR "Introduce el primer número:"
@@ -74,7 +74,16 @@ Todos los lenguajes de programación comparten una serie de elementos comunes a 
 
 ### Palabras reservadas
 
+En un lenguaje de programación, las **palabras reservadas** son términos que tienen un significado especial y no pueden usarse como nombres de variables, funciones u otros identificadores. Estas palabras forman parte de la sintaxis del lenguaje y son esenciales para escribir código correctamente. Ejemplos de palabras reservadas en Javascript:
 
+- `if`, `else` para estructuras condicionales
+- `for`, `while` para bucles
+- `function` para definir funciones
+- `return` para devolver valores desde funciones
+- `var`, `let`, `const` para declarar variables
+- `try`, `catch` para manejo de excepciones
+
+Todas estas palabras reservadas las iremos entendiendo en sucesivos apartados.
 
 ### Variables
 
@@ -147,6 +156,22 @@ const PI = 3.14159;
 const NOMBRE_EMPRESA = "Mi Empresa S.L.";
 ```
 
+### Literales
+
+Los **literales** son los valores fijos que asignamos a las variables o usamos directamente en el código. Pueden ser de diferentes tipos:
+
+- **Números**: `42`, `3.14`, `-5`
+- **Cadenas de texto**: `"Hola"`, `'Mundo'`, `` `Hola ${nombre}` ``
+- **Booleanos**: `true`, `false`
+- **Nulos**: `null`
+- **Indefinidos**: `undefined`
+
+#### Diferencia entre variables, constantes y literales
+
+- **Variable**: Espacio en memoria que puede cambiar (ej. `var edad = 25;`)
+- **Constante**: Espacio en memoria que no cambia (ej. `const PI = 3.14;`)
+- **Literal**: Valor fijo usado en el código (ej. `25`, `"Hola"`). No ocupa espacio en memoria, es un valor al que nos referimos directamente por dicho valor.
+
 ### Comentarios
 
 Los **comentarios** son texto que el programador escribe para explicar el código pero que el ordenador ignora:
@@ -162,11 +187,23 @@ de varias líneas
 var edad = 18; // También puedo comentar al final de una línea
 ```
 
-## Operadores
+### Delimitadores
+
+Los **delimitadores** son símbolos que usamos para estructurar el código y separar diferentes partes. Algunos ejemplos comunes son:
+
+- Llaves `{}`: Para agrupar bloques de código (funciones, condicionales, bucles)
+- Paréntesis `()`: Para agrupar condiciones o parámetros de funciones
+- Corchetes `[]`: Para definir arrays o listas
+- Punto y coma `;`: Para indicar el final de una instrucción (opcional en JavaScript, pero recomendable)
+- Comillas `''` o `""`: Para definir cadenas de texto
+
+Cada delimitador tiene un propósito específico y es fundamental para que el código sea correcto y funcione como se espera. Por tanto, no son intercambiables y, en la mayoría de casos, no se pueden omitir.
+
+### Operadores
 
 Los **operadores** son símbolos que nos permiten realizar operaciones con los datos:
 
-### Operadores aritméticos
+#### Operadores aritméticos
 
 ```javascript
 var a = 10;
@@ -179,7 +216,7 @@ var division = a / b;    // 3.333...
 var resto = a % b;       // 1 (resto de la división)
 ```
 
-### Operadores de comparación
+#### Operadores de comparación
 
 Devuelven `true` o `false`:
 
@@ -195,7 +232,7 @@ x <= y;  // true (menor o igual que)
 x >= y;  // false (mayor o igual que)
 ```
 
-### Operadores lógicos
+#### Operadores lógicos
 
 ```javascript
 var tieneDinero = true;
@@ -213,9 +250,14 @@ var noTieneDinero = !tieneDinero; // false
 
 ## Estructuras de control
 
-Las **estructuras de control** nos permiten decidir qué código ejecutar y cuándo ejecutarlo.
+Las **estructuras de control** nos permiten decidir qué código ejecutar y cuándo ejecutarlo. Distinguimos principalmente:
+
+- Estructuras condicionales
+- Estructuras repetitivas (bucles)
 
 ### Estructuras condicionales
+
+Las **estructuras condicionales** nos permiten ejecutar código solo si se cumple una condición. En JavaScript, las principales estructuras condicionales son:
 
 #### if (si)
 
@@ -285,8 +327,8 @@ while (contador < 3) {
 
 #### Cuándo usar cada bucle
 
-- **for**: Cuando sabes cuántas repeticiones necesitas
-- **while**: Cuando dependes de una condición que puede cambiar
+- **for**: Cuando sabes cuántas repeticiones necesitas. Podemos saberlo en tiempo de programación (usando un literal) pero también en tiempo de ejecución (por ejemplo, recorriendo los elementos de un array, los caracteres de una cadena, etc.)
+- **while**: Cuando dependes de una condición que puede cambiar (por ejemplo, leer datos hasta que el usuario decida parar).
 
 ## Funciones
 
@@ -428,10 +470,12 @@ console.log(calculadora(10, 0, "division"));       // Error: No se puede dividir
 ## Consejos para principiantes
 
 ### 1. Practica regularmente
+
 - La programación se aprende practicando, no solo leyendo
 - Intenta resolver pequeños problemas cada día
 
 ### 2. Usa nombres descriptivos
+
 ```javascript
 // ❌ Mal
 var x = 18;
@@ -443,6 +487,7 @@ var edadEnMeses = edad * 12;
 ```
 
 ### 3. Comenta tu código
+
 ```javascript
 // Calcular el área de un rectángulo
 var base = 10;
@@ -451,11 +496,13 @@ var area = base * altura; // Fórmula: base × altura
 ```
 
 ### 4. Divide problemas complejos
+
 - Si un problema es muy grande, divídelo en partes más pequeñas
 - Resuelve cada parte por separado
 - Luego únelas para formar la solución completa
 
 ### 5. No te desanimes con los errores
+
 - Los errores son normales y parte del aprendizaje
 - Cada error te enseña algo nuevo
 - Usa la consola del navegador para ver los errores
