@@ -7,8 +7,8 @@ En esta sección podrás encontrar apuntes sobre los contenidos del módulo de L
 A continuación se detallan las unidades didácticas que componen el módulo:
 
 - UD1: Introducción a los lenguajes de marcas. Sintaxis XML.  
-- UD2: Uso de lenguajes de marcas en entornos Web. HTML y CSS  
-- UD3: Sindicación de contenidos.  
+- UD2: Uso de lenguajes de marcas en entornos Web. HTML y CSS. Sindicación de contenidos.
+- UD3: Introducción a los lenguajes de scripting de cliente. JavaScript.  
 - UD4: Definición de esquemas y vocabularios en XML.  
 - UD5: Conversión y adaptación de documentos XML.  
 - UD6: Almacenamiento de información.  

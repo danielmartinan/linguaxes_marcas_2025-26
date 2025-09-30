@@ -36,7 +36,7 @@ A pesar del nombre similar, **JavaScript y Java son lenguajes completamente dife
 
 A continuación, se presentan los conceptos básicos de la sintaxis de JavaScript con ejemplos prácticos.
 
-### 1. Incluir JavaScript en HTML
+### Incluir JavaScript en HTML
 
 Para añadir funcionalidad JavaScript a una página web, se puede incluir el código de dos formas principales:
 
@@ -82,7 +82,7 @@ Referenciamos un archivo `.js` externo usando la etiqueta `<script>` con el atri
 
 Es recomendable colocar las etiquetas `<script>` justo antes del cierre de la etiqueta `</body>`. Esto asegura que el HTML se cargue primero, mejorando el rendimiento y evitando errores si el script intenta acceder a elementos del DOM que aún no existen.
 
-### 2. Variables en JavaScript
+### Variables en JavaScript
 
 Las variables se utilizan para almacenar datos que pueden cambiar durante la ejecución del programa. En JavaScript, existen tres formas principales de declarar variables: `var`, `let` y `const`.
 
@@ -119,7 +119,7 @@ let nombre-completo; // No guiones
 let class;          // Palabra reservada
 ```
 
-### 3. Tipos de datos
+### Tipos de datos
 
 #### Tipos primitivos
 
@@ -150,6 +150,8 @@ let valorNulo = null;
 
 #### Verificar tipos
 
+En JavaScript, podemos verificar el tipo de una variable usando `typeof`, y conocer si una variable es de un tipo específico.
+
 ```javascript
 let edad = 25;
 let nombre = "Ana";
@@ -158,9 +160,13 @@ console.log(typeof edad);   // "number"
 console.log(typeof nombre); // "string"
 ```
 
-### 4. Operadores
+### Operadores
+
+Los operadores son las acciones que podemos realizar sobre los datos. A continuación, se presentan los operadores más comunes en JavaScript.
 
 #### Operadores aritméticos
+
+Son operadores que realizan operaciones matemáticas básicas. Utilizan números como operandos y devuelven números como resultado.
 
 ```javascript
 let a = 10;
@@ -180,6 +186,8 @@ contador--;    // Decrementa en 1
 ```
 
 #### Operadores de comparación
+
+Permiten comparar valores y devuelven un valor booleano (`true` o `false`). Es importante comparar objetos o variables del mismo tipo para evitar resultados inesperados.
 
 ```javascript
 let x = 5;
@@ -204,6 +212,8 @@ console.log(x <= 4);  // false
 
 #### Operadores lógicos
 
+Los operadores lógicos se utilizan para combinar expresiones booleanas.
+
 ```javascript
 let tieneLicencia = true;
 let tieneCoche = false;
@@ -219,7 +229,9 @@ let puedeViajar = tieneCoche || tieneLicencia; // true
 let noTieneCoche = !tieneCoche; // true
 ```
 
-### 5. Estructuras de control
+### Estructuras de control
+
+Las estructuras de control permiten dirigir el flujo de ejecución del código según ciertas condiciones o repeticiones.
 
 #### Condicionales
 
@@ -266,8 +278,11 @@ switch (dia) {
 
 #### Operador ternario
 
+Es una alternativa compacta al `if-else` para asignar valores basados en una condición.
+
 ```javascript
 let edad = 20;
+// Operador ternario: lo podríamos leer: "Si edad es mayor o igual a 18, mensaje es 'Mayor de edad', si no, 'Menor de edad'"
 let mensaje = edad >= 18 ? "Mayor de edad" : "Menor de edad";
 console.log(mensaje); // "Mayor de edad"
 ```
@@ -295,12 +310,20 @@ do {
 } while (numero < 3);
 ```
 
-### 6. Funciones
+### Funciones
+
+Las funciones son bloques de código reutilizables que realizan una tarea específica. Pueden recibir entradas (parámetros) y devolver un resultado.
+Nos referiremos a ellas mediante el nombre asignado. Al emplear las funciones tenemos que tener en cuenta:
+
+- **Declaración** de la función: es el proceso de definir una función con un nombre y un bloque de código. En este paso indicamos el nombre de la función, los parámetros (opcionales) que recibe, el valor de retorno (si lo tiene) y lo que debe hacer la función (cuerpo de la función).
+- **Llamada** o **invocación** de la función: es el proceso de ejecutar la función previamente declarada. Al llamar a la función, se utiliza su nombre seguido de paréntesis, y si la función acepta parámetros, se pasan los valores correspondientes dentro de esos paréntesis. Si la función devuelve un retorno, podemos asignarla a una variable o usarla directamente.
+
+En Javascript, utilizamos la palabra reservada `function` para declarar una función. Para devolver un valor, usamos la palabra reservada `return`.
 
 #### Declaración de funciones
 
 ```javascript
-// Función básica
+// Función básica. La función se llama "saludar", y no recibe parámetros ni devuelve nada.
 function saludar() {
     console.log("¡Hola!");
 }
@@ -308,14 +331,14 @@ function saludar() {
 // Llamar la función
 saludar();
 
-// Función con parámetros
+// Función con parámetros. La función recibe un parámetro "nombre". Este parámetro se utiliza dentro de la función como si fuera una variable.
 function saludarPersona(nombre) {
     console.log("¡Hola, " + nombre + "!");
 }
 
 saludarPersona("Ana");
 
-// Función que retorna un valor
+// Función que retorna un valor. Esta función recibe dos parámetros y devuelve su suma. Se utiliza la palabra reservada `return` para devolver el resultado.
 function sumar(a, b) {
     return a + b;
 }
@@ -325,6 +348,11 @@ console.log(resultado); // 8
 ```
 
 #### Diferentes formas de crear funciones
+
+Como se mencionó anteriormente, una forma de crear funciones es definiéndolas mediante la palabra reservada `function`. Sin embargo, existen otras formas de definir funciones en JavaScript:
+
+- **Expresión de función**: Asignar una función anónima a una variable. Decimos que la función es "anónima" porque no tiene un nombre propio, sino que se accede a ella a través de la variable a la que está asignada.
+- **Arrow function**: Introducida en ES6, es una forma más concisa de escribir funciones. No tiene su propio `this`, lo que puede ser útil en ciertos contextos. Si la función tiene una sola expresión, se puede omitir el bloque `{}` y el `return`.
 
 ```javascript
 // 1. Declaración de función
@@ -337,16 +365,24 @@ let miFuncion2 = function() {
     return "Soy una expresión";
 };
 
-// 3. Arrow function (función flecha) - ES6
+// 3. Arrow function (función flecha) - ES6. Esta función no tiene parámetros (paréntesis vacíos) y devuelve una cadena de texto.
 let miFuncion3 = () => {
     return "Soy una arrow function";
 };
 
-// Arrow function simplificada
+// Arrow function simplificada La función tiene dos parámetros y una sola expresión, por lo que se omiten las llaves y el return
 let sumar = (a, b) => a + b;
+
+// Llamadas
+console.log(miFuncion1()); // "Soy una declaración"
+console.log(miFuncion2()); // "Soy una expresión"
+console.log(miFuncion3()); // "Soy una arrow function"
+console.log(sumar(2, 3)); // 5
 ```
 
 #### Parámetros por defecto
+
+Podemos asignar valores por defecto a los parámetros de una función. Si no se proporciona un valor al llamar a la función, se utilizará el valor por defecto.
 
 ```javascript
 function saludar(nombre = "Usuario") {
@@ -357,7 +393,9 @@ saludar();        // "¡Hola, Usuario!"
 saludar("Ana");   // "¡Hola, Ana!"
 ```
 
-### 7. Arrays (Arreglos)
+### Arrays (Arreglos)
+
+Un array es una colección ordenada de elementos que pueden ser de cualquier tipo (números, cadenas, objetos, etc.). Los arrays en JavaScript son dinámicos y pueden cambiar de tamaño. Accedemos a los elementos mediante su índice, que comienza en 0.
 
 #### Crear y usar arrays
 
@@ -385,6 +423,8 @@ frutas.shift();               // Quitar del inicio
 
 #### Recorrer arrays
 
+Tenemos diferentes alternativas para recorrer los elementos de un array.
+
 ```javascript
 let numeros = [1, 2, 3, 4, 5];
 
@@ -404,7 +444,9 @@ numeros.forEach(function(numero) {
 });
 ```
 
-### 8. Objetos
+### Objetos
+
+Un objeto es una colección de propiedades, donde cada propiedad es una asociación entre un nombre (clave) y un valor. Los objetos permiten agrupar datos relacionados y funcionalidades (métodos) en una sola entidad. Podemos asociarlo a los objetos de Java o a los diccionarios de Python.
 
 #### Crear y usar objetos
 
@@ -434,6 +476,8 @@ delete persona.hobbies;
 
 #### Métodos en objetos
 
+Los métodos son funciones que están asociadas a un objeto. Se definen como propiedades cuyo valor es una función.
+
 ```javascript
 let calculadora = {
     sumar: function(a, b) {
@@ -449,6 +493,8 @@ console.log(calculadora.restar(5, 3)); // 2
 ```
 
 #### Sintaxis moderna de objetos (ES6)
+
+Desde ES6, podemos usar una sintaxis más concisa para definir propiedades y métodos en objetos cuando el nombre de la propiedad es el mismo que el nombre de la variable o cuando definimos métodos.
 
 ```javascript
 let nombre = "Ana";
@@ -468,7 +514,9 @@ let persona = {
 
 ## Conceptos avanzados básicos
 
-### 1. Template literals
+### Template literals
+
+Los *template literals* son una forma de trabajar con cadenas de texto en JavaScript. Se definen utilizando comillas invertidas (`` ` ``) y permiten incluir expresiones dentro de la cadena.
 
 ```javascript
 let nombre = "Ana";
@@ -489,7 +537,9 @@ let html = `
 `;
 ```
 
-### 2. Destructuring
+### Destructuring
+
+El *destructuring* es una expresión que permite desempaquetar valores de arrays o propiedades de objetos en variables distintas. Es una forma de "deconstruir" estructuras complejas de datos de manera compacta y legible.
 
 ```javascript
 // Array destructuring
@@ -507,7 +557,12 @@ console.log(nombre);  // "Ana"
 console.log(edad);    // 25
 ```
 
-### 3. Spread operator
+### Spread operator
+
+El *spread operator* (`...`) permite expandir elementos de un array u objeto en lugares donde se esperan múltiples elementos o propiedades. Es útil para copiar, combinar o clonar arrays y objetos.
+
+- Con arrays, permite combinar varios arrays en uno solo.
+- Con objetos, permite copiar propiedades de un objeto a otro o combinar varios objetos.
 
 ```javascript
 // Con arrays
@@ -519,6 +574,11 @@ let todos = [...numeros1, ...numeros2]; // [1, 2, 3, 4, 5, 6]
 let persona = { nombre: "Ana", edad: 25 };
 let empleado = { ...persona, trabajo: "Programadora" };
 // { nombre: "Ana", edad: 25, trabajo: "Programadora" }
+
+// Combinar dos objetos
+let obj1 = { a: 1, b: 2 };
+let obj2 = { b: 3, c: 4 };
+let combinado = { ...obj1, ...obj2 }; // { a: 1, b: 3, c: 4 }. El valor de 'b' se sobrescribe
 ```
 
 ## Buenas prácticas en JavaScript
@@ -653,35 +713,262 @@ mostrarEstudiantes();
 
 ## Herramientas de desarrollo
 
-### 1. Console del navegador
+A la hora de desarrollar en JavaScript, existen varias herramientas que facilitan la depuración y el análisis del código.
+
+### Visual Studio Code para JavaScript
+
+**Visual Studio Code (VSCode)** es actualmente el editor de código más popular para desarrollo JavaScript debido a su excelente soporte nativo y su rico ecosistema de extensiones.
+
+#### Características nativas de VSCode para JavaScript
+
+**IntelliSense integrado**: VSCode proporciona autocompletado inteligente, información de parámetros y documentación automática para JavaScript sin necesidad de configuración adicional.
+
+```javascript
+// VSCode mostrará automáticamente las propiedades y métodos disponibles
+let texto = "Hola mundo";
+texto. // Aquí aparecerá el autocompletado con métodos como .length, .toUpperCase(), etc.
+```
+
+**Depuración integrada**: Permite establecer breakpoints, inspeccionar variables y ejecutar código paso a paso directamente en el editor.
+
+**Terminal integrado**: Ejecuta comandos de Node.js y herramientas de desarrollo sin salir del editor.
+
+#### Extensiones esenciales para JavaScript
+
+1. **ESLint** - Análisis de código y detección de errores en tiempo real
+2. **Prettier - Code formatter** - Formateo automático de código
+3. **JavaScript (ES6) code snippets** - Fragmentos de código predefinidos
+4. **Bracket Pair Colorizer 2** - Colorea las llaves y paréntesis correspondientes
+5. **Auto Rename Tag** - Renombra etiquetas HTML automáticamente
+6. **Live Server** - Servidor web local para desarrollo
+7. **GitLens** - Mejora la integración con Git
+
+#### Configuración recomendada
+
+Para optimizar VSCode para JavaScript, crea un archivo `settings.json` en tu proyecto:
+
+```json
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "javascript.suggest.autoImports": true,
+    "typescript.suggest.autoImports": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+}
+```
+
+**Configuración de Prettier** (archivo `.prettierrc`):
+
+```json
+{
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 80
+}
+```
+
+#### Atajos de teclado útiles
+
+- `Ctrl + Shift + P`: Paleta de comandos (acceso a todas las funciones)
+- `Ctrl + ` ` `: Abrir/cerrar terminal integrado
+- `F5`: Iniciar depuración
+- `F9`: Establecer/quitar breakpoint
+- `F12`: Ir a definición
+- `Shift + F12`: Mostrar todas las referencias
+- `Ctrl + D`: Seleccionar siguiente ocurrencia
+- `Alt + Shift + F`: Formatear documento
+- `Ctrl + /`: Comentar/descomentar línea
+
+#### Depuración en VSCode
+
+Para depurar JavaScript en el navegador, crea un archivo `.vscode/launch.json` en tu proyecto:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:5500",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Node.js",
+            "program": "${workspaceFolder}/app.js",
+            "console": "integratedTerminal"
+        }
+    ]
+}
+```
+
+#### Snippets útiles
+
+VSCode permite crear **snippets personalizados**. Ve a `File > Preferences > Configure User Snippets` y selecciona JavaScript:
+
+```json
+{
+    "Console Log": {
+        "prefix": "cl",
+        "body": [
+            "console.log($1);"
+        ],
+        "description": "Console log"
+    },
+    "Arrow Function": {
+        "prefix": "af",
+        "body": [
+            "const $1 = ($2) => {",
+            "\t$3",
+            "};"
+        ],
+        "description": "Arrow function"
+    }
+}
+```
+
+### Consola del navegador
+
+La consola del navegador es una herramienta fundamental para depurar JavaScript:
 
 ```javascript
 // Diferentes tipos de mensajes en consola
 console.log("Mensaje informativo");
 console.warn("Advertencia");
 console.error("Error");
-console.table([{nombre: "Ana", edad: 25}, {nombre: "Luis", edad: 30}]);
+console.info("Información adicional");
+
+// Mostrar datos en formato tabla
+console.table([
+    {nombre: "Ana", edad: 25}, 
+    {nombre: "Luis", edad: 30}
+]);
+
+// Agrupar mensajes
+console.group("Datos del usuario");
+console.log("Nombre: Ana");
+console.log("Edad: 25");
+console.groupEnd();
+
+// Medir tiempo de ejecución
+console.time("operacion");
+// ... código a medir ...
+console.timeEnd("operacion");
 ```
 
-### 2. Debugger
+### Debugger
+
+El debugger permite pausar la ejecución del código para inspeccionar variables y el flujo del programa:
 
 ```javascript
-function miFuncion() {
-    let x = 10;
+function calcularTotal(precio, descuento) {
+    let precioConDescuento = precio * (1 - descuento);
     debugger; // El navegador pausará aquí
-    let y = x * 2;
-    return y;
+    let impuesto = precioConDescuento * 0.21;
+    let total = precioConDescuento + impuesto;
+    return total;
+}
+
+// Cuando se ejecute, el navegador abrirá las herramientas de desarrollo
+let resultado = calcularTotal(100, 0.1);
+```
+
+### Validación y calidad de código
+
+#### ESLint
+
+ESLint ayuda a mantener un **código consistente y libre de errores**:
+
+```bash
+# Instalación global
+npm install -g eslint
+
+# Inicializar configuración
+eslint --init
+```
+
+Archivo `.eslintrc.json` ejemplo:
+
+```json
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": ["error", 2],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"]
+    }
 }
 ```
 
-### 3. Validación de código
+#### Ejemplo de uso completo en VSCode
 
-```javascript
-// Usa herramientas como:
-// - ESLint para detectar errores y estilo
-// - Prettier para formatear código
-// - JSHint para análisis estático
+1. **Crear proyecto**:
+
+```bash
+mkdir mi-proyecto-js
+cd mi-proyecto-js
+code . # Abre VSCode
 ```
+
+1. **Estructura del proyecto**:
+
+```plaintext
+mi-proyecto-js/
+├── .vscode/
+│   ├── settings.json
+│   └── launch.json
+├── src/
+│   ├── index.html
+│   ├── script.js
+│   └── styles.css
+├── .eslintrc.json
+├── .prettierrc
+└── package.json
+```
+
+1. **Archivo HTML básico**:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Mi Aplicación</h1>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+Con esta configuración, tendrás un entorno de desarrollo profesional para JavaScript con:
+
+- Formateo automático
+- Detección de errores
+- Autocompletado inteligente  
+- Depuración integrada
+- Control de versiones con Git
 
 ## Próximos pasos
 

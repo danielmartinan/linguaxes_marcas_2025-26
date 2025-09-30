@@ -57,30 +57,64 @@ Document
                 └── "Elemento 2"
 ```
 
+```mermaid
+flowchart TD
+    A[Document] --> B[html]
+    B --> C[head]
+    B --> D[body]
+    C --> E[title]
+    E --> F["'Mi Página'"]
+    D --> G[h1]
+    D --> H[p]
+    D --> I[ul]
+    G --> J["'Bienvenidos'"]
+    H --> K["'Este es un párrafo con '"]
+    H --> L[strong]
+    H --> M["'.'"]
+    L --> N["'texto resaltado'"]
+    I --> O[li]
+    I --> P[li]
+    O --> Q["'Elemento 1'"]
+    P --> R["'Elemento 2'"]
+    
+    classDef elementNode fill:#e1f5fe
+    classDef textNode fill:#f3e5f5
+    classDef rootNode fill:#e8f5e8
+    
+    class A rootNode
+    class B,C,D,E,G,H,I,L,O,P elementNode
+    class F,J,K,M,N,Q,R textNode
+```
+
 ### Tipos de nodos
 
 El DOM incluye diferentes tipos de nodos:
 
 #### 1. Document Node (Nodo Documento)
+
 - Representa el documento completo
 - Punto de entrada para acceder a todos los elementos
 - Solo hay uno por página
 
 #### 2. Element Nodes (Nodos Elemento)
+
 - Representan las etiquetas HTML (`<div>`, `<p>`, `<h1>`, etc.)
 - Pueden tener atributos y elementos hijos
 - Son los nodos más comunes que manipulamos
 
 #### 3. Text Nodes (Nodos de Texto)
+
 - Contienen el texto dentro de los elementos
 - No pueden tener nodos hijos
 - Incluye espacios en blanco y saltos de línea
 
 #### 4. Attribute Nodes (Nodos Atributo)
+
 - Representan los atributos de los elementos (`id`, `class`, `src`, etc.)
 - No forman parte directa del árbol (están asociados a elementos)
 
 #### 5. Comment Nodes (Nodos Comentario)
+
 - Representan comentarios HTML `<!-- comentario -->`
 - Generalmente ignorados en la manipulación
 
@@ -94,6 +128,7 @@ El DOM incluye diferentes tipos de nodos:
 ```
 
 **Desglose de nodos:**
+
 - `<div>`: Element Node
   - `id="contenedor"`: Attribute Node
   - `class="principal"`: Attribute Node
@@ -110,6 +145,14 @@ El DOM incluye diferentes tipos de nodos:
 
 Cada nodo tiene propiedades que permiten navegar por el árbol:
 
+- `parentNode`: Nodo padre. Nodo inmediato que contiene al nodo actual
+- `childNodes`: Lista de todos los nodos hijos (incluye texto y comentarios). Llamamos nodos hijos a todos los nodos que están directamente dentro de un nodo padre
+- `children`: Lista de solo los elementos hijos (excluye texto y comentarios)
+- `firstChild`: Primer nodo hijo
+- `lastChild`: Último nodo hijo
+- `nextSibling`: Siguiente hermano. Llamamos hermanos a los nodos que están al mismo nivel, es decir, que comparten el mismo padre.
+- `previousSibling`: Hermano anterior
+
 ```javascript
 // Obtener un elemento
 let elemento = document.getElementById('miElemento');
@@ -124,7 +167,152 @@ console.log(elemento.nextSibling);    // Siguiente hermano
 console.log(elemento.previousSibling); // Hermano anterior
 ```
 
+Ejemplo:
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejemplo</title>
+    </head>
+    <body>
+        <div id="contenedor">
+            <p>Párrafo 1</p>
+            <p>Párrafo 2</p>
+        </div>
+        <footer>
+            <p>Pie de página</p>
+        </footer>
+    </body>
+</html>
+```
+
+```javascript
+let contenedor = document.getElementById('contenedor');
+
+console.log('=== PROPIEDADES DE NAVEGACIÓN ===');
+
+// Nodo padre
+console.log('Padre del contenedor:', contenedor.parentNode); 
+// Resultado: <body>
+
+// Todos los nodos hijos (incluye espacios en blanco como texto)
+console.log('Todos los nodos hijos:', contenedor.childNodes); 
+// Resultado: NodeList(5) [text, p, text, p, text]
+// Nota: Los "text" son los espacios en blanco y saltos de línea
+
+// Solo elementos hijos (excluye texto y comentarios)
+console.log('Solo elementos hijos:', contenedor.children);   
+// Resultado: HTMLCollection(2) [p, p]
+
+// Primer nodo hijo (puede ser texto)
+console.log('Primer hijo:', contenedor.firstChild); 
+// Resultado: text (el espacio/salto de línea antes de <p>)
+
+// Último nodo hijo (puede ser texto)
+console.log('Último hijo:', contenedor.lastChild);  
+// Resultado: text (el espacio/salto de línea después de </p>)
+
+// Siguiente hermano (nodo al mismo nivel)
+console.log('Siguiente hermano:', contenedor.nextSibling); 
+// Resultado: text (el espacio/salto de línea antes de <footer>)
+
+// Hermano anterior
+console.log('Hermano anterior:', contenedor.previousSibling); 
+// Resultado: text (el espacio/salto de línea después de <body>)
+
+console.log('=== ALTERNATIVAS SIN NODOS DE TEXTO ===');
+
+// Para evitar los nodos de texto, usar estas propiedades:
+console.log('Primer elemento hijo:', contenedor.firstElementChild);
+// Resultado: <p>Párrafo 1</p>
+
+console.log('Último elemento hijo:', contenedor.lastElementChild);
+// Resultado: <p>Párrafo 2</p>
+
+console.log('Siguiente elemento hermano:', contenedor.nextElementSibling);
+// Resultado: <footer>
+
+console.log('Elemento hermano anterior:', contenedor.previousElementSibling);
+// Resultado: null (no hay elementos antes del div)
+```
+
+### ¿Por qué aparecen nodos de texto?
+
+Los navegadores interpretan los **espacios en blanco** y **saltos de línea** en el HTML como nodos de texto. Por ejemplo:
+
+```html
+<div id="contenedor">
+    <p>Párrafo 1</p>  ← Hay un salto de línea aquí
+    <p>Párrafo 2</p>  ← Y otro aquí
+</div>
+```
+
+Se interpreta como:
+
+1. **text** (salto de línea + espacios)
+2. **p** (Párrafo 1)
+3. **text** (salto de línea + espacios)
+4. **p** (Párrafo 2)  
+5. **text** (salto de línea + espacios)
+
+### Diferencia práctica entre propiedades
+
+```javascript
+let contenedor = document.getElementById('contenedor');
+
+// ❌ Problemático: puede devolver texto vacío
+console.log(contenedor.firstChild.textContent); // "" (texto vacío)
+
+// ✅ Correcto: siempre devuelve un elemento
+console.log(contenedor.firstElementChild.textContent); // "Párrafo 1"
+
+// ❌ Problemático: puede ser null si el siguiente es texto
+let siguiente = contenedor.nextSibling;
+if (siguiente && siguiente.nodeType === 1) { // 1 = ELEMENT_NODE
+    console.log('Es un elemento:', siguiente.tagName);
+}
+
+// ✅ Correcto: siempre es un elemento o null
+let siguienteElemento = contenedor.nextElementSibling;
+if (siguienteElemento) {
+    console.log('Siguiente elemento:', siguienteElemento.tagName); // "FOOTER"
+}
+```
+
+### Ejemplo práctico de navegación
+
+```javascript
+// Función para mostrar la estructura completa
+function analizarEstructura(elemento, nivel = 0) {
+    let indent = '  '.repeat(nivel);
+    
+    if (elemento.nodeType === 1) { // ELEMENT_NODE
+        console.log(`${indent}ELEMENTO: <${elemento.tagName.toLowerCase()}>`);
+        
+        // Recorrer solo elementos hijos (sin texto)
+        for (let hijo of elemento.children) {
+            analizarEstructura(hijo, nivel + 1);
+        }
+    }
+}
+
+// Analizar desde el body
+console.log('=== ESTRUCTURA DEL DOCUMENTO ===');
+analizarEstructura(document.body);
+
+// Resultado esperado:
+// ELEMENTO: <body>
+//   ELEMENTO: <div>
+//     ELEMENTO: <p>
+//     ELEMENTO: <p>
+//   ELEMENTO: <footer>
+//     ELEMENTO: <p>
+```
+
 ### Diferencia entre childNodes y children
+
+`childNodes` incluye todos los nodos hijos (elementos, texto, comentarios), mientras que `children` solo incluye los **elementos HTML**.
 
 ```html
 <div id="contenedor">
@@ -147,6 +335,12 @@ console.log(contenedor.children);
 
 ### Propiedades de contenido
 
+Estas propiedades permiten acceder y modificar el contenido de los nodos:
+
+- `innerHTML`: Contenido HTML completo dentro de un elemento
+- `textContent`: Texto sin formato (incluye todo el texto, sin HTML)
+- `innerText`: Texto visible (respeta estilos CSS, no incluye texto oculto)
+
 ```javascript
 let elemento = document.getElementById('miElemento');
 
@@ -161,6 +355,7 @@ console.log(elemento.innerText);
 ```
 
 **Ejemplo:**
+
 ```html
 <div id="ejemplo">
     <p>Este es un <strong>párrafo</strong> con formato</p>
