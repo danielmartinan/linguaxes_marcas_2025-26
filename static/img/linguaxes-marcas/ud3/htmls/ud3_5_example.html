@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tareas</title>
+    <style>
+        .completada {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        .tarea {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mi Lista de Tareas</h1>
+    
+    <div id="formulario">
+        <input type="text" id="nueva-tarea" placeholder="Escribir nueva tarea...">
+        <button onclick="agregarTarea()">Agregar</button>
+    </div>
+    
+    <div id="lista-tareas"></div>
+    
+    <script>
+        let contadorTareas = 0;
+        
+        function agregarTarea() {
+            let input = document.getElementById('nueva-tarea');
+            let texto = input.value.trim();
+            
+            if (texto === '') {
+                alert('Por favor escribe una tarea');
+                return;
+            }
+            
+            // Crear contenedor de la tarea
+            let divTarea = document.createElement('div');
+            divTarea.className = 'tarea';
+            divTarea.id = 'tarea-' + contadorTareas;
+            
+            // Crear checkbox
+            let checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.onchange = function() {
+                marcarCompletada(this);
+            };
+            
+            // Crear texto de la tarea
+            let spanTexto = document.createElement('span');
+            spanTexto.textContent = texto;
+            spanTexto.style.marginLeft = '10px';
+            
+            // Crear botón eliminar
+            let botonEliminar = document.createElement('button');
+            botonEliminar.textContent = 'Eliminar';
+            botonEliminar.style.marginLeft = '10px';
+            botonEliminar.onclick = function() {
+                eliminarTarea(divTarea.id);
+            };
+            
+            // Ensamblar la tarea
+            divTarea.appendChild(checkbox);
+            divTarea.appendChild(spanTexto);
+            divTarea.appendChild(botonEliminar);
+            
+            // Añadir al contenedor principal
+            document.getElementById('lista-tareas').appendChild(divTarea);
+            
+            // Limpiar input y incrementar contador
+            input.value = '';
+            contadorTareas++;
+        }
+        
+        function marcarCompletada(checkbox) {
+            let tarea = checkbox.parentElement;
+            if (checkbox.checked) {
+                tarea.classList.add('completada');
+            } else {
+                tarea.classList.remove('completada');
+            }
+        }
+        
+        function eliminarTarea(id) {
+            let tarea = document.getElementById(id);
+            if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+                tarea.remove();
+            }
+        }
+        
+        // Permitir agregar tarea con Enter
+        document.getElementById('nueva-tarea').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                agregarTarea();
+            }
+        });
+    </script>
+</body>
+</html>

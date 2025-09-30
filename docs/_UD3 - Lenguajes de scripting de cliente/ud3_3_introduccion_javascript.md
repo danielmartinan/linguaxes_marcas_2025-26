@@ -1,4 +1,4 @@
-# UD3.3 - Introducción a JavaScript
+# Introducción a JavaScript
 
 ## ¿Qué es JavaScript?
 

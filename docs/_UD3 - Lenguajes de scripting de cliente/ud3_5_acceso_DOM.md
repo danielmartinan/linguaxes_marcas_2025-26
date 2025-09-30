@@ -6,7 +6,8 @@ La selección de elementos es el primer paso para interactuar con el DOM. JavaSc
 
 ### Métodos de selección básicos
 
-#### getElementById()
+#### `getElementById()`
+
 Selecciona un elemento por su atributo `id`. Es el método más rápido y directo.
 
 ```javascript
@@ -19,7 +20,8 @@ let noExiste = document.getElementById('no-existe');
 console.log(noExiste); // null
 ```
 
-#### getElementsByTagName()
+#### `getElementsByTagName()`
+
 Selecciona todos los elementos de una etiqueta específica. Devuelve una HTMLCollection.
 
 ```javascript
@@ -33,7 +35,8 @@ for (let i = 0; i < parrafos.length; i++) {
 }
 ```
 
-#### getElementsByClassName()
+#### `getElementsByClassName()`
+
 Selecciona elementos por su clase CSS. También devuelve una HTMLCollection.
 
 ```javascript
@@ -49,6 +52,7 @@ if (destacados.length > 0) {
 ```
 
 #### getElementsByName()
+
 Selecciona elementos por su atributo `name` (común en formularios).
 
 ```javascript
@@ -61,6 +65,7 @@ console.log(emails.length); // 2
 ### Métodos de selección modernos (más potentes)
 
 #### querySelector()
+
 Selecciona el **primer elemento** que coincida con un selector CSS.
 
 ```javascript
@@ -80,6 +85,7 @@ let elemento = document.querySelector('li:first-child');
 ```
 
 #### querySelectorAll()
+
 Selecciona **todos los elementos** que coincidan con un selector CSS. Devuelve un NodeList.
 
 ```javascript
@@ -184,6 +190,7 @@ console.log(primerItem.textContent); // "Item 1"
 ### innerHTML vs textContent vs innerText
 
 #### innerHTML
+
 Obtiene o establece el HTML completo dentro de un elemento.
 
 ```javascript
@@ -201,11 +208,13 @@ div.innerHTML += '<p>Párrafo adicional</p>';
 ```
 
 **⚠️ Cuidado con innerHTML:**
-- Puede ser vulnerable a ataques XSS si usas contenido no confiable
+
+- Puede ser vulnerable a ataques [XSS]() si usas contenido no confiable
 - Reemplaza todo el contenido existente
 - Es más lento que textContent
 
 #### textContent
+
 Obtiene o establece solo el texto, ignorando las etiquetas HTML.
 
 ```javascript
@@ -220,6 +229,7 @@ div.textContent = 'Texto simple <strong>esto no será negrita</strong>';
 ```
 
 #### innerText
+
 Similar a textContent pero respeta los estilos CSS (elementos ocultos).
 
 ```javascript
@@ -313,6 +323,7 @@ console.log(nuevoParrafo); // <p class="dinamico" id="parrafo-1">...</p>
 ### Insertar elementos en el DOM
 
 #### appendChild()
+
 Añade un elemento al final de los hijos de otro elemento.
 
 ```javascript
@@ -325,6 +336,7 @@ contenedor.appendChild(nuevoDiv);
 ```
 
 #### insertBefore()
+
 Inserta un elemento antes de otro elemento específico.
 
 ```javascript
@@ -336,6 +348,7 @@ contenedor.insertBefore(nuevoElemento, referencia);
 ```
 
 #### insertAdjacentHTML()
+
 Método más flexible para insertar HTML en posiciones específicas.
 
 ```javascript
@@ -385,6 +398,7 @@ crearLista();
 ## Eliminación de elementos
 
 ### removeChild()
+
 Método tradicional que requiere acceso al elemento padre.
 
 ```javascript
@@ -394,6 +408,7 @@ padre.removeChild(elemento);
 ```
 
 ### remove() (moderno)
+
 Método más simple y directo.
 
 ```javascript

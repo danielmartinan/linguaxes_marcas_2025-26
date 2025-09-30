@@ -1,4 +1,4 @@
-# UD3.4 - Document Object Model (DOM)
+# Document Object Model (DOM)
 
 ## ¿Qué es el DOM?
 
@@ -424,6 +424,7 @@ let inputs = document.getElementsByName('nombre');
 ### HTMLCollection vs NodeList
 
 #### HTMLCollection
+
 - Solo contiene elementos HTML
 - Es "viva" (se actualiza automáticamente)
 - No tiene todos los métodos de arrays
@@ -438,6 +439,7 @@ console.log(divs.length); // Ahora: 4
 ```
 
 #### NodeList
+
 - Puede contener cualquier tipo de nodo
 - Puede ser "viva" o estática dependiendo de cómo se obtenga
 - Tiene algunos métodos de arrays (como forEach)
@@ -529,21 +531,25 @@ arrayDivs.forEach(div => {
 ## Ventajas del modelo DOM
 
 ### 1. Interactividad dinámica
+
 - Modificar contenido sin recargar la página
 - Crear experiencias de usuario fluidas
 - Responder a eventos en tiempo real
 
 ### 2. Separación de responsabilidades
+
 - HTML: estructura
 - CSS: presentación
 - JavaScript: comportamiento
 
 ### 3. Accesibilidad programática
+
 - Todo elemento es accesible desde JavaScript
 - Modificación granular de cualquier aspecto
 - Integración con APIs del navegador
 
 ### 4. Estándar multiplataforma
+
 - Funciona igual en diferentes navegadores
 - Especificación clara y documentada
 - Evolución constante con nuevas características
@@ -551,16 +557,19 @@ arrayDivs.forEach(div => {
 ## Limitaciones y consideraciones
 
 ### 1. Rendimiento
+
 - Manipulaciones frecuentes pueden ser lentas
 - Reflujo y repintado del navegador
 - Mejor agrupar cambios cuando sea posible
 
 ### 2. Diferencias entre navegadores
+
 - Algunos métodos pueden no estar disponibles en navegadores antiguos
 - Necesidad de verificar compatibilidad
 - Uso de polyfills cuando sea necesario
 
 ### 3. Carga del DOM
+
 - El DOM debe estar completamente cargado antes de manipularlo
 - Uso de eventos como `DOMContentLoaded`
 - Diferencia entre DOM listo y recursos cargados
@@ -581,11 +590,13 @@ window.addEventListener('load', function() {
 ## Herramientas de desarrollo
 
 ### Inspector de elementos
+
 - **F12** para abrir las herramientas de desarrollo
 - Pestaña **Elements** muestra el DOM en tiempo real
 - Permite inspeccionar y modificar elementos temporalmente
 
 ### Console para explorar el DOM
+
 ```javascript
 // Comandos útiles en la consola
 $0; // Elemento seleccionado en el inspector
@@ -602,6 +613,7 @@ dir($0); // Muestra todas las propiedades del elemento seleccionado
 ## Buenas prácticas
 
 ### 1. Verificar existencia de elementos
+
 ```javascript
 let elemento = document.getElementById('miId');
 if (elemento) {
@@ -611,6 +623,7 @@ if (elemento) {
 ```
 
 ### 2. Cache de elementos frecuentemente usados
+
 ```javascript
 // ❌ Mal: buscar el elemento cada vez
 function cambiarTexto() {
@@ -627,6 +640,7 @@ function cambiarTexto() {
 ```
 
 ### 3. Usar métodos de selección apropiados
+
 ```javascript
 // Para un elemento específico
 let elemento = document.getElementById('unico'); // Más rápido

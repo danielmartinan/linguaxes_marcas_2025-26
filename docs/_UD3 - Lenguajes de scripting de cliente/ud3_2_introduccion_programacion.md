@@ -1,4 +1,4 @@
-# UD3.2 - Conceptos básicos de programación
+# Conceptos básicos de programación
 
 > **Nota**: Esta sección está especialmente dirigida a estudiantes de **ASIR** que no han tenido módulos previos de programación. Los estudiantes de **DAW** pueden usar esta sección como repaso de conceptos fundamentales, vistos en el módulos de Programación.
 

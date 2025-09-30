@@ -1,8 +1,4 @@
----
-sidebar_position: 6
----
-
-# UD3.6 - Modificación de Estilos CSS desde JavaScript
+# Modificación de Estilos CSS desde JavaScript
 
 ## Introducción
 
@@ -95,7 +91,7 @@ elemento.classList.replace('viejo', 'nuevo');
 ### 2.2 Ejemplo práctico con classList
 
 ```html
-<!-- HTML -->
+<!Doctype html>
 <div id="caja" class="caja">Contenido</div>
 <button onclick="cambiarEstilo()">Cambiar Estilo</button>
 ```
