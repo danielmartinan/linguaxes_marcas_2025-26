@@ -14,6 +14,20 @@ A continuación se detallan las unidades didácticas que componen el módulo:
 - UD6: Almacenamiento de información.  
 - UD7: Introducción a los sistemas de gestión empresarial.
 
+## Calendario de apertura de unidades didácticas
+
+A continuación se muestra el calendario previsto para la apertura de las unidades didácticas a lo largo del curso:
+
+| Unidad Didáctica | Sesiones | % Peso | Fecha de apertura | Fecha de cierre |
+|------------------|-----------|---------|-------------------|-----------------|
+| UD1: Introducción a los lenguajes de marcas. Sintaxis XML | 25 | 15% | 11 septiembre 2025 | 16 octubre 2025 |
+| UD2: Introducción a los lenguajes de marcas en las tecnologías web. HTML y CSS | 20 | 20% | 17 octubre 2025 | 21 noviembre 2025 |
+| UD3: Introducción a los lenguajes de scripting en el lado del cliente. JavaScript | 25 | 20% | 22 noviembre 2025 | 13 enero 2026 |
+| UD4: Definición de esquemas y vocabularios. XSD | 15 | 15% | 14 enero 2026 | 13 febrero 2026 |
+| UD5: Conversión y adaptación de documentos XML | 15 | 12% | 14 febrero 2026 | 19 marzo 2026 |
+| UD6: Almacenamiento de información | 15 | 15% | 20 marzo 2026 | 23 abril 2026 |
+| UD7: Introducción a los sistemas de gestión empresarial | 9 | 3% | 24 abril 2026 | 15 mayo 2026 |
+
 ## Mínimos exigibles y criterios de calificación
 
 Los mínimos exigibles son los señalados como tal en cada uno de los criterios de evaluación de las actividades programadas para cada una de las unidades didácticas.
