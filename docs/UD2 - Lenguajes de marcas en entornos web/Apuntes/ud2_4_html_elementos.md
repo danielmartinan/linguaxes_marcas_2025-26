@@ -321,9 +321,9 @@ Indica el significado de una abreviatura o sigla:
 </html>
 ```
 
-El resuyltado en el navegador sería:
+El resultado en el navegador sería:
 
-![alt text](image.png)
+![alt text](/img/linguaxes-marcas/ud2/img/image.png)
 
 Compruébalo en el navegador pulsando [aquí](pathname:///img/linguaxes-marcas/ud2/htmls/ud2_4_semantica_textos.html)
 
@@ -502,7 +502,7 @@ Normalmente se combinan los formularios con código JavaScript, lenguaje que ayu
 
 En el navegador se vería así:
 
-![ejemplo formulario](ejemplo_formulario.png)
+![ejemplo formulario](/img/linguaxes-marcas/ud2/img/ejemplo_formulario.png)
 
 :::tip[Ejemplo visual]
 Puedes ver este formulario funcionando <a href="/img/linguaxes-marcas/ud2/htmls/ud2_4_formulario.html" target="_blank">aquí</a>.
@@ -563,7 +563,7 @@ El valor que indiquemos en el atributo `name` de un campo de formulario, será e
 
 Por ejemplo, supongamos un formulario como el siguiente:
 
-![atrbuto name](name_attribute.png)
+![atrbuto name](/img/linguaxes-marcas/ud2/img/name_attribute.png)
 
 El código HTML correspondiente al formulario anterior sería el siguiente:
 
@@ -578,7 +578,7 @@ El el campo anterior se ha indicado direccion como valor del atributo name. Cuan
 
 Por ejemplo, supongamos que el usuario completa el formulario con el siguiente contenido y que pulsa Enviar:
 
-![ejemplo formulario](ejemplo_formulario.png)
+![ejemplo formulario](/img/linguaxes-marcas/ud2/img/ejemplo_formulario.png)
 
 Al utilizar el método GET, la información se envía a través de la URL de la siguiente forma:
 
@@ -607,7 +607,7 @@ Este método, por ejemplo, es el único que podemos utilizar para enviar imágen
 
 Utilizando este método, la información se podrá ver únicamente con herramientas de desarrolladores, las cuales nos permitirían ver la información enviada.
 
-![formulario_post](formulario_post.png)
+![formulario_post](/img/linguaxes-marcas/ud2/img/formulario_post.png)
 
 Resumiendo, independientemente del método usado (`GET` o `POST`), todos los campos de un formulario deben llevar el atributo `name` para que puedan ser utilizados por un servidor. Aunque es interesante, no es necesario entender como funcionan las peticiones HTTP para la creación de formularios.
 
@@ -687,7 +687,7 @@ El elemento `<select>` permite crear una lista de opciones:
 
 En el navegador se mostraría de la siguiente manera:
 
-![lista desplegable](lista_desplegable.png)
+![lista desplegable](/img/linguaxes-marcas/ud2/img/lista_desplegable.png)
 
 A continuación se muestran los atributos más importantes de `<select>` y `<option>`.
 
@@ -809,8 +809,6 @@ Permite seleccionar un valor dentro de un rango, con un control deslizante:
 <input type="range" min="0" max="100" step="5" value="50" />
 ```
 
-<input type="range" min="0" max="100" step="5" value="50" />
-
 | Atributo | Descripción         |
 |----------|---------------------|
 | min      | Valor mínimo.       |
@@ -830,9 +828,6 @@ El elemento `<label>` permite asociar a cada campo del formulario una etiqueta c
 <label for="conforme">Acepto el acuerdo de licencia</label>
 <input type="checkbox" name="licencia" id="conforme" value="ok" />
 ```
-
-<label for="conforme">Acepto el acuerdo de licencia</label>
-<input type="checkbox" name="licencia" id="conforme" value="ok" />
 
 **Elemento `<fieldset>` y `<legend>`:**
 
