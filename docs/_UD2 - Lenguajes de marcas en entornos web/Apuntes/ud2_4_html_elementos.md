@@ -966,3 +966,11 @@ Si a la hora de enviar el formulario alguno de los campos no aparece en esa pest
 Además, si el valor que aparece en el campo radio al enviar el formulario es el valor `on` significa que no se ha escrito el atributo value.
 
 Con este ejemplo se puede observar la importancia de los campos `name` y `value` dentro de un formulario.
+
+## Validación
+
+Es posible validar si nuestro código HTML cumple con la especificación de HTML5.
+
+Para ello, existen diferentes páginas en Internet que nos facilitan este servicio:
+
+- [W3C Markup Validation Service](https://validator.w3.org/)
