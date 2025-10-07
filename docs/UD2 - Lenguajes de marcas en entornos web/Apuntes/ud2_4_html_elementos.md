@@ -578,7 +578,7 @@ El el campo anterior se ha indicado direccion como valor del atributo name. Cuan
 
 Por ejemplo, supongamos que el usuario completa el formulario con el siguiente contenido y que pulsa Enviar:
 
-![ejemplo formulario](/img/linguaxes-marcas/ud2/img/ejemplo_formulario.png)
+![atributo name](/img/linguaxes-marcas/ud2/img/atributo_santiago.png)
 
 Al utilizar el método GET, la información se envía a través de la URL de la siguiente forma:
 
@@ -966,54 +966,3 @@ Si a la hora de enviar el formulario alguno de los campos no aparece en esa pest
 Además, si el valor que aparece en el campo radio al enviar el formulario es el valor `on` significa que no se ha escrito el atributo value.
 
 Con este ejemplo se puede observar la importancia de los campos `name` y `value` dentro de un formulario.
-
-## Ejemplo avanzado: Validación y envío de formularios
-
-Veamos un ejemplo de formulario con varios tipos de campos y cómo comprobar el envío de datos usando las herramientas de desarrollador del navegador.
-
-```html
-<form action="registro.php" method="get">
-  <p>
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" name="nombre" maxlength="50" />
-  </p>
-  <p>
-    <label for="ciclo">Ciclo formativo</label>
-    <input type="radio" id="dam" name="ciclo" value="dam" />
-    <label for="dam">DAM</label>
-    <input type="radio" id="daw" name="ciclo" value="daw" />
-    <label for="daw">DAW</label>
-    <input type="radio" id="asir" name="ciclo" value="asir" />
-    <label for="asir">ASIR</label>
-  </p>
-  <p>
-    <input type="checkbox" id="info" name="info" checked />
-    <label for="info">Deseo recibir información sobre novedades.</label>
-  </p>
-  <p>
-    <input type="submit" value="Enviar" />
-  </p>
-</form>
-```
-
-:::tip[¿Cómo comprobar el envío de datos?]
-
-1. Abre el formulario en el navegador.
-2. Haz clic derecho y selecciona **Inspeccionar** para abrir las herramientas de desarrollador.
-3. Ve a la pestaña **Network (Red)**.
-4. Rellena el formulario y pulsa **Enviar**.
-5. Observa la petición generada y revisa los datos enviados en la sección **Payload** o en la URL (si es GET).
-
-:::
-
-Al enviar el formulario, los datos se envían como pares clave-valor, donde la clave es el atributo `name` de cada campo. Si algún campo no aparece en los datos enviados:
-
-- Puede que no tenga atributo `name`.
-- Puede que no se haya seleccionado (checkbox/radio).
-- Si el valor es `on`, es que no se ha especificado el atributo `value`.
-
----
-
-:::tip[Resumen]
-Recuerda: todos los campos de un formulario deben tener el atributo `name` para que el servidor pueda recibir sus valores correctamente.
-:::
