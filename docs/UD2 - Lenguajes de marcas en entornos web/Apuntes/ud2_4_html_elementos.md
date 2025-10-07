@@ -923,11 +923,11 @@ Ese panel muestra todas las peticiones HTTP que intercambia el navegador con el 
 
 Una vez tenemos ese panel abierto, cubrimos los datos del formulario y le damos al botón de Enviar.
 
-Al clicar en el botón Enviar, el formulario va a enviar los datos al servidor. El destino de los datos es el indicado en el atributo action de <form>. En este ejemplo, registro.php. Esto generará una nueva entrada en la lista de eventos del panel Network (aunque puede no ser la única).
+Al clicar en el botón Enviar, el formulario va a enviar los datos al servidor. El destino de los datos es el indicado en el atributo action de `<form>`. En este ejemplo, registro.php. Esto generará una nueva entrada en la lista de eventos del panel Network (aunque puede no ser la única).
 
 ![validacion 5](/img/linguaxes-marcas/ud2/img/validacion_fase_5.png)
 
-En la imagen anterior se resalta la petición correspondiente con el envío de datos del formulario. Vemos que empieza por registro.php, que es la ruta indicada en el atributo action de <form>.
+En la imagen anterior se resalta la petición correspondiente con el envío de datos del formulario. Vemos que empieza por registro.php, que es la ruta indicada en el atributo action de `<form>`.
 
 #### Paso 4. Accedemos a los detalles de la petición
 
