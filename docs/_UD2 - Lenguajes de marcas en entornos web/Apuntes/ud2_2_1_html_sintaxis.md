@@ -2,7 +2,7 @@
 
 ## Etiquetas y atributos
 
-Un documento HTML está formado por etiquetas y atributos.
+Un documento HTML está formado por **etiquetas** y **atributos**.
 
 ### Etiquetas
 
@@ -186,7 +186,7 @@ La flexibilidad de HTML da lugar a páginas con un código desordenado, difícil
 - Al ser más regular, es más fácil escribir código que lo procese.  
 - Como es XML, se pueden utilizar fácilmente herramientas creadas para procesar documentos XML genéricos (editores, XSLT, etc.).  
 
-## *HTML vs HTML
+## XHTML vs HTML
 
 Existen unas [diferencias entre HTML y XHTML](https://html.spec.whatwg.org/multipage/introduction.html#html-vs-xhtml) a nivel sintáctico y estructural. En general, los diseñadores web suelen trabajar con HTML. El XHTML es más apreciado por los desarrolladores, que valoran la regularidad adicional. De cualquier manera, los tres primeros puntos de la anterior lista se consideran una buena práctica y se suelen cumplir siempre.
 

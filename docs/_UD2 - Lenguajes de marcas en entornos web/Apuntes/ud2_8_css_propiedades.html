@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Ejemplo de atributos CSS de posición</title>
+        <style>
+        #caja1 {
+            position: relative;
+            top: 20px;
+            left: 30px;
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+        #caja2 {
+            position: absolute;
+            top: 50px;
+            left: 150px;
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+        }
+        #caja3 {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: lightcoral;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="caja1">Caja Relativa</div>
+        <div id="caja2">Caja Absoluta</div>
+        <div id="caja3">Caja Fija</div>
+        <p>Desplázate hacia abajo para ver el efecto de la caja fija.</p>
+        <div style="height: 2000px;"></div>
+    </body>
+</html>

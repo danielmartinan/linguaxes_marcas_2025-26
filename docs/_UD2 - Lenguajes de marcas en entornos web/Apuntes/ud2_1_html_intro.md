@@ -83,4 +83,3 @@ Esta versión introduce **cambios importantes**. Algunos son:
 - Elementos con significado semántico. Estas nuevas etiquetas permiten describir cuál es el significado del elemento. Por ejemplo, `<header>` se utiliza para cabeceras de webs y `<footer>` para piés de página.  
 - Nuevas funcionalidades (HTML5 APIs) como almacenamiento offline de información, funcionalidad [Drag\&Drop](https://es.wikipedia.org/wiki/Clic_\(inform%C3%A1tica\)#Arrastrar_y_soltar), uso de la geolocalización, etc.  
 - De desacopla el contenido de la presentación: los estilos se definen en las hojas de estilo CSS. Es decir, cuestiones como colores, fondos, tamaño o posicionamiento se especifican mediante CSS. El HTML se encarga de la información que se quiere mostrar, su estructura y su semántica. Esto hace que muchos elementos y atributos de la versión anterior de HTML hayan quedado obsoletos (`<font>`, `<center>`, `align`, etc.).  
-
