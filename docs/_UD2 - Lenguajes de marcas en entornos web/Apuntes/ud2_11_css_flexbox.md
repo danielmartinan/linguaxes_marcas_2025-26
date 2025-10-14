@@ -9,7 +9,9 @@ CSS Flexbox (Flexible Box Layout) es un sistema de diseño unidimensional que no
 Flexbox está formado por dos tipos de elementos:
 
 - **Contenedor padre (flex container)**: El elemento que contiene los elementos flexibles
+  ![alt text](/img/linguaxes-marcas/ud2/img/flexbox_container.png)
 - **Elementos hijo (flex items)**: Los elementos que están dentro del contenedor flexible
+  ![alt text](/img/linguaxes-marcas/ud2/img/flexbox_flex-items.png)
 
 #### Estructura HTML Típica
 
@@ -40,7 +42,7 @@ La propiedad `display` es fundamental para activar Flexbox en un contenedor:
 
 ### `display: flex`
 
-Convierte el elemento en un contenedor flexible de tipo bloque:
+Convierte el elemento en un contenedor flexible de tipo bloque (y por tanto, ocupa todo el ancho disponible).
 
 ```css
 .contenedor {
@@ -48,7 +50,10 @@ Convierte el elemento en un contenedor flexible de tipo bloque:
 }
 ```
 
+![alt text](/img/linguaxes-marcas/ud2/img/display-flex.png)
+
 **Características:**
+
 - El contenedor ocupa todo el ancho disponible
 - Se comporta como un elemento de bloque
 - Los elementos hijos se convierten automáticamente en flex items
@@ -63,7 +68,10 @@ Convierte el elemento en un contenedor flexible de tipo inline:
 }
 ```
 
+![alt text](/img/linguaxes-marcas/ud2/img/display_inline-flex.png)
+
 **Características:**
+
 - El contenedor solo ocupa el espacio necesario para sus hijos
 - Se comporta como un elemento inline
 - Permite que otros elementos se coloquen a su lado
@@ -104,34 +112,42 @@ flex-wrap: wrap;
 La propiedad acepta los siguientes valores:
 
 #### `nowrap` (valor por defecto)
+
 ```css
 .contenedor {
   display: flex;
   flex-wrap: nowrap;
 }
 ```
+
 - Indica al navegador que no cree nuevas filas
 - El contenido se puede salir del contenedor
 - Los elementos se comprimen para caber en una sola línea
 
 #### `wrap`
+
 ```css
 .contenedor {
   display: flex;
   flex-wrap: wrap;
 }
 ```
+
 - Si no entran los elementos, el contenedor va creando nuevas filas
 - Los elementos mantienen su tamaño natural
 - Las nuevas filas se crean hacia abajo
 
+![alt text](/img/linguaxes-marcas/ud2/img/flex-wrap.png)
+
 #### `wrap-reverse`
+
 ```css
 .contenedor {
   display: flex;
   flex-wrap: wrap-reverse;
 }
 ```
+
 - Igual que `wrap`, pero invierte el orden de las filas
 - En lugar de crearse filas abajo, los elementos wrapeados van arriba
 - El orden visual se invierte
@@ -163,11 +179,42 @@ La propiedad acepta los siguientes valores:
 }
 ```
 
+![alt text](/img/linguaxes-marcas/ud2/img/exaplem_wrap.png)
+
+Si cambiamos la propiedad a `wrap-reverse`, el orden de las filas se invierte:
+
+```css
+.contenedor-wrap {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  width: 300px;
+}
+```
+
+![alt text](/img/linguaxes-marcas/ud2/img/exaple_wrap-reverse.png)
+
+Y si usamos `nowrap`, todos los elementos se comprimen en una sola línea:
+
+```css
+.contenedor-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 300px;
+}
+```
+
+![alt text](/img/linguaxes-marcas/ud2/img/example_nowrap.png)
+
 ## Dirección (flex-direction)
 
-*Nota: Esta sección no pudo ser extraída del sitio web debido a un enlace roto.*
+Flexbox trabaja con dos ejes:
 
-La propiedad `flex-direction` establece la dirección principal del contenedor flexible:
+- **Eje principal (main axis)**: La dirección en la que se colocan los elementos flexibles. Por defecto, es horizontal (de izquierda a derecha).
+- **Eje secundario (cross axis)**: Perpendicular al eje principal. Por defecto, es vertical (de arriba a abajo).
+
+![alt text](/img/linguaxes-marcas/ud2/img/flexbox_direction.png)
+
+La propiedad `flex-direction` establece la **dirección principal** del contenedor flexible:
 
 ```css
 .contenedor {
@@ -176,17 +223,20 @@ La propiedad `flex-direction` establece la dirección principal del contenedor f
 }
 ```
 
-### Valores disponibles:
+### Valores disponibles
+
 - `row`: Los elementos se colocan en fila (horizontal, de izquierda a derecha)
+  ![alt text](/img/linguaxes-marcas/ud2/img/flex_direction_row.png)
 - `row-reverse`: Los elementos se colocan en fila pero en orden inverso
+  ![alt text](/img/linguaxes-marcas/ud2/img/flex_direction_row_reverse.png)
 - `column`: Los elementos se colocan en columna (vertical, de arriba a abajo)
+  ![alt text](/img/linguaxes-marcas/ud2/img/flex_direction_column.png)
 - `column-reverse`: Los elementos se colocan en columna pero en orden inverso
+  ![alt text](/img/linguaxes-marcas/ud2/img/flex_direction_column-reverse.png)
 
 ## Justificación (justify-content)
 
-*Nota: Esta sección no pudo ser extraída del sitio web debido a un enlace roto.*
-
-La propiedad `justify-content` controla la alineación de los elementos a lo largo del eje principal:
+La propiedad `justify-content` controla la alineación de los elementos a lo largo del **eje principal** del contenedor flexible (la que definimos con `flex-direction`):
 
 ```css
 .contenedor {
@@ -195,20 +245,50 @@ La propiedad `justify-content` controla la alineación de los elementos a lo lar
 }
 ```
 
-### Valores disponibles:
-- `flex-start`: Alinea los elementos al inicio del contenedor
-- `flex-end`: Alinea los elementos al final del contenedor
-- `center`: Centra los elementos
-- `space-between`: Distribuye el espacio entre los elementos
-- `space-around`: Distribuye el espacio alrededor de los elementos
-- `space-evenly`: Distribuye el espacio uniformemente
+### Valores disponibles
 
-## Alineación (align-items y align-self)
+- `flex-start`: Alinea los elementos al inicio del contenedor. Es el valor por defecto.
+- `flex-end`: Alinea los elementos al final del contenedor.
+- `center`: Centra los elementos.
+- `space-between`: Distribuye el espacio entre los elementos.
+- `space-around`: Distribuye el espacio alrededor de los elementos.
+- `space-evenly`: Distribuye el espacio uniformemente.
 
-*Nota: Esta sección no pudo ser extraída del sitio web debido a un enlace roto.*
+![alt text](/img/linguaxes-marcas/ud2/img/flex_justify.png)
+
+## Alineación
+
+La alineación permite distribuir el contenido que se encuentra dentro del contenedor flexible. Para ello podemos modificar las siguientes propiedades:
+
+- `align-content`
+- `align-items`
+- `align-self`
+
+### align-content
+
+Controla la alineación de las líneas del contenedor cuando hay espacio extra en el **eje secundario**:
+
+```css
+.contenedor {
+  display: flex;
+  align-content: flex-start; /* valor por defecto */
+}
+```
+
+La propiedad puede tomar los siguientes valores:
+
+- `flex-start`: Alinea las líneas al inicio del contenedor.
+- `flex-end`: Alinea las líneas al final del contenedor.
+- `center`: Centra las líneas.
+- `space-between`: Distribuye el espacio entre las líneas.
+- `space-around`: Distribuye el espacio alrededor de las líneas.
+- `space-evenly`: Distribuye el espacio uniformemente.
+
+![alt text](/img/linguaxes-marcas/ud2/img/align-content.png)
 
 ### align-items
-Controla la alineación de los elementos en el eje secundario:
+
+Controla la alineación de los elementos en el eje secundario. Esto es especialmente útil cuando los elementos tienen diferentes alturas:
 
 ```css
 .contenedor {
@@ -217,7 +297,18 @@ Controla la alineación de los elementos en el eje secundario:
 }
 ```
 
+Los valores posibles son:
+
+- `stretch`: Estira los elementos para que llenen el contenedor (valor por defecto).
+- `flex-start`: Alinea los elementos al inicio del contenedor.
+- `flex-end`: Alinea los elementos al final del contenedor.
+- `center`: Centra los elementos.
+- `baseline`: Alinea los elementos según su línea base.
+
+![alt text](/img/linguaxes-marcas/ud2/img/flexbox_align-items.png)
+
 ### align-self
+
 Permite que un elemento individual sobrescriba la alineación del contenedor:
 
 ```css
@@ -226,11 +317,28 @@ Permite que un elemento individual sobrescriba la alineación del contenedor:
 }
 ```
 
+Los valores son los mismos que para `align-items`:
+
+- `auto`: Hereda el valor de `align-items` del contenedor (valor por defecto).
+- `stretch`: Estira el elemento para que llene el contenedor.
+- `flex-start`: Alinea el elemento al inicio del contenedor.
+- `flex-end`: Alinea el elemento al final del contenedor.
+- `center`: Centra el elemento.
+- `baseline`: Alinea el elemento según su línea base.
+
+Por ejemplo, para alinear un ítem al final del contenedor:
+
+```css
+.item-especial {
+  align-self: flex-end;
+}
+```
+
+![alt text](/img/linguaxes-marcas/ud2/img/flexbox_aling-self_flex-end.png)
+
 ## Orden
 
-*Nota: Esta sección no pudo ser extraída del sitio web debido a un enlace roto.*
-
-La propiedad `order` permite cambiar el orden visual de los elementos sin modificar el HTML:
+La propiedad `order` permite cambiar el orden visual de los elementos sin modificar el HTML. El orden de lso elementos se establece definiendo un valor numérico para cada uno de ellos. El valor por defecto es `0`.
 
 ```css
 .item {
@@ -242,11 +350,22 @@ La propiedad `order` permite cambiar el orden visual de los elementos sin modifi
 }
 ```
 
+Otros criterios de orden:
+
+- Elementos con el mismo valor de `order` mantienen su orden original en el HTML.
+  ![alt text](/img/linguaxes-marcas/ud2/img/flexbox_order.png)
+- Los valores no tienen por qué ser consecutivos.
+  ![alt text](/img/linguaxes-marcas/ud2/img/flexbox_order_2.png)
+- Los valores negativos se muestran antes que los positivos.
+  ![alt text](/img/linguaxes-marcas/ud2/img/flexbox_order_negative.png)
+- En el caso de trabajar con `row-reverse` o `column-reverse`, el orden visual se invierte.
+
 ## Crecimiento (flex-grow, flex-shrink, flex-basis)
 
-*Nota: Esta sección no pudo ser extraída del sitio web debido a un enlace roto.*
+Uno de los aspectos más importantes de flexbox es entender el crecimiento/decrecimiento de un ítem. Este crecimiento va a estar condicionado por el tamaño de sus hermanos, entendiendo por hermanos aquellos ítems que están dentro del mismo contenedor. Si el ítem está solo dentro de un contenedor, no dependerá de ningún otro elemento.
 
 ### flex-grow
+
 Controla cómo crecen los elementos cuando hay espacio extra:
 
 ```css
@@ -259,7 +378,16 @@ Controla cómo crecen los elementos cuando hay espacio extra:
 }
 ```
 
+Por ejemplo, si tenemos tres elementos con `flex-grow: 1`, y hay espacio extra, ese espacio se dividirá en partes iguales entre los tres elementos:
+
+![alt text](/img/linguaxes-marcas/ud2/img/flex-grow_1.png)
+
+De la misma manera, si todos los elementos tienen valor 1 y uno tiene valor 2, el espacio extra se dividirá en 4 partes (1+1+2) y el elemento con valor 2 recibirá el doble de espacio que los otros dos:
+
+![alt text](/img/linguaxes-marcas/ud2/img/flex-grow_2.png)
+
 ### flex-shrink
+
 Controla cómo se encogen los elementos cuando falta espacio:
 
 ```css
@@ -268,7 +396,10 @@ Controla cómo se encogen los elementos cuando falta espacio:
 }
 ```
 
+Por ejemplo, si tenemos tres elementos con `flex-shrink: 1` y el contenedor es más pequeño que la suma de los anchos de los elementos, todos se encogerán proporcionalmente para caber en el contenedor. Si, por ejemplo, hay uno con `flex-shrink: 2`, ese elemento se encogerá el doble que los otros dos.
+
 ### flex-basis
+
 Establece el tamaño inicial del elemento antes de que se distribuya el espacio libre:
 
 ```css
@@ -277,9 +408,37 @@ Establece el tamaño inicial del elemento antes de que se distribuya el espacio 
 }
 ```
 
+Los valores pueden ser:
+
+- `auto`: El tamaño natural del elemento.
+- `0`: El elemento no tiene tamaño inicial.
+- Una medida específica (px, %, em, etc.).
+- `content`: El tamaño se ajusta al contenido del elemento.
+
 ### Propiedad Abreviada flex
+
+La propiedad `flex` es una forma abreviada de establecer `flex-grow`, `flex-shrink` y `flex-basis` en una sola línea: `flex: [flex-grow] [flex-shrink] [flex-basis];`
+
 ```css
 .item {
   flex: 1 1 auto; /* flex-grow flex-shrink flex-basis */
 }
 ```
+
+Esto sería equivalente a:
+
+```css
+.item {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+```
+
+## Herramientas para trabajar con Flexbox
+
+Para comprender mejor cómo funcionan las diferentes opciones de configuración de Flexbox, existen varias herramientas en línea que permiten experimentar con las propiedades y ver los resultados en tiempo real. Algunas de las más populares son:
+
+- [Flexbox Froggy](https://flexboxfroggy.com/): Un juego interactivo que enseña los conceptos básicos de Flexbox a través de niveles desafiantes.
+- [CodePen](https://codepen.io/): Una plataforma para escribir y compartir código HTML, CSS y JavaScript, donde puedes experimentar con Flexbox en tus propios proyectos. Concretamente puedes usar [este pen](https://codepen.io/enxaneta/pen/adLPwv) para probar diferentes configuraciones de Flexbox.
+- [Flexbox playground](https://flexbox.tech): Una herramienta en línea que permite ajustar las propiedades de Flexbox y ver los resultados en tiempo real.
