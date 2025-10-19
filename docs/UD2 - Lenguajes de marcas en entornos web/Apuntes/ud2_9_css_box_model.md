@@ -4,7 +4,7 @@
 
 La W3C define lo que se denomina box model (modelo de caja), que no es más que una zona rectangular que rodea cada uno de los elementos de nuestra página web.
 
-![Box Model](/img/linguaxes-marcas/ud2/resources/box-model.webp)
+![Box Model](/img/linguaxes-marcas/ud2/resources/box-model.png)
 
 Cada etiqueta HTML aplica ese modelo y por lo tanto tiene:
 
@@ -18,7 +18,7 @@ Cada uno de esos elementos puede definirse mediante propiedades CSS.
 :::note[EXPERIMENTA]
 Con la aplicación [Box Model Demo](https://codepen.io/TrevorWelch/pen/deLoMK), puedes experimentar de forma instantánea los cambios sobre las propiedades relacionadas con el modelo de cajas.
 
-![Box Model Demo](/img/linguaxes-marcas/ud2/resources/box-model-demo.webp)
+![Box Model Demo](/img/linguaxes-marcas/ud2/resources/box-model-demo.png)
 :::
 
 ## Propiedades de la Caja
