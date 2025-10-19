@@ -527,7 +527,7 @@ Por ejemplo, hay varios vínculos, que son elementos de línea. Pero hay una reg
 
 En el navegador se mostraría de la siguiente manera:
 
-![Ejemplo display](/img/linguaxes-marcas/ud2/img/ejemplo-display.webp)
+![Ejemplo display](/img/linguaxes-marcas/ud2/img/ejemplo-display.png)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/jolly-feather-33f5ek?file=/index.html)
