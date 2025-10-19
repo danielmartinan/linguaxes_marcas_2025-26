@@ -156,7 +156,7 @@ Si está dentro de un directorio, debemos indicar la ruta relativa. Por ejemplo:
 
 :::
 
-### Elemento <span>
+### Elemento `<span>`
 
 Este elemento se utiliza habitualmente para dar estilo a texto no marcado.
 

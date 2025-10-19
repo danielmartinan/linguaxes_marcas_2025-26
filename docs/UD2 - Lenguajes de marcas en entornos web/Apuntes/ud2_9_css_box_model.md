@@ -4,7 +4,7 @@
 
 La W3C define lo que se denomina box model (modelo de caja), que no es más que una zona rectangular que rodea cada uno de los elementos de nuestra página web.
 
-![Box Model](/img/linguaxes-marcas/ud2/resources/box-model.png)
+![Box Model](/img/linguaxes-marcas/ud2/img/box-model.png)
 
 Cada etiqueta HTML aplica ese modelo y por lo tanto tiene:
 
@@ -18,7 +18,7 @@ Cada uno de esos elementos puede definirse mediante propiedades CSS.
 :::note[EXPERIMENTA]
 Con la aplicación [Box Model Demo](https://codepen.io/TrevorWelch/pen/deLoMK), puedes experimentar de forma instantánea los cambios sobre las propiedades relacionadas con el modelo de cajas.
 
-![Box Model Demo](/img/linguaxes-marcas/ud2/resources/box-model-demo.png)
+![Box Model Demo](/img/linguaxes-marcas/ud2/img/box-model-demo.png)
 :::
 
 ## Propiedades de la Caja
@@ -477,7 +477,7 @@ Si no fuese por el CSS, todas las secciones ocuparían toda la anchura.
 
 En el navegador se visualizaría de la siguiente forma:
 
-![Ejemplo porcentajes 1](/img/linguaxes-marcas/ud2/resources/ejemplo-porcentajes-1.webp)
+![Ejemplo porcentajes 1](/img/linguaxes-marcas/ud2/img/ejemplo-porcentajes-1.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/nice-williams-io692l?file=/index.html)
@@ -530,7 +530,7 @@ Las tres secciones tienen la altura y anchura expresadas en porcentajes relativo
 
 En el navegador se visualizaría de la siguiente forma:
 
-![Ejemplo porcentajes 2](/img/linguaxes-marcas/ud2/resources/ejemplo-porcentajes-2.webp)
+![Ejemplo porcentajes 2](/img/linguaxes-marcas/ud2/img/ejemplo-porcentajes-2.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/laughing-framework-t916gm?file=/index.html)
@@ -572,7 +572,7 @@ En este caso se está indicando que:
 
 En el navegador se visualizaría de la siguiente forma:
 
-![Ejemplo em](/img/linguaxes-marcas/ud2/resources/ejemplo-em.webp)
+![Ejemplo em](/img/linguaxes-marcas/ud2/img/ejemplo-em.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/adoring-sun-tpo3fz?file=/index.html)
@@ -586,7 +586,7 @@ Por defecto, cuando se define un ancho o alto a un elemento (con las propiedades
 
 Supogamos el siguiente ejemplo:
 
-![Box-sizing ejemplo](/img/linguaxes-marcas/ud2/resources/box-sizing-ejemplo.webp)
+![Box-sizing ejemplo](/img/linguaxes-marcas/ud2/img/box-sizing-ejemplo.webp)
 
 ```css
 .hijo {
@@ -614,7 +614,7 @@ Ahora, vamos a añadir un borde y margen interno al hijo:
 
 El resultado sería el siguiente:
 
-![Box-sizing desbordamiento](/img/linguaxes-marcas/ud2/resources/box-sizing-desbordamiento.webp)
+![Box-sizing desbordamiento](/img/linguaxes-marcas/ud2/img/box-sizing-desbordamiento.webp)
 
 Vemos que el child container desborda el parent container, ya que conserva el ancho que tenía anteriormente (el 100% de ancho es respecto al contenido) y añade 10 píxeles de borde y 5 píxeles de margen interno. Por lo tanto, el ancho total sería del 100% + 10*2 + 5*2, es decir, se aumentan 30 píxeles de ancho, de ahí ese desbordamiento.
 
@@ -635,7 +635,7 @@ Si queremos cambiar esta funcionalidad y que, una vez añadido el borde y el mar
 
 El resultado sería el siguiente:
 
-![Box-sizing border-box](/img/linguaxes-marcas/ud2/resources/box-sizing-border-box.webp)
+![Box-sizing border-box](/img/linguaxes-marcas/ud2/img/box-sizing-border-box.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/loving-hoover-u245nt?file=/estilos.css)
@@ -681,7 +681,7 @@ El espacio en blanco (que es el color de fondo predeterminado de `<body>`) entre
 
 En el navegador se visualizaría de la siguiente forma:
 
-![Ejemplo box model 1](/img/linguaxes-marcas/ud2/resources/ejemplo-box-model-1.webp)
+![Ejemplo box model 1](/img/linguaxes-marcas/ud2/img/ejemplo-box-model-1.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/little-bash-qgq3fd?file=/index.html)
@@ -725,7 +725,7 @@ El espacio en blanco (que es el color de fondo predeterminado de `<body>`) entre
 
 En el navegador se visualizaría de la siguiente forma:
 
-![Ejemplo box model 2](/img/linguaxes-marcas/ud2/resources/ejemplo-box-model-2.webp)
+![Ejemplo box model 2](/img/linguaxes-marcas/ud2/img/ejemplo-box-model-2.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/cranky-sun-9o6trr?file=/index.html)
@@ -794,7 +794,7 @@ Es necesario fijar la altura porque en la página apenas hay contenido.
 
 En el navegador se visualizaría de la siguiente forma:
 
-![Ejemplo float](/img/linguaxes-marcas/ud2/resources/ejemplo-float.webp)
+![Ejemplo float](/img/linguaxes-marcas/ud2/img/ejemplo-float.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/mystifying-faraday-5cj9qc?file=/index.html)

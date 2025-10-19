@@ -38,7 +38,7 @@ h1 {
 Las herramientas de diseño, por lo general, incluyen una utilidad de selección de color, de donde se puede extraer el código hexadecimal correspondiente a un color. Este tipo de utilidad se denomina [color picker](https://colorpicker.me/).
 :::
 
-![Color picker](/img/linguaxes-marcas/ud2/resources/color-picker.png)
+![Color picker](/img/linguaxes-marcas/ud2/img/color-picker.png)
 
 ### `background-color`
 
@@ -146,7 +146,7 @@ Un ejemplo de un documento XHTML en el que se utiliza este método para incluir 
 
 En el navegador se visualiza del siguiente modo:
 
-![Ejemplo color y fondo](/img/linguaxes-marcas/ud2/resources/ejemplo-color-fondo.webp)
+![Ejemplo color y fondo](/img/linguaxes-marcas/ud2/img/ejemplo-color-fondo.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/confident-volhard-v49inr?file=/index.html)
@@ -274,7 +274,7 @@ Un ejemplo de un documento XHTML en el que se utiliza este método para incluir 
 
 En el navegador se visualiza del siguiente modo:
 
-![Ejemplo fuente](/img/linguaxes-marcas/ud2/resources/ejemplo-fuente.webp)
+![Ejemplo fuente](/img/linguaxes-marcas/ud2/img/ejemplo-fuente.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/agitated-dream-nwsfyz?file=/index.html)
@@ -392,7 +392,7 @@ Un ejemplo de un documento XHTML en el que se utiliza este método para incluir 
 
 El aspecto en el navegador es el siguiente:
 
-![Ejemplo texto](/img/linguaxes-marcas/ud2/resources/ejemplo-texto.webp)
+![Ejemplo texto](/img/linguaxes-marcas/ud2/img/ejemplo-texto.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/bitter-voice-0mz5i1?file=/index.html)
@@ -483,7 +483,7 @@ A continuación, se muestra un ejemplo completo:
 
 En el navegador se visualiza del siguiente modo:
 
-![Ejemplo listas](/img/linguaxes-marcas/ud2/resources/ejemplo-listas.webp)
+![Ejemplo listas](/img/linguaxes-marcas/ud2/img/ejemplo-listas.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/priceless-pond-hsiymg?file=/index.html)
@@ -527,7 +527,7 @@ Por ejemplo, hay varios vínculos, que son elementos de línea. Pero hay una reg
 
 En el navegador se mostraría de la siguiente manera:
 
-![Ejemplo display](/img/linguaxes-marcas/ud2/resources/ejemplo-display.webp)
+![Ejemplo display](/img/linguaxes-marcas/ud2/img/ejemplo-display.webp)
 
 :::note[PROBAR EN EL NAVEGADOR]
 [Documento HTML](https://codesandbox.io/s/jolly-feather-33f5ek?file=/index.html)
@@ -592,11 +592,11 @@ Un ejemplo de uso de la propiedad `position` es el siguiente:
 
 En el navegador se visualizaría de la siguiente manera:
 
-![Ejemplo position](/img/linguaxes-marcas/ud2/resources/ejemplo-position.webp)
+![Ejemplo position](/img/linguaxes-marcas/ud2/img/ejemplo-position.webp)
 
 Si hacemos scroll, la caja fija permanece en su posición:
 
-![Ejemplo position](/img/linguaxes-marcas/ud2/resources/ejemplo-position_2.webp)
+![Ejemplo position](/img/linguaxes-marcas/ud2/img/ejemplo-position_2.webp)
 
 ### Propiedad `overflow`
 
@@ -604,7 +604,7 @@ La propiedad [overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/overflo
 
 Supongamos que tenemos una caja de 300 píxeles de ancho y 100 píxeles alto y que, al introducir un texto, nos queda de la siguiente forma:
 
-![Overflow ejemplo](/img/linguaxes-marcas/ud2/resources/overflow.webp)
+![Overflow ejemplo](/img/linguaxes-marcas/ud2/img/overflow.webp)
 
 Podemos observar que el texto se sale por fuera de la caja. Esto lo podemos resolver con la propiedad `overflow`.
 
