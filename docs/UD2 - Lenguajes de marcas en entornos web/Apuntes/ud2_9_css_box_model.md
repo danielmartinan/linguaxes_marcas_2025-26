@@ -18,7 +18,7 @@ Cada uno de esos elementos puede definirse mediante propiedades CSS.
 :::note[EXPERIMENTA]
 Con la aplicación [Box Model Demo](https://codepen.io/TrevorWelch/pen/deLoMK), puedes experimentar de forma instantánea los cambios sobre las propiedades relacionadas con el modelo de cajas.
 
-![Box Model Demo](/img/linguaxes-marcas/ud2/img/box-model-demo.png)
+![Box Model Demo](/img/linguaxes-marcas/ud2/img/box_model_demo.png)
 :::
 
 ## Propiedades de la Caja

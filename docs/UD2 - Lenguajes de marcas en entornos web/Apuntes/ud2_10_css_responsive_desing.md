@@ -104,10 +104,10 @@ body {
 Es de las opciones más utilizadas. Para crear diseños que se adapten a las diferentes pantallas, debemos crear estilos diferentes para cada tamaño de pantalla. Como es muy laborioso crear un estilo para cada ancho concreto, se trabaja con rangos. Es decir, por ejemplo, se aplica un estilo determinado para pantallas de hasta 480 píxeles, otro diferente para pantallas desde 481 hasta 768 píxeles, etc. A estos tamaños concretos donde cambiamos de un estilo a otro se denominan puntos de rotura (breakpoints).
 
 :::note[TERMINOLOGÍA]
-En responsive design, cuando hablamos de «tamaño de pantalla» realmente estamos hablando del tamaño del navegador, ya que un navegador web en un ordenador se puede redimensionar y no tiene por qué coincidir con el tamaño del monitor.
+En responsive design, cuando hablamos de **«tamaño de pantalla»** realmente estamos hablando del **tamaño del navegador**, ya que un navegador web en un ordenador se puede redimensionar y no tiene por qué coincidir con el tamaño del monitor.
 :::
 
-![Media Queries Sizes](/img/linguaxes-marcas/ud2/img/media-querie-sizes.webp)
+![Media Queries Sizes](/img/linguaxes-marcas/ud2/img/media-querie-sizes.png)
 
 Es por ello, que se va a trabajar con tres opciones:
 
