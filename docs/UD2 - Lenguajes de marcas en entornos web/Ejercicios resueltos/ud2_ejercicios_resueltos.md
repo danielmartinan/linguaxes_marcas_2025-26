@@ -713,3 +713,665 @@ Además, tienes que tener en cuenta los siguientes **requisitos**:
 ```
 
 </details>
+
+## Ejercicio 8
+
+Crea una **página web** que tenga el mismo aspecto que la siguiente imagen:
+
+![alt text](/img/linguaxes-marcas/ud2/img/ejer8.png)
+
+El formulario debe contener los siguientes **campos**:
+
+- Nombre: control de tipo texto obligatorio y con autofoco.
+- Correo electrónico: un control de tipo email obligatorio.
+- URL: control de tipo URL que muestre la ayuda `Web personal`.
+- Fecha: control de tipo date.
+- Hora: control de tipo time.
+- Fecha y hora: control de tipo datetime.
+- Mes: control de tipo month.
+- Semana: control de tipo week.
+- Número: control de tipo number que limite la entrada a un valor entre -10 y 10.
+- Teléfono: control de tipo tel.
+- Término de búsqueda: control de tipo search.
+- Color favorito: control de tipo color.
+- Un botón de envío.
+
+Además, tienes que tener en cuenta los siguientes requisitos:
+
+- El título de la página debe ser Formulario HTML5.
+- El método de envío del formulario debe ser GET.
+- El destino del envío del formulario debe ser html5.php.
+
+:::warning[VALIDACIÓN DEL DOCUMENTO HTML]
+Es posible que al validar el código HTML con el validador W3C, se muestren mensajes de advertencia similares a The date input type is not supported in all browsers. Please be sure to test, and consider using a polyfill.. Se trata de una advertencia y no de un error de validación.
+
+Las funciones de HTML5, al no estar soportadas por todos los navegadores, debemos prestar especial atención en su uso, ya que esto puede provocar que un usuario no pueda realizar determinadas tareas.
+:::
+
+<details>
+<summary>Ver solución</summary>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario HTML5</title>
+  </head>
+  <body>
+    <form action="html5.php" method="GET">
+      <div>
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" name="nombre" autofocus required />
+      </div>
+      <br />
+
+      <div>
+        <label for="email">Correo electrónico</label>
+        <input id="email" type="email" name="email" required />
+      </div>
+      <br />
+
+      <div>
+        <label for="url">URL</label>
+        <input id="url" name="url" type="url" placeholder="Web personal" />
+      </div>
+      <br />
+
+      <div>
+        <label for="fecha">Fecha</label>
+        <input id="fecha" type="date" name="fecha" />
+      </div>
+      <br />
+
+      <div>
+        <label for="hora">Hora</label>
+        <input id="hora" type="time" name="hora" />
+      </div>
+      <br />
+
+      <div>
+        <label for="fecha-hora">Fecha y hora</label>
+        <input id="fecha-hora" type="datetime-local" name="fecha-hora" />
+      </div>
+      <br />
+
+      <div>
+        <label for="mes">Mes</label>
+        <input id="mes" type="month" name="mes" />
+      </div>
+      <br />
+
+      <div>
+        <label for="semana">Semana</label>
+        <input id="semana" type="week" name="semana" />
+      </div>
+      <br />
+
+      <div>
+        <label for="numero">Número (mínimo: -10, máximo: 10)</label>
+        <input
+          id="numero"
+          type="number"
+          name="numero"
+          min="-10"
+          max="10"
+          value="0"
+        />
+      </div>
+      <br />
+
+      <div>
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" type="tel" name="telefono" />
+      </div>
+      <br />
+
+      <div>
+        <label for="busqueda">Término de búsqueda</label>
+        <input id="busqueda" type="search" name="busqueda" />
+      </div>
+      <br />
+
+      <div>
+        <label for="color">Color favorito</label>
+        <input id="color" type="color" name="color" />
+      </div>
+      <br />
+
+      <input type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>
+```
+
+</details>
+
+## Ejercicio 9
+
+A partir del documento HTML proporcionado, escribe los **estilos CSS** necesarios para que la web tenga el mismo aspecto que la siguiente imagen:
+
+![alt text](/img/linguaxes-marcas/ud2/img/ejer9.png)
+
+Emplea el elemento `<link>` para aplicar los estilos CSS a los diferentes elementos.
+
+:::warning[MODIFICACIÓN DEL DOCUMENTO HTML]
+Solo se podrá añadir un elemento `<link>` en el documento HTML y no se podrá modificar el resto.
+:::
+
+Además, tienes que tener en cuenta los siguientes requisitos:
+
+- El texto principal:
+  - El color del texto es #0096c7.
+  - El color de fondo es #caf0f8.
+  - El tipo de letra es Georgia, Cambria, serif.
+  - El tamaño del texto: 16px.
+- El encabezado de nivel 1:
+  - El color del texto es #023e8a.
+  - El tipo de letra es Verdana, Calibri, sans-serif.
+  - El tamaño del texto: 32px.
+- El encabezado de nivel 2:
+  - El color del texto es #0077b6.
+  - El tipo de letra es Verdana, Calibri, sans-serif.
+  - El tamaño del texto: 24px.
+  - El color de los campos de los datos del libro es #03045e.
+- El texto Internet y Web (cuando actúan como sustantivos):
+  - El tamaño del texto: 20px.
+  - Texto en negrita.
+- El texto Hypertext Markup Language, Cascading Style Sheets y los acrónimos HTML y CSS:
+  - El color del texto es #90e0ef.
+  - El color de fondo del texto es #023e8a.
+  - Texto en cursiva.
+
+Documento HTML proporcionado:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML &amp; CSS: Curso práctico avanzado</title>
+    <link href="estilos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>HTML &amp; CSS: Curso práctico avanzado</h1>
+
+    <h2>Datos del libro</h2>
+
+    <ul>
+      <li><span>Título:</span> HTML &amp; CSS: Curso práctico avanzado</li>
+      <li><span>Autor:</span> Sergio Luján Mora</li>
+      <li><span>Editorial:</span> Publicaciones Altaria</li>
+      <li><span>Año de publicación:</span> 2015</li>
+      <li><span>ISBN:</span> 978-84-944049-4-8</li>
+    </ul>
+
+    <h2>Descripción del libro</h2>
+
+    <p>
+      Aunque los inicios de <strong>Internet</strong> se remontan a los años sesenta, no ha sido hasta los años noventa cuando, gracias a la <strong>Web</strong>, se ha extendido su uso por todo el mundo. En pocos años, la <strong>Web</strong> ha evolucionado enormemente: se ha pasado de páginas sencillas, con pocas imágenes y contenidos estáticos que eran visitadas por unos pocos usuarios a páginas complejas, con contenidos dinámicos que provienen de bases de datos y que son visitadas por miles de usuarios al mismo tiempo.
+    </p>
+
+    <p>
+      Todas las páginas están internamente construidas con la misma tecnología, con el Lenguaje de marcas de hipertexto (<em   >Hypertext Markup Language, HTML</em >) y con las Hojas de estilo en cascada (<em   >Cascading Style Sheets, CSS</em >).
+    </p>
+
+    <p>
+      Este libro es adecuado para cualquiera que tenga interés en aprender a desarrollar sus propias páginas web. No son necesarios conocimientos previos para aprender con este libro, lo único que es necesario es saber utilizar un ordenador y saber navegar por la <strong>Web</strong>.
+    </p>
+
+    <h2>Contenido del libro</h2>
+
+    <p>
+      El contenido de este libro se estructura en tres apartados bien diferenciados:
+    </p>
+
+    <ul>
+      <li>
+        En la primera parte del libro se trabajan conceptos generales que son necesarios para poder desarrollar páginas web; se explican conceptos de estructura física y estructura lógica (o estructura de navegación) de un sitio web. Se detalla cómo influye la estructura física en las <em>URL</em> o direcciones que se emplean a la hora de crear los enlaces de un sitio web. Pasando por el concepto de "estándar web", un término general que se emplea para refererirse a los estándares que define su funcionamiento como <em>HTML</em> y <em>CSS</em>, empleados para el desarrollo de las páginas web en el lado del cliente.
+      </li>
+
+      <li>
+        En la segunda parte se trabaja <em>HTML</em>. Partiendo de la estructura básica de una página web, se explican las etiquetas de <em>HTML</em> que se utilizan para definir el texto, los enlaces, las listas, las tablas, los formularios y los elementos multimedia.
+      </li>
+
+      <li>
+        En la tercera y última parte se explica <em>CSS</em>, el lenguaje que se emplea para definir el formato y la presentación de una página web. Se explica cómo utilizar el color, cómo definir la presentación del texto, de las tablas y de los formularios; cómo realizar transformaciones y transiciones con el fin de diseñar una página web.
+      </li>
+    </ul>
+  </body>
+</html>
+```
+
+<details>
+<summary>Ver solución</summary>
+
+```css
+body {
+  color: #0096c7;
+  background-color: #caf0f8;
+  font-family: Georgia, Cambria, serif;
+  font-size: 16px;
+}
+
+h1 {
+  color: #023e8a;
+  font-family: Verdana, Calibri, sans-serif;
+  font-size: 32px;
+}
+
+h2 {
+  color: #0077b6;
+  font-family: Verdana, Calibri, sans-serif;
+  font-size: 24px;
+}
+
+span {
+  color: #03045e;
+}
+
+strong {
+  font-size: 20px;
+}
+
+em {
+  color: #023e8a;
+  background-color: #90e0ef;
+}
+```
+
+</details>
+
+## Ejercicio 10
+
+A partir de los documentos HTML y CSS proporcionados, modifica el fichero CSS para que la web tenga el mismo aspecto que la siguiente imagen:
+
+![alt text](/img/linguaxes-marcas/ud2/img/ejer10.png)
+
+
+Documento HTML base:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de selectores</title>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <div id="primero">
+      <h1>HTML &amp; CSS: Curso práctico avanzado</h1>
+
+      <p>
+        Aunque los inicios de <a href="https://es.wikipedia.org/wiki/Internet">Internet</a> se remontan a los años sesenta, no ha sido hasta los años noventa cuando, gracias a la Web, se ha extendido su uso por todo el mundo. En pocos años, la Web ha evolucionado enormemente: se ha pasado de páginas sencillas, con pocas imágenes y contenidos estáticos que eran visitadas por unos pocos usuarios a <em>páginas complejas, con contenidos dinámicos que provienen de bases de datos y que son visitadas por miles de usuarios al mismo tiempo</em>.
+      </p>
+    </div>
+
+    <div id="segundo" class="normal">
+      <p>
+        Todas las páginas están internamente construidas con la misma tecnología, con el <em class="especial">Lenguaje de marcas de hipertexto</em> (<span>Hypertext Markup Language</span>, <a href="https://es.wikipedia.org/wiki/HTML">HTML</a>) y con las <em class="especial">Hojas de estilo en cascada</em> (<span>Cascading Style Sheets</span >, <a href="https://es.wikipedia.org/wiki/CSS">CSS</a>).
+      </p>
+
+      <p>
+        Este libro es <em>adecuado para cualquiera que tenga interés en aprender a desarrollar sus propias páginas web</em>. No son necesarios conocimientos previos para aprender con este libro, lo único que es necesario es saber utilizar un ordenador y saber navegar por la Web.
+      </p>
+    </div>
+  </body>
+</html>
+```
+
+Documento CSS base:
+
+```css
+/* Todos los elementos de la pagina */
+ {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Todos los parrafos de la pagina */
+ {
+  color: #555;
+}
+
+/* Todos los párrafos contenidos en #primero */
+ {
+  color: #369;
+}
+
+/* Todos los enlaces la pagina */
+ {
+  color: #c30;
+}
+
+/* Los elementos <em> contenidos en #primero */
+ {
+  color: #0000bb;
+  background-color: #ffffcc;
+}
+
+/* Todos los elementos <em> con la clase "especial" en toda la pagina */
+ {
+  color: #ffff00;
+  background: #000000;
+}
+
+/* Todos los elementos <span> contenidos en la clase "normal" */
+ {
+  font-weight: bold;
+}
+```
+
+Cada regla CSS incluye un comentario en el que se explica los elementos a los que debe aplicarse.
+
+<details>
+<summary>Ver solución</summary>
+
+```css
+/* Todos los elementos de la pagina */
+* {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Todos los parrafos de la pagina */
+p {
+  color: #555;
+}
+
+/* Todos los párrafos contenidos en #primero */
+#primero p {
+  color: #369;
+}
+
+/* Todos los enlaces la pagina */
+a {
+  color: #c30;
+}
+
+/* Los elementos <em> contenidos en #primero */
+#primero em {
+  color: #0000bb;
+  background-color: #ffffcc;
+}
+
+/* Todos los elementos <em> con la clase "especial" en toda la pagina */
+em.especial {
+  color: #ffff00;
+  background: #000000;
+}
+
+/* Todos los elementos <span> contenidos en la clase "normal" */
+.normal span {
+  font-weight: bold;
+}
+```
+
+</details>
+
+## Ejercicio 11
+
+A partir del documento HTML proporcionado, escribe las reglas CSS necesarias para lograr una página web que tenga el siguiente funcionamiento:
+
+- En su estado normal, un enlace se muestra de color rojo y sin subrayado (propiedad text-decoration).
+- Cuando el usuario sitúa el cursor del ratón sobre un enlace, se invierten los colores (el texto del enlace se muestra con color blanco sobre un fondo rojo) y se muestra el subrayado.
+- Cuando un enlace está activo, se muestra de color naranja y sin subrayado.
+- Cuando un enlace ha sido visitado, se muestra de color verde oscuro y sin subrayado.
+- Cuando un enlace tiene el foco del teclado, se muestra de color azul y en negrita.
+
+Documento HTML base:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio de selectores</title>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <ul>
+      <li><a href="presentacion.html">Presentación</a></li>
+      <li><a href="estudios.html">Estudios</a></li>
+      <li><a href="alumnos.html">Alumnos</a></li>
+      <li><a href="deportes.html">Deportes</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+    </ul>
+  </body>
+</html>
+```
+
+:::note[NOTA]
+El orden de escritura de las reglas influye en el resultado final, ya que un enlace puede estar en varios estados al mismo tiempo.
+:::
+
+<details>
+<summary>Ver solución</summary>
+
+```css
+a {
+  color: #f00;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #0a0;
+}
+
+a:hover {
+  color: #fff;
+  background-color: #f00;
+  text-decoration: underline;
+}
+
+a:focus {
+  color: #00f;
+  font-weight: bold;
+}
+
+a:active {
+  color: #f60;
+  background-color: #fff;
+  text-decoration: none;
+}
+```
+
+</details>
+
+## Ejercicio 12
+
+Crea una **página web** que tenga el mismo aspecto que la siguiente imagen:
+
+![alt text](/img/linguaxes-marcas/ud2/img/ejer12.png)
+
+Consideraciones:
+
+El tipo de letra del documento es la secuencia: Arial, Helvetica, sans-serif.
+El tipo de letra de la cabecera de nivel 1 es la secuencia: Georgia, serif.
+En el documento HTML, el texto de los elementos <legend> se debe escribir en minúsculas y se debe convertir a mayúsculas mediante CSS.
+Además, cuando se coloca el cursor encima de un campo, se debe poner de color rojo:
+
+![alt text](/img/linguaxes-marcas/ud2/img/ejer12_2.png)
+
+Y si el elemento tiene el foco, se debe poner de color amarillo:
+
+![alt text](/img/linguaxes-marcas/ud2/img/ejer12_3.png)
+
+<details>
+<summary>Ver solución</summary>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="estilos.css" />
+    <title>Formulario de registro</title>
+  </head>
+  <body>
+    <header>
+      <h1>Formulario de registro</h1>
+    </header>
+
+    <form action="" method="post">
+      <fieldset>
+        <legend>Datos personales</legend>
+        <p>
+          <label for="nombre">Nombre</label>
+          <input type="text" name="nombre" id="nombre" />
+        </p>
+
+        <p>
+          <label for="apellidos">Apellidos</label>
+          <input type="text" name="apellidos" id="apellidos" />
+        </p>
+
+        <p>
+          <label for="nombre">Correo electrónico</label>
+          <input type="text" name="correo" id="correo" />
+        </p>
+
+        <p>
+          <label for="dia">Fecha de nacimiento</label>
+          <select name="dia" id="dia">
+            <option>Día</option>
+          </select>
+
+          <select name="mes" id="mes">
+            <option>Mes</option>
+          </select>
+
+          <select name="ano" id="ano">
+            <option>Año</option>
+          </select>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Dirección postal</legend>
+        <p>
+          <label for="ciudad">Ciudad</label>
+          <input type="text" name="ciudad" id="ciudad" />
+        </p>
+
+        <p>
+          <label for="cp">Código postal</label>
+          <input type="text" name="cp" id="cp" />
+        </p>
+
+        <p>
+          <label for="pais">País</label>
+          <select name="pais" id="pais">
+            <option>País</option>
+          </select>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Datos de usuario</legend>
+        <p>
+          <label for="user">Nombre de usuario</label>
+          <input type="text" name="user" id="user" />
+        </p>
+
+        <p>
+          <label for="pass">Contraseña</label>
+          <input type="password" name="pass" id="pass" />
+        </p>
+
+        <p>
+          <label for="pass-repeat">Vuelve a escribir la contraseña</label>
+          <input type="password" name="pass-repeat" id="pass-repeat" />
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Condiciones de registro</legend>
+        <p>
+          <label>Deseo recibir ofertas</label>
+          <input type="radio" name="ofertas" id="ofertas1" value="1" />
+          <label for="ofertas1" class="inline">Una vez al día</label>
+          <input type="radio" name="ofertas" id="ofertas2" value="2" />
+          <label for="ofertas2" class="inline">Una vez a la semana</label>
+          <input type="radio" name="ofertas" id="ofertas3" value="3" />
+          <label for="ofertas3" class="inline">Una vez al mes</label>
+        </p>
+
+        <p>
+          <input type="checkbox" name="acepto" id="acepto" />
+          <label for="acepto" class="inline"
+            >Acepto las condiciones del servicio y la política de
+            privacidad.</label
+          >
+        </p>
+      </fieldset>
+
+      <p class="centrado">
+        <input type="submit" value="Crear cuenta" id="boton-crear" />
+      </p>
+    </form>
+  </body>
+</html>
+```
+
+```css
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 90%;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: 3em;
+}
+
+fieldset {
+  margin: 1em auto;
+}
+
+legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+input:focus,
+select:focus {
+  background-color: yellow;
+}
+
+input:hover,
+select:hover {
+  background-color: red;
+}
+
+#boton-crear {
+  font-size: 2em;
+  padding: 0.5em;
+}
+
+.inline {
+  display: inline;
+}
+
+.centrado {
+  text-align: center;
+}
+```
+
+</details>
