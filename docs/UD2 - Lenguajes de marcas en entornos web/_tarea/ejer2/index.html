@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Restaurante</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Reserva tu Mesa</h1>
+            <p class="subtitle">Completa el formulario para confirmar tu reserva</p>
+        </header>
+
+        <form class="reservation-form" action="#" method="post">
+            <!-- Datos personales -->
+            <fieldset class="form-section">
+                <legend>Datos Personales</legend>
+                
+                <div class="form-group">
+                    <label for="nombre">Nombre <span class="required">*</span></label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="apellidos">Apellidos <span class="required">*</span></label>
+                    <input type="text" id="apellidos" name="apellidos" required placeholder="Tus apellidos">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono de contacto <span class="required">*</span></label>
+                        <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 612345678" pattern="[0-9]{9}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Detalles de la reserva -->
+            <fieldset class="form-section">
+                <legend>Detalles de la Reserva</legend>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="comensales">Número de comensales <span class="required">*</span></label>
+                        <select id="comensales" name="comensales" required>
+                            <option value="">Selecciona...</option>
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                            <option value="6">6 personas</option>
+                            <option value="7">7 personas</option>
+                            <option value="8">8 personas</option>
+                            <option value="9">9 personas</option>
+                            <option value="10">10 personas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha de reserva <span class="required">*</span></label>
+                    <div class="date-group">
+                        <select id="dia" name="dia" required>
+                            <option value="">Día</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+
+                        <select id="mes" name="mes" required>
+                            <option value="">Mes</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+
+                        <select id="anio" name="anio" required>
+                            <option value="">Año</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Turno <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="turno" value="comida" required>
+                            <span>Comida (13:00 - 16:00)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="turno" value="cena" required>
+                            <span>Cena (20:00 - 23:00)</span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Preferencias alimentarias -->
+            <fieldset class="form-section">
+                <legend>Preferencias Alimentarias</legend>
+                
+                <div class="form-group">
+                    <label>¿Algún comensal tiene restricciones alimentarias?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="vegetariano">
+                            <span>Vegetariano</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="vegano">
+                            <span>Vegano</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="celiaco">
+                            <span>Celíaco</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comentarios">Comentarios adicionales</label>
+                    <textarea id="comentarios" name="comentarios" rows="4" placeholder="Alergias, preferencias especiales, celebraciones..."></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Botones de acción -->
+            <div class="form-actions">
+                <button type="reset" class="btn btn-secondary">Limpiar formulario</button>
+                <button type="submit" class="btn btn-primary">Confirmar reserva</button>
+            </div>
+        </form>
+
+        <footer class="footer">
+            <p>Los campos marcados con <span class="required">*</span> son obligatorios</p>
+        </footer>
+    </div>
+</body>
+</html>
