@@ -58,7 +58,7 @@ Para la **valoración** de este ejercicio, se tendrán en cuenta los siguientes 
   
 **Aplica estilos** al formulario. Justifica las decisiones tomadas en el diseño del formulario.
 
-Para la valoración de este ejercicio, se tendrán en cuenta los siguientes aspectos:
+Para la **valoración** de este ejercicio, se tendrán en cuenta los siguientes aspectos:
 
 - Utilizar la notación adecuada.
 - Definir y utilizar los elementos adecuados.
@@ -67,8 +67,36 @@ Para la valoración de este ejercicio, se tendrán en cuenta los siguientes aspe
 
 ## Ejercicio 3: tarjeta de presentación de contactos
 
+Diseña una página web que tenga el siguiente aspecto:
 
+![ejer3](ejer3.png)
+
+Además, debe ser una página web responsiva, es decir, que se adapte a diferentes tamaños de pantalla (móvil, tablet y escritorio). Para ello, utiliza media queries en CSS. En móviles, debería verse de la siguiente forma:
+
+![alt text](ejer3_moviles.png)
+
+Utiliza **flexbox** y **media queries** durante la codificación de CSS.
+
+Para la valoración de este ejercicio, se tendrán en cuenta los siguientes aspectos:
+
+- Utilizar la notación adecuada.
+- Definir y utilizar los elementos adecuados.
+- Usar adecuadamente las hojas de estilo.
+- Utilizar flexbox y media queries.
+- Realizar una distribución coherente de los elementos y uso de formatos.
+
+Para la realización de esta tarea se proporcionan los recursos básicos, que podrás encontrar en fichero zip adjunto. Puedes modificar y ampliar los recursos según consideres necesario para la realización de los ejercicios.
 
 ## Entrega
 
-Para cada uno de los ejercicios, realiza una carpeta con el nombre del ejercicio (ejer1, ejer2 y ejer3) y dentro de cada carpeta incluye los ficheros necesarios para visualizar la página web (HTML, CSS e imágenes). Comprime todas las caspetas en un único fichero ZIP para su entrega, con el nombre **ud2_nombre_apellidos.zip**.
+Para cada uno de los ejercicios, realiza una carpeta con el nombre del ejercicio (ejer1, ejer2 y ejer3) y dentro de cada carpeta incluye los ficheros necesarios para visualizar la página web (HTML, CSS e imágenes). Comprime todas las carpetas en un único fichero ZIP para su entrega, con el nombre **ud2_nombre_apellidos.zip**.
+
+## Evaluación
+
+La evaluación de esta tarea se realizará de la siguiente manera:
+
+- Ejercicio 1: 2.5 puntos
+- Ejercicio 2: 3 puntos
+- Ejercicio 3: 4.5 puntos
+
+Para cada ejercicio se valorarán los aspectos indicados en cada uno de ellos.
