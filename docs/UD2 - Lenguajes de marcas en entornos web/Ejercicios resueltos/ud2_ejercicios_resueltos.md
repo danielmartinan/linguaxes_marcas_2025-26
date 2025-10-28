@@ -1381,8 +1381,8 @@ select:hover {
 :::warning[Nota]
 Este ejercicio tiene una dificultad alta. En él se combinan muchas de las características de CSS, aunque en la solución se tratan algunas que no se recogen en los contenidos:
 
-Propiedad [`background-size`](https://developer.mozilla.org/es/docs/Web/CSS/background-size)
-Función [`linear-gradient()`](https://developer.mozilla.org/es/docs/Web/CSS/linear-gradient)
+- Propiedad [`background-size`](https://developer.mozilla.org/es/docs/Web/CSS/background-size)
+- Función [`linear-gradient()`](https://developer.mozilla.org/es/docs/Web/CSS/linear-gradient)
 :::
 
 Crea una **página web** que tenga el mismo aspecto que la siguiente imagen:
