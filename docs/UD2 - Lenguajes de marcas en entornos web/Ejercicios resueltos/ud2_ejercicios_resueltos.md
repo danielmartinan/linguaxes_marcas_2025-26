@@ -1189,10 +1189,10 @@ Crea una **página web** que tenga el mismo aspecto que la siguiente imagen:
 
 Consideraciones:
 
-El tipo de letra del documento es la secuencia: Arial, Helvetica, sans-serif.
-El tipo de letra de la cabecera de nivel 1 es la secuencia: Georgia, serif.
-En el documento HTML, el texto de los elementos <legend> se debe escribir en minúsculas y se debe convertir a mayúsculas mediante CSS.
-Además, cuando se coloca el cursor encima de un campo, se debe poner de color rojo:
+- El tipo de letra del documento es la secuencia: `Arial, Helvetica, sans-serif`.
+- El tipo de letra de la cabecera de nivel 1 es la secuencia: `Georgia, serif`.
+- En el documento HTML, el texto de los elementos `<legend>` se debe escribir en minúsculas y se debe convertir a mayúsculas mediante CSS.
+- Además, cuando se coloca el cursor encima de un campo, se debe poner de color rojo:
 
 ![alt text](/img/linguaxes-marcas/ud2/img/ejer12_2.png)
 
