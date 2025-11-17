@@ -90,6 +90,7 @@ También podemos permitir múltiples correos electrónicos para una misma person
 
 ```xml
 <!-- ud1_tarea_ejercicio2.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <agenda>
   <persona>
     <identificadores>
@@ -117,11 +118,15 @@ También podemos permitir múltiples correos electrónicos para una misma person
       <movil>622334455</movil>
       <trabajo>951987654</trabajo>
     </telefonos>
-    <email>juan.perez@email.com</email>
-    <email>juan.profesional@email.com</email>
+    <email>john.smith@email.com</email>
+    <email>john.profesional@email.com</email>
   </persona>
   <persona>
-    <nombre>Lucía Fernández Soto</nombre>
+    <identificadores>
+      <nombre>Lucía</nombre>
+      <apellido1>Fernández</apellido1>
+      <apellido2>Soto</apellido2>
+    </identificadores>
     <direccion>Rúa Nova 8, 15705 Santiago</direccion>
     <telefonos>
       <casa>981123456</casa>
@@ -145,6 +150,7 @@ El elemento `<elaboracion>` contiene varios pasos, cada uno en un elemento `<pas
 
 ```xml
 <!-- ud1_tarea_ejercicio3.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <recetas>
   <receta>
     <nombre>Croquetas de jamón</nombre>
@@ -185,7 +191,8 @@ Si tuvieramos que registrar faltas de asistencia de algún alumno, podríamos de
 
 ```xml
 <!-- ud1_tarea_ejercicio4.xml -->
-<modulo nombre="Lenguajes de Marcas y Sistemas de Gestión de Información" horas_semanales="5" caracter="Obligatorio" fecha_inicio="2022-09-12" fecha_fin="2023-06-21">
+<?xml version="1.0" encoding="UTF-8"?>
+<modulo nombre="Lenguajes de Marcas y Sistemas de Gestión de Información" horas_semanales="5" caracter="Obligatorio" fecha_inicio="2022-09-12" fecha_fin="2023-06-21" ciclo_formativo="DAM">
   <alumnos>
     <alumno>
       <nombre>Ana Fernández Gutiérrez</nombre>

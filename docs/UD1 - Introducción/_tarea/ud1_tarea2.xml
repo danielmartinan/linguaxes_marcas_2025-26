@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agenda>
+    <persona>
+        <identificadores>
+            <nombre>Ana</nombre>
+            <apellido1>García</apellido1>
+            <apellido2>López</apellido2>
+        </identificadores>
+        <direccion>Calle Mayor 12, 28013 Madrid</direccion>
+        <telefonos>
+            <casa />
+            <movil>600123456</movil>
+            <trabajo>913456789</trabajo>
+        </telefonos>
+        <email>ana.lopez@email.com</email>
+    </persona>
+    <persona>
+        <identificadores>
+            <nombre>John</nombre>
+            <apellido1>Smith</apellido1>
+            <apellido2 />
+        </identificadores>
+        <direccion>Avenida del Sol 45, 29010 Málaga</direccion>
+        <telefonos>
+            <casa>952123456</casa>
+            <movil>622334455</movil>
+            <trabajo>951987654</trabajo>
+        </telefonos>
+        <email>john.smith@email.com</email>
+        <email>john.profesional@email.com</email>
+    </persona>
+    <persona>
+        <identificadores>
+            <nombre>Lucía</nombre>
+            <apellido1>Fernández</apellido1>
+            <apellido2>Soto</apellido2>
+        </identificadores>
+        <direccion>Rúa Nova 8, 15705 Santiago</direccion>
+        <telefonos>
+            <casa>981123456</casa>
+            <movil>688112233</movil>
+            <trabajo>981654321</trabajo>
+        </telefonos>
+        <email>lucia.fernandez@email.com</email>
+    </persona>
+</agenda>
