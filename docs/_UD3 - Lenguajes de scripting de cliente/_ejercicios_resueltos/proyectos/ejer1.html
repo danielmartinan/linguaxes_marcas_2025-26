@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+    <style>
+        .calculadora {
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .botones {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculadora">
+        <h2>Calculadora Básica</h2>
+
+        <div class="input-group">
+            <label for="numero1">Primer número:</label>
+            <input type="number" id="numero1" step="any">
+        </div>
+
+        <div class="input-group">
+            <label for="numero2">Segundo número:</label>
+            <input type="number" id="numero2" step="any">
+        </div>
+
+        <div class="botones">
+            <button onclick="calcular('+')">+</button>
+            <button onclick="calcular('-')">-</button>
+            <button onclick="calcular('*')">×</button>
+            <button onclick="calcular('/')">/</button>
+        </div>
+
+        <button onclick="limpiar()" style="width: 100%; background-color: #dc3545;">Limpiar</button>
+
+        <div id="resultado">Resultado: 0</div>
+    </div>
+
+    <script>
+        function calcular(operacion) {
+            const num1 = parseFloat(document.getElementById('numero1').value);
+            const num2 = parseFloat(document.getElementById('numero2').value);
+            const resultadoDiv = document.getElementById('resultado');
+
+            // Validar que ambos números sean válidos
+            if (isNaN(num1) || isNaN(num2)) {
+                resultadoDiv.textContent = 'Error: Ingrese números válidos';
+                resultadoDiv.className = 'error';
+                return;
+            }
+
+            let resultado;
+
+            switch (operacion) {
+                case '+':
+                    resultado = num1 + num2;
+                    break;
+                case '-':
+                    resultado = num1 - num2;
+                    break;
+                case '*':
+                    resultado = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        resultadoDiv.textContent = 'Error: No se puede dividir por cero';
+                        resultadoDiv.className = 'error';
+                        return;
+                    }
+                    resultado = num1 / num2;
+                    break;
+                default:
+                    resultadoDiv.textContent = 'Error: Operación no válida';
+                    resultadoDiv.className = 'error';
+                    return;
+            }
+
+            // Mostrar resultado
+            resultadoDiv.textContent = `Resultado: ${resultado.toFixed(2)}`;
+            resultadoDiv.className = '';
+        }
+
+        function limpiar() {
+            document.getElementById('numero1').value = '';
+            document.getElementById('numero2').value = '';
+            document.getElementById('resultado').textContent = 'Resultado: 0';
+            document.getElementById('resultado').className = '';
+        }
+
+        // Permitir calcular con Enter
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const ultimaOperacion = '+'; // Por defecto suma
+                calcular(ultimaOperacion);
+            }
+        });
+    </script>
+</body>
+
+</html>

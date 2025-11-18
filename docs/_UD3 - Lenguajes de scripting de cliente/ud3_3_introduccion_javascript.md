@@ -32,6 +32,223 @@ A pesar del nombre similar, **JavaScript y Java son lenguajes completamente dife
 - **2015**: ES6/ES2015 - Revolución del lenguaje
 - **2016-presente**: Actualizaciones anuales (ES2016, ES2017, etc.)
 
+## Cómo desarrollar y probar código JavaScript
+
+Para desarrollar y probar código JavaScript, existen varias herramientas y entornos disponibles:
+
+- **Navegadores web**: Todos los navegadores modernos tienen consolas de desarrollo integradas (Chrome DevTools, Firefox Developer Tools, etc.) donde se puede escribir y probar código JavaScript directamente.
+- **Editores de código**: Herramientas como Visual Studio Code, Sublime Text o Atom ofrecen soporte avanzado para JavaScript con resaltado de sintaxis, autocompletado y depuración.
+- **Entornos de ejecución**: Node.js permite ejecutar JavaScript fuera del navegador, ideal para desarrollo del lado servidor y scripts de automatización.
+
+Para este curso, se recomienda utilizar **Visual Studio Code** junto con la consola del navegador para probar y depurar el código JavaScript.
+
+### Cómo ejecutar código JavaScript en el navegador
+
+La consola del navegador es una herramienta fundamental para depurar JavaScript. Para usarla:
+
+- Abre las herramientas de desarrollo (F12 o clic derecho > "Inspeccionar").
+- Ve a la pestaña "Consola".
+- Escribe código JavaScript directamente y presiona Enter para ejecutarlo.
+
+```javascript
+// Diferentes tipos de mensajes en consola
+console.log("Mensaje informativo");
+console.warn("Advertencia");
+console.error("Error");
+console.info("Información adicional");
+
+// Mostrar datos en formato tabla
+console.table([
+    {nombre: "Ana", edad: 25}, 
+    {nombre: "Luis", edad: 30}
+]);
+
+// Agrupar mensajes
+console.group("Datos del usuario");
+console.log("Nombre: Ana");
+console.log("Edad: 25");
+console.groupEnd();
+
+// Medir tiempo de ejecución
+console.time("operacion");
+// ... código a medir ...
+console.timeEnd("operacion");
+```
+
+### Cómo desarrollar Javascript con Visual Studio Code
+
+**Visual Studio Code (VSCode)** es actualmente el editor de código más popular para desarrollo JavaScript debido a su excelente soporte nativo y su rico ecosistema de extensiones.
+
+#### Características nativas de VSCode para JavaScript
+
+**IntelliSense integrado**: VSCode proporciona autocompletado inteligente, información de parámetros y documentación automática para JavaScript sin necesidad de configuración adicional.
+
+```javascript
+// VSCode mostrará automáticamente las propiedades y métodos disponibles
+let texto = "Hola mundo";
+texto. // Aquí aparecerá el autocompletado con métodos como .length, .toUpperCase(), etc.
+```
+
+**Depuración integrada**: Permite establecer breakpoints, inspeccionar variables y ejecutar código paso a paso directamente en el editor.
+
+**Terminal integrado**: Ejecuta comandos de Node.js y herramientas de desarrollo sin salir del editor.
+
+#### Extensiones esenciales para JavaScript
+
+1. **ESLint** - Análisis de código y detección de errores en tiempo real
+2. **Prettier - Code formatter** - Formateo automático de código
+3. **JavaScript (ES6) code snippets** - Fragmentos de código predefinidos
+4. **Bracket Pair Colorizer 2** - Colorea las llaves y paréntesis correspondientes
+5. **Auto Rename Tag** - Renombra etiquetas HTML automáticamente
+6. **Live Server** - Servidor web local para desarrollo
+7. **GitLens** - Mejora la integración con Git
+
+#### Configuración recomendada
+
+Para optimizar VSCode para JavaScript, crea un archivo `settings.json` en tu proyecto:
+
+```json
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "javascript.suggest.autoImports": true,
+    "typescript.suggest.autoImports": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+}
+```
+
+**Configuración de Prettier** (archivo `.prettierrc`):
+
+```json
+{
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 80
+}
+```
+
+#### Atajos de teclado útiles
+
+- `Ctrl + Shift + P`: Paleta de comandos (acceso a todas las funciones)
+- `Ctrl + ` ` `: Abrir/cerrar terminal integrado
+- `F5`: Iniciar depuración
+- `F9`: Establecer/quitar breakpoint
+- `F12`: Ir a definición
+- `Shift + F12`: Mostrar todas las referencias
+- `Ctrl + D`: Seleccionar siguiente ocurrencia
+- `Alt + Shift + F`: Formatear documento
+- `Ctrl + /`: Comentar/descomentar línea
+
+#### Depuración en VSCode
+
+Para depurar JavaScript en el navegador, crea un archivo `.vscode/launch.json` en tu proyecto:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:5500",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Node.js",
+            "program": "${workspaceFolder}/app.js",
+            "console": "integratedTerminal"
+        }
+    ]
+}
+```
+
+#### Snippets útiles
+
+VSCode permite crear **snippets personalizados**. Ve a `File > Preferences > Configure User Snippets` y selecciona JavaScript:
+
+```json
+{
+    "Console Log": {
+        "prefix": "cl",
+        "body": [
+            "console.log($1);"
+        ],
+        "description": "Console log"
+    },
+    "Arrow Function": {
+        "prefix": "af",
+        "body": [
+            "const $1 = ($2) => {",
+            "\t$3",
+            "};"
+        ],
+        "description": "Arrow function"
+    }
+}
+```
+
+#### Ejemplo de uso completo en VSCode
+
+1. **Crear proyecto**: crea una carpeta para tu proyecto y ábrela en VSCode. En la consola:
+
+```bash
+mkdir mi-proyecto-js
+cd mi-proyecto-js
+code . # Abre VSCode
+```
+
+1. **Estructura del proyecto**: la estructura recomendada es:
+
+```plaintext
+mi-proyecto-js/
+├── .vscode/
+│   ├── settings.json
+│   └── launch.json
+├── src/
+│   ├── index.html
+│   ├── script.js
+│   └── styles.css
+├── .eslintrc.json
+├── .prettierrc
+└── package.json
+```
+
+1. **Archivo HTML básico**:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Mi Aplicación</h1>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+Con esta configuración, tendrás un entorno de desarrollo para JavaScript con:
+
+- Formateo automático
+- Detección de errores
+- Autocompletado inteligente  
+- Depuración integrada
+- Control de versiones con Git
+
 ## Sintaxis básica de JavaScript
 
 A continuación, se presentan los conceptos básicos de la sintaxis de JavaScript con ejemplos prácticos.
@@ -124,6 +341,12 @@ let class;          // Palabra reservada
 #### Tipos primitivos
 
 Son los tipos de datos básicos en JavaScript:
+
+- `String` (cadenas de texto)
+- `Number` (números, tanto enteros como decimales)
+- `Boolean` (verdadero/falso)
+- `undefined` (sin definir)
+- `null` (valor nulo intencionado). El valor nulo representa la ausencia intencionada de cualquier valor u objeto.
 
 ```javascript
 // String (cadenas de texto)
@@ -395,7 +618,7 @@ saludar("Ana");   // "¡Hola, Ana!"
 
 ### Arrays (Arreglos)
 
-Un array es una colección ordenada de elementos que pueden ser de cualquier tipo (números, cadenas, objetos, etc.). Los arrays en JavaScript son dinámicos y pueden cambiar de tamaño. Accedemos a los elementos mediante su índice, que comienza en 0.
+Un array es una **colección** **ordenada** de elementos que pueden ser de cualquier tipo (números, cadenas, objetos, etc.). Los arrays en JavaScript son dinámicos y pueden cambiar de tamaño. Accedemos a los elementos mediante su **índice** (posición), que comienza en 0.
 
 #### Crear y usar arrays
 
@@ -714,261 +937,6 @@ mostrarEstudiantes();
 ## Herramientas de desarrollo
 
 A la hora de desarrollar en JavaScript, existen varias herramientas que facilitan la depuración y el análisis del código.
-
-### Visual Studio Code para JavaScript
-
-**Visual Studio Code (VSCode)** es actualmente el editor de código más popular para desarrollo JavaScript debido a su excelente soporte nativo y su rico ecosistema de extensiones.
-
-#### Características nativas de VSCode para JavaScript
-
-**IntelliSense integrado**: VSCode proporciona autocompletado inteligente, información de parámetros y documentación automática para JavaScript sin necesidad de configuración adicional.
-
-```javascript
-// VSCode mostrará automáticamente las propiedades y métodos disponibles
-let texto = "Hola mundo";
-texto. // Aquí aparecerá el autocompletado con métodos como .length, .toUpperCase(), etc.
-```
-
-**Depuración integrada**: Permite establecer breakpoints, inspeccionar variables y ejecutar código paso a paso directamente en el editor.
-
-**Terminal integrado**: Ejecuta comandos de Node.js y herramientas de desarrollo sin salir del editor.
-
-#### Extensiones esenciales para JavaScript
-
-1. **ESLint** - Análisis de código y detección de errores en tiempo real
-2. **Prettier - Code formatter** - Formateo automático de código
-3. **JavaScript (ES6) code snippets** - Fragmentos de código predefinidos
-4. **Bracket Pair Colorizer 2** - Colorea las llaves y paréntesis correspondientes
-5. **Auto Rename Tag** - Renombra etiquetas HTML automáticamente
-6. **Live Server** - Servidor web local para desarrollo
-7. **GitLens** - Mejora la integración con Git
-
-#### Configuración recomendada
-
-Para optimizar VSCode para JavaScript, crea un archivo `settings.json` en tu proyecto:
-
-```json
-{
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    "javascript.suggest.autoImports": true,
-    "typescript.suggest.autoImports": true,
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
-}
-```
-
-**Configuración de Prettier** (archivo `.prettierrc`):
-
-```json
-{
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "printWidth": 80
-}
-```
-
-#### Atajos de teclado útiles
-
-- `Ctrl + Shift + P`: Paleta de comandos (acceso a todas las funciones)
-- `Ctrl + ` ` `: Abrir/cerrar terminal integrado
-- `F5`: Iniciar depuración
-- `F9`: Establecer/quitar breakpoint
-- `F12`: Ir a definición
-- `Shift + F12`: Mostrar todas las referencias
-- `Ctrl + D`: Seleccionar siguiente ocurrencia
-- `Alt + Shift + F`: Formatear documento
-- `Ctrl + /`: Comentar/descomentar línea
-
-#### Depuración en VSCode
-
-Para depurar JavaScript en el navegador, crea un archivo `.vscode/launch.json` en tu proyecto:
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:5500",
-            "webRoot": "${workspaceFolder}",
-            "sourceMaps": true
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Node.js",
-            "program": "${workspaceFolder}/app.js",
-            "console": "integratedTerminal"
-        }
-    ]
-}
-```
-
-#### Snippets útiles
-
-VSCode permite crear **snippets personalizados**. Ve a `File > Preferences > Configure User Snippets` y selecciona JavaScript:
-
-```json
-{
-    "Console Log": {
-        "prefix": "cl",
-        "body": [
-            "console.log($1);"
-        ],
-        "description": "Console log"
-    },
-    "Arrow Function": {
-        "prefix": "af",
-        "body": [
-            "const $1 = ($2) => {",
-            "\t$3",
-            "};"
-        ],
-        "description": "Arrow function"
-    }
-}
-```
-
-### Consola del navegador
-
-La consola del navegador es una herramienta fundamental para depurar JavaScript:
-
-```javascript
-// Diferentes tipos de mensajes en consola
-console.log("Mensaje informativo");
-console.warn("Advertencia");
-console.error("Error");
-console.info("Información adicional");
-
-// Mostrar datos en formato tabla
-console.table([
-    {nombre: "Ana", edad: 25}, 
-    {nombre: "Luis", edad: 30}
-]);
-
-// Agrupar mensajes
-console.group("Datos del usuario");
-console.log("Nombre: Ana");
-console.log("Edad: 25");
-console.groupEnd();
-
-// Medir tiempo de ejecución
-console.time("operacion");
-// ... código a medir ...
-console.timeEnd("operacion");
-```
-
-### Debugger
-
-El debugger permite pausar la ejecución del código para inspeccionar variables y el flujo del programa:
-
-```javascript
-function calcularTotal(precio, descuento) {
-    let precioConDescuento = precio * (1 - descuento);
-    debugger; // El navegador pausará aquí
-    let impuesto = precioConDescuento * 0.21;
-    let total = precioConDescuento + impuesto;
-    return total;
-}
-
-// Cuando se ejecute, el navegador abrirá las herramientas de desarrollo
-let resultado = calcularTotal(100, 0.1);
-```
-
-### Validación y calidad de código
-
-#### ESLint
-
-ESLint ayuda a mantener un **código consistente y libre de errores**:
-
-```bash
-# Instalación global
-npm install -g eslint
-
-# Inicializar configuración
-eslint --init
-```
-
-Archivo `.eslintrc.json` ejemplo:
-
-```json
-{
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": ["eslint:recommended"],
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "rules": {
-        "indent": ["error", 2],
-        "quotes": ["error", "single"],
-        "semi": ["error", "always"]
-    }
-}
-```
-
-#### Ejemplo de uso completo en VSCode
-
-1. **Crear proyecto**:
-
-```bash
-mkdir mi-proyecto-js
-cd mi-proyecto-js
-code . # Abre VSCode
-```
-
-1. **Estructura del proyecto**:
-
-```plaintext
-mi-proyecto-js/
-├── .vscode/
-│   ├── settings.json
-│   └── launch.json
-├── src/
-│   ├── index.html
-│   ├── script.js
-│   └── styles.css
-├── .eslintrc.json
-├── .prettierrc
-└── package.json
-```
-
-1. **Archivo HTML básico**:
-
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto JavaScript</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Mi Aplicación</h1>
-    <script src="script.js"></script>
-</body>
-</html>
-```
-
-Con esta configuración, tendrás un entorno de desarrollo profesional para JavaScript con:
-
-- Formateo automático
-- Detección de errores
-- Autocompletado inteligente  
-- Depuración integrada
-- Control de versiones con Git
 
 ## Próximos pasos
 

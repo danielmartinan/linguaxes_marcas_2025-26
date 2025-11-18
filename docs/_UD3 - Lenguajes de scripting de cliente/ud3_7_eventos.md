@@ -1,8 +1,4 @@
----
-sidebar_position: 7
----
-
-# UD3.7 - Eventos en JavaScript
+# Eventos en JavaScript
 
 ## Introducción
 

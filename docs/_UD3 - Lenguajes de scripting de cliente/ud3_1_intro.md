@@ -2,7 +2,7 @@
 
 ## ¿Qué son los lenguajes de scripting de cliente?
 
-Los **lenguajes de scripting de cliente** son lenguajes de programación que se ejecutan en el navegador web del usuario (el "cliente"), a diferencia de los lenguajes de servidor que se ejecutan en el servidor web antes de enviar el contenido al usuario.
+Los **lenguajes de scripting de cliente** son lenguajes de programación que se ejecutan en el **navegador web del usuario** (el "cliente"), a diferencia de los lenguajes de servidor que se ejecutan en el servidor web antes de enviar el contenido al usuario.
 
 Estos lenguajes permiten crear páginas web **dinámicas** e **interactivas**, capaces de responder a las acciones del usuario, modificar el contenido de la página, validar formularios, crear animaciones y mucho más, todo ello sin necesidad de recargar la página completa.
 

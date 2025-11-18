@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar/Ocultar Contenido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .controles {
+            margin-bottom: 30px;
+        }
+        
+        .grupo-botones {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: 2px solid #007bff;
+            background-color: white;
+            color: #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #e7f3ff;
+        }
+        
+        button.activo {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-secundario {
+            border-color: #6c757d;
+            color: #6c757d;
+        }
+        
+        .btn-secundario:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .seccion {
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+        }
+        
+        #seccion1 {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+        }
+        
+        #seccion2 {
+            background-color: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+        
+        #seccion3 {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .seccion h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .seccion p {
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .oculto {
+            display: none;
+        }
+        
+        .divisor {
+            margin: 20px 0;
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 Panel de Secciones</h1>
+        
+        <div class="controles">
+            <div class="grupo-botones">
+                <button id="btnSeccion1" onclick="mostrarSeccion(1)">Mostrar Sección 1</button>
+                <button id="btnSeccion2" onclick="mostrarSeccion(2)">Mostrar Sección 2</button>
+                <button id="btnSeccion3" onclick="mostrarSeccion(3)">Mostrar Sección 3</button>
+            </div>
+            
+            <hr class="divisor">
+            
+            <div class="grupo-botones">
+                <button class="btn-secundario" onclick="mostrarTodas()">👁️ Mostrar Todo</button>
+                <button class="btn-secundario" onclick="ocultarTodas()">🙈 Ocultar Todo</button>
+            </div>
+        </div>
+        
+        <div id="seccion1" class="seccion">
+            <h2>📚 Sección 1: Introducción</h2>
+            <p>
+                Esta es la primera sección de contenido. Contiene información introductoria
+                sobre el tema que estamos tratando. El contenido puede ser mostrado u ocultado
+                dinámicamente usando JavaScript.
+            </p>
+            <p>
+                La manipulación del DOM nos permite controlar la visibilidad de los elementos
+                de forma interactiva.
+            </p>
+        </div>
+        
+        <div id="seccion2" class="seccion">
+            <h2>💡 Sección 2: Desarrollo</h2>
+            <p>
+                En esta segunda sección desarrollamos el contenido principal. Aquí profundizamos
+                en los conceptos y explicamos los detalles más importantes.
+            </p>
+            <p>
+                Las clases CSS y JavaScript trabajan juntos para crear experiencias de usuario
+                dinámicas y atractivas.
+            </p>
+        </div>
+        
+        <div id="seccion3" class="seccion">
+            <h2>✅ Sección 3: Conclusión</h2>
+            <p>
+                Esta tercera sección contiene las conclusiones y el resumen de todo lo tratado.
+                Es importante destacar los puntos clave y las ideas principales.
+            </p>
+            <p>
+                Con estas técnicas podemos crear interfaces más interactivas y mejorar la
+                experiencia del usuario en nuestras aplicaciones web.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos
+        const seccion1 = document.getElementById('seccion1');
+        const seccion2 = document.getElementById('seccion2');
+        const seccion3 = document.getElementById('seccion3');
+        
+        const btnSeccion1 = document.getElementById('btnSeccion1');
+        const btnSeccion2 = document.getElementById('btnSeccion2');
+        const btnSeccion3 = document.getElementById('btnSeccion3');
+        
+        // Función para mostrar una sección específica
+        function mostrarSeccion(numero) {
+            // Ocultar todas las secciones
+            seccion1.classList.add('oculto');
+            seccion2.classList.add('oculto');
+            seccion3.classList.add('oculto');
+            
+            // Desactivar todos los botones
+            btnSeccion1.classList.remove('activo');
+            btnSeccion2.classList.remove('activo');
+            btnSeccion3.classList.remove('activo');
+            
+            // Mostrar la sección seleccionada y activar su botón
+            switch(numero) {
+                case 1:
+                    seccion1.classList.remove('oculto');
+                    btnSeccion1.classList.add('activo');
+                    break;
+                case 2:
+                    seccion2.classList.remove('oculto');
+                    btnSeccion2.classList.add('activo');
+                    break;
+                case 3:
+                    seccion3.classList.remove('oculto');
+                    btnSeccion3.classList.add('activo');
+                    break;
+            }
+        }
+        
+        // Función para mostrar todas las secciones
+        function mostrarTodas() {
+            seccion1.classList.remove('oculto');
+            seccion2.classList.remove('oculto');
+            seccion3.classList.remove('oculto');
+            
+            // Activar todos los botones
+            btnSeccion1.classList.add('activo');
+            btnSeccion2.classList.add('activo');
+            btnSeccion3.classList.add('activo');
+        }
+        
+        // Función para ocultar todas las secciones
+        function ocultarTodas() {
+            seccion1.classList.add('oculto');
+            seccion2.classList.add('oculto');
+            seccion3.classList.add('oculto');
+            
+            // Desactivar todos los botones
+            btnSeccion1.classList.remove('activo');
+            btnSeccion2.classList.remove('activo');
+            btnSeccion3.classList.remove('activo');
+        }
+    </script>
+</body>
+</html>
