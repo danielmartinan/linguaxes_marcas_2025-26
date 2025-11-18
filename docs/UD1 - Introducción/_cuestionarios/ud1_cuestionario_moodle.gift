@@ -1,0 +1,312 @@
+// Cuestionario UD1 - Introducción a los lenguajes de marcas
+// Formato: Moodle GIFT
+// Cada respuesta correcta: 1 punto
+// Cada respuesta incorrecta: -0.333 puntos (resta 1/3)
+
+::Pregunta 1::¿Qué es un lenguaje de marcas?{
+~%-33.33333%Un lenguaje de programación orientado a objetos
+=Un sistema para codificar documentos que combina texto con etiquetas que aportan información adicional
+~%-33.33333%Un sistema de gestión de bases de datos
+~%-33.33333%Un lenguaje de consultas estructuradas
+}
+
+::Pregunta 2::¿Cuál es la principal diferencia entre un lenguaje de marcas y un lenguaje de programación?{
+~%-33.33333%Los lenguajes de marcas son más rápidos
+~%-33.33333%Los lenguajes de programación son más antiguos
+=Los lenguajes de marcas describen y estructuran contenidos, mientras que los de programación definen comportamientos y lógica
+~%-33.33333%No hay diferencias significativas
+}
+
+::Pregunta 3::¿Qué significan las siglas DTD?{
+~%-33.33333%Data Type Definition
+=Document Type Definition
+~%-33.33333%Dynamic Text Document
+~%-33.33333%Digital Template Design
+}
+
+::Pregunta 4::¿Cuál de estos NO es un tipo de lenguaje de marcas?{
+~%-33.33333%De presentación
+~%-33.33333%De procedimientos
+~%-33.33333%Descriptivo o semántico
+=De compilación
+}
+
+::Pregunta 5::¿Qué lenguaje de marcas se utiliza principalmente para crear ecuaciones matemáticas complejas?{
+~%-33.33333%MathML
+=TeX
+~%-33.33333%Markdown
+~%-33.33333%LaTeX
+}
+
+::Pregunta 6::¿Qué significa la extensión de archivo .xml?{
+~%-33.33333%eXtended Markup Language
+=eXtensible Markup Language
+~%-33.33333%eXternal Markup Language
+~%-33.33333%eXecutable Markup Language
+}
+
+::Pregunta 8::¿Qué significan las siglas GML?{
+~%-33.33333%General Markup Language
+=Generalized Markup Language
+~%-33.33333%Global Markup Language
+~%-33.33333%Generic Markup Language
+}
+
+::Pregunta 11::¿Qué significan las siglas SGML?{
+~%-33.33333%Simple Generalized Markup Language
+=Standard Generalized Markup Language
+~%-33.33333%Structured General Markup Language
+~%-33.33333%System Generated Markup Language
+}
+
+::Pregunta 14::¿Qué dos estándares combinó Tim Berners-Lee para crear HTML?{
+=ASCII y SGML
+~%-33.33333%UTF-8 y XML
+~%-33.33333%ISO y Unicode
+~%-33.33333%GML y RTF
+}
+
+::Pregunta 15::¿Cuál es una desventaja de HTML?{
+~%-33.33333%Es demasiado complejo
+~%-33.33333%No es compatible con navegadores
+=Las etiquetas son limitadas y no es flexible
+~%-33.33333%Requiere un compilador especial
+}
+
+::Pregunta 16::¿Qué significa WWW?{
+~%-33.33333%World Web Wide
+=World Wide Web
+~%-33.33333%Web World Wide
+~%-33.33333%Wide World Web
+}
+
+::Pregunta 17::Un documento XML es\:{
+~%-33.33333%Un documento binario que requiere un editor especial
+=Un documento de texto con extensión .xml
+~%-33.33333%Un archivo ejecutable
+~%-33.33333%Una base de datos
+}
+
+::Pregunta 18::¿Qué características NO tiene XML?{
+~%-33.33333%Es compatible con HTTP y HTTPS
+~%-33.33333%Es legible para humanos
+=Requiere conocimientos avanzados de programación
+~%-33.33333%Es extensible y adaptable
+}
+
+::Pregunta 19::¿Entre qué símbolos se sitúa el marcado de elementos en XML?{
+~%-33.33333%[ y ]
+~%-33.33333%\{ y \}
+=&lt; y &gt;
+~%-33.33333%( y )
+}
+
+::Pregunta 20::¿Entre qué símbolos se sitúa el marcado de entidades en XML?{
+=&amp; y ;
+~%-33.33333%# y $
+~%-33.33333%@ y %
+~%-33.33333%* y +
+}
+
+::Pregunta 21::¿Cómo se escriben los comentarios en XML?{
+~%-33.33333%// comentario
+~%-33.33333%/* comentario */
+=&lt;!-- comentario --&gt;
+~%-33.33333%# comentario
+}
+
+::Pregunta 22::¿Dónde NO puede estar un comentario en XML?{
+~%-33.33333%Antes del prólogo
+~%-33.33333%Después del elemento raíz
+=Dentro de una etiqueta
+~%-33.33333%Entre elementos
+}
+
+::Pregunta 23::¿Pueden los comentarios en XML contener dos guiones medios seguidos (--)?{
+~%-33.33333%Sí, sin restricciones
+=No, está prohibido
+~%-33.33333%Solo al principio del comentario
+~%-33.33333%Solo al final del comentario
+}
+
+::Pregunta 24::¿Cuáles son las dos partes principales de un documento XML?{
+~%-33.33333%Header y Body
+=Prólogo y Ejemplar
+~%-33.33333%Cabecera y Contenido
+~%-33.33333%Declaración y Datos
+}
+
+::Pregunta 25::¿Es obligatorio el prólogo en un documento XML?{
+~%-33.33333%Sí, siempre
+=No, es opcional
+~%-33.33333%Solo en documentos grandes
+~%-33.33333%Solo si tiene atributos
+}
+
+::Pregunta 26::¿Qué debe ser la primera línea de un documento XML si se incluye la declaración XML?{
+~%-33.33333%&lt;!DOCTYPE&gt;
+=&lt;?xml version\="1.0"?&gt;
+~%-33.33333%&lt;root&gt;
+~%-33.33333%&lt;!-- comentario --&gt;
+}
+
+::Pregunta 27::¿Qué atributo se utiliza para declarar la versión de XML?{
+~%-33.33333%ver
+~%-33.33333%v
+=version
+~%-33.33333%xml-version
+}
+
+::Pregunta 28::¿Qué codificación de caracteres se recomienda para soportar tildes y ñ en XML?{
+~%-33.33333%ASCII
+~%-33.33333%ISO-8859-1
+=UTF-8
+~%-33.33333%Windows-1252
+}
+
+::Pregunta 29::¿Qué atributo indica si un documento XML es independiente?{
+~%-33.33333%independent
+=standalone
+~%-33.33333%alone
+~%-33.33333%single
+}
+
+::Pregunta 30::¿Cuántos elementos raíz debe tener un documento XML válido?{
+~%-33.33333%Ninguno
+=Uno
+~%-33.33333%Al menos dos
+~%-33.33333%Tantos como sea necesario
+}
+
+::Pregunta 31::¿Cómo se representa un elemento vacío en XML?{
+=&lt;elemento&gt;&lt;/elemento&gt; o &lt;elemento/&gt;
+~%-33.33333%&lt;elemento&gt;
+~%-33.33333%[elemento/]
+~%-33.33333%\{elemento\}
+}
+
+::Pregunta 32::¿Es correcto en XML\: &lt;Libro&gt;&lt;/libro&gt;?{
+~%-33.33333%Sí, es válido
+=No, XML es case-sensitive (sensible a mayúsculas/minúsculas)
+~%-33.33333%Solo si está en el prólogo
+~%-33.33333%Depende del navegador
+}
+
+::Pregunta 33::¿Puede un nombre de elemento en XML comenzar con un número?{
+~%-33.33333%Sí, sin restricciones
+=No, debe comenzar con una letra o guion bajo
+~%-33.33333%Solo si es el elemento raíz
+~%-33.33333%Solo en XML 2.0
+}
+
+::Pregunta 34::¿Puede un nombre de elemento comenzar con "XML"?{
+~%-33.33333%Sí, es recomendable
+=No, está reservado
+~%-33.33333%Solo en mayúsculas
+~%-33.33333%Solo en minúsculas
+}
+
+::Pregunta 35::¿Qué representa la entidad &amp;lt; en XML?{
+~%-33.33333%&gt;
+=&lt;
+~%-33.33333%&amp;
+~%-33.33333%/
+}
+
+::Pregunta 36::¿Qué representa la entidad &amp;gt; en XML?{
+~%-33.33333%&lt;
+=&gt;
+~%-33.33333%&amp;
+~%-33.33333%"
+}
+
+::Pregunta 37::¿Qué representa la entidad &amp;amp; en XML?{
+~%-33.33333%@
+~%-33.33333%#
+=&amp;
+~%-33.33333%%
+}
+
+::Pregunta 38::¿Qué representa la entidad &amp;quot; en XML?{
+~%-33.33333%'
+="
+~%-33.33333%`
+~%-33.33333%´
+}
+
+::Pregunta 39::¿Qué representa la entidad &amp;apos; en XML?{
+~%-33.33333%"
+='
+~%-33.33333%`
+~%-33.33333%´
+}
+
+::Pregunta 40::¿Dónde se definen los atributos de un elemento?{
+~%-33.33333%En la etiqueta de cierre
+=En la etiqueta de apertura o en un elemento vacío
+~%-33.33333%En un comentario
+~%-33.33333%En el prólogo
+}
+
+::Pregunta 41::¿Cómo deben ir los valores de los atributos en XML?{
+~%-33.33333%Sin comillas
+=Entre comillas simples o dobles
+~%-33.33333%Entre corchetes
+~%-33.33333%Entre paréntesis
+}
+
+::Pregunta 42::¿Es correcto\: &lt;precio divisa\=""euro""&gt;14.95&lt;/precio&gt;?{
+~%-33.33333%Sí, es válido
+=No, las comillas dobles internas deben escaparse
+~%-33.33333%Solo en HTML
+~%-33.33333%Solo si está en el elemento raíz
+}
+
+::Pregunta 43::¿Cuál es la forma correcta de incluir comillas dobles en un valor de atributo?{
+~%-33.33333%&lt;precio divisa\=""euro""&gt;
+=&lt;precio divisa\='"euro"'&gt; o &lt;precio divisa\="&amp;quot;euro&amp;quot;"&gt;
+~%-33.33333%&lt;precio divisa\\\="euro"&gt;
+~%-33.33333%&lt;precio divisa\=[euro]&gt;
+}
+
+::Pregunta 44::¿Qué es el "ejemplar" en un documento XML?{
+~%-33.33333%El prólogo del documento
+=La parte principal que contiene los datos reales
+~%-33.33333%Los comentarios
+~%-33.33333%La declaración XML
+}
+
+::Pregunta 46::¿Qué pasa con múltiples espacios en blanco en el contenido de un elemento XML?{
+~%-33.33333%Se eliminan todos
+=Se interpretan como uno solo
+~%-33.33333%Se mantienen todos
+~%-33.33333%Generan un error
+}
+
+::Pregunta 47::¿Cuál de estos lenguajes es una versión simplificada de SGML?{
+~%-33.33333%XML
+=HTML
+~%-33.33333%JSON
+~%-33.33333%CSS
+}
+
+::Pregunta 48::¿Qué tipo de estructura de datos representa un documento XML?{
+~%-33.33333%Lista enlazada
+=Árbol
+~%-33.33333%Cola
+~%-33.33333%Pila
+}
+
+::Pregunta 49::¿Para qué se utiliza principalmente el lenguaje SVG?{
+~%-33.33333%Para bases de datos
+=Para gráficos vectoriales escalables
+~%-33.33333%Para hojas de estilo
+~%-33.33333%Para scripts del lado del servidor
+}
+
+::Pregunta 50::¿Qué significa que XML sea "human readable"?{
+~%-33.33333%Que solo puede ser leído por humanos
+=Que el marcado es legible y comprensible para las personas
+~%-33.33333%Que no puede ser procesado por máquinas
+~%-33.33333%Que requiere un traductor
+}

@@ -187,6 +187,7 @@ Emmet es una potente herramienta integrada en la mayoría de editores modernos (
 
 - `nav>ul.menu>li.item*4>a`  
   Expande a:
+  
   ```html
   <nav>
     <ul class="menu">
@@ -200,6 +201,7 @@ Emmet es una potente herramienta integrada en la mayoría de editores modernos (
 
 - `form>label+input[type="text"]+button`  
   Expande a:
+  
   ```html
   <form>
     <label></label>
