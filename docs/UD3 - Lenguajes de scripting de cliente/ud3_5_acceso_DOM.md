@@ -209,7 +209,7 @@ div.innerHTML += '<p>Párrafo adicional</p>';
 
 **⚠️ Cuidado con innerHTML:**
 
-- Puede ser vulnerable a ataques [XSS]() si usas contenido no confiable
+- Puede ser vulnerable a ataques [XSS](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) si usas contenido no confiable
 - Reemplaza todo el contenido existente
 - Es más lento que textContent
 
