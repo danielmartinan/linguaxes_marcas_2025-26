@@ -98,10 +98,7 @@ texto. // Aquí aparecerá el autocompletado con métodos como .length, .toUpper
 1. **ESLint** - Análisis de código y detección de errores en tiempo real
 2. **Prettier - Code formatter** - Formateo automático de código
 3. **JavaScript (ES6) code snippets** - Fragmentos de código predefinidos
-4. **Bracket Pair Colorizer 2** - Colorea las llaves y paréntesis correspondientes
-5. **Auto Rename Tag** - Renombra etiquetas HTML automáticamente
-6. **Live Server** - Servidor web local para desarrollo
-7. **GitLens** - Mejora la integración con Git
+4. **Live Server** - Servidor web local para desarrollo
 
 #### Configuración recomendada
 
@@ -136,7 +133,7 @@ Para optimizar VSCode para JavaScript, crea un archivo `settings.json` en tu pro
 #### Atajos de teclado útiles
 
 - `Ctrl + Shift + P`: Paleta de comandos (acceso a todas las funciones)
-- `Ctrl + ` ` `: Abrir/cerrar terminal integrado
+- `Ctrl + ñ`: Abrir/cerrar terminal integrado
 - `F5`: Iniciar depuración
 - `F9`: Establecer/quitar breakpoint
 - `F12`: Ir a definición
