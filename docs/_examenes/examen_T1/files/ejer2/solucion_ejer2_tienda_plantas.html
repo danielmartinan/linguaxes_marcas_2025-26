@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantas Verdes - Tienda Online de Plantas</title>
+</head>
+<body>
+    <header>
+        <h1>Plantas Verdes</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#cuidados">Cuidados</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h2>Bienvenido a Plantas Verdes</h2>
+            <p>Somos una tienda especializada en plantas de interior y exterior. Ofrecemos una amplia variedad de especies cuidadosamente seleccionadas para que puedas crear tu propio oasis verde en casa.</p>
+            <p>Todas nuestras plantas están cultivadas con amor y cuidado, garantizando la mejor calidad y salud. Además, te ofrecemos asesoramiento personalizado para que puedas mantener tus plantas siempre hermosas.</p>
+        </section>
+
+        <section id="catalogo">
+            <h2>Nuestro Catálogo</h2>
+            
+            <article class="producto">
+                <h3>Monstera Deliciosa</h3>
+                <img src="img/monstera.png" alt="Monstera Deliciosa - Planta de interior con hojas grandes y perforadas" style="max-width: 400px;">
+                <p>También conocida como Costilla de Adán, es una planta tropical de interior muy popular por sus grandes hojas perforadas. Ideal para espacios amplios y luminosos.</p>
+                <p><strong>Precio:</strong> 35.99€</p>
+                <p><strong>Nivel de cuidado:</strong> Fácil</p>
+            </article>
+
+            <article class="producto">
+                <h3>Pothos (Epipremnum aureum)</h3>
+                <img src="img/pothos.png" alt="Pothos - Planta colgante con hojas verdes y amarillas" style="max-width: 400px;">
+                <p>Planta colgante de bajo mantenimiento, perfecta para principiantes. Sus hojas variegadas en tonos verdes y amarillos aportan color y frescura a cualquier espacio.</p>
+                <p><strong>Precio:</strong> 18.99€</p>
+                <p><strong>Nivel de cuidado:</strong> Fácil</p>
+            </article>
+        </section>
+
+        <section id="contacto">
+            <h2>Formulario de Contacto</h2>
+            <form action="/enviar-consulta" method="post">
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div>
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="asunto" required>
+                </div>
+
+                <div>
+                    <label for="motivo">Motivo de consulta:</label>
+                    <select id="motivo" name="motivo" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="informacion">Información de producto</option>
+                        <option value="pedido">Pedido</option>
+                        <option value="sugerencia">Sugerencia</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="privacidad" name="privacidad" required>
+                    <label for="privacidad">Acepto la política de privacidad</label>
+                </div>
+
+                <div>
+                    <button type="submit">Enviar</button>
+                    <button type="reset">Limpiar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Plantas Verdes. Todos los derechos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="https://facebook.com/plantasverdes" target="_blank">Facebook</a></li>
+                <li><a href="https://instagram.com/plantasverdes" target="_blank">Instagram</a></li>
+                <li><a href="https://twitter.com/plantasverdes" target="_blank">Twitter</a></li>
+                <li><a href="https://pinterest.com/plantasverdes" target="_blank">Pinterest</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>

@@ -88,7 +88,7 @@ b) World Wide Web
 c) Web World Wide  
 d) Wide World Web
 
-### 17. Un documento XML es:
+### 17. Un documento XML es
 
 a) Un documento binario que requiere un editor especial  
 b) Un documento de texto con extensión .xml  

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca_videojuegos>
+    <videojuego genero="accion-aventura" clasificacion_edad="PEGI 16">
+        <titulo>The Last of Us Part II</titulo>
+        <desarrolladoras>
+            <desarrolladora>Naughty Dog</desarrolladora>
+        </desarrolladoras>
+        <anio_lanzamiento>2020</anio_lanzamiento>
+        <plataformas>
+            <plataforma>PlayStation 4</plataforma>
+            <plataforma>PlayStation 5</plataforma>
+            <plataforma>PC</plataforma>
+        </plataformas>
+        <precio>49.99</precio>
+        <valoracion_usuarios>9.2</valoracion_usuarios>
+        <descripcion>Secuela aclamada de The Last of Us. Cinco años después de su peligroso viaje a través de una América post-pandémica, Ellie y Joel se han asentado en Jackson, Wyoming. Vivir entre una próspera comunidad de supervivientes les ha brindado paz y estabilidad, a pesar de la amenaza constante de los infectados y de otros supervivientes más desesperados.</descripcion>
+    </videojuego>
+
+    <videojuego genero="RPG" clasificacion_edad="PEGI 18">
+        <titulo>Elden Ring</titulo>
+        <desarrolladoras>
+            <desarrolladora>FromSoftware</desarrolladora>
+        </desarrolladoras>
+        <anio_lanzamiento>2022</anio_lanzamiento>
+        <plataformas>
+            <plataforma>PC</plataforma>
+            <plataforma>PlayStation 4</plataforma>
+            <plataforma>PlayStation 5</plataforma>
+            <plataforma>Xbox One</plataforma>
+            <plataforma>Xbox Series X/S</plataforma>
+        </plataformas>
+        <precio>59.99</precio>
+        <valoracion_usuarios>9.5</valoracion_usuarios>
+        <descripcion>Un RPG de acción y fantasía épica. Levántate, Sinluz, y que la gracia te guíe para esgrimir el poder del Círculo de Elden y convertirte en un Señor del Círculo en las Tierras Intermedias. En las Tierras Intermedias gobernadas por la Reina Márika la Eterna, el Círculo de Elden, origen del Árbol Áureo, ha sido destruido.</descripcion>
+    </videojuego>
+
+    <videojuego genero="aventura" clasificacion_edad="PEGI 7">
+        <titulo>New Super Mario Bros. U Deluxe</titulo>
+        <desarrolladoras>
+            <desarrolladora>Nintendo</desarrolladora>
+        </desarrolladoras>
+        <anio_lanzamiento>2019</anio_lanzamiento>
+        <plataformas>
+            <plataforma>Nintendo Switch</plataforma>
+        </plataformas>
+        <precio>39.99</precio>
+        <valoracion_usuarios>8.9</valoracion_usuarios>
+        <descripcion>New Super Mario Bros. U Deluxe incluye el juego original New Super Mario Bros. U y su expansión New Super Luigi U. Juega como Mario, Luigi, Toad, Toadette o Nabbit mientras atraviesas el Reino Champiñón para rescatar a la Princesa Peach de Bowser y sus secuaces.</descripcion>
+    </videojuego>
+
+    <videojuego genero="estrategia" clasificacion_edad="PEGI 12">
+        <titulo>Civilization VI</titulo>
+        <desarrolladoras>
+            <desarrolladora>Firaxis Games</desarrolladora>
+            <desarrolladora>Aspyr Media</desarrolladora>
+        </desarrolladoras>
+        <anio_lanzamiento>2016</anio_lanzamiento>
+        <plataformas>
+            <plataforma>PC</plataforma>
+            <plataforma>PlayStation 4</plataforma>
+            <plataforma>Xbox One</plataforma>
+            <plataforma>Nintendo Switch</plataforma>
+        </plataformas>
+        <precio>39.99</precio>
+        <valoracion_usuarios>8.8</valoracion_usuarios>
+        <descripcion>Civilization VI ofrece nuevas formas de interactuar con tu mundo, expandir tu imperio por el mapa, mejorar tu cultura y competir contra los mejores líderes de la historia para crear una civilización que resista el paso del tiempo. Juega como uno de los 20 líderes históricos, incluyendo a Roosevelt (América) y Victoria (Inglaterra).</descripcion>
+    </videojuego>
+</biblioteca_videojuegos>
