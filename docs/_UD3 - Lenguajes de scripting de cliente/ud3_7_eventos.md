@@ -4,9 +4,9 @@
 
 Los eventos son acciones que ocurren en el navegador web, como hacer clic en un botón, mover el ratón, presionar una tecla, o cargar una página. JavaScript nos permite "escuchar" estos eventos y ejecutar código en respuesta a ellos, creando páginas web interactivas.
 
-## 1. Conceptos Fundamentales
+## Conceptos Fundamentales
 
-### 1.1 ¿Qué son los eventos?
+### ¿Qué son los eventos?
 
 Los eventos son señales que indican que algo ha sucedido en el documento HTML. Pueden ser:
 
@@ -15,7 +15,7 @@ Los eventos son señales que indican que algo ha sucedido en el documento HTML. 
 - **Eventos de formulario**: envío, cambio de valores
 - **Eventos de multimedia**: reproducción, pausa de video/audio
 
-### 1.2 Flujo de eventos
+### Flujo de eventos
 
 Cuando ocurre un evento, este sigue un flujo a través del DOM:
 
@@ -31,16 +31,22 @@ Cuando ocurre un evento, este sigue un flujo a través del DOM:
 </div>
 ```
 
-## 2. Formas de Manejar Eventos
+## Formas de Manejar Eventos
 
-### 2.1 Atributos HTML (no recomendado)
+Existen varias formas de asociar eventos a elementos en JavaScript:
+
+### Atributos HTML (no recomendado)
+
+Es posible definir eventos directamente en el HTML usando atributos, pero no es una práctica recomendada por razones de mantenimiento y separación de responsabilidades. Es mejor usar JavaScript para manejar eventos, y definir en el HTML solo la estructura.
 
 ```html
 <button onclick="alert('¡Hola!')">Clic aquí</button>
 <button onmouseover="cambiarColor(this)">Pasa el ratón</button>
 ```
 
-### 2.2 Propiedades de JavaScript
+### Propiedades de JavaScript
+
+Otra forma es asignar una función a la propiedad del evento del elemento. Sin embargo, esta técnica solo permite un manejador por evento.
 
 ```javascript
 const boton = document.getElementById('miBoton');
@@ -55,7 +61,9 @@ boton.onclick = () => {
 };
 ```
 
-### 2.3 addEventListener (recomendado)
+### addEventListener (recomendado)
+
+La forma más flexible y recomendada de manejar eventos es usando el método `addEventListener`, que permite agregar múltiples manejadores para el mismo evento y ofrece más control sobre la propagación del evento.
 
 ```javascript
 const boton = document.getElementById('miBoton');
@@ -77,9 +85,9 @@ function manejarClic() {
 boton.addEventListener('click', manejarClic);
 ```
 
-## 3. Principales Tipos de Eventos
+## Principales Tipos de Eventos
 
-### 3.1 Eventos de Mouse
+### Eventos de Mouse
 
 ```javascript
 const elemento = document.getElementById('miElemento');
@@ -120,7 +128,7 @@ elemento.addEventListener('mousemove', (e) => {
 });
 ```
 
-### 3.2 Eventos de Teclado
+### Eventos de Teclado
 
 ```javascript
 // Escuchar en todo el documento
@@ -158,7 +166,7 @@ input.addEventListener('keydown', (e) => {
 });
 ```
 
-### 3.3 Eventos de Formulario
+### Eventos de Formulario
 
 ```javascript
 const formulario = document.getElementById('miFormulario');
@@ -203,7 +211,7 @@ select.addEventListener('change', (e) => {
 });
 ```
 
-### 3.4 Eventos de Ventana
+### Eventos de Ventana
 
 ```javascript
 // Carga completa de la página
@@ -233,9 +241,13 @@ window.addEventListener('beforeunload', (e) => {
 });
 ```
 
-## 4. El Objeto Event
+## El Objeto Event
 
-### 4.1 Propiedades principales
+El objeto `Event` proporciona información sobre el evento que ocurrió y métodos para controlar su comportamiento.
+
+### Propiedades principales
+
+En este ejemplo, mostramos algunas propiedades útiles del objeto `Event`:
 
 ```javascript
 elemento.addEventListener('click', (event) => {
@@ -275,168 +287,9 @@ elemento.addEventListener('click', (e) => {
 });
 ```
 
-## 5. Propagación de Eventos
+## Casos de Uso Prácticos
 
-### 5.1 Burbujeo (Bubbling)
-
-```html
-<div id="exterior" style="padding: 50px; background: red;">
-    Exterior
-    <div id="interior" style="padding: 30px; background: blue;">
-        Interior
-        <button id="boton">Botón</button>
-    </div>
-</div>
-```
-
-```javascript
-// Sin stopPropagation, el evento burbujea
-document.getElementById('exterior').addEventListener('click', () => {
-    console.log('Clic en exterior');
-});
-
-document.getElementById('interior').addEventListener('click', () => {
-    console.log('Clic en interior');
-});
-
-document.getElementById('boton').addEventListener('click', (e) => {
-    console.log('Clic en botón');
-    // e.stopPropagation(); // Descomenta para detener burbujeo
-});
-
-// Al hacer clic en el botón se ejecutarán los 3 eventos
-```
-
-### 5.2 Captura (Capturing)
-
-```javascript
-// Tercer parámetro en true activa la captura
-document.getElementById('exterior').addEventListener('click', () => {
-    console.log('Exterior - Captura');
-}, true);
-
-document.getElementById('interior').addEventListener('click', () => {
-    console.log('Interior - Captura');
-}, true);
-
-document.getElementById('boton').addEventListener('click', () => {
-    console.log('Botón - Normal');
-});
-
-// Orden: Exterior-Captura -> Interior-Captura -> Botón-Normal
-```
-
-## 6. Delegación de Eventos
-
-La delegación permite manejar eventos de múltiples elementos usando un solo listener en un elemento padre:
-
-```html
-<ul id="lista">
-    <li>Elemento 1</li>
-    <li>Elemento 2</li>
-    <li>Elemento 3</li>
-</ul>
-<button onclick="agregarElemento()">Agregar elemento</button>
-```
-
-```javascript
-// En lugar de agregar un listener a cada <li>
-const lista = document.getElementById('lista');
-
-lista.addEventListener('click', (e) => {
-    if (e.target.tagName === 'LI') {
-        console.log('Clickeaste:', e.target.textContent);
-        e.target.style.backgroundColor = 'yellow';
-    }
-});
-
-// Función para agregar elementos dinámicamente
-function agregarElemento() {
-    const li = document.createElement('li');
-    li.textContent = `Elemento ${lista.children.length + 1}`;
-    lista.appendChild(li);
-    // El nuevo elemento automáticamente tendrá el evento
-}
-```
-
-## 7. Eventos Personalizados
-
-### 7.1 Crear y disparar eventos personalizados
-
-```javascript
-// Crear evento personalizado
-const eventoPersonalizado = new CustomEvent('miEvento', {
-    detail: {
-        mensaje: 'Hola desde el evento personalizado',
-        timestamp: Date.now()
-    }
-});
-
-// Escuchar el evento
-document.addEventListener('miEvento', (e) => {
-    console.log('Evento recibido:', e.detail.mensaje);
-    console.log('Timestamp:', e.detail.timestamp);
-});
-
-// Disparar el evento
-document.dispatchEvent(eventoPersonalizado);
-```
-
-### 7.2 Ejemplo práctico: Sistema de notificaciones
-
-```javascript
-// Sistema de notificaciones personalizado
-class SistemaNotificaciones {
-    constructor() {
-        document.addEventListener('mostrarNotificacion', this.mostrar.bind(this));
-        document.addEventListener('ocultarNotificacion', this.ocultar.bind(this));
-    }
-    
-    mostrar(e) {
-        const notificacion = document.createElement('div');
-        notificacion.className = 'notificacion';
-        notificacion.textContent = e.detail.mensaje;
-        notificacion.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: green;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-        `;
-        document.body.appendChild(notificacion);
-        
-        setTimeout(() => {
-            document.body.removeChild(notificacion);
-        }, 3000);
-    }
-    
-    ocultar(e) {
-        // Lógica para ocultar notificación específica
-    }
-}
-
-// Inicializar sistema
-const notificaciones = new SistemaNotificaciones();
-
-// Usar el sistema
-function enviarNotificacion(mensaje) {
-    const evento = new CustomEvent('mostrarNotificacion', {
-        detail: { mensaje }
-    });
-    document.dispatchEvent(evento);
-}
-
-// Ejemplo de uso
-document.getElementById('botonNotificar').addEventListener('click', () => {
-    enviarNotificacion('¡Operación completada con éxito!');
-});
-```
-
-## 8. Casos de Uso Prácticos
-
-### 8.1 Validación de formulario en tiempo real
+### Validación de formulario en tiempo real
 
 ```html
 <form id="formularioRegistro">
@@ -518,7 +371,7 @@ function validarFormulario() {
 }
 ```
 
-### 8.2 Galería de imágenes interactiva
+### Galería de imágenes interactiva
 
 ```html
 <div class="galeria">
@@ -575,7 +428,7 @@ document.addEventListener('keydown', (e) => {
 });
 ```
 
-### 8.3 To-Do List dinámico
+### To-Do List dinámico
 
 ```html
 <div id="todoApp">
@@ -673,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-## 9. removeEventListener
+## `removeEventListener`
 
 Para optimizar la memoria, es importante remover event listeners cuando no se necesiten:
 
@@ -700,62 +553,3 @@ elemento.addEventListener('mouseenter', manejarHover);
 // ...más tarde...
 elemento.removeEventListener('mouseenter', manejarHover);
 ```
-
-## 10. Mejores Prácticas
-
-### 10.1 Performance
-
-```javascript
-// ❌ Malo: Agregar listener a cada elemento
-document.querySelectorAll('.boton').forEach(boton => {
-    boton.addEventListener('click', manejarClic);
-});
-
-// ✅ Bueno: Delegación de eventos
-document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('boton')) {
-        manejarClic(e);
-    }
-});
-```
-
-### 10.2 Prevenir memory leaks
-
-```javascript
-// Remover listeners en cleanup
-class Componente {
-    constructor(elemento) {
-        this.elemento = elemento;
-        this.manejarClic = this.manejarClic.bind(this);
-        this.elemento.addEventListener('click', this.manejarClic);
-    }
-    
-    manejarClic(e) {
-        console.log('Clic manejado');
-    }
-    
-    destruir() {
-        this.elemento.removeEventListener('click', this.manejarClic);
-    }
-}
-```
-
-### 10.3 Debouncing para eventos frecuentes
-
-```javascript
-// Para eventos que se disparan muy frecuentemente (scroll, resize)
-function debounce(func, delay) {
-    let timeoutId;
-    return function(...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
-// Uso con scroll
-window.addEventListener('scroll', debounce(() => {
-    console.log('Scroll terminado');
-}, 250));
-```
-
-Los eventos son fundamentales para crear aplicaciones web interactivas. Dominar su uso te permitirá crear experiencias de usuario ricas y dinámicas.
