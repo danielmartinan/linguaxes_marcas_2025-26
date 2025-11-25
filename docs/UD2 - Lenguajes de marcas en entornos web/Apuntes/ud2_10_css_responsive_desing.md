@@ -5,7 +5,7 @@
 El diseño web responsive o adaptativo es una técnica de diseño web que busca la correcta visualización de una misma página en distintos dispositivos, desde ordenadores de escritorio a tablets y móviles.
 
 ![Responsive Design](/img/linguaxes-marcas/ud2/img/responsive-design.png)
-../../../static/img/linguaxes-marcas/ud2/img/responsive-design.png
+
 El diseño responsive trata de redimensionar y colocar los elementos de un documento HTML de forma que se adapten al ancho de cada dispositivo, permitiendo una correcta visualización y una mejor experiencia de usuario.
 
 Se caracteriza porque los layouts (contenidos) e imágenes son fluidos y se usa la característica [media-queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries) de CSS3.
