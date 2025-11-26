@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recetas>
+    <receta>
+        <nombre>Croquetas de jamón</nombre>
+        <comensales>4</comensales>
+        <ingredientes>
+            <!-- También podríamos definir los ingredientes de la siguiente manera:
+            <ingrediente>
+                <nombre>Jamón Serrano</nombre>
+                <cantidad>200</cantidad>
+                <unidad>gramos</unidad>
+            </ingrediente>
+            -->
+            <ingrediente cantidad="200" unidad="g">jamón serrano</ingrediente>
+            <ingrediente cantidad="100" unidad="g">queso rallado</ingrediente>
+            <ingrediente cantidad="2" unidad="unidades">huevos</ingrediente>
+            <ingrediente cantidad="100" unidad="g">pan rallado</ingrediente>
+            <ingrediente cantidad="1" unidad="litro">leche</ingrediente>
+            <ingrediente cantidad="30" unidad="g">mantequilla</ingrediente>
+            <ingrediente cantidad="20" unidad="g">harina</ingrediente>
+            <ingrediente>sal</ingrediente>
+            <ingrediente>pimienta</ingrediente>
+            <ingrediente>nuez moscada</ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <paso>Picar el jamón serrano en trozos muy pequeños.</paso>
+            <paso>En una sartén, derretir la mantequilla y añadir la harina, removiendo constantemente para hacer un roux.</paso>
+            <paso>Incorporar la leche poco a poco, sin dejar de remover, hasta obtener una bechamel espesa.</paso>
+            <paso>Añadir los huevos batidos, el jamón picado, el queso rallado, sal, pimienta y nuez moscada al gusto. Mezclar bien.</paso>
+            <paso>Formar las croquetas con la masa y pasarlas por el pan rallado.</paso>
+            <paso>Freír en aceite caliente hasta que estén doradas.</paso>
+        </elaboracion>
+    </receta>
+</recetas>

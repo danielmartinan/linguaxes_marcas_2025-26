@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Montserrat;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #e5e5f7;
+    background-image: linear-gradient(#dbdbdb 2px, transparent 2px),
+        linear-gradient(90deg, #dbdbdb 2px, transparent 2px),
+        linear-gradient(#dbdbdb 1px, transparent 1px),
+        linear-gradient(90deg, #dbdbdb 1px, #e5e5f7 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.foto {
+    width: 200px;
+    background-image: url("./img/classic-utility-jacket.webp");
+    background-size: cover;
+    background-position: center;
+}
+
+.informacion {
+    flex: 1 0 400px;
+    padding: 0 20px;
+}
+

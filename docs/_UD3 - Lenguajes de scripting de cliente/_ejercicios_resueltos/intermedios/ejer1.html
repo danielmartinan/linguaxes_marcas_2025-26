@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Interactivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        #contador {
+            font-size: 72px;
+            font-weight: bold;
+            margin: 30px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .positivo { color: #28a745; }
+        .negativo { color: #dc3545; }
+        .cero { color: #333; }
+        
+        .botones {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        #btnIncrementar {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        #btnIncrementar:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        
+        #btnDecrementar {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        #btnDecrementar:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+        
+        #btnResetear {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        #btnResetear:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contador Interactivo</h1>
+        <div id="contador" class="cero">0</div>
+        <div class="botones">
+            <button id="btnIncrementar">➕ Incrementar</button>
+            <button id="btnDecrementar">➖ Decrementar</button>
+            <button id="btnResetear">🔄 Resetear</button>
+        </div>
+    </div>
+
+    <script>
+        // Variable para almacenar el valor del contador
+        let valorContador = 0;
+        
+        // Obtener referencias a los elementos del DOM
+        const contadorElemento = document.getElementById('contador');
+        const btnIncrementar = document.getElementById('btnIncrementar');
+        const btnDecrementar = document.getElementById('btnDecrementar');
+        const btnResetear = document.getElementById('btnResetear');
+        
+        // Función para actualizar el display del contador
+        function actualizarContador() {
+            contadorElemento.textContent = valorContador;
+            
+            // Cambiar el color según el valor
+            contadorElemento.classList.remove('positivo', 'negativo', 'cero');
+            
+            if (valorContador > 0) {
+                contadorElemento.classList.add('positivo');
+            } else if (valorContador < 0) {
+                contadorElemento.classList.add('negativo');
+            } else {
+                contadorElemento.classList.add('cero');
+            }
+        }
+        
+        // Event listeners para los botones
+        btnIncrementar.addEventListener('click', function() {
+            valorContador++;
+            actualizarContador();
+        });
+        
+        btnDecrementar.addEventListener('click', function() {
+            valorContador--;
+            actualizarContador();
+        });
+        
+        btnResetear.addEventListener('click', function() {
+            valorContador = 0;
+            actualizarContador();
+        });
+    </script>
+</body>
+</html>

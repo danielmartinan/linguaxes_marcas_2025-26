@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        #inputTarea {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        #inputTarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        #btnAgregar {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        #btnAgregar:hover {
+            background-color: #0056b3;
+        }
+        
+        #listaTareas {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tarea-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            border-radius: 5px;
+            animation: aparecer 0.3s ease;
+        }
+        
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .tarea-texto {
+            flex: 1;
+            color: #333;
+        }
+        
+        .btn-eliminar {
+            padding: 8px 16px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-eliminar:hover {
+            background-color: #c82333;
+        }
+        
+        .mensaje-vacio {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Mi Lista de Tareas</h1>
+        
+        <div class="input-container">
+            <input type="text" id="inputTarea" placeholder="Escribe una nueva tarea...">
+            <button id="btnAgregar">Agregar</button>
+        </div>
+        
+        <ul id="listaTareas">
+            <div class="mensaje-vacio">No hay tareas. ¡Agrega tu primera tarea!</div>
+        </ul>
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos
+        const inputTarea = document.getElementById('inputTarea');
+        const btnAgregar = document.getElementById('btnAgregar');
+        const listaTareas = document.getElementById('listaTareas');
+        
+        // Función para agregar una tarea
+        function agregarTarea() {
+            const textoTarea = inputTarea.value.trim();
+            
+            // Validar que no esté vacío
+            if (textoTarea === '') {
+                alert('Por favor, escribe una tarea');
+                return;
+            }
+            
+            // Eliminar mensaje vacío si existe
+            const mensajeVacio = listaTareas.querySelector('.mensaje-vacio');
+            if (mensajeVacio) {
+                mensajeVacio.remove();
+            }
+            
+            // Crear elemento li
+            const li = document.createElement('li');
+            li.className = 'tarea-item';
+            
+            // Crear span para el texto
+            const span = document.createElement('span');
+            span.className = 'tarea-texto';
+            span.textContent = textoTarea;
+            
+            // Crear botón eliminar
+            const btnEliminar = document.createElement('button');
+            btnEliminar.className = 'btn-eliminar';
+            btnEliminar.textContent = 'Eliminar';
+            
+            // Agregar evento al botón eliminar
+            btnEliminar.addEventListener('click', function() {
+                li.remove();
+                
+                // Si no quedan tareas, mostrar mensaje
+                if (listaTareas.children.length === 0) {
+                    mostrarMensajeVacio();
+                }
+            });
+            
+            // Agregar elementos al li
+            li.appendChild(span);
+            li.appendChild(btnEliminar);
+            
+            // Agregar li a la lista
+            listaTareas.appendChild(li);
+            
+            // Limpiar el input
+            inputTarea.value = '';
+            inputTarea.focus();
+        }
+        
+        // Función para mostrar mensaje cuando no hay tareas
+        function mostrarMensajeVacio() {
+            const div = document.createElement('div');
+            div.className = 'mensaje-vacio';
+            div.textContent = 'No hay tareas. ¡Agrega tu primera tarea!';
+            listaTareas.appendChild(div);
+        }
+        
+        // Event listener para el botón
+        btnAgregar.addEventListener('click', agregarTarea);
+        
+        // Event listener para la tecla Enter
+        inputTarea.addEventListener('keypress', function(evento) {
+            if (evento.key === 'Enter') {
+                agregarTarea();
+            }
+        });
+    </script>
+</body>
+</html>

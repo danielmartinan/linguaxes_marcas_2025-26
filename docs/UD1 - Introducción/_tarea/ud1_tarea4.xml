@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modulo nombre="Lenguajes de Marcas y Sistemas de Gestión de Información" horas_semanales="5" caracter="Obligatorio" fecha_inicio="2022-09-12" fecha_fin="2023-06-21" ciclo_formativo="DAM">
+    <alumnos>
+        <alumno>
+            <nombre>Ana Fernández Gutiérrez</nombre>
+            <dni>16965696L</dni>
+            <telefono>678201232</telefono>
+            <email>anafg@outlook.com</email>
+            <direccion>
+                <calle>Avenida Rosalía de Castro 22</calle>
+                <cp>15701</cp>
+                <ciudad>Santiago de Compostela</ciudad>
+                <provincia>A Coruña</provincia>
+                <comunidad>Galicia</comunidad>
+            </direccion>
+            <faltas />
+            <nota />
+        </alumno>
+        <alumno>
+            <nombre>Pepe Martínez González</nombre>
+            <dni>98765432H</dni>
+            <telefono>691122334</telefono>
+            <email>pmg@gmail.com</email>
+            <direccion>
+                <calle>Rúa de Barcelona 55</calle>
+                <cp>36203</cp>
+                <ciudad>Vigo</ciudad>
+                <provincia>Pontevedra</provincia>
+                <comunidad>Galicia</comunidad>
+            </direccion>
+            <faltas />
+            <nota>APTO</nota>
+        </alumno>
+    </alumnos>
+</modulo>

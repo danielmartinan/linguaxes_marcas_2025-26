@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="calculadora">
+        <h2>Calculadora Básica</h2>
+
+        <div class="input-group">
+            <label for="numero1">Primer número:</label>
+            <input type="number" id="numero1" step="any">
+        </div>
+
+        <div class="input-group">
+            <label for="numero2">Segundo número:</label>
+            <input type="number" id="numero2" step="any">
+        </div>
+
+        <div class="botones">
+            <button onclick="calcular('+')">+</button>
+            <button onclick="calcular('-')">-</button>
+            <button onclick="calcular('*')">×</button>
+            <button onclick="calcular('/')">/</button>
+        </div>
+
+        <button onclick="limpiar()" style="width: 100%; background-color: #dc3545;">Limpiar</button>
+
+        <div id="resultado">Resultado: 0</div>
+    </div>
+
+    <script src="codigo.js"></script>
+</body>
+
+</html>

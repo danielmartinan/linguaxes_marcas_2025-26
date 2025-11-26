@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Validación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        input.invalido {
+            border-color: #dc3545;
+        }
+        
+        input.valido {
+            border-color: #28a745;
+        }
+        
+        .error {
+            display: block;
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            min-height: 20px;
+        }
+        
+        #btnEnviar {
+            width: 100%;
+            padding: 15px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #btnEnviar:hover:not(:disabled) {
+            background-color: #764ba2;
+        }
+        
+        #btnEnviar:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        #resumen {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        #resumen h2 {
+            margin-top: 0;
+            color: #28a745;
+        }
+        
+        #resumen p {
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        #resumen strong {
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Formulario de Registro</h1>
+        
+        <form id="formularioRegistro">
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" placeholder="Ej: Juan Pérez">
+                <span class="error" id="errorNombre"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" placeholder="Ej: usuario@ejemplo.com">
+                <span class="error" id="errorEmail"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" placeholder="Ej: 25">
+                <span class="error" id="errorEdad"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Mínimo 6 caracteres">
+                <span class="error" id="errorPassword"></span>
+            </div>
+            
+            <button type="submit" id="btnEnviar" disabled>Registrarse</button>
+        </form>
+        
+        <div id="resumen">
+            <h2>✅ Registro Exitoso</h2>
+            <p><strong>Nombre:</strong> <span id="resumenNombre"></span></p>
+            <p><strong>Email:</strong> <span id="resumenEmail"></span></p>
+            <p><strong>Edad:</strong> <span id="resumenEdad"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos
+        const formulario = document.getElementById('formularioRegistro');
+        const inputNombre = document.getElementById('nombre');
+        const inputEmail = document.getElementById('email');
+        const inputEdad = document.getElementById('edad');
+        const inputPassword = document.getElementById('password');
+        const btnEnviar = document.getElementById('btnEnviar');
+        const resumen = document.getElementById('resumen');
+        
+        // Mensajes de error
+        const errorNombre = document.getElementById('errorNombre');
+        const errorEmail = document.getElementById('errorEmail');
+        const errorEdad = document.getElementById('errorEdad');
+        const errorPassword = document.getElementById('errorPassword');
+        
+        // Estado de validación
+        let validacion = {
+            nombre: false,
+            email: false,
+            edad: false,
+            password: false
+        };
+        
+        // Función para validar nombre
+        function validarNombre() {
+            const valor = inputNombre.value.trim();
+            
+            if (valor.length < 3) {
+                errorNombre.textContent = 'El nombre debe tener al menos 3 caracteres';
+                inputNombre.classList.add('invalido');
+                inputNombre.classList.remove('valido');
+                validacion.nombre = false;
+            } else {
+                errorNombre.textContent = '';
+                inputNombre.classList.remove('invalido');
+                inputNombre.classList.add('valido');
+                validacion.nombre = true;
+            }
+            
+            actualizarBotonEnviar();
+        }
+        
+        // Función para validar email
+        function validarEmail() {
+            const valor = inputEmail.value.trim();
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!regexEmail.test(valor)) {
+                errorEmail.textContent = 'Ingresa un email válido';
+                inputEmail.classList.add('invalido');
+                inputEmail.classList.remove('valido');
+                validacion.email = false;
+            } else {
+                errorEmail.textContent = '';
+                inputEmail.classList.remove('invalido');
+                inputEmail.classList.add('valido');
+                validacion.email = true;
+            }
+            
+            actualizarBotonEnviar();
+        }
+        
+        // Función para validar edad
+        function validarEdad() {
+            const valor = parseInt(inputEdad.value);
+            
+            if (isNaN(valor) || valor < 18 || valor > 100) {
+                errorEdad.textContent = 'La edad debe estar entre 18 y 100 años';
+                inputEdad.classList.add('invalido');
+                inputEdad.classList.remove('valido');
+                validacion.edad = false;
+            } else {
+                errorEdad.textContent = '';
+                inputEdad.classList.remove('invalido');
+                inputEdad.classList.add('valido');
+                validacion.edad = true;
+            }
+            
+            actualizarBotonEnviar();
+        }
+        
+        // Función para validar contraseña
+        function validarPassword() {
+            const valor = inputPassword.value;
+            
+            if (valor.length < 6) {
+                errorPassword.textContent = 'La contraseña debe tener al menos 6 caracteres';
+                inputPassword.classList.add('invalido');
+                inputPassword.classList.remove('valido');
+                validacion.password = false;
+            } else {
+                errorPassword.textContent = '';
+                inputPassword.classList.remove('invalido');
+                inputPassword.classList.add('valido');
+                validacion.password = true;
+            }
+            
+            actualizarBotonEnviar();
+        }
+        
+        // Función para actualizar el botón de envío
+        function actualizarBotonEnviar() {
+            const formularioValido = validacion.nombre && 
+                                     validacion.email && 
+                                     validacion.edad && 
+                                     validacion.password;
+            
+            btnEnviar.disabled = !formularioValido;
+        }
+        
+        // Event listeners para validación en tiempo real
+        inputNombre.addEventListener('blur', validarNombre);
+        inputEmail.addEventListener('blur', validarEmail);
+        inputEdad.addEventListener('blur', validarEdad);
+        inputPassword.addEventListener('blur', validarPassword);
+        
+        // También validar mientras se escribe
+        inputNombre.addEventListener('input', validarNombre);
+        inputEmail.addEventListener('input', validarEmail);
+        inputEdad.addEventListener('input', validarEdad);
+        inputPassword.addEventListener('input', validarPassword);
+        
+        // Manejar el envío del formulario
+        formulario.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            
+            // Mostrar resumen
+            document.getElementById('resumenNombre').textContent = inputNombre.value;
+            document.getElementById('resumenEmail').textContent = inputEmail.value;
+            document.getElementById('resumenEdad').textContent = inputEdad.value;
+            
+            resumen.style.display = 'block';
+            
+            // Limpiar formulario
+            formulario.reset();
+            
+            // Resetear validación
+            validacion = {
+                nombre: false,
+                email: false,
+                edad: false,
+                password: false
+            };
+            
+            // Limpiar clases
+            inputNombre.classList.remove('valido', 'invalido');
+            inputEmail.classList.remove('valido', 'invalido');
+            inputEdad.classList.remove('valido', 'invalido');
+            inputPassword.classList.remove('valido', 'invalido');
+            
+            // Deshabilitar botón
+            btnEnviar.disabled = true;
+        });
+    </script>
+</body>
+</html>

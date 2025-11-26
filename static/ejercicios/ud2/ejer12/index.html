@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+    <title>TITLE</title>
+    <meta name="description" content="DESCRIPTION">
+
+    <link href="styles.css" rel="stylesheet">
+
+    <script defer src="main.js"></script>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <form id="registrationForm">
+        <fieldset>
+            <legend>Datos Personales</legend>
+            <label for="Nombre">Nombre:</label>
+            <input type="text" id="Nombre" name="Nombre" required>
+            <label for="Apellido">Apellido:</label>
+            <input type="text" id="Apellido" name="Apellido" required>
+            <label for="Email">Email:</label>
+            <input type="email" id="Email" name="Email" required>
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Dirección Postal</legend>
+            <label for="Ciudad">Ciudad</label>
+            <input type="text" id="Ciudad" name="Ciudad" required>
+            <label for="CodigoPostal">Código Postal</label>
+            <input type="text" id="CodigoPostal" name="CodigoPostal" required>
+            <label for="Pais">País</label>
+            <select id="Pais" name="Pais" required>
+                <option value="">Seleccione un país</option>
+                <option value="ES">España</option>
+                <option value="FR">Francia</option>
+                <option value="IT">Italia</option>
+                <option value="DE">Alemania</option>
+                <option value="US">Estados Unidos</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos del usuario</legend>
+            <label for="NombreUsuario">Nombre de Usuario:</label>
+            <input type="text" id="NombreUsuario" name="NombreUsuario" required>
+            <label for="Contrasena">Contraseña:</label>
+            <input type="password" id="Contrasena" name="Contrasena" required>
+            <label for="ConfirmarContrasena">Confirmar Contraseña:</label>
+            <input type="password" id="ConfirmarContrasena" name="ConfirmarContrasena" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Condiciones de registro</legend>
+            <p>
+                <label>Deseo recibir ofertas</label>
+                <input type="radio" name="ofertas" id="ofertas1" value="1" />
+                <label for="ofertas1" class="inline">Una vez al día</label>
+                <input type="radio" name="ofertas" id="ofertas2" value="2" />
+                <label for="ofertas2" class="inline">Una vez a la semana</label>
+                <input type="radio" name="ofertas" id="ofertas3" value="3" />
+                <label for="ofertas3" class="inline">Una vez al mes</label>
+            </p>
+        </fieldset>
+
+        <div class="centrado"></div>
+            <button type="submit" value="Crear Cuenta" id="boton-crear">Crear Cuenta</button>
+        </div>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 90%;
+    margin: 0 auto;
+}
+
+h1 {
+    font-family: Georgia, serif;
+}
+
+fieldset {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+fieldset legend {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0 10px;
+}
+
+fieldset label {
+    display: block;
+    margin-top: 10px;
+}
+
+/* Labels con clase inline se muestran en línea junto al radio/checkbox */
+label.inline {
+    display: inline-block;
+    margin-top: 0;
+    margin-right: 15px;
+}
+
+/* Los radio buttons y checkboxes también deben ser inline-block */
+input[type="radio"],
+input[type="checkbox"] {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/* Labels que contienen radio buttons o checkboxes se muestran en línea */
+fieldset label:has(input[type="radio"]),
+fieldset label:has(input[type="checkbox"]) {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+input:hover {
+    background-color: red;
+}
+
+input:focus {
+    background-color: yellow;
+}
+
+#boton-crear {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+

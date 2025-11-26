@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Colores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        #cajaColor {
+            width: 100%;
+            height: 300px;
+            border: 3px solid #333;
+            border-radius: 10px;
+            margin: 20px 0;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background-color: #6c757d;
+        }
+        
+        .info-color {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        #colorActual {
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .botones-predefinidos {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-color {
+            flex: 1;
+            min-width: 100px;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.2s ease;
+        }
+        
+        .btn-color:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn-rojo {
+            background-color: #dc3545;
+        }
+        
+        .btn-verde {
+            background-color: #28a745;
+        }
+        
+        .btn-azul {
+            background-color: #007bff;
+        }
+        
+        .btn-amarillo {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        .input-personalizado {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        #inputColor {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        #btnAplicar, #btnAleatorio {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        #btnAplicar {
+            background-color: #6c757d;
+        }
+        
+        #btnAplicar:hover {
+            background-color: #5a6268;
+        }
+        
+        #btnAleatorio {
+            background-color: #17a2b8;
+            width: 100%;
+        }
+        
+        #btnAleatorio:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Cambiador de Colores</h1>
+        
+        <div id="cajaColor">
+            Color de Fondo
+        </div>
+        
+        <div class="info-color">
+            Color actual: <span id="colorActual">#6c757d</span>
+        </div>
+        
+        <h3>Colores Predefinidos:</h3>
+        <div class="botones-predefinidos">
+            <button class="btn-color btn-rojo" onclick="cambiarColor('#dc3545')">Rojo</button>
+            <button class="btn-color btn-verde" onclick="cambiarColor('#28a745')">Verde</button>
+            <button class="btn-color btn-azul" onclick="cambiarColor('#007bff')">Azul</button>
+            <button class="btn-color btn-amarillo" onclick="cambiarColor('#ffc107')">Amarillo</button>
+        </div>
+        
+        <h3>Color Personalizado:</h3>
+        <div class="input-personalizado">
+            <input type="text" id="inputColor" placeholder="Escribe un color (ej: red, #ff0000)">
+            <button id="btnAplicar">Aplicar</button>
+        </div>
+        
+        <button id="btnAleatorio">🎲 Color Aleatorio</button>
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos
+        const cajaColor = document.getElementById('cajaColor');
+        const inputColor = document.getElementById('inputColor');
+        const btnAplicar = document.getElementById('btnAplicar');
+        const btnAleatorio = document.getElementById('btnAleatorio');
+        const colorActual = document.getElementById('colorActual');
+        
+        // Función para cambiar el color
+        function cambiarColor(color) {
+            cajaColor.style.backgroundColor = color;
+            colorActual.textContent = color;
+        }
+        
+        // Función para aplicar color personalizado
+        function aplicarColorPersonalizado() {
+            const color = inputColor.value.trim();
+            
+            if (color === '') {
+                alert('Por favor, escribe un color');
+                return;
+            }
+            
+            // Intentar aplicar el color
+            cambiarColor(color);
+            inputColor.value = '';
+        }
+        
+        // Función para generar color aleatorio
+        function generarColorAleatorio() {
+            // Generar valores RGB aleatorios
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            
+            // Convertir a formato hexadecimal
+            const colorHex = '#' + 
+                r.toString(16).padStart(2, '0') +
+                g.toString(16).padStart(2, '0') +
+                b.toString(16).padStart(2, '0');
+            
+            cambiarColor(colorHex);
+        }
+        
+        // Event listeners
+        btnAplicar.addEventListener('click', aplicarColorPersonalizado);
+        
+        btnAleatorio.addEventListener('click', generarColorAleatorio);
+        
+        // Permitir aplicar con Enter
+        inputColor.addEventListener('keypress', function(evento) {
+            if (evento.key === 'Enter') {
+                aplicarColorPersonalizado();
+            }
+        });
+    </script>
+</body>
+</html>
