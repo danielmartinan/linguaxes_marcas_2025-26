@@ -10,17 +10,31 @@
 - Lee detenidamente cada ejercicio antes de comenzar.
 - Organiza tu tiempo: se recomienda dedicar aproximadamente 40 minutos al ejercicio 1, 50 minutos al ejercicio 2 y 45 minutos al ejercicio 3.
 - Entrega todos los archivos en una carpeta comprimida ZIP con el nombre: `examen_T1_nombre_apellidos.zip`
-- Dentro del ZIP, crea una carpeta para cada ejercicio: `ejer1`, `ejer2` y `ejer3`.
+- Puedes ver la estructura de carpetas requerida al final del examen.
 - Asegúrate de que todos los archivos estén correctamente nombrados y organizados.
 - Se valorará la corrección sintáctica, la estructura semántica, el diseño visual y la organización del código.
 
 ---
 
+## Antes de comenzar
+
+Para la realización de este examen, dispones de algunos recursos necesarios, como imágenes y archivos base. Descarga y descomprime el archivo `recursos_examen_T1.zip` que encontrarás en la plataforma.
+
+Podrás utilizar cualquier editor de texto o IDE de tu preferencia para la creación y edición de los archivos, aunque se recomienda el uso de Visual Studio Code. Tienes 5 minutos antes de comenzar el examen para preparar tu entorno de trabajo, instalando las extensiones necesarias para trabajar con XML, HTML y CSS. Se recomiendan:
+
+- XML Tools
+- HTML CSS Support
+- Live Server
+
+Puedes instalar cualquier otra extensión que consideres útil para la realización del examen. Ten en cuenta que el uso de completadores automáticos (tipo Copilot) está **terminantemente prohibido**.
+
+---
+
 ## Ejercicio 1: Creación de un documento XML (3 puntos)
 
-**Tiempo recomendado: 40 minutos**
+*Tiempo recomendado: 40 minutos*
 
-Escribe un documento **XML bien formado** que permita estructurar la información de una biblioteca digital de videojuegos.
+Escribe un documento **XML bien formado** que permita estructurar la información de una **biblioteca digital de videojuegos**.
 
 ### Requisitos del documento
 
@@ -52,7 +66,7 @@ La biblioteca debe contener información sobre videojuegos, incluyendo:
 | Valoración         | 9.5                | 9.7               | 8.9               | 8.5            |
 | Descripción        | Secuela aclamada de The Last of Us. Cinco años después de su peligroso viaje a través de una América post-pandémica, Ellie y Joel se han asentado en Jackson, Wyoming. Vivir entre una próspera comunidad de supervivientes les ha brindado paz y estabilidad, a pesar de la amenaza constante de los infectados y de otros supervivientes más desesperados. | Un RPG de acción y fantasía épica. Levántate, Sinluz, y que la gracia te guíe para esgrimir el poder del Círculo de Elden y convertirte en un Señor del Círculo en las Tierras Intermedias. En las Tierras Intermedias gobernadas por la Reina Márika la Eterna, el Círculo de Elden, origen del Árbol Áureo, ha sido destruido. | New Super Mario Bros. U Deluxe incluye el juego original New Super Mario Bros. U y su expansión New Super Luigi U. Juega como Mario, Luigi, Toad, Toadette o Nabbit mientras atraviesas el Reino Champiñón para rescatar a la Princesa Peach de Bowser y sus secuaces. | Civilization VI ofrece nuevas formas de interactuar con tu mundo, expandir tu imperio por el mapa, mejorar tu cultura y competir contra los mejores líderes de la historia para crear una civilización que resista el paso del tiempo. Juega como uno de los 20 líderes históricos, incluyendo a Roosevelt (América) y Victoria (Inglaterra). |
 
-- Utiliza **atributos** donde sea apropiado (género, clasificación por edad).
+- Utiliza **atributos** donde sea apropiado.
 - Asegúrate de que el documento esté **bien estructurado** y sea fácilmente **procesable** por un sistema informático que necesite hacer búsquedas por género, plataforma o rango de precio.
 - Incluye la **declaración XML** correcta al inicio del documento.
 - Usa **nombres** de etiquetas **descriptivos** y **coherentes**.
@@ -244,8 +258,8 @@ Para conseguir un diseño similar al de la imagen de referencia, debes aplicar l
    - Sin estilos de lista por defecto
    - Disposición en 2 columnas (usa Flexbox con wrap)
    - Cada habilidad (`.skill-item`):
-     - Fondo azul claro
-     - Texto centrado
+     - Fondo azul claro (#e7f3ff)
+     - Texto centrado y color azul oscuro (#4267B2)
      - Bordes redondeados
      - Padding interno
      - Margen entre elementos
@@ -261,8 +275,8 @@ Para conseguir un diseño similar al de la imagen de referencia, debes aplicar l
      - Fondo azul (#4267B2)
      - Texto blanco
    - **Botón secundario (`.btn-secondary`):**
-     - Fondo gris claro
-     - Texto oscuro
+     - Fondo gris claro (#e4e6eb)
+     - Texto oscuro (#1c1e21)
 
 8. **Responsive:**
    - En pantallas menores a 600px:

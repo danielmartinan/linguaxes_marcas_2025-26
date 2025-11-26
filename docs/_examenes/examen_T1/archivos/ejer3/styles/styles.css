@@ -1,0 +1,126 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos del body */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Contenedor principal */
+.container {
+    margin: 0 auto; /* Centramos el contenedor */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Cabecera del perfil */
+.profile-header {
+    border-bottom: 1px solid #e4e6eb; /* Línea separadora */
+}
+
+.profile-pic {
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid #4267B2;
+}
+
+.profile-name {
+
+}
+
+.profile-title {
+
+}
+
+/* Secciones */
+.about,
+.skills {
+
+}
+
+.about h2,
+.skills h2 {
+
+}
+
+.about p {
+
+}
+
+/* Estadísticas */
+.stats {
+    border-top: 1px solid #e4e6eb;
+    border-bottom: 1px solid #e4e6eb;
+}
+
+.stat-item {
+
+}
+
+.stat-item:not(:last-child) {
+    border-right: 1px solid #e4e6eb; /* Bordes entre estadísticas */
+}
+
+.stat-item h3 {
+
+}
+
+.stat-item p {
+
+}
+
+/* Lista de habilidades */
+.skills-list {
+    gap: 10px; /* Espacio entre habilidades */
+}
+
+.skill-item {
+    background-color: #e7f3ff;
+    color: #1876d2;
+    flex: 0 0 calc(50% - 5px); /* Dos columnas con espacio */
+}
+
+/* Footer del perfil con los botones*/
+.profile-footer {
+}
+
+/* Estilos de botones */
+.btn {
+    cursor: pointer;
+}
+
+.btn-primary {
+
+}
+
+.btn-secondary {
+
+}
+
+/* Responsive - Media query para móviles */
+@media (max-width: 600px) {
+    body {
+
+    }
+
+    .container {
+
+    }
+
+    .stats {
+
+    }
+
+    .stat-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid #e4e6eb;
+        padding-bottom: 15px;
+    }
+
+    .btn {
+
+    }
+}
