@@ -17,6 +17,12 @@ function getAllMarkdownFiles(dir, baseDir = dir) {
     let results = [];
     const list = fs.readdirSync(dir);
     for (const file of list) {
+        // Ignorar archivos y directorios que comiencen con guion bajo
+        if (file.startsWith('_')) {
+            console.log(`⏭️  Ignorando: ${file} (comienza con _)`);
+            continue;
+        }
+        
         const filePath = path.join(dir, file);
         const stat = fs.statSync(filePath);
         if (stat && stat.isDirectory()) {
@@ -31,12 +37,18 @@ function getAllMarkdownFiles(dir, baseDir = dir) {
 
 (async () => {
     const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
     });
     const page = await browser.newPage();
+    await page.setViewport({ width: 1200, height: 1600 });
+    await page.emulateMediaType('screen');
 
     const files = getAllMarkdownFiles(docsDir);
-    for (const file of files) {
+    console.log(`\n📚 Encontrados ${files.length} archivos para exportar\n`);
+    
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
         const withoutExt = file.replace(/\.(md|mdx)$/, '');
         const urlPath = '/docs/' + withoutExt.replace(/\\/g, '/');
         const sanitizedPath = sanitizeForFs(withoutExt);
@@ -45,18 +57,75 @@ function getAllMarkdownFiles(dir, baseDir = dir) {
         fs.mkdirSync(path.dirname(outputFile), { recursive: true });
 
         const fullUrl = `${BASE_URL}${urlPath}`;
-        console.log(`📄 Exportando: ${fullUrl} → ${outputFile}`);
+        console.log(`\n[${i + 1}/${files.length}] 📄 Exportando: ${file}`);
 
         try {
-            await page.goto(fullUrl, { waitUntil: 'networkidle0', timeout: 30000 });
+            await page.goto(fullUrl, { waitUntil: 'networkidle0', timeout: 60000 });
 
-            // Espera a que todas las imágenes estén completamente cargadas
+            // Esperar a que React renderice completamente
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
+            // Esperar a que Mermaid termine de renderizar todos los diagramas
+            await page.evaluate(() => {
+                return new Promise((resolve) => {
+                    const checkMermaid = setInterval(() => {
+                        const loadingDivs = document.querySelectorAll('.mermaid:not(:has(svg))');
+                        if (loadingDivs.length === 0) {
+                            clearInterval(checkMermaid);
+                            resolve();
+                        }
+                    }, 200);
+                    setTimeout(() => {
+                        clearInterval(checkMermaid);
+                        resolve();
+                    }, 10000);
+                });
+            });
+
+            // Cargar imágenes con scroll gradual
             await page.evaluate(async () => {
-                const images = Array.from(document.images);
+                const scrollStep = 500;
+                const documentHeight = document.body.scrollHeight;
+                
+                for (let i = 0; i < documentHeight; i += scrollStep) {
+                    window.scrollTo(0, i);
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                
+                window.scrollTo(0, documentHeight);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                window.scrollTo(0, 0);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const images = Array.from(document.querySelectorAll('img, picture img, figure img, [class*="image"] img'));
+                
+                images.forEach(img => {
+                    img.loading = 'eager';
+                    if (img.getAttribute('loading') === 'lazy') {
+                        img.removeAttribute('loading');
+                    }
+                    if (img.dataset.src && !img.src) {
+                        img.src = img.dataset.src;
+                    }
+                    img.style.display = 'block';
+                    img.style.visibility = 'visible';
+                    img.style.opacity = '1';
+                    img.style.maxWidth = '100%';
+                    img.style.height = 'auto';
+                    img.style.pageBreakInside = 'avoid';
+                });
+            });
+            
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            await page.evaluate(async () => {
+                const images = Array.from(document.querySelectorAll('img'));
                 await Promise.all(images.map(img => {
-                    if (img.complete) return Promise.resolve();
+                    if (img.complete && img.naturalHeight !== 0) {
+                        return Promise.resolve();
+                    }
                     return new Promise(resolve => {
-                        const timeout = setTimeout(resolve, 3000); // Máximo 3s por imagen
+                        const timeout = setTimeout(resolve, 8000);
                         img.onload = () => {
                             clearTimeout(timeout);
                             resolve();
@@ -69,13 +138,84 @@ function getAllMarkdownFiles(dir, baseDir = dir) {
                 }));
             });
 
+            // Esperar a que KaTeX renderice las fórmulas
+            await page.evaluate(() => {
+                return new Promise((resolve) => {
+                    const katexElements = document.querySelectorAll('.katex');
+                    if (katexElements.length > 0) {
+                        setTimeout(resolve, 1500);
+                    } else {
+                        resolve();
+                    }
+                });
+            });
 
             await page.addStyleTag({ path: path.resolve(__dirname, '../static/print.css') });
+
+            // Forzar visibilidad y ocultar navegación
+            await page.evaluate(() => {
+                const elementsToHide = [
+                    'nav', '.navbar', '.navbar__inner', 'aside',
+                    '.theme-doc-sidebar-container', '.theme-doc-toc-desktop',
+                    '.theme-doc-toc-mobile', '.theme-doc-breadcrumbs',
+                    '.theme-doc-footer', '.theme-edit-this-page',
+                    '.pagination-nav', 'footer', '.footer',
+                    '.table-of-contents', '.theme-back-to-top-button',
+                    '[class*="tocCollapsible"]', '[class*="sidebar"]',
+                    '[class*="breadcrumb"]'
+                ];
+                
+                elementsToHide.forEach(selector => {
+                    document.querySelectorAll(selector).forEach(el => {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                    });
+                });
+
+                const mainContainer = document.querySelector('main') || 
+                                     document.querySelector('article') || 
+                                     document.querySelector('.theme-doc-markdown');
+                
+                if (mainContainer) {
+                    mainContainer.style.maxWidth = '100%';
+                    mainContainer.style.padding = '0';
+                    mainContainer.style.margin = '0';
+                }
+
+                document.body.style.background = '#ffffff';
+                document.documentElement.style.background = '#ffffff';
+                
+                const allContainers = document.querySelectorAll('div, section, main, article');
+                allContainers.forEach(el => {
+                    el.style.background = 'transparent';
+                    el.style.backgroundColor = 'transparent';
+                });
+                
+                const allElements = document.querySelectorAll('*');
+                allElements.forEach(el => {
+                    if (el.childNodes.length > 0) {
+                        el.style.color = '#000000';
+                        el.style.visibility = 'visible';
+                        el.style.opacity = '1';
+                    }
+                });
+                
+                document.querySelectorAll('p, li, span, div, td, th, h1, h2, h3, h4, h5, h6, a, strong, em, code').forEach(el => {
+                    el.style.color = '#000000';
+                    el.style.visibility = 'visible';
+                    el.style.opacity = '1';
+                });
+            });
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             await page.pdf({
                 path: outputFile,
                 format: 'A4',
                 printBackground: true,
+                preferCSSPageSize: false,
+                displayHeaderFooter: false,
+                omitBackground: false,
                 margin: {
                     top: '20mm',
                     bottom: '20mm',
@@ -83,11 +223,13 @@ function getAllMarkdownFiles(dir, baseDir = dir) {
                     right: '15mm'
                 },
             });
+            
+            console.log(`   ✅ Generado: ${outputFile}`);
         } catch (err) {
-            console.error(`❌ Error exportando ${fullUrl}:`, err.message);
+            console.error(`   ❌ Error: ${err.message}`);
         }
     }
 
     await browser.close();
-    console.log('\n✅ ¡PDFs generados con éxito para todos los documentos!\n');
+    console.log('\n✅ ¡Exportación masiva completada!\n');
 })();
