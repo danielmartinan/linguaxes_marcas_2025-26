@@ -7,11 +7,20 @@ permissions:
 on:
   push:
     branches: [main]
+    paths:
+      - 'docs/**/*.md'
+      - 'docs/**/*.mdx'
+      - '!docs/**/_*/**'
+      - '!docs/**/_*'
+      - 'scripts/generate-pdf-puppeteer.js'
+      - 'scripts/export-single-doc.js'
+      - 'static/print.css'
+  workflow_dispatch:  # Permite ejecutar manualmente si es necesario
 
 jobs:
   generar-pdfs:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30  # Aumentado porque ahora tarda más con scroll y esperas
 
     steps:
       - name: ⬇️ Clonar repositorio
@@ -21,6 +30,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
 
       - name: 📦 Instalar dependencias
         run: npm ci
@@ -31,10 +41,15 @@ jobs:
       - name: 🚀 Iniciar servidor Docusaurus en segundo plano
         run: |
           npm run serve &
-          sleep 5  # tiempo para que el server arranque
+          echo "Esperando a que el servidor inicie..."
+          sleep 10
+          # Verificar que el servidor responde
+          curl -I http://localhost:3000 || (echo "Error: servidor no responde" && exit 1)
 
       - name: 🖨️ Generar PDFs con Puppeteer
-        run: node scripts/generate-pdf-puppeteer.js
+        run: npm run export-all-pdfs
+        env:
+          BASE_URL: http://localhost:3000
 
       - name: 📤 Commit y push de los PDFs generados
         run: |
@@ -45,6 +60,31 @@ jobs:
           if git diff --cached --quiet; then
             echo "✅ No hay cambios en los PDFs. Nada que commitear."
           else
-            git commit -m "📄 Actualización automática de PDFs"
-            git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+            git commit -m "📄 Actualización automática de PDFs [skip ci]"
+            
+            # Intentar push con reintento en caso de conflicto
+            max_retries=3
+            retry_count=0
+            
+            while [ $retry_count -lt $max_retries ]; do
+              echo "Intento de push $((retry_count + 1))/$max_retries..."
+              
+              # Pull con rebase para integrar cambios remotos
+              git pull --rebase origin main || true
+              
+              # Intentar push
+              if git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main; then
+                echo "✅ Push exitoso"
+                break
+              else
+                retry_count=$((retry_count + 1))
+                if [ $retry_count -lt $max_retries ]; then
+                  echo "⚠️ Push falló, reintentando en 10 segundos..."
+                  sleep 10
+                else
+                  echo "❌ Push falló después de $max_retries intentos"
+                  exit 1
+                fi
+              fi
+            done
           fi
