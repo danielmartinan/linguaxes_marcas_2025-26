@@ -28,18 +28,44 @@
 
 @media print {
 
+    /* FORZAR FONDO BLANCO EN TODO */
+    * {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    html, body {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+
+    /* FORZAR VISIBILIDAD DE TODO EL TEXTO */
+    * {
+        color: #000000 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
     /* Ajustar tipografía general */
     body {
-        font-family: 'Arial', sans-serif, 'Futura LT';
-        font-size: 11pt;
-        line-height: 1.6;
-        color: #000;
-        background: white;
+        font-family: Arial, sans-serif !important;
+        font-size: 11pt !important;
+        line-height: 1.6 !important;
+        color: #000000 !important;
+        background: white !important;
+    }
+
+    /* Asegurar visibilidad de todos los elementos de texto */
+    p, li, span, div, td, th, h1, h2, h3, h4, h5, h6, a, strong, em, code, pre {
+        color: #000000 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     /* Justificar texto de párrafos */
     p {
-        text-align: justify;
+        text-align: justify !important;
     }
 
     /* Justificar listas */
@@ -51,32 +77,69 @@
 
     /* Reducir tamaño de títulos */
     h1 {
-        font-size: 20pt;
-        margin-bottom: 0.5em;
+        font-size: 20pt !important;
+        margin-bottom: 0.5em !important;
+        color: #000000 !important;
     }
 
     h2 {
-        font-size: 16pt;
-        margin-top: 1em;
-        margin-bottom: 0.5em;
+        font-size: 16pt !important;
+        margin-top: 1em !important;
+        margin-bottom: 0.5em !important;
+        color: #000000 !important;
     }
 
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-size: 13pt;
+    h3, h4, h5, h6 {
+        font-size: 13pt !important;
+        color: #000000 !important;
     }
 
+    /* Ocultar anclas de títulos (las almohadillas #) */
+    .hash-link,
+    .anchor,
+    a.hash-link,
+    h1 > a.hash-link,
+    h2 > a.hash-link,
+    h3 > a.hash-link,
+    h4 > a.hash-link,
+    h5 > a.hash-link,
+    h6 > a.hash-link,
+    [class*="hashLink"],
+    .header-anchor-link {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* ASEGURAR QUE LAS IMÁGENES SEAN VISIBLES */
     img {
         display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         max-width: 100% !important;
         height: auto !important;
-        break-inside: avoid;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        margin: 0.5em auto !important;
     }
 
     picture {
-        display: contents;
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    picture img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Asegurar que los contenedores de imágenes sean visibles */
+    figure,
+    .theme-doc-markdown img,
+    [class*="image"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
 
@@ -84,20 +147,53 @@
     /* Ocultar el botón de descarga (asumiendo que tiene una clase o id) */
     .pdf-download-button,
     #pdf-download,
-    .no-print {
+    .no-print,
+    .download-button,
+    button[class*="download"],
+    a[class*="download"],
+    [class*="DownloadButton"] {
         display: none !important;
     }
 
     /* Ocultar navegación, TOC, footer, breadcrumb */
+    nav,
     .navbar,
-    .footer,
+    .navbar__inner,
+    aside,
+    .theme-doc-sidebar-container,
+    .theme-doc-toc-desktop,
+    .theme-doc-toc-mobile,
     .theme-doc-breadcrumbs,
     .theme-doc-footer,
-    .table-of-contents,
     .theme-edit-this-page,
-    nav,
-    aside {
+    .pagination-nav,
+    footer,
+    .footer,
+    .table-of-contents,
+    .theme-back-to-top-button,
+    [class*="tocCollapsible"],
+    [class*="sidebar"],
+    [class*="breadcrumb"] {
         display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Asegurar que el contenedor principal sea visible y ocupe todo */
+    main,
+    article,
+    .theme-doc-markdown,
+    [class*="docMainContainer"] {
+        display: block !important;
+        visibility: visible !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
     }
 
 
@@ -127,11 +223,29 @@
         vertical-align: top;
     }
 
-    /* Opcional: quitar márgenes laterales de contenedores si afectan */
+    /* Ajustar márgenes de contenedores de contenido */
     .markdown,
     .theme-doc-markdown {
-        margin: 0;
-        padding: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    /* Asegurar que listas y elementos de texto sean visibles */
+    li,
+    span,
+    div,
+    section {
+        color: #000 !important;
+        display: block !important;
+    }
+
+    li {
+        display: list-item !important;
+    }
+
+    span {
+        display: inline !important;
     }
 
     /* Opcional: evitar que algunas celdas se estiren en exceso */
@@ -157,6 +271,50 @@
     pre {
     page-break-before: auto;
     page-break-after: auto;
+    }
+
+    /* Diagramas Mermaid - evitar corte de página y ajustar */
+    .mermaid {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        display: block !important;
+        margin: 1em auto !important;
+        max-width: 100% !important;
+    }
+
+    .mermaid svg {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+
+    /* Fórmulas KaTeX */
+    .katex,
+    .katex-display {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        font-size: 1em !important;
+    }
+
+    .katex-display {
+        margin: 0.5em 0 !important;
+        display: block !important;
+    }
+
+    /* Componentes React personalizados - evitar cortes */
+    .alert,
+    .admonition,
+    .theme-admonition {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        margin: 1em 0 !important;
+    }
+
+    /* Figuras y captions */
+    figure {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
     }
 
 }
