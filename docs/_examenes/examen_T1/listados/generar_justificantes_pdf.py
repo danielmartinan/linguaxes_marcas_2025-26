@@ -97,7 +97,7 @@ def generar_pdfs_justificantes(output_dir, archivos_md):
         return
     
     # Ruta al script de exportación
-    script_dir = Path(__file__).parent.parent.parent.parent / 'scripts'
+    script_dir = Path(__file__).parent.parent.parent.parent / '../scripts'
     export_script = script_dir / 'export-single-doc.js'
     
     if not export_script.exists():

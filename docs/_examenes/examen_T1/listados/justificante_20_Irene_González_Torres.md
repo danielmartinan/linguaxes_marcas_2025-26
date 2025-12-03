@@ -22,7 +22,7 @@ Para que así conste, a petición de la persona interesada y a los efectos oport
 
 <div style="height: 50px;"></div>
 
-Vilagarcía de Arousa, a 11 de diciembre de 2025.
+Vilagarcía de Arousa, a 9 de diciembre de 2025.
 
 <div style="height: 100px;"></div>
 
