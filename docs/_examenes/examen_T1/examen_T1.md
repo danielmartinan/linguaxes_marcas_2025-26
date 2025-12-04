@@ -25,6 +25,8 @@ Podrás utilizar cualquier editor de texto o IDE de tu preferencia para la creac
 - XML Tools
 - HTML CSS Support
 - Live Server
+- Auto Close Tag
+- CSS Peek
 
 Puedes instalar cualquier otra extensión que consideres útil para la realización del examen. Ten en cuenta que el uso de completadores automáticos (tipo Copilot) está **terminantemente prohibido**.
 
