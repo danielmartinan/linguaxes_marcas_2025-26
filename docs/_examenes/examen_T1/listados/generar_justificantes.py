@@ -73,7 +73,7 @@ def generar_justificantes(csv_file, plantilla_file, output_dir=None,
 if __name__ == '__main__':
     # Configuración de rutas (ajustar según necesidad)
     script_dir = Path(__file__).parent
-    csv_file = script_dir / 'asistentes_t1 - daw.csv'
+    csv_file = script_dir / 'asistentes_t1 - ASIR.csv'
     plantilla_file = script_dir / 'plantilla_justificante.md'
     
     # Configuración del examen (modificar según necesidad)
