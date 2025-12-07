@@ -25,10 +25,14 @@ Podrás utilizar cualquier editor de texto o IDE de tu preferencia para la creac
 - XML Tools
 - HTML CSS Support
 - Live Server
+- Auto Close Tag
+- CSS Peek
 
 Puedes instalar cualquier otra extensión que consideres útil para la realización del examen. Ten en cuenta que el uso de completadores automáticos (tipo Copilot) está **terminantemente prohibido**.
 
 ---
+
+<div style="height: 150px;"></div>
 
 ## Ejercicio 1: Creación de un documento XML (3 puntos)
 
@@ -83,9 +87,11 @@ La biblioteca debe contener información sobre videojuegos, incluyendo:
 - **Completitud de la información** (0.75 puntos): inclusión de todos los datos requeridos para los 3 videojuegos.
 - **Organización y legibilidad** (0.25 puntos): indentación correcta, nombres de etiquetas descriptivos.
 
-## Ejercicio 2: Creación de una página web completa en HTML (3.5 puntos)
+<div style="height: 80px;"></div>
 
-**Tiempo recomendado: 50 minutos**
+## Ejercicio 2: Creación de una página web en HTML (3.5 puntos)
+
+*Tiempo recomendado: 50 minutos*
 
 Crea una página web HTML para una **tienda online de plantas** que incluya los siguientes elementos:
 
@@ -94,10 +100,9 @@ Crea una página web HTML para una **tienda online de plantas** que incluya los 
 1. **Estructura HTML5 semántica:**
    - Declaración `<!DOCTYPE html>`
    - Uso de etiquetas semánticas: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<footer>`
-   - Metadatos correctos: `charset`, `viewport`, título descriptivo
 2. **Cabecera (`<header>`):**
    - Nombre de la tienda (título `<h1>`)
-   - Menú de navegación (`<nav>`) con al menos 4 enlaces: Inicio, Catálogo, Cuidados, Contacto
+   - Menú de navegación con al menos 4 enlaces: Inicio, Catálogo, Cuidados, Contacto
 3. **Contenido principal (`<main>`):**
    - **Sección de presentación:** Breve texto de bienvenida e información sobre la tienda
    - **Catálogo de productos** (al menos 2 plantas): cada planta debe incluir:
@@ -109,20 +114,19 @@ Crea una página web HTML para una **tienda online de plantas** que incluya los 
    - **Formulario de contacto:**
       - Campos de texto: Nombre, Email, Asunto
       - Campo de selección (`<select>`) para "Motivo de consulta": Información de producto, Pedido, Sugerencia, Otro
-      - Área de texto (`<textarea>`) para el mensaje
+      - Área de texto para el mensaje
       - Checkbox para aceptar política de privacidad
       - Botón de envío y botón de limpiar
-4. **Pie de página (`<footer>`):**
+4. **Pie de página:**
    - Información de copyright
    - Enlaces a redes sociales (al menos 3)
 
 ### Consideraciones
 
-- **NO** es necesario aplicar estilos CSS en este ejercicio (se evaluará solo el HTML).
+- **NO es necesario aplicar estilos CSS en este ejercicio (se evaluará solo el HTML)**.
 - Utiliza etiquetas semánticas apropiadas en todo momento.
-- Todos los formularios deben tener labels asociados correctamente.
+- Todos los formularios deben tener **labels** asociados correctamente.
 - Las imágenes deben tener atributo `alt` descriptivo.
-- La tabla debe estar correctamente estructurada.
 
 La estructura creada debe generar una web similar a la siguiente imagen de referencia (sin estilos CSS aplicados):
 
@@ -139,16 +143,18 @@ La estructura creada debe generar una web similar a la siguiente imagen de refer
 - Guarda el archivo con el nombre: `ejer2_tienda_plantas.html`
 - Coloca todo en la carpeta `ejer2/` de tu entrega, incluyendo las imágenes en una subcarpeta `img/`.
 
-### Criterios de evaluación:
+### Criterios de evaluación
 
 - **Estructura HTML5 semántica** (1 punto): uso correcto de etiquetas semánticas, declaración DOCTYPE.
-- **Elementos completos y correctos** (1.5 puntos): formulario completo con labels, tabla estructurada, listas, navegación.
+- **Elementos completos y correctos** (1.5 puntos): formulario completo con labels, listas, navegación.
 - **Accesibilidad y buenas prácticas** (0.5 puntos): atributos alt, labels asociados, jerarquía de encabezados.
 - **Completitud de requisitos** (0.5 puntos): inclusión de todos los elementos solicitados.
 
+<div style="height: 50px;"></div>
+
 ## Ejercicio 3: Aplicación de estilos CSS a un HTML dado (3.5 puntos)
 
-**Tiempo recomendado: 45 minutos**
+*Tiempo recomendado: 45 minutos*
 
 Se te proporciona un archivo HTML con la estructura de una **página de perfil de usuario**. Tu tarea es crear un archivo CSS externo para que la página tenga una apariencia similar a la imagen de referencia proporcionada.
 
@@ -290,9 +296,8 @@ Para conseguir un diseño similar al de la imagen de referencia, debes aplicar l
 ### Consideraciones
 
 - Deberás editar el archivo `styles.css` dentro del directorio `ejer3/styles/`.
-- Puedes ajustar colores y tamaños para mejorar el diseño, pero debe parecerse a la referencia
+- El resultado debe parecerse a la referencia lo máximo posible.
 - Usa Flexbox para layouts horizontales
-- Incluye efectos hover en botones
 - Asegúrate de que sea responsive con media queries
 
 ### Entrega
@@ -301,9 +306,9 @@ Para conseguir un diseño similar al de la imagen de referencia, debes aplicar l
 
 ### Criterios de evaluación
 
-- **Estructura y organización del CSS** (0.75 puntos): selectores apropiados, código organizado.
-- **Layout y disposición** (1.25 punto): uso correcto de Flexbox, centrado, espaciados.
-- **Estilos visuales** (1 punto): colores, tipografía, bordes, sombras acordes a la referencia.
+- **Estructura y organización del CSS** (1 puntos): selectores apropiados, código organizado.
+- **Layout y disposición** (15 punto): uso correcto de Flexbox, centrado, espaciados.
+- **Estilos visuales** (0.5 punto): colores, tipografía, bordes, sombras acordes a la referencia.
 - **Responsive design** (0.5 puntos): media queries correctas, adaptación a móviles.
 
 ---

@@ -2,7 +2,7 @@
 
 <div style="text-align: center; font-weight: bold; font-size: 18px; margin-top: 30px;">
     <p style="margin: 0 auto">DEPARTAMENTO DE INFORMÁTICA</p>
-    <p style="margin: 0 auto">CICLO DAW</p>
+    <p style="margin: 0 auto">CICLO ASIR</p>
     <p style="margin: 0 auto">MODALIDAD A DISTANCIA</p>
 </div>
 
@@ -14,7 +14,7 @@ Dº. **Daniel Martiñán Otero**, profesor responsable del módulo **Lenguajes d
 
 CERTIFICA QUE:
 
-El/la alumno/a xxx, matriculado/a en dicha asignatura, con DNI XXXXX, ha asistido en la tarde de hoy a la realización del examen presencial correspondiente al primer parcial liberador de materia, que se ha realizado desde las 18:45 hasta las 21:45 horas, en el aula S02 del citado centro.
+El/la alumno/a Sara Durán Cores, matriculado/a en dicha asignatura, con DNI 35480976A, ha asistido en la tarde de hoy a la realización del examen presencial correspondiente al primer parcial liberador de materia, que se ha realizado desde las 18:45 hasta las 21:45 horas, en el aula S02 del citado centro.
 
 <div style="height: 50px;"></div>
 
