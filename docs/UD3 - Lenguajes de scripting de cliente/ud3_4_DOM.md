@@ -36,7 +36,7 @@ El DOM representa un documento HTML como un **árbol de nodos**, donde cada elem
 
 Este HTML se representa como el siguiente árbol DOM:
 
-```
+```plaintext
 Document
 └── html
     ├── head
