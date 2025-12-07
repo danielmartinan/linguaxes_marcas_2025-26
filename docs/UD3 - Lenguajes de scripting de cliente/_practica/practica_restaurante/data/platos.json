@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "nombre": "Jamón Ibérico de Bellota",
+    "descripcion": "Jamón ibérico de bellota cortado a cuchillo, acompañado de picos y regañás",
+    "precio": 18.50,
+    "categoria": "entrantes",
+    "imagen": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400"
+  },
+  {
+    "id": 2,
+    "nombre": "Croquetas de Jamón Caseras",
+    "descripcion": "6 unidades de croquetas cremosas elaboradas con jamón ibérico",
+    "precio": 9.50,
+    "categoria": "entrantes",
+    "imagen": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400"
+  },
+  {
+    "id": 3,
+    "nombre": "Tabla de Quesos Artesanos",
+    "descripcion": "Selección de 5 quesos españoles con mermelada de higos y nueces",
+    "precio": 14.00,
+    "categoria": "entrantes",
+    "imagen": "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=400"
+  },
+  {
+    "id": 4,
+    "nombre": "Ensalada César",
+    "descripcion": "Lechuga romana, pollo a la parrilla, parmesano, croutons y salsa césar casera",
+    "precio": 11.50,
+    "categoria": "entrantes",
+    "imagen": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400"
+  },
+  {
+    "id": 5,
+    "nombre": "Carpaccio de Ternera",
+    "descripcion": "Finas láminas de ternera con rúcula, parmesano y reducción balsámica",
+    "precio": 13.50,
+    "categoria": "entrantes",
+    "imagen": "https://images.unsplash.com/photo-1594756202469-9ff9799b2e4e?w=400"
+  },
+  {
+    "id": 6,
+    "nombre": "Pulpo a la Gallega",
+    "descripcion": "Pulpo cocido con patatas, pimentón dulce y aceite de oliva virgen extra",
+    "precio": 16.00,
+    "categoria": "entrantes",
+    "imagen": "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?w=400"
+  },
+  {
+    "id": 7,
+    "nombre": "Solomillo de Ternera",
+    "descripcion": "Solomillo a la parrilla con salsa de pimienta verde y patatas al horno",
+    "precio": 24.50,
+    "categoria": "principales",
+    "imagen": "https://images.unsplash.com/photo-1558030006-450675393462?w=400"
+  },
+  {
+    "id": 8,
+    "nombre": "Lubina a la Sal",
+    "descripcion": "Lubina salvaje cocida en costra de sal con guarnición de verduras",
+    "precio": 22.00,
+    "categoria": "principales",
+    "imagen": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400"
+  },
+  {
+    "id": 9,
+    "nombre": "Paella Valenciana",
+    "descripcion": "Paella tradicional con pollo, conejo, judías verdes y garrofón (mín. 2 personas)",
+    "precio": 18.00,
+    "categoria": "principales",
+    "imagen": "https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=400"
+  },
+  {
+    "id": 10,
+    "nombre": "Risotto de Setas",
+    "descripcion": "Arroz carnaroli cremoso con setas de temporada y trufa negra",
+    "precio": 16.50,
+    "categoria": "principales",
+    "imagen": "https://images.unsplash.com/photo-1476124369491-f1a8d3f35ba6?w=400"
+  },
+  {
+    "id": 11,
+    "nombre": "Cordero Asado",
+    "descripcion": "Paletilla de cordero asado con patatas panadera y ensalada",
+    "precio": 21.00,
+    "categoria": "principales",
+    "imagen": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400"
+  },
+  {
+    "id": 12,
+    "nombre": "Lasaña Casera",
+    "descripcion": "Lasaña boloñesa con bechamel gratinada al horno",
+    "precio": 13.50,
+    "categoria": "principales",
+    "imagen": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400"
+  },
+  {
+    "id": 13,
+    "nombre": "Salmón a la Plancha",
+    "descripcion": "Lomo de salmón con espárragos trigueros y salsa de eneldo",
+    "precio": 19.50,
+    "categoria": "principales",
+    "imagen": "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=400"
+  },
+  {
+    "id": 14,
+    "nombre": "Tiramisú Casero",
+    "descripcion": "Postre italiano con bizcocho, café, mascarpone y cacao",
+    "precio": 6.50,
+    "categoria": "postres",
+    "imagen": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400"
+  },
+  {
+    "id": 15,
+    "nombre": "Tarta de Queso",
+    "descripcion": "Tarta de queso cremosa con base de galleta y coulis de frutos rojos",
+    "precio": 6.00,
+    "categoria": "postres",
+    "imagen": "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=400"
+  },
+  {
+    "id": 16,
+    "nombre": "Coulant de Chocolate",
+    "descripcion": "Bizcocho de chocolate con corazón fundido, servido con helado de vainilla",
+    "precio": 7.00,
+    "categoria": "postres",
+    "imagen": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400"
+  },
+  {
+    "id": 17,
+    "nombre": "Crema Catalana",
+    "descripcion": "Crema catalana tradicional con azúcar caramelizado",
+    "precio": 5.50,
+    "categoria": "postres",
+    "imagen": "https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=400"
+  },
+  {
+    "id": 18,
+    "nombre": "Helado Artesano",
+    "descripcion": "3 bolas de helado artesano a elegir (chocolate, vainilla, fresa, limón)",
+    "precio": 5.00,
+    "categoria": "postres",
+    "imagen": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400"
+  },
+  {
+    "id": 19,
+    "nombre": "Tarta de Santiago",
+    "descripcion": "Tarta tradicional gallega de almendra con azúcar glas",
+    "precio": 5.50,
+    "categoria": "postres",
+    "imagen": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400"
+  },
+  {
+    "id": 20,
+    "nombre": "Agua Mineral",
+    "descripcion": "Botella de agua mineral 50cl (con gas o sin gas)",
+    "precio": 2.00,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=400"
+  },
+  {
+    "id": 21,
+    "nombre": "Refresco",
+    "descripcion": "Coca-Cola, Fanta Naranja, Sprite, Nestea (33cl)",
+    "precio": 2.50,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400"
+  },
+  {
+    "id": 22,
+    "nombre": "Cerveza Nacional",
+    "descripcion": "Cerveza española de barril (caña 20cl)",
+    "precio": 2.50,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400"
+  },
+  {
+    "id": 23,
+    "nombre": "Vino Tinto Reserva",
+    "descripcion": "Copa de vino tinto D.O. Rioja Reserva",
+    "precio": 4.50,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400"
+  },
+  {
+    "id": 24,
+    "nombre": "Vino Blanco",
+    "descripcion": "Copa de vino blanco D.O. Rueda Verdejo",
+    "precio": 4.00,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1586370434639-0fe43b2d32d6?w=400"
+  },
+  {
+    "id": 25,
+    "nombre": "Sangría de la Casa",
+    "descripcion": "Jarra de sangría casera con frutas frescas (1L)",
+    "precio": 12.00,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1596550019227-0fe3e3ced6f5?w=400"
+  },
+  {
+    "id": 26,
+    "nombre": "Café Solo/Cortado",
+    "descripcion": "Café expreso o cortado",
+    "precio": 1.50,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400"
+  },
+  {
+    "id": 27,
+    "nombre": "Café con Leche",
+    "descripcion": "Café con leche en taza grande",
+    "precio": 2.00,
+    "categoria": "bebidas",
+    "imagen": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400"
+  }
+]

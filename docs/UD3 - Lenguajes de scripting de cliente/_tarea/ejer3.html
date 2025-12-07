@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <main class="card">
+        <h1>Productos</h1>
+        <div class="filtros">
+            <input id="buscador" type="text" placeholder="Buscar..." />
+            <div class="categorias">
+                <button class="cat active" data-cat="todos">Todos</button>
+                <button class="cat" data-cat="fruta">Fruta</button>
+                <button class="cat" data-cat="bebida">Bebida</button>
+            </div>
+        </div>
+        <div id="productos" class="grid"></div>
+        <p id="sinResultados" class="error" style="display:none;">No se encontraron productos</p>
+    </main>
+    <script src="script3.js"></script>
+</body>
+
+</html>

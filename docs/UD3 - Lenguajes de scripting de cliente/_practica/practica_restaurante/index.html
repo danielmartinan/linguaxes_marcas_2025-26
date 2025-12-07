@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="La Buena Mesa - Restaurante de cocina mediterránea en el corazón de la ciudad">
+    <title>La Buena Mesa - Restaurante</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- HEADER CON NAVEGACIÓN -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <div class="logo">
+                    <h1>🍽️ La Buena Mesa</h1>
+                </div>
+
+                <!-- Menú hamburguesa (móvil) -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- Navegación principal -->
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#menu" class="nav-link">Menú</a></li>
+                    <li><a href="#reservas" class="nav-link">Reservas</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+
+                <!-- Carrito de compras -->
+                <div class="cart-icon" id="cartIcon">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h2>Bienvenidos a La Buena Mesa</h2>
+            <p>Sabores auténticos de la cocina mediterránea</p>
+            <a href="#menu" class="btn btn-primary">Ver nuestro menú</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SOBRE NOSOTROS -->
+    <section id="sobre-nosotros" class="about-section">
+        <div class="container">
+            <h2>Nuestra Historia</h2>
+            <p>Desde 1985, La Buena Mesa ha sido el punto de encuentro para los amantes de la buena comida. 
+            Nuestro chef ejecutivo combina recetas tradicionales con toques modernos, utilizando únicamente 
+            ingredientes frescos y de temporada provenientes de productores locales.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN MENÚ -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2>Nuestro Menú</h2>
+            
+            <!-- Barra de búsqueda y filtros -->
+            <div class="menu-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Buscar platos..." class="search-input">
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="todos">Todos</button>
+                    <button class="filter-btn" data-category="entrantes">Entrantes</button>
+                    <button class="filter-btn" data-category="principales">Principales</button>
+                    <button class="filter-btn" data-category="postres">Postres</button>
+                    <button class="filter-btn" data-category="bebidas">Bebidas</button>
+                </div>
+            </div>
+
+            <!-- Grid de platos (se llenará dinámicamente) -->
+            <div class="platos-grid" id="platosGrid">
+                <!-- Los platos se cargarán aquí con JavaScript -->
+            </div>
+
+            <!-- Mensaje cuando no hay resultados -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <p>😕 No se encontraron platos con esos criterios</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN RESERVAS -->
+    <section id="reservas" class="reservas-section">
+        <div class="container">
+            <h2>Haz tu Reserva</h2>
+            <p class="section-subtitle">Reserva tu mesa y disfruta de una experiencia gastronómica única</p>
+
+            <!-- Mensajes de error generales -->
+            <div class="form-errors" id="formErrors" style="display: none;"></div>
+
+            <form class="reserva-form" id="reservaForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        <span class="error-message" id="errorNombre"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="errorEmail"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Ej: 612345678" required>
+                        <span class="error-message" id="errorTelefono"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personas">Número de personas *</label>
+                        <select id="personas" name="personas" required>
+                            <option value="">Selecciona...</option>
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                            <option value="6">6 personas</option>
+                            <option value="7">7 personas</option>
+                            <option value="8">8 personas</option>
+                            <option value="9">9 personas</option>
+                            <option value="10">10 personas</option>
+                        </select>
+                        <span class="error-message" id="errorPersonas"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha">Fecha de reserva *</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                        <span class="error-message" id="errorFecha"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora">Hora *</label>
+                        <select id="hora" name="hora" required>
+                            <option value="">Selecciona...</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                        </select>
+                        <span class="error-message" id="errorHora"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comentarios">Comentarios adicionales</label>
+                    <textarea id="comentarios" name="comentarios" rows="4" placeholder="Alergias, preferencias especiales, ocasión especial..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">Confirmar Reserva</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contacto" class="contacto-section">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <div class="info-item">
+                        <h3>📍 Dirección</h3>
+                        <p>Calle Mayor, 123<br>28013 Madrid, España</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>📞 Teléfono</h3>
+                        <p>+34 912 345 678</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>📧 Email</h3>
+                        <p>info@labuenamesa.es</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>🕐 Horario</h3>
+                        <p>Lunes a Viernes: 13:00 - 16:00 / 20:00 - 23:00<br>
+                        Sábado y Domingo: 13:00 - 23:00 (horario continuo)</p>
+                    </div>
+                </div>
+
+                <div class="contacto-mapa">
+                    <div class="mapa-placeholder">
+                        <p>🗺️ Mapa de ubicación</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANEL LATERAL DEL CARRITO -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Tu Pedido</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+
+        <div class="cart-content" id="cartContent">
+            <!-- Los items del carrito se añadirán aquí dinámicamente -->
+            <p class="cart-empty">Tu carrito está vacío</p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price" id="totalPrice">0.00€</span>
+            </div>
+            <button class="btn btn-primary btn-block">Realizar Pedido</button>
+        </div>
+    </div>
+
+    <!-- Overlay para cerrar el carrito -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 La Buena Mesa. Todos los derechos reservados.</p>
+            <p>Síguenos en redes sociales: 
+                <a href="#">Facebook</a> | 
+                <a href="#">Instagram</a> | 
+                <a href="#">Twitter</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
