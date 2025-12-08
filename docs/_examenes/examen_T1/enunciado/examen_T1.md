@@ -307,7 +307,7 @@ Para conseguir un diseño similar al de la imagen de referencia, debes aplicar l
 ### Criterios de evaluación
 
 - **Estructura y organización del CSS** (1 puntos): selectores apropiados, código organizado.
-- **Layout y disposición** (15 punto): uso correcto de Flexbox, centrado, espaciados.
+- **Layout y disposición** (1.5 punto): uso correcto de Flexbox, centrado, espaciados.
 - **Estilos visuales** (0.5 punto): colores, tipografía, bordes, sombras acordes a la referencia.
 - **Responsive design** (0.5 puntos): media queries correctas, adaptación a móviles.
 

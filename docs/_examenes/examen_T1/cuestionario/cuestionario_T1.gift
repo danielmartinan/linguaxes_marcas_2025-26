@@ -179,3 +179,17 @@ $CATEGORY: $course$/T1 - Lenguajes de Marcas
 ~%-33.33333%Selector de etiqueta
 ~%-33.33333%Selector universal
 }
+
+::SIND-01:: Indica cuál de las siguientes NO es una tecnología de sindicación de contenidos web. {
+~%-33.33333%RSS
+~%-33.33333%Atom
+=HTML5
+~%-33.33333%JSON Feed
+}
+
+::SIND-02:: ¿Qué es un agregador de noticias? {
+~%-33.33333%Un tipo de lenguaje de marcas empleado para crear sitios web de noticias
+=Una aplicación que recopila y muestra contenidos sindicados de múltiples fuentes
+~%-33.33333%Un protocolo de transferencia de archivos especialmente diseñado para noticias
+~%-33.33333%Un formato de imagen que se utiliza en los sitios web de noticias
+}
