@@ -21,7 +21,7 @@ Tres ejercicios independientes, pensados para 1º DAW/ASIR, usando solo lo visto
 
 - Al enviar, si el input está vacío: mostrar mensaje de error debajo del campo.
 - Si hay texto: crear un `<li>` dentro de la lista con un botón "Eliminar" que borre solo ese ítem.
-- Opcional: mostrar un contador "Total tareas: X".
+- Mostrar un contador "Total tareas: X".
 - Mostrar un botón "Limpiar lista" que borre todas las tareas.
 
 ## Ejercicio 3: Filtro en vivo de productos (sin fetch)

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <main class="card">
+        <h1>Lista de tareas</h1>
+        <form id="formTareas" class="form">
+            <label for="tarea">Nueva tarea</label>
+            <div class="fila">
+                <input id="tarea" type="text" placeholder="Escribe una tarea" />
+                <button type="submit">Añadir</button>
+            </div>
+            <p id="error" class="error" aria-live="polite"></p>
+        </form>
+        <ul id="lista" class="lista"></ul>
+        <p id="contador" class="contador-tareas">Total tareas: 0</p>
+        <button id="limpiar">Limpiar lista</button>
+    </main>
+    <script src="js/script2.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+	// Elementos del DOM
 	const form = document.getElementById('formTareas');
 	const input = document.getElementById('tarea');
 	const lista = document.getElementById('lista');
@@ -6,11 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	const contador = document.getElementById('contador');
 	const btnLimpiar = document.getElementById('limpiar');
 
+	// Funciones auxiliares
 	const actualizarContador = () => {
 		const total = lista.children.length;
 		if (contador) contador.textContent = `Total tareas: ${total}`;
 	};
 
+	// Crear un ítem de la lista ul
 	const crearItem = (texto) => {
 		const li = document.createElement('li');
 		const span = document.createElement('span');
@@ -25,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		return li;
 	};
 
+	// Manejo del formulario
 	form.addEventListener('submit', (e) => {
 		e.preventDefault();
 		const texto = input.value.trim();
@@ -39,10 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		actualizarContador();
 	});
 
+	// Botón limpiar
 	if (btnLimpiar) {
 		btnLimpiar.addEventListener('click', () => {
-			lista.innerHTML = '';
+			while (lista.firstChild) {
+				lista.removeChild(lista.firstChild);
+			}
 			actualizarContador();
+			error.textContent = '';
+			input.value = '';
+			input.focus();
 		});
 	}
 
