@@ -1,4 +1,4 @@
-# UD3.5 - Acceso y manipulación del DOM
+# Acceso y manipulación del DOM
 
 ## Selección de elementos
 
