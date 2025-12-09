@@ -272,17 +272,173 @@ elemento.addEventListener('click', (event) => {
 });
 ```
 
-### 4.2 Métodos del objeto Event
+### Métodos del objeto Event
+
+El objeto `Event` proporciona varios métodos para controlar el comportamiento del evento:
+
+#### `preventDefault()`
+
+Cancela la acción por defecto asociada al evento. Esto es útil cuando queremos reemplazar el comportamiento estándar del navegador con nuestro propio código.
+
+**¿Cuándo usar `preventDefault()`?**
+
+- **Formularios**: Evitar que se envíe el formulario automáticamente
+- **Enlaces**: Prevenir la navegación a otra página
+- **Teclas**: Evitar atajos de teclado del navegador
+- **Comportamientos del navegador**: Impedir scroll, zoom, etc.
+
+##### Ejemplo 1: Validar y prevenir envío de formulario
+
+```javascript
+const formulario = document.getElementById('miFormulario');
+
+formulario.addEventListener('submit', (e) => {
+    // Prevenir el envío automático del formulario
+    e.preventDefault();
+    
+    // Aquí podemos validar los datos
+    const email = document.getElementById('email').value;
+    
+    if (!email.includes('@')) {
+        alert('Email inválido');
+        return; // No continuar si no es válido
+    }
+    
+    // Si todo es válido, podemos enviar manualmente
+    console.log('Formulario válido, enviando datos...');
+    // formulario.submit(); // Envío manual si es necesario
+});
+```
+
+##### Ejemplo 2: Enlace personalizado sin navegación
+
+```javascript
+const enlace = document.getElementById('miEnlace');
+
+enlace.addEventListener('click', (e) => {
+    // Evitar que se navegue a la URL del href
+    e.preventDefault();
+    
+    console.log('Se hizo clic en el enlace, pero no se navega');
+    
+    // Hacer algo personalizado
+    abrirDialogoPersonalizado();
+});
+```
+
+##### Ejemplo 3: Atajos de teclado personalizados
+
+```javascript
+document.addEventListener('keydown', (e) => {
+    // Ctrl+S: Guardador personalizado
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault(); // Evitar "Guardar como" del navegador
+        guardarDatos();
+    }
+    
+    // Ctrl+Q: Función personalizada
+    if (e.ctrlKey && e.key === 'q') {
+        e.preventDefault();
+        mostrarMenuSalida();
+    }
+});
+```
+
+**Nota importante**: `preventDefault()` solo funciona si el evento es **cancelable** (tiene propiedad `cancelable: true`). Algunos eventos como `load` no se pueden cancelar.
 
 ```javascript
 elemento.addEventListener('click', (e) => {
-    // Prevenir comportamiento por defecto
+    if (e.cancelable) {
+        e.preventDefault();
+    }
+});
+```
+
+#### `stopPropagation()`
+
+Detiene la propagación del evento hacia elementos padres (evita el burbujeo).
+
+```javascript
+const hijo = document.getElementById('hijo');
+const padre = document.getElementById('padre');
+
+// Clic en el hijo
+hijo.addEventListener('click', (e) => {
+    e.stopPropagation(); // El evento no sube al padre
+    console.log('Clic en hijo');
+});
+
+// Clic en el padre
+padre.addEventListener('click', (e) => {
+    console.log('Clic en padre'); // Esto NO se ejecuta si hicimos clic en hijo
+});
+```
+
+**Diferencia entre `stopPropagation()` y `preventDefault()`:**
+
+- **`stopPropagation()`**: Evita que el evento suba a elementos padres, pero el comportamiento por defecto **SÍ ocurre**
+- **`preventDefault()`**: Cancela el comportamiento por defecto del navegador, pero el evento **SÍ se propaga**
+
+```javascript
+// Ejemplo con ambos métodos
+const enlace = document.getElementById('miEnlace');
+const padre = document.querySelector('nav');
+
+enlace.addEventListener('click', (e) => {
+    e.preventDefault();           // No navega a la URL
+    e.stopPropagation();         // No sube al padre
+    console.log('Solo se ejecuta este evento');
+});
+
+padre.addEventListener('click', (e) => {
+    console.log('Evento padre'); // No se ejecutará
+});
+```
+
+#### `stopImmediatePropagation()`
+
+Detiene tanto la propagación como otros listeners del mismo elemento para el mismo evento.
+
+```javascript
+const boton = document.getElementById('miBoton');
+
+// Primer listener
+boton.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
+    console.log('Primer listener');
+});
+
+// Segundo listener
+boton.addEventListener('click', (e) => {
+    console.log('Segundo listener'); // NO se ejecuta
+});
+
+// Listener en padre
+document.addEventListener('click', (e) => {
+    console.log('Listener padre'); // NO se ejecuta
+});
+```
+
+**Resumen de métodos:**
+
+```javascript
+elemento.addEventListener('click', (e) => {
+    // preventDefault()
+    // - Cancela acción por defecto
+    // - El evento se sigue propagando
+    // - Se puede cancelar solo si cancelable=true
     e.preventDefault();
     
-    // Detener propagación del evento
+    // stopPropagation()
+    // - Evita que suba a elementos padres
+    // - La acción por defecto SÍ ocurre
+    // - Los listeners del mismo elemento SÍ se ejecutan
     e.stopPropagation();
     
-    // Detener propagación inmediatamente (incluye otros listeners)
+    // stopImmediatePropagation()
+    // - Evita propagación a padres
+    // - Evita otros listeners del mismo elemento
+    // - La acción por defecto SÍ ocurre
     e.stopImmediatePropagation();
 });
 ```
