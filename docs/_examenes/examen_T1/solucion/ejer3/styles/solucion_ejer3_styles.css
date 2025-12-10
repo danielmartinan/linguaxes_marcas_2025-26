@@ -141,7 +141,6 @@ body {
     font-weight: 600;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .btn-primary {
