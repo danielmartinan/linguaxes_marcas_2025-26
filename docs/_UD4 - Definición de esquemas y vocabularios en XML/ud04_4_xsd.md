@@ -1252,3 +1252,972 @@ Indica cómo definir las siguientes duraciones en XML Schema utilizando el tipo 
 </details>
 
 :::
+
+### Tipos para identificadores
+
+Los tipos de datos para identificadores en XML Schema permiten definir referencias únicas entre elementos y crear relaciones entre ellos. Estos tipos son especialmente útiles para crear estructuras de datos complejas donde es necesario vincular elementos de manera explícita.
+
+Los principales tipos de identificadores en XML Schema son:
+
+- **`xs:ID`** - Define un identificador único dentro del documento XML.
+- **`xs:IDREF`** - Define una referencia a un identificador único (de tipo `xs:ID`).
+- **`xs:IDREFS`** - Define múltiples referencias a identificadores únicos (lista de `xs:ID`).
+- **`xs:ENTITY`** - Define una referencia a una entidad XML declarada.
+- **`xs:ENTITIES`** - Define múltiples referencias a entidades XML declaradas.
+
+#### `xs:ID` - Identificador único
+
+El tipo `xs:ID` se utiliza para definir un identificador único dentro de un documento XML. Un elemento o atributo de tipo `xs:ID` debe cumplir las siguientes características:
+
+- El valor debe ser único dentro del documento.
+- El valor debe ser un **NCName** válido (nombre sin espacios ni caracteres especiales).
+- No puede haber dos elementos o atributos con el mismo valor de tipo `xs:ID`.
+
+**Sintaxis:**
+
+```xml
+<xs:element name="nombreElemento" type="xs:ID"/>
+<xs:attribute name="nombreAtributo" type="xs:ID"/>
+```
+
+**Ejemplo:**
+
+```xml title="Esquema (empleados.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="empleados">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="empleado" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" type="xs:string"/>
+              <xs:element name="puesto" type="xs:string"/>
+              <xs:element name="salario" type="xs:decimal"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+```xml title="Documento XML válido (empleados.xml)"
+<empleados>
+  <empleado id="emp001">
+    <nombre>Juan García</nombre>
+    <puesto>Ingeniero de Software</puesto>
+    <salario>35000</salario>
+  </empleado>
+  <empleado id="emp002">
+    <nombre>María López</nombre>
+    <puesto>Analista de Datos</puesto>
+    <salario>32000</salario>
+  </empleado>
+  <empleado id="emp003">
+    <nombre>Carlos Rodríguez</nombre>
+    <puesto>Gerente de Proyecto</puesto>
+    <salario>40000</salario>
+  </empleado>
+</empleados>
+```
+
+:::warning
+
+El siguiente documento **NO sería válido** porque hay dos elementos con el mismo `id`:
+
+```xml
+<empleados>
+  <empleado id="emp001">
+    <nombre>Juan García</nombre>
+  </empleado>
+  <empleado id="emp001">  <!-- Error: ID duplicado -->
+    <nombre>María López</nombre>
+  </empleado>
+</empleados>
+```
+
+:::
+
+El formato de un `xs:ID` debe cumplir las reglas de un NCName: cualquier combinación de letras, dígitos, guiones bajos (`_`), puntos (`.`) y guiones (`-`), pero no puede comenzar con un dígito, guion o punto, ni contener espacios.
+
+#### `xs:IDREF` - Referencia a un identificador
+
+El tipo `xs:IDREF` se utiliza para crear una referencia a un elemento o atributo de tipo `xs:ID`. El valor de un `xs:IDREF` debe coincidir exactamente con el valor de algún `xs:ID` presente en el documento XML. Es decir, que para que se pueda definir un elemento XML con un atributo o subelemento de tipo `xs:IDREF`, debe existir previamente un elemento o atributo con un valor de tipo `xs:ID` que coincida con ese valor. Las restricciones para crear un IDREF son las mismas que para un ID, excepto la unicidad.
+
+**Sintaxis:**
+
+```xml
+<xs:element name="nombreElemento" type="xs:IDREF"/>
+<xs:attribute name="nombreAtributo" type="xs:IDREF"/>
+```
+
+**Ejemplo:** definimos un elemento `empresa`, que contiene empleados y proyectos. Cada proyecto tiene un responsable que es una referencia a un empleado mediante `xs:IDREF`.
+
+```xml title="Esquema con referencias (proyectos.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="empresa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="empleados">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="empleado" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nombre" type="xs:string"/>
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:ID" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="proyectos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="proyecto" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nombre" type="xs:string"/>
+                    <xs:element name="responsable" type="xs:IDREF"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+Así, en el siguiente documento XML, cada proyecto tiene un responsable que referencia a un empleado existente mediante su `id`.
+
+```xml title="Documento XML válido (empresa.xml)"
+<empresa>
+  <empleados>
+    <empleado id="emp001">
+      <nombre>Juan García</nombre>
+    </empleado>
+    <empleado id="emp002">
+      <nombre>María López</nombre>
+    </empleado>
+  </empleados>
+  <proyectos>
+    <proyecto>
+      <nombre>Sistema de Facturación</nombre>
+      <responsable>emp001</responsable>
+    </proyecto>
+    <proyecto>
+      <nombre>Portal de Análisis</nombre>
+      <responsable>emp002</responsable>
+    </proyecto>
+  </proyectos>
+</empresa>
+```
+
+Cada proyecto tiene un responsable cuyo valor coincide con el `id` de un empleado definido previamente.
+
+#### `xs:IDREFS` - Múltiples referencias
+
+El tipo `xs:IDREFS` se utiliza para crear múltiples referencias a elementos o atributos de tipo `xs:ID`. El valor es una lista de identificadores **separados por espacios.**
+
+**Sintaxis:**
+
+```xml
+<xs:element name="nombreElemento" type="xs:IDREFS"/>
+<xs:attribute name="nombreAtributo" type="xs:IDREFS"/>
+```
+
+**Ejemplo:** en un departamento, tenemos empleados y equipos. Cada equipo puede tener múltiples miembros, referenciados mediante `xs:IDREFS`.
+
+```xml title="Esquema con múltiples referencias (equipos.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="departamento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="empleados">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="empleado" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nombre" type="xs:string"/>
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:ID" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="equipos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="equipo" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nombre" type="xs:string"/>
+                    <xs:element name="miembros" type="xs:IDREFS"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+```xml title="Documento XML válido (departamento.xml)"
+<departamento>
+  <empleados>
+    <empleado id="emp001">
+      <nombre>Juan García</nombre>
+    </empleado>
+    <empleado id="emp002">
+      <nombre>María López</nombre>
+    </empleado>
+    <empleado id="emp003">
+      <nombre>Carlos Rodríguez</nombre>
+    </empleado>
+  </empleados>
+  <equipos>
+    <equipo>
+      <nombre>Equipo Frontend</nombre>
+      <miembros>emp001 emp003</miembros>
+    </equipo>
+    <equipo>
+      <nombre>Equipo Backend</nombre>
+      <miembros>emp002 emp003</miembros>
+    </equipo>
+  </equipos>
+</departamento>
+```
+
+#### Comparación de tipos de identificadores
+
+| Tipo | Descripción | Usos | Restricciones |
+|------|-------------|------|----------------|
+| `xs:ID` | Identificador único | Definir claves primarias | Debe ser único en el documento |
+| `xs:IDREF` | Referencia única | Crear relaciones uno a uno | Debe referenciar un `xs:ID` existente |
+| `xs:IDREFS` | Múltiples referencias | Crear relaciones uno a muchos | Debe referenciar `xs:ID` existentes |
+
+## Restricciones
+
+En XML Schema, las restricciones se denominan **facetas** y se refieren a restricciones que podemos aplicar sobre los valores de los datos de un elemento o atributo. Las restricciones se definen mediante el elemento `restriction`:
+
+```xml
+<xs:restriction base="xs:integer">
+  <!-- Restricciones -->
+</xs:restriction>
+```
+
+Donde el atributo `base` es el **tipo de dato base** sobre el cual se aplica la restricción, es decir, partimos de un tipo de dato y vamos acotando la posibilidad de valores que puede tomar. Dicho de otro modo, pasamos de un validación más permisiva a una menos permisiva. En el atributo base solo se pueden indicar tipos de datos simples.
+
+Para que se entienda mejor: supongamos que tenemos un elemento que representa la temperatura en grados Celsius, para medir la temperatura corporal humana. Sabemos que la temperatura corporal humana no puede ser menor de 10 grados Celsius, ni mayor a 45 grados Celsius. Por tanto, partimos de un tipo de dato integer (entero) y le aplicamos las restricciones de mínimo y máximo.
+
+El elemento `restriction` debe ir dentro de otros elementos XSD y las restricciones se expresan como **elementos hijo**. Veamos un ejemplo con una restricción aplicada:
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="temperatura">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="10"/>
+        <xs:maxInclusive value="45"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+
+:::info[Ejemplos completos]
+
+En los ejemplos de esta sección se mostrarán los documentos XSD completos, donde se utiliza el elemento `simpleType`, el cual será presentado más adelante. El elemento `simpleType` es necesario definirlo para aplicar restricciones.
+
+:::
+
+En el ejemplo anterior se está partiendo de un tipo `integer`, al cual se le aplica la restricción de que su valor mínimo es 10 y su valor máximo es 45. Es decir, se parte de un tipo de dato que contempla cualquier valor entero a un tipo de dato donde solo se contemplan valores enteros a partir del 10 (incluido) hasta el 45 (incluido).
+
+Algunas de las facetas o restricciones más comunes son:
+
+- `xs:length`
+- `xs:minLength`
+- `xs:maxLength`
+- `xs:enumeration`
+- `xs:whiteSpace`
+- `xs:minInclusive`
+- `xs:maxInclusive`
+- `xs:minExclusive`
+- `xs:maxExclusive`
+- `xs:totalDigits`
+- `xs:fractionDigits`
+- `xs:pattern`
+
+En los siguientes apartados se explicarán estas restricciones.
+
+### `xs:length` - Longitud exacta
+
+La faceta `xs:length` especifica que la longitud de un valor debe ser **exactamente** igual a un número específico de caracteres.
+
+**Sintaxis:**
+
+```xml
+<xs:length value="número"/>
+```
+
+**Ejemplo:**
+
+Definir un código de producto que debe tener exactamente 6 caracteres:
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="codigo">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:length value="6"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `ABC123` (6 caracteres)
+- `PROD99` (6 caracteres)
+
+**Valores inválidos:**
+
+- `ABC12` (5 caracteres)
+- `ABC1234` (7 caracteres)
+
+### `xs:minLength` - Longitud mínima
+
+La faceta `xs:minLength` especifica la longitud **mínima** que debe tener un valor. El valor puede tener igual o más caracteres que el especificado.
+
+**Sintaxis:**
+
+```xml
+<xs:minLength value="número"/>
+```
+
+**Ejemplo:**
+
+Definir una contraseña que debe tener mínimo 8 caracteres:
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="contrasena">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="8"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `Pass1234` (8 caracteres)
+- `MiContraseña123` (15 caracteres)
+
+**Valores inválidos:**
+
+- `Pass123` (7 caracteres)
+
+### `xs:maxLength` - Longitud máxima
+
+La faceta `xs:maxLength` especifica la longitud **máxima** que puede tener un valor. El valor puede tener igual o menos caracteres que el especificado.
+
+**Sintaxis:**
+
+```xml
+<xs:maxLength value="número"/>
+```
+
+**Ejemplo:**
+
+Definir un nombre de usuario que no puede exceder 20 caracteres:
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="usuario">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="20"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `juan` (4 caracteres)
+- `juangarciarodriguez` (19 caracteres)
+
+**Valores inválidos:**
+
+- `juangarciarodriguezperez` (24 caracteres)
+
+### `xs:enumeration` - Valores enumerados
+
+La faceta `xs:enumeration` define un **conjunto limitado de valores permitidos**. El elemento solo puede contener uno de los valores especificados.
+
+**Sintaxis:**
+
+```xml
+<xs:enumeration value="valor1"/>
+<xs:enumeration value="valor2"/>
+<!-- más valores -->
+```
+
+**Ejemplo:**
+
+Definir un elemento que solo pueda contener los colores permitidos:
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="color">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="rojo"/>
+        <xs:enumeration value="verde"/>
+        <xs:enumeration value="azul"/>
+        <xs:enumeration value="amarillo"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+```xml title="Documento XML válido"
+<color>rojo</color>
+<color>verde</color>
+<color>azul</color>
+```
+
+**Valores inválidos:**
+
+- `<color>naranja</color>` (no está en la enumeración)
+- `<color>Rojo</color>` (diferencia de mayúsculas)
+
+### `xs:whiteSpace` - Tratamiento de espacios en blanco
+
+La faceta `xs:whiteSpace` controla cómo se tratan los espacios en blanco (espacios, tabulaciones, saltos de línea) en el contenido de un elemento o atributo. Tiene tres valores posibles:
+
+- **`preserve`** - Se preservan todos los espacios en blanco tal como están. (valor por defecto)
+- **`replace`** - Se reemplazan tabulaciones, saltos de línea y retornos de carro por espacios.
+- **`collapse`** - Se reemplazan tabulaciones, saltos de línea y retornos de carro por espacios, y se eliminan espacios en blanco al inicio y final, además de colapsarse múltiples espacios en uno solo.
+
+**Sintaxis:**
+
+```xml
+<xs:whiteSpace value="preserve|replace|collapse"/>
+```
+
+**Ejemplo:**
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="nombre1">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:whiteSpace value="preserve"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="nombre2">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:whiteSpace value="collapse"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Ejemplo de diferencia:**
+
+```xml
+<!-- Con preserve: " Juan  García " se mantiene tal cual -->
+<nombre1> Juan  García </nombre1>
+
+<!-- Con collapse: "  Juan  García  " se convierte en "Juan García" -->
+<nombre2>  Juan  García  </nombre2>
+```
+
+### `xs:minInclusive` - Valor mínimo (incluido)
+
+La faceta `xs:minInclusive` especifica el **valor mínimo permitido, incluyéndolo**. El valor debe ser mayor o igual al especificado.
+
+**Sintaxis:**
+
+```xml
+<xs:minInclusive value="número"/>
+```
+
+**Ejemplo:**
+
+Definir la edad mínima permitida (mayor o igual a 18):
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="edad">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="18"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `18` (igual al mínimo)
+- `25`
+- `100`
+
+**Valores inválidos:**
+
+- `17` (menor que el mínimo)
+
+### `xs:maxInclusive` - Valor máximo (incluido)
+
+La faceta `xs:maxInclusive` especifica el **valor máximo permitido, incluyéndolo**. El valor debe ser menor o igual al especificado.
+
+**Sintaxis:**
+
+```xml
+<xs:maxInclusive value="número"/>
+```
+
+**Ejemplo:**
+
+Definir la calificación máxima permitida (menor o igual a 10):
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="calificacion">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal">
+        <xs:maxInclusive value="10"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `5.5`
+- `10` (igual al máximo)
+- `8.25`
+
+**Valores inválidos:**
+
+- `10.1` (mayor que el máximo)
+
+### `xs:minExclusive` - Valor mínimo (excluido)
+
+La faceta `xs:minExclusive` especifica el **valor mínimo permitido, excluyéndolo**. El valor debe ser estrictamente mayor que el especificado.
+
+**Sintaxis:**
+
+```xml
+<xs:minExclusive value="número"/>
+```
+
+**Ejemplo:**
+
+Definir que la temperatura debe ser mayor que 0 grados (sin incluir el 0):
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="temperatura">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal">
+        <xs:minExclusive value="0"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `0.1`
+- `25.5`
+- `100`
+
+**Valores inválidos:**
+
+- `0` (no se incluye el 0)
+- `-5` (menor que el mínimo)
+
+### `xs:maxExclusive` - Valor máximo (excluido)
+
+La faceta `xs:maxExclusive` especifica el **valor máximo permitido, excluyéndolo**. El valor debe ser estrictamente menor que el especificado.
+
+**Sintaxis:**
+
+```xml
+<xs:maxExclusive value="número"/>
+```
+
+**Ejemplo:**
+
+Definir que un porcentaje debe ser menor del 100% (sin incluir el 100):
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="porcentaje">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal">
+        <xs:maxExclusive value="100"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `50.5`
+- `99.99`
+- `0`
+
+**Valores inválidos:**
+
+- `100` (no se incluye el 100)
+- `100.1` (mayor que el máximo)
+
+### `xs:totalDigits` - Total de dígitos
+
+La faceta `xs:totalDigits` especifica el **número total de dígitos** permitidos en un número. Se utiliza comúnmente con el tipo `xs:decimal`.
+
+**Sintaxis:**
+
+```xml
+<xs:totalDigits value="número"/>
+```
+
+**Ejemplo:**
+
+Definir un código de referencia con exactamente 8 dígitos:
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="codigoReferencia">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:totalDigits value="8"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `12345678` (8 dígitos)
+- `00000001` (8 dígitos)
+
+**Valores inválidos:**
+
+- `123456789` (9 dígitos)
+- `1234567` (7 dígitos)
+
+### `xs:fractionDigits` - Dígitos decimales
+
+La faceta `xs:fractionDigits` especifica el **número máximo de dígitos después del punto decimal**. Se utiliza típicamente con el tipo `xs:decimal`.
+
+**Sintaxis:**
+
+```xml
+<xs:fractionDigits value="número"/>
+```
+
+**Ejemplo:**
+
+Definir un precio que puede tener máximo 2 dígitos decimales (centavos):
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="precio">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal">
+        <xs:fractionDigits value="2"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `19.99`
+- `100.5`
+- `50.00`
+- `25` (sin decimales también es válido)
+
+**Valores inválidos:**
+
+- `19.999` (3 dígitos decimales)
+- `100.123` (3 dígitos decimales)
+
+### `xs:pattern` - Expresión regular
+
+La faceta `xs:pattern` permite especificar un **patrón de expresión regular** que el valor debe cumplir. El patrón sigue la sintaxis de expresiones regulares de XML Schema.
+
+**Sintaxis:**
+
+```xml
+<xs:pattern value="expresionRegular"/>
+```
+
+**Ejemplo 1: Formato de teléfono**
+
+Definir un teléfono en formato español (9 dígitos):
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="telefono">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{9}"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `986112233`
+- `666777888`
+
+**Valores inválidos:**
+
+- `98611223` (8 dígitos)
+- `9861122333` (10 dígitos)
+- `98611223a` (contiene letras)
+
+**Ejemplo 2: Formato de correo electrónico**
+
+Definir un correo electrónico con un patrón simple:
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="email">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `usuario@example.com`
+- `juan.garcia@empresa.es`
+
+**Valores inválidos:**
+
+- `usuario@.com` (falta el dominio)
+- `usuario@example` (falta la extensión)
+
+**Ejemplo 3: Código de producto con prefijo**
+
+Definir un código que comienza con "PROD" seguido de 4 dígitos:
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="codigoProducto">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="PROD[0-9]{4}"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+**Valores válidos:**
+
+- `PROD0001`
+- `PROD9999`
+
+**Valores inválidos:**
+
+- `PROD001` (solo 3 dígitos)
+- `prod0001` (minúsculas en PROD)
+
+:::tip[Patrones comunes]
+
+Algunos patrones de expresiones regulares útiles:
+
+| Patrón | Descripción | Ejemplo |
+|--------|-------------|---------|
+| `[0-9]{3}-[0-9]{3}-[0-9]{4}` | Teléfono con guiones | `123-456-7890` |
+| `[a-z]+@[a-z]+\.[a-z]+` | Email simple | `user@domain.com` |
+| `[A-Z]{2}[0-9]{4}` | Código: 2 letras + 4 números | `AB1234` |
+| `[0-9]{4}-[0-9]{2}-[0-9]{2}` | Fecha YYYY-MM-DD | `2025-12-31` |
+| `[A-Z][a-z]+` | Nombre con primera mayúscula | `Juan` |
+| `[a-z0-9_-]+` | Nombre de usuario | `user_name-123` |
+
+:::
+
+#### Expresiones regulares
+
+Una expresión regular es una secuencia de caracteres que se utiliza para definir un patrón. También se conocen como regex (regular expression).
+
+Las expresiones regulares se basan en un conjunto de reglas y símbolos especiales que permiten definir patrones de manera precisa.
+
+En la siguiente tabla se muestran algunas de las expresiones más habituales para construir patrones. En la última columna (Ejemplo), se muestran subrayadas las concidencias que se obtienen de los patrones de ejemplo. Las palabras que aparecen sin subrayar es que no obtuvieron ninguna coincidencia.
+
+| Expresión | Definición | Patrón de ejemplo | Ejemplo |
+|-----------|-----------|-------------------|---------|
+| texto | Busca la secuencia de carácteres indicada. | am | programación, Amar, Camarón, Camión |
+| ^ | Busca el elemento al inicio de una línea. | ^Z | Zapato, Zafiro |
+| $ | Busca el elemento al final de una línea. | a$ | María, Silla |
+| * | Busca el elemento anterior a * desde ninguna hasta varias veces. | An* | Aval, Ana, Anna, On Air, Online |
+| + | Busca el elemento anterior a + desde 1 a varias veces. | An+ | Ana, Anna |
+| ? | Busca el elemento anterior a ? ninguna o una vez. | An? | Aval, Ana |
+| . | Busca cualquier carácter, excepto el de nueva línea. Es un comodín que substituye a un carácter. | A.a | Ana, Asa, Amar |
+| \ | El carácter que va después de \ es convertido en carácter especial o, si ya lo es, deja de serlo. | web\.es | web.es |
+| [patrón] | Busca cualquier carácter del conjunto indicado entre [ y ]. | [cps]ala | pala, sala, cala |
+| [^patrón] | Busca cualquier carácter que no esté en el conjunto indicado entre [ y ]. | [^AEIOU] | Palanca, Hoy |
+| [a-z] | El guión simboliza un rango. | [a-m] | Palanca, Hoy |
+| {num} | Busca el elemento indicado antes de {num} tantas veces como indique num. | a{3} | aaa, baaa |
+| {min,max} | Busca el elemento indicado antes de {min,max} tantas veces como indique el rango min y max, ambos incluidos. | a{2,3} | aaa, baaa |
+| \b | Busca la palabra exacta, siempre situado en el límite de la palabra, normalmente un espacio. | \bCambia\b | Cambia de página |
+| \d | Busca un dígito del 0 al 9. Tiene el mismo efecto que [0-9]. | \d | 8, 9, 567 |
+| \D | Busca una coincidencia que no sea un dígito. Tiene el mismo efecto que [^0-9]. | \D | 4 páginas, letras |
+| \s | Busca un carácter de espacio (espacio en blanco, tabulador, nueva página, salto de línea, etc.). | \s | espacios en blanco |
+| \w | Busca cualquier carácter de palabra. Tiene el mismo efecto que [a-zA-Z_0-9]. | \w | a, 1, _ |
+| \W | Busca cualquier carácter que no sea una palabra. Tiene el mismo efecto que [^\w]. | \W | ?, ¡, ! |
+| patrón1\|patrón2 | Busca el patrón 1 o el patrón 2. | a\|z | Zoo, Capaz, amar |
+| patrón1(?=patrón2) | Busca el patrón 1 solo si le sigue el patrón 2. El patrón 2 no formará parte de la ocurrencia encontrada. | Hojas (?=pares) | Hojas pares |
+
+:::tip[Practicar expresiones regulares]
+Para practicar las expresiones regulares, se pueden utilizar las siguientes herramientas online:
+
+- [regexr.com](https://regexr.com)
+- [regex101.com](https://regex101.com)
+
+En ellas, se pueden probar qué ocurrencias se detectan en una cadena de texto a partir de una expresión regular. Además, se ofrece una explicación detallada de la expresión regular introducida.
+
+:::
+
+Las expresiones regulares son válidas para cualquier lenguaje de programación (siempre que soporte esta característica). Se pueden utilizar, incluso, en editores de texto para buscar patrones en el código fuente.
+
+### Combinación de restricciones
+
+Es posible **combinar múltiples restricciones** en el mismo elemento. Las restricciones se aplican de forma acumulativa, es decir, el valor debe cumplir **todas** las restricciones especificadas.
+
+**Ejemplo:**
+
+Definir una contraseña que debe:
+
+- Tener entre 8 y 20 caracteres
+- Contener solo letras, números, guiones bajos y guiones
+
+```xml title="Esquema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="contrasena">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="8"/>
+        <xs:maxLength value="20"/>
+        <xs:pattern value="[a-zA-Z0-9_-]+"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+```xml title="Documento XML válido"
+<contrasena>MiPass123</contrasena>
+<contrasena>user_pass-456</contrasena>
+```
+
+```xml title="Documentos XML inválidos"
+<contrasena>pass</contrasena> <!-- Menos de 8 caracteres -->
+<contrasena>MiPassword1234567890123</contrasena> <!-- Más de 20 caracteres -->
+<contrasena>Mi Pass@123</contrasena> <!-- Contiene espacio y @ (no permitidos) -->
+```
+
+:::tip[Ejercicio resuelto]
+
+Define un esquema XSD para validar los siguientes datos:
+
+1. **DNI español**: formato `12345678X` (8 dígitos y 1 letra mayúscula)
+2. **Código postal español**: formato `28000` (5 dígitos)
+3. **Edad**: entre 0 y 150 años
+4. **Nombre completo**: mínimo 2 caracteres, máximo 100
+
+<details>
+    <summary>Solución</summary>
+
+    ```xml
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="persona">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="dni">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[0-9]{8}[A-Z]"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nombreCompleto">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="2"/>
+                  <xs:maxLength value="100"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>SS
+            <xs:element name="edad">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="0"/>
+                  <xs:maxInclusive value="150"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="codigoPostal">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[0-9]{5}"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    ```
+
+    ```xml
+    <persona>
+      <dni>12345678Z</dni>
+      <nombreCompleto>Juan García Rodríguez</nombreCompleto>
+      <edad>35</edad>
+      <codigoPostal>28000</codigoPostal>
+    </persona>
+    ```
+
+</details>
+
+:::
