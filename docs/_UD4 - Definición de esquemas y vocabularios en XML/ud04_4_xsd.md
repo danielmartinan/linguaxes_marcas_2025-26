@@ -536,7 +536,7 @@ El estándar de XML Schema divide los tipos de datos en dos grandes grupos:
 
 En el siguiente diagrama creado por la W3C, se puede observar la jerarquía entre los diferentes tipos. Podemos apreciar que todos los tipos derivados son creados (derivados) a partir de dos tipos primitivos: string o decimal.
 
-![alt text](w3c_datatypes.png)
+![alt text](/img/linguaxes-marcas/ud4/img/w3c_datatypes.png)
 
 ### Tipos de datos personalizados
 
@@ -2085,7 +2085,7 @@ Las expresiones regulares se basan en un conjunto de reglas y símbolos especial
 En la siguiente tabla se muestran algunas de las expresiones más habituales para construir patrones. En la última columna (Ejemplo), se muestran subrayadas las concidencias que se obtienen de los patrones de ejemplo. Las palabras que aparecen sin subrayar es que no obtuvieron ninguna coincidencia.
 
 | Expresión | Definición | Patrón de ejemplo | Ejemplo |
-|-----------|-----------|-------------------|---------|
+| --------- | ---------- | ----------------- | ------- |
 | texto | Busca la secuencia de carácteres indicada. | am | programación, Amar, Camarón, Camión |
 | ^ | Busca el elemento al inicio de una línea. | ^Z | Zapato, Zafiro |
 | $ | Busca el elemento al final de una línea. | a$ | María, Silla |
@@ -2221,3 +2221,1488 @@ Define un esquema XSD para validar los siguientes datos:
 </details>
 
 :::
+
+## Definición de tipos de datos
+
+En XSD existen diversos [**tipos de datos predefinidos**](https://www.w3.org/TR/2004/REC-xmlschema-2-20041028/datatypes.html#built-in-datatypes), los cuales vienen recogidos en el estándar XML Schema. Sin embargo, en algunos casos no es sufiente y es necesario definir **tipos de datos personalizados** que se ajusten mejor a las necesidades específicas de un proyecto.
+
+Para ello, existen diferentes **elementos XSD** que nos ofrecen la posibilidad de definir tipos personalizados. Algunos son:
+
+- `simpleType`
+- `complexType`
+- `simpleContent`
+- `complexContent`
+- `extension`
+
+La aplicación de **restricciones** para acotar con mayor precisión el tipo de dato que queremos asignar a los diferentes elementos y atributos ya se considera una definición de tipo de dato personalizado, aunque la definición puede ir más allá y tener en cuenta más aspectos, incluyendo tanto elementos de tipo simple como elementos de tipo complejo.
+
+Todo elemento de un XSD debe ser de uno de estos dos tipos:
+
+- **Simple**: no contiene ni elementos ni atributos.
+- **Complejo**: contiene elementos y/o atributos.
+
+En esta sección se explicará cómo se crean tipos de datos personalizados, proporcionando ejemplos de su uso en diferentes casos de aplicación.
+
+### Tipos de datos simples
+
+Un elemento simple es aquel que solo contiene texto, esto es, que no contiene ni elementos ni atributos.
+
+Por ejemplo:
+
+```xml
+<numero>2</numero>
+```
+
+Los elementos simples se pueden declarar en un esquema XSD mediante una línea:
+
+```
+<xs:element name="numero" type="xs:integer"/>
+```
+
+En la línea anterior, se utiliza como tipo de dato uno **predefinido** en el estándar XML Schema: `integer`.
+
+Si buscamos un tipo de dato que no está recogido en la lista de tipos predefinidos, es cuando entra en juego la **definición de tipos de datos simples** personalizados. Es decir, si queremos indicar al atributo type un valor personalizado. Por ejemplo:
+
+```xml
+<xs:element name="numero" type="numero-par"/>
+```
+
+En la línea anterior se establece un tipo `numero-par`. Este tipo no está definido en ningún lado y es trabajo del programador o programadora indicar en qué consiste ese tipo. Para ello, se utilizarán los siguientes elementos XSD (o algunos de ellos):
+
+- `simpleType`
+- `restriction`
+- `list`
+- `union`
+
+#### `xs:simpleType`
+
+El elemento `simpleType` es un elemento que permite definir un tipo de dato simple personalizado a partir de:
+
+- Un tipo de dato primitivo.
+- Un tipo de dato personalizado ya definido (otro simpleType).
+
+Se utiliza para **restringir** los valores posibles de un elemento o atributo.
+
+Los tipos de datos personalizados se definen dentro de un elemento `simpleType` y se pueden reutilizar en varios elementos y atributos a lo largo del esquema siempre que se le asigne un valor al atributo name.
+
+```xml
+<xs:simpleType name="tipo-simple">
+  <!-- Definición del tipo simple -->
+</xs:simpleType>
+```
+
+El elemento `simpleType` siempre tendrá como elemento hijo alguno de los siguientes:
+
+- `restriction`
+- `list`
+- `union`
+
+A continuación, veremos el uso con los dos primeros elementos XSD.
+
+##### `xs:restriction` dentro de `xs:simpleType`
+
+La gran mayoría de las veces, se utiliza `simpleType` con `restriction`, el cual permite definir restricciones en los tipos de datos. Es decir, la mayoría de las veces se utiliza un `simpleType` para definir **tipos de datos más restrictivos** que los proporcionados por el estándar.
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ciudad">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="10"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+Podemos observar que define una restricción para el elemento `<ciudad>`. Es decir, se está creando un nuevo tipo donde los valores válidos son cadenas de texto de una **longitud máxima de 10 caracteres**. En el ejemplo anterior, se está aplicando directamente a un elemento.
+
+###### Creación de un tipo simple
+
+Sin embargo, esto se puede hacer de otra manera:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ciudad" type="string-10" />
+
+  <xs:simpleType name="string-10">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+```
+
+En el documento XSD anterior, se está declarando un elemento `<ciudad>` donde su tipo de dato es `string-10`. **Este tipo de dato no es un tipo predefinido** en el estándar XML Schema, sino que **lo hemos definido nosotros**. El nombre puede ser cualquiera, siempre que sea una **cadena de caracteres válida para asignar al valor de un atributo XML**.
+
+En las siguientes líneas, podemos ver cómo se define un tipo de dato personalizado. El elemento `simpleType` tiene un atributo name con un valor (`string-10`). Ese valor es el **nombre** que tomará el nuevo tipo que se definirá. Como se ha comentado, este nombre lo escogemos nosotros.
+
+Ambos documentos XSD presentados son **equivalentes**, con la excepeción de que **el último permite reutilizar el tipo de dato creado**. Es decir, si tenemos otro elemento diferente al cual se le quiere aplicar la restricción (o también un atributo), solo basta con indicar el nombre del tipo en su atributo type.
+
+##### `xs:list` dentro de `xs:simpleType`
+
+El elemento `list` se utiliza para definir una **lista de elementos del mismo tipo**, el cual se define en su atributo `itemType`. Con este elemento, see puede definir una lista de números enteros, una lista de fechas, etc.
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="numeros">
+    <xs:simpleType>
+      <xs:list itemType="xs:integer"/>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+En este caso, se define un elemento `<numeros>` que puede contener una serie de números enteros separados por espacios en blanco. Por ejemplo:
+
+```xml
+<numeros>1 2 3 4 5</numeros>
+```
+
+###### Creación de una lista (tipo simple)
+
+De forma alternativa, se podría definir el siguiente esquema:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="numeros" type="lista-enteros" />
+
+  <xs:simpleType name="lista-enteros">
+    <xs:list itemType="xs:integer"/>
+  </xs:simpleType>
+</xs:schema>
+```
+
+En las líneas anteriores se ha definido el **tipo `lista-enteros`**, el cual se usa en la declaración del elemento `numeros`, pero se podría utilizar el cualquier otro elemento o atributo.
+
+```xml
+<numeros>10 20 30 40 50</numeros>
+<numeros>5 15 25</numeros>
+```
+
+##### `xs:union` dentro de `xs:simpleType`
+
+El elemento `union` se utiliza para definir un tipo de dato que puede tomar **valores de varios tipos diferentes**. Es decir, permite combinar varios tipos de datos en uno solo.
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="valor">
+    <xs:simpleType>
+      <xs:union memberTypes="xs:integer xs:string"/>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>
+```
+
+En este caso, se define un elemento `<valor>` que puede contener tanto un número entero como una cadena de texto. Por ejemplo:
+
+```xml
+<valor>123</valor>
+<valor>Hola Mundo</valor>
+```
+
+###### Creación de una unión (tipo simple)
+
+De forma alternativa, se podría definir el siguiente esquema:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="valor" type="entero-o-texto" />
+
+  <xs:simpleType name="entero-o-texto">
+    <xs:union memberTypes="xs:integer xs:string"/>
+  </xs:simpleType>
+</xs:schema>
+```
+
+En las líneas anteriores se ha definido el **tipo `entero-o-texto`**, el cual se usa en la declaración del elemento `valor`, pero se podría utilizar el cualquier otro elemento o atributo.
+
+```xml
+<valor>456</valor>
+<valor>Otro texto</valor>
+```
+
+### Tipos de datos complejos
+
+Un elemento complejo es aquel que **contiene elementos hijo y/o atributos**.
+
+Algunos ejemplos de elementos complejos son los siguientes:
+
+```xml
+<numero tipo="entero">10</numero>
+```
+
+```xml
+<numero tipo="entero" />
+```
+
+```xml
+<valores>
+  <numero>10</numero>
+  <numero>20</numero>
+</valores>
+```
+
+```xml
+<texto>Esquema <azul>XSD</azul></texto>
+```
+
+Todos los datos predefinidos en el estándar son de **tipo simple**. Si es necesario utilizar un tipo complejo, debemos **definirlo previamente en el esquema**.
+
+Los tipos complejos se definen mediante la **combinación de elementos simples y/o estructuras complejas** mediante la utilización de elementos XSD como:
+
+- `complexType`
+- `simpleContent`
+- `complexContent`
+- `extension`
+- `sequence`
+- `all`
+- `choice`
+- `group`
+- `attributeGroup`
+
+#### `xs:complexType`
+
+El elemento `complexType` es el elemento base para definir un elemento de tipo complejo.
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="provincia">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="codigo" type="xs:integer" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+El esquema anterior define:
+
+- Un elemento llamado `<provincia>` con un contenido de tipo `string` y un atributo `codigo`.
+- Un atributo `codigo` obligatorio y del tipo `integer`.
+
+:::note[Elementos XSD]
+
+En este punto, no es necesario comprender los elementos `simpleContent` y `extension`. Se presentan en los siguientes apartados.
+
+:::
+
+El código anterior permite validar el siguiente documento XML:
+
+```xml
+<provincia codigo="32">Ourense</provincia>
+```
+
+##### Creación de un tipo complejo
+
+Sin embargo, como ocurre con `simpleType`, esto se puede hacer de otra manera:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="provincia" type="tipo-provincia" />
+
+  <xs:complexType name="tipo-provincia">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="codigo" type="xs:integer" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+```
+
+En las líneas anteriores se define un **tipo de dato complejo personalizado** llamado `tipo-provincia`. Para ello, se separa el elemento `complexType` del elemento `element` y se le añade un atributo `name`. Este tipo se utiliza en la declaración del elemento `<provincia>` indicando el nombre del tipo de dato en el atributo `type`.
+
+Ambos documentos XSD presentados son equivalentes, con la excepeción de que el último permite **reutilizar el tipo de dato creado**. Es decir, si tenemos otro elemento diferente al cual se le quiere definir el mismo tipo, solo basta con indicar el nombre del tipo en su atributo `type`.
+
+#### Contenido de un elemento
+
+El contenido de un elemento se refiere a la **información albergada entre la etiqueta de apertura y cierre** de un elemento.
+
+Por ejemplo, consideremos el siguiente elemento XML:
+
+```xml
+<magnitud>Potencia</magnitud>
+```
+
+Su contenido es: `Potencia`
+
+Consideremos este otro elemento XML:
+
+```xml
+<magnitud>
+  <electricidad>Potencia<electricidad>
+</magnitud>
+```
+
+En este caso, el contenido del elemento <magnitud> es: `<electricidad>Potencia<electricidad>`
+
+El contenido de un elemento puede ser de tres tipos:
+
+1. **Contenido simple**: solo contiene texto, sin elementos ni atributos.
+2. **Contenido complejo**: contiene elementos hijo y/o atributos.
+3. **Contenido mixto**: contiene tanto texto como elementos hijo.
+
+Además, un elemento puede no tener contenido, es decir, puede ser un elemento vacío.
+
+##### Contenido simple
+
+Un elemento con contenido simple es aquel elemento que no contiene otros elementos.
+
+```xml
+<precio divisa="EUR">10.32</precio>
+```
+
+Este tipo de elementos se definen con `simpleContent`.
+
+**No debemos confundir el contenido del elemento con el tipo de elemento**. En el ejemplo anterior, al ser un elemento que contiene un atributo, se trata de un tipo complejo (`complexType`), pero su contenido es simple (`simpleContent`), ya que solo contiene un valor decimal.
+
+##### Contenido complejo
+
+Un elemento con contenido complejo es aquel elemento que contiene uno o varios elementos.
+
+Por ejemplo.
+
+```xml
+<valores>
+  <numero>10</numero>
+  <numero>20</numero>
+</valores>
+```
+
+Este tipo de estructuras se definen con `complexContent`.
+
+En el ejemplo anterior, tenemos un elemento de tipo complejo (`complexType`) con contenido complejo (`complexContent`).
+
+##### Contenido mixto
+
+Alternativamente, el **contenido también puede ser mixto**, es decir, mezclando cadenas de caracteres con elementos.
+
+```xml
+<texto>Esquema <azul>XSD</azul></texto>
+```
+
+En el ejemplo anterior, tenemos un elemento de tipo complejo (`complexType`) con contenido mixto.
+
+El contenido mixto se define mediante el atributo `mixed` del elemento `complexType`. Se debe asignar el valor `true`:
+
+```xml
+<xs:complexType mixed="true">
+  <xs:sequence>
+    <xs:element name="nombre" type="xs:string"/>
+    <xs:element name="edad" type="xs:positiveInteger"/>
+  </xs:sequence>
+</xs:complexType>
+```
+
+##### Sin contenido
+
+Por último, un elemento puede no tener contenido. En este caso, se le denomina **elemento vacío**. Un elemento vacío se puede expresar de dos formas:
+
+- Mediante una única etiqueta.
+- Mediante una etiqueta de apertura y una de cierre sin cotenido entre las dos.
+
+Por ejemplo, ambos elementos son equivalentes:
+
+```xml
+<luz/>
+<luz></luz>
+```
+
+Los elementos vacíos se pueden validar mediante un complexType vacío, sin elementos hijo:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="luz">
+    <xs:complexType />
+  </xs:element>
+</xs:schema>
+```
+
+Un elemento vacío puede tener atributos. Por ejemplo:
+
+```xml
+<luz encendida="si" />
+<luz encendida="si"></luz>
+```
+
+En este caso, solo se define el atributo:
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="luz">
+    <xs:complexType>
+      <xs:attribute name="encendida" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+#### `xs:simpleContent`
+
+El elemento `simpleContent` se utiliza para describir el contenido de un elemento cuando el contenido es de un tipo simple (como una cadena de texto, un número, etc.).
+
+Este elemento se puede combinar con las **extensiones**.
+
+:::warning[Tipo de contenido]
+
+Como elemento XSD destinado para el contenido de elementos, no se aplica a atributos.
+
+:::
+
+:::tip[Extensiones]
+
+Una **extensión** es una forma de **agregar atributos o restricciones** a un tipo de datos existente. Se definen mediante **elementos** XSD dentro de extension.
+
+Una extensión se basa en un tipo de datos existente, el cual se especifica en el atributo `base`.
+
+```xml
+<xs:extension base="xs:integer">
+  <!-- Reglas -->
+</xs:extesion>
+```
+
+:::
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="velocidad" type="magnitud"/>
+
+  <xs:complexType name="magnitud">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="unidad" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+```
+
+En el código anterior:
+
+- El elemento hijo de `complexType` es un `simpleContent` ya que el contenido del elemento `<velocidad>` es simple.
+- A su vez, se realiza una extensión del tipo decimal (que es el tipo de dato del contenido de `<velocidad>`), añadiendo un nuevo atributo `unidad`.
+- El atributo `unidad` es obligatorio y acepta como valores una cadena de texto.
+
+Un documento XML válido sería el siguiente:
+
+```xml
+<velocidad unidad="km/h">60</velocidad>
+```
+
+#### `xs:complexContent`
+
+El elemento `complexContent` se utiliza para describir el contenido de un elemento cuando el contenido es de un **tipo complejo** (contiene otros elementos).
+
+Este elemento se puede utilizar para establecer **restricciones** o para **combinar con extensiones**.
+
+:::warning[Tipo de contenido]
+
+Como elemento XSD destinado para el contenido de elementos, no se aplica a atributos.
+
+:::
+
+##### Restricciones
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="colores" type="lista-colores"/>
+
+  <xs:complexType name="lista-colores">
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:sequence>
+          <xs:element name="color" type="xs:string" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+```
+
+En este esquema:
+
+- Se está definiendo un elemento `<colores>` el cual es de tipo `lista-colores`.
+- El tipo `lista-colores` es un `complexContent`, es decir, un tipo de elemento que contiene otros elementos.
+- Los elementos de `lista-colores` se definen dentro de un elemento `restriction`, el cual debe ser del tipo `xs:anyType`.
+- Dentro de `restriction` se define un elemento `sequence` y un elemento `element`. De momento, ignoraremos cómo se utiliza sequence. Solo tenemos que saber que si queremos definir un `element`, debe ser dentro de un `sequence`.
+- El elemento `element` define un elemento `<color>`, el cual contiene una cadena de caracteres.
+- El elemento `<color>` puede aparecer tantas veces como sea necesario, así lo determina el atributo `maxOccurs`, que cuando toma el valor `unbounded` significa que no hay limitación de ocurrencias, es decir, las ocurrencias del elemento son ilimitadas.
+
+El código anterior permite validar un documento XML como el siguiente:
+
+```xml
+<colores>
+  <color>Amarillo</color>
+  <color>Rojo</color>
+  <color>Azul</color>
+</colores>
+```
+
+De forma alternativa, existe una forma abreviada del documento XSD anterior:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="colores" type="lista-colores"/>
+
+  <xs:complexType name="lista-colores">
+    <xs:sequence>
+      <xs:element name="color" type="xs:string" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+```
+
+Como se puede observar, los elementos `complexContent` y `restriction` se pueden omitir.
+
+##### Extensiones
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="fichero" type="info"/>
+
+  <xs:complexType name="info">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="extension" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>
+```
+
+El él se está definiendo un elemento `<fichero>` que contiene otro elemento `<nombre>`. Además, `<fichero>` tiene un atributo `extension`. El tipo de dato del elemento `fichero` se está definiendo mediante un `complexType`, al cual se lle llama `info`.
+
+El XSD anterior, por ejemplo, permite validar el siguiente documento XML:
+
+```xml
+<fichero extension="xml">
+  <nombre>documento.xml</nombre>
+</fichero>
+```
+
+Si queremos aprovechar el tipo de dato `info` y queremos añadir dos elementos adicionales, lo haríamos de la siguiente manera:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="fichero" type="metadatos"/>
+
+  <xs:complexType name="info">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="extension" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="metadatos">
+    <xs:complexContent>
+      <xs:extension base="info">
+        <xs:sequence>
+          <xs:element name="creacion" type="xs:dateTime"/>
+          <xs:element name="edicion" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+```
+
+Podemos observar que se crea otro `complexType` llamado `metadatos`. Este tipo de dato extiende `info`, es decir, aprovecha lo que hay definido y añade más definiciones. En este caso, se añaden dos nuevos elementos: `<creacion>` y `<edicion>`. Por último, se modifica el valor del atributo `type` del elemento `<fichero>`. De esta forma, se define un nuevo tipo.
+
+Un documento XML que sería validado por el documento anterior sería el siguiente:
+
+```xml
+<fichero extension="xml">
+  <nombre>documento.xml</nombre>
+  <creacion>2022-12-25T08:00:00</creacion>
+  <edicion>2023-01-13T08:00:00</edicion>
+</fichero>
+```
+
+Podemos observar como el XML es muy similar al anterior presentado: solo se añaden dos nuevos elementos.
+
+#### Indicadores
+
+Los **indicadores** en XML Schema permiten establecer **cómo se van a escribir (o utilizar) los elementos** en un documento XML. Son elementos XSD que controlan la **estructura y las reglas de validación** de los elementos hijo dentro de un elemento padre.
+
+Los indicadores se pueden clasificar en dos tipos:
+
+- **Indicadores de orden**: permiten definir el **orden** en el que deben aparecer los elementos hijo.
+- **Indicadores de ocurrencia**: permiten definir **cuántas veces** puede aparecer un elemento.
+
+##### Indicadores de orden
+
+Los indicadores de orden permiten definir el **orden** en el que deben aparecer los elementos hijo dentro de un elemento padre. Los principales indicadores de orden en XML Schema son:
+
+- **`sequence`** (secuencia): los elementos deben aparecer en el **orden exacto** especificado.
+- **`all`** (todos): los elementos pueden aparecer en **cualquier orden**, pero cada uno debe aparecer **como máximo una vez**.
+- **`choice`** (elección): se debe elegir **solo uno de los elementos** disponibles.
+
+###### `xs:sequence` - Secuencia ordenada
+
+El elemento `sequence` se utiliza para indicar que los elementos hijo deben aparecer en el **orden exacto** especificado en el esquema. Es el indicador de orden **más restrictivo** y también el **más utilizado**.
+
+**Sintaxis:**
+
+```xml
+<xs:sequence>
+  <xs:element name="elemento1" type="xs:string"/>
+  <xs:element name="elemento2" type="xs:integer"/>
+  <xs:element name="elemento3" type="xs:date"/>
+</xs:sequence>
+```
+
+**Ejemplo:**
+
+Definir un esquema para una dirección donde los elementos deben aparecer en un orden específico:
+
+```xml title="Esquema (direccion.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="direccion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="calle" type="xs:string"/>
+        <xs:element name="numero" type="xs:integer"/>
+        <xs:element name="ciudad" type="xs:string"/>
+        <xs:element name="codigoPostal" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+También podempos definir el tipo y reutilizarlo:
+
+```xml title="Esquema (direccion.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="direccion" type="tipo-direccion"/>
+
+  <xs:complexType name="tipo-direccion">
+    <xs:sequence>
+      <xs:element name="calle" type="xs:string"/>
+      <xs:element name="numero" type="xs:integer"/>
+      <xs:element name="ciudad" type="xs:string"/>
+      <xs:element name="codigoPostal" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+```
+
+**Documento XML válido:**
+
+En este caso, los elementos deben aparecer exactamente en el orden especificado: `calle`, `numero`, `ciudad`, `codigoPostal`.
+
+```xml title="Documento válido (direccion.xml)"
+<direccion>
+  <calle>Calle Falsa</calle>
+  <numero>123</numero>
+  <ciudad>Vilagarcía de Arousa</ciudad>
+  <codigoPostal>36600</codigoPostal>
+</direccion>
+```
+
+**Documentos XML inválidos:**
+
+```xml title="Orden incorrecto - INVÁLIDO"
+<direccion>
+  <numero>123</numero>
+  <calle>Calle Falsa</calle>
+  <ciudad>Vilagarcía de Arousa</ciudad>
+  <codigoPostal>36600</codigoPostal>
+</direccion>
+```
+
+```xml title="Elemento faltante - INVÁLIDO"
+<direccion>
+  <calle>Calle Falsa</calle>
+  <numero>123</numero>
+  <ciudad>Vilagarcía de Arousa</ciudad>
+</direccion>
+```
+
+Si queremos que uno de los elementos sea opcional, podemos utilizar el atributo `minOccurs`:
+
+```xml title="Esquema con elemento opcional (direccion.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="direccion" type="tipo-direccion"/>
+
+  <xs:complexType name="tipo-direccion">
+    <xs:sequence>
+      <xs:element name="calle" type="xs:string"/>
+      <xs:element name="numero" type="xs:integer"/>
+      <xs:element name="ciudad" type="xs:string"/>
+      <xs:element name="codigoPostal" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+```
+
+Así, el elemento `<codigoPostal>` es opcional y puede estar ausente en el documento XML.
+
+:::tip[Orden en sequence]
+
+Cuando se utiliza `sequence`:
+
+- Los elementos **deben aparecer en el orden exacto** especificado en el esquema.
+- **Todos los elementos** (salvo los opcionales con `minOccurs="0"`) **deben estar presentes**.
+- No se pueden omitir elementos intermedios.
+
+:::
+
+###### `xs:all` - Todos en cualquier orden
+
+El elemento `all` se utiliza para indicar que los elementos pueden aparecer en **cualquier orden**, pero cada elemento puede aparecer **como máximo una vez**. Este indicador es **menos restrictivo que `sequence`** en cuanto al orden, pero **igualmente restrictivo en cuanto a la cantidad**.
+
+**Sintaxis:**
+
+```xml
+<xs:all>
+  <xs:element name="elemento1" type="xs:string"/>
+  <xs:element name="elemento2" type="xs:integer"/>
+  <xs:element name="elemento3" type="xs:date"/>
+</xs:all>
+```
+
+**Ejemplo:**
+
+Definir un esquema para información de una persona donde los elementos pueden aparecer en cualquier orden:
+
+```xml title="Esquema (persona.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="persona">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="nombre" type="xs:string"/>
+        <xs:element name="apellido" type="xs:string"/>
+        <xs:element name="edad" type="xs:integer"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+**Documentos XML válidos:**
+
+Cualquiera de los siguientes documentos sería válido, ya que los elementos pueden aparecer en cualquier orden:
+
+```xml title="Orden 1 - Válido"
+<persona>
+  <nombre>Juan</nombre>
+  <apellido>García</apellido>
+  <edad>30</edad>
+</persona>
+```
+
+```xml title="Orden 2 - Válido"
+<persona>
+  <edad>30</edad>
+  <nombre>Juan</nombre>
+  <apellido>García</apellido>
+</persona>
+```
+
+```xml title="Orden 3 - Válido"
+<persona>
+  <apellido>García</apellido>
+  <edad>30</edad>
+  <nombre>Juan</nombre>
+</persona>
+```
+
+**Documento XML inválido:**
+
+```xml title="Elemento duplicado - INVÁLIDO"
+<persona>
+  <nombre>Juan</nombre>
+  <nombre>Carlos</nombre>
+  <apellido>García</apellido>
+  <edad>30</edad>
+</persona>
+```
+
+:::warning[Restricciones de all]
+
+Cuando se utiliza `all`:
+
+- Los elementos pueden aparecer en **cualquier orden**.
+- Cada elemento puede aparecer **como máximo una vez** (sin `maxOccurs` o con `maxOccurs="1"`).
+- **No se pueden usar elementos con `maxOccurs` mayor que 1** directamente en `all` (aunque algunos esquemas permiten esto con restricciones).
+- Los elementos dentro de `all` deben ser **elementos simples**, no otros `complexType` con `sequence` o `choice`.
+
+:::
+
+###### `xs:choice` - Elegir uno
+
+El elemento `choice` se utiliza para indicar que se debe elegir **solamente uno de los elementos** especificados. No se pueden incluir múltiples elementos diferentes al mismo tiempo.
+
+**Sintaxis:**
+
+```xml
+<xs:choice>
+  <xs:element name="elemento1" type="xs:string"/>
+  <xs:element name="elemento2" type="xs:integer"/>
+  <xs:element name="elemento3" type="xs:date"/>
+</xs:choice>
+```
+
+**Ejemplo:**
+
+Definir un esquema para un producto donde se puede especificar el precio de diferentes formas: en euros, dólares o libras:
+
+```xml title="Esquema (producto.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="producto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string"/>
+        <xs:choice>
+          <xs:element name="precioEuro" type="xs:decimal"/>
+          <xs:element name="precioDolar" type="xs:decimal"/>
+          <xs:element name="precioLibra" type="xs:decimal"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+**Documentos XML válidos:**
+
+Cualquiera de los siguientes documentos sería válido, ya que se ha elegido solo uno de los precios:
+
+```xml title="Precio en euros - Válido"
+<producto>
+  <nombre>Laptop</nombre>
+  <precioEuro>999.99</precioEuro>
+</producto>
+```
+
+```xml title="Precio en dólares - Válido"
+<producto>
+  <nombre>Laptop</nombre>
+  <precioDolar>1099.99</precioDolar>
+</producto>
+```
+
+```xml title="Precio en libras - Válido"
+<producto>
+  <nombre>Laptop</nombre>
+  <precioLibra>899.99</precioLibra>
+</producto>
+```
+
+**Documentos XML inválidos:**
+
+```xml title="Múltiples precios - INVÁLIDO"
+<producto>
+  <nombre>Laptop</nombre>
+  <precioEuro>999.99</precioEuro>
+  <precioDolar>1099.99</precioDolar>
+</producto>
+```
+
+```xml title="Sin precio - INVÁLIDO"
+<producto>
+  <nombre>Laptop</nombre>
+</producto>
+```
+
+:::tip[Uso de choice]
+
+El elemento `choice` es útil cuando:
+
+- Existe una **alternativa** en la estructura de datos.
+- Se necesita elegir **una sola opción** de varias disponibles.
+- Se quiere validar documentos con **estructuras alternativas**.
+
+**Ejemplos de uso:**
+
+- Datos de contacto: elegir entre `email`, `telefono` o `direccion`.
+- Métodos de pago: elegir entre `tarjeta`, `transferencia` o `paypal`.
+- Tipo de documento: elegir entre `DNI`, `pasaporte` o `licencia de conducir`.
+
+:::
+
+##### Indicadores de ocurrencia
+
+Los indicadores de ocurrencia permiten definir **cuántas veces** puede (o debe) aparecer un elemento dentro de su elemento padre. Los principales indicadores de ocurrencia en XML Schema son:
+
+- **`minOccurs`**: especifica el **número mínimo de veces** que debe aparecer un elemento.
+- **`maxOccurs`**: especifica el **número máximo de veces** que puede aparecer un elemento.
+
+###### `xs:minOccurs` - Ocurrencia mínima
+
+El atributo `minOccurs` especifica el **número mínimo de veces** que un elemento debe aparecer en el documento XML. Si un elemento no especifica `minOccurs`, el valor por defecto es `1`, lo que significa que el elemento es **obligatorio**.
+
+**Sintaxis:**
+
+```xml
+<xs:element name="elemento" type="xs:string" minOccurs="0"/>
+<xs:element name="elemento" type="xs:string" minOccurs="1"/>
+<xs:element name="elemento" type="xs:string" minOccurs="2"/>
+```
+
+**Valores posibles:**
+
+- `minOccurs="0"` - El elemento es **opcional** (puede no aparecer).
+- `minOccurs="1"` - El elemento es **obligatorio** (debe aparecer al menos una vez). **Este es el valor por defecto.**
+- `minOccurs="n"` (donde n > 1) - El elemento debe aparecer **mínimo n veces**.
+
+**Ejemplo 1: Elemento opcional**
+
+```xml title="Esquema (alumno.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="alumno">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string" minOccurs="1"/>
+        <xs:element name="apellido" type="xs:string" minOccurs="1"/>
+        <xs:element name="apellido2" type="xs:string" minOccurs="0"/>
+        <xs:element name="telefonoContacto" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+En este esquema:
+
+- `nombre` y `apellido` son **obligatorios** (`minOccurs="1"`).
+- `apellido2` y `telefonoContacto` son **opcionales** (`minOccurs="0"`).
+
+**Documento XML válido:**
+
+```xml title="Con todos los elementos (alumno1.xml)"
+<alumno>
+  <nombre>Juan</nombre>
+  <apellido>García</apellido>
+  <apellido2>López</apellido2>
+  <telefonoContacto>986112233</telefonoContacto>
+</alumno>
+```
+
+```xml title="Sin elementos opcionales (alumno2.xml)"
+<alumno>
+  <nombre>María</nombre>
+  <apellido>Rodríguez</apellido>
+</alumno>
+```
+
+**Documento XML inválido:**
+
+```xml title="Sin elemento obligatorio - INVÁLIDO"
+<alumno>
+  <nombre>Carlos</nombre>
+</alumno>
+```
+
+**Ejemplo 2: Mínimo de ocurrencias mayor a 1**
+
+```xml title="Esquema (evento.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="evento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string"/>
+        <xs:element name="fecha" type="xs:date"/>
+        <xs:element name="asistente" type="xs:string" minOccurs="2"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+En este esquema, un evento debe tener **mínimo 2 asistentes**.
+
+**Documento XML válido:**
+
+```xml title="Con 3 asistentes - Válido"
+<evento>
+  <nombre>Conferencia de Tecnología</nombre>
+  <fecha>2025-06-15</fecha>
+  <asistente>Juan García</asistente>
+  <asistente>María López</asistente>
+  <asistente>Carlos Rodríguez</asistente>
+</evento>
+```
+
+**Documento XML inválido:**
+
+```xml title="Con solo 1 asistente - INVÁLIDO"
+<evento>
+  <nombre>Conferencia de Tecnología</nombre>
+  <fecha>2025-06-15</fecha>
+  <asistente>Juan García</asistente>
+</evento>
+```
+
+###### `xs:maxOccurs` - Ocurrencia máxima
+
+El atributo `maxOccurs` especifica el **número máximo de veces** que un elemento puede aparecer en el documento XML. Si un elemento no especifica `maxOccurs`, el valor por defecto es `1`, lo que significa que el elemento puede aparecer **como máximo una vez**.
+
+**Sintaxis:**
+
+```xml
+<xs:element name="elemento" type="xs:string" maxOccurs="1"/>
+<xs:element name="elemento" type="xs:string" maxOccurs="5"/>
+<xs:element name="elemento" type="xs:string" maxOccurs="unbounded"/>
+```
+
+**Valores posibles:**
+
+- `maxOccurs="1"` - El elemento puede aparecer **como máximo una vez**. **Este es el valor por defecto.**
+- `maxOccurs="n"` (donde n > 1) - El elemento puede aparecer **máximo n veces**.
+- `maxOccurs="unbounded"` - El elemento puede aparecer **ilimitadas veces** (sin restricción de máximo).
+
+**Ejemplo 1: Múltiples ocurrencias limitadas**
+
+```xml title="Esquema (carrito.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="carrito">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="producto" type="xs:string" maxOccurs="10"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+En este esquema, se pueden agregar **máximo 10 productos** al carrito.
+
+**Documento XML válido:**
+
+```xml title="Con 3 productos - Válido"
+<carrito>
+  <producto>Laptop</producto>
+  <producto>Mouse</producto>
+  <producto>Teclado</producto>
+</carrito>
+```
+
+**Documento XML inválido:**
+
+```xml title="Con más de 10 productos - INVÁLIDO"
+<carrito>
+  <producto>Producto1</producto>
+  <!-- ... más productos ... -->
+  <producto>Producto11</producto>
+</carrito>
+```
+
+**Ejemplo 2: Ocurrencias ilimitadas**
+
+```xml title="Esquema (pedido.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="pedido">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="cliente" type="xs:string"/>
+        <xs:element name="articulo" type="xs:string" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+En este esquema, se pueden agregar **ilimitados artículos** al pedido.
+
+**Documento XML válido:**
+
+```xml title="Con muchos artículos - Válido"
+<pedido>
+  <cliente>Juan García</cliente>
+  <articulo>Artículo 1</articulo>
+  <articulo>Artículo 2</articulo>
+  <articulo>Artículo 3</articulo>
+  <articulo>Artículo 4</articulo>
+  <articulo>Artículo 5</articulo>
+  <!-- Se pueden añadir más artículos sin límite -->
+</pedido>
+```
+
+###### Combinación de `minOccurs` y `maxOccurs`
+
+Es muy común combinar `minOccurs` y `maxOccurs` para definir con precisión **cuántas veces** puede aparecer un elemento. Algunos ejemplos comunes son:
+
+| minOccurs | maxOccurs | Significado |
+|-----------|-----------|-------------|
+| (no indicado) | (no indicado) | El elemento es **obligatorio y aparece exactamente una vez** (valores por defecto: 1, 1) |
+| 0 | 1 | El elemento es **opcional y aparece como máximo una vez** |
+| 1 | 1 | El elemento es **obligatorio y aparece exactamente una vez** |
+| 0 | unbounded | El elemento es **opcional y puede aparecer ilimitadas veces** |
+| 1 | unbounded | El elemento es **obligatorio y puede aparecer de 1 a ilimitadas veces** |
+| 2 | 5 | El elemento debe aparecer **mínimo 2 veces y máximo 5 veces** |
+| 3 | 3 | El elemento debe aparecer **exactamente 3 veces** |
+
+**Ejemplo práctico:**
+
+```xml title="Esquema (biblioteca.xsd)"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="biblioteca">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="ciudad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="telefono" type="xs:string" minOccurs="0" maxOccurs="3"/>
+        <xs:element name="libro" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+```
+
+En este esquema:
+
+- `nombre` y `ciudad` son **obligatorios** (`minOccurs="1"`) y aparecen **exactamente una vez** (`maxOccurs="1"`).
+- `telefono` es **opcional** (`minOccurs="0"`) pero si aparece, puede hacerlo **máximo 3 veces** (`maxOccurs="3"`).
+- `libro` es **obligatorio** (`minOccurs="1"`) y puede aparecer **ilimitadas veces** (`maxOccurs="unbounded"`).
+
+**Documento XML válido:**
+
+```xml title="Biblioteca con 2 teléfonos y varios libros - Válido"
+<biblioteca>
+  <nombre>Biblioteca Municipal</nombre>
+  <ciudad>Madrid</ciudad>
+  <telefono>912345678</telefono>
+  <telefono>912345679</telefono>
+  <libro>Don Quijote</libro>
+  <libro>La Casa de Bernarda Alba</libro>
+  <libro>Cien Años de Soledad</libro>
+  <libro>El Quijote</libro>
+</biblioteca>
+```
+
+**Documentos XML inválidos:**
+
+```xml title="Sin libros - INVÁLIDO (minOccurs='1' para libro)"
+<biblioteca>
+  <nombre>Biblioteca Municipal</nombre>
+  <ciudad>Madrid</ciudad>
+</biblioteca>
+```
+
+```xml title="Con 4 teléfonos - INVÁLIDO (maxOccurs='3' para telefono)"
+<biblioteca>
+  <nombre>Biblioteca Municipal</nombre>
+  <ciudad>Madrid</ciudad>
+  <telefono>912345678</telefono>
+  <telefono>912345679</telefono>
+  <telefono>912345680</telefono>
+  <telefono>912345681</telefono>
+  <libro>Don Quijote</libro>
+</biblioteca>
+```
+
+:::tip[Ejercicio resuelto]
+
+Define un esquema XSD para un blog que contenga:
+
+1. Un elemento `titulo` obligatorio.
+2. Un elemento `autor` obligatorio.
+3. Múltiples elementos `comentario` (mínimo 0, máximo 100).
+4. Un elemento `etiqueta` que aparezca mínimo 1 vez y máximo 5 veces.
+
+<details>
+    <summary>Solución</summary>
+
+    ```xml
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="blog">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="titulo" type="xs:string"/>
+            <xs:element name="autor" type="xs:string"/>
+            <xs:element name="comentario" type="xs:string" minOccurs="0" maxOccurs="100"/>
+            <xs:element name="etiqueta" type="xs:string" minOccurs="1" maxOccurs="5"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    ```
+
+    El esquema anterior define:
+    - `titulo` y `autor`: obligatorios (valores por defecto).
+    - `comentario`: opcional (minOccurs="0") y puede aparecer hasta 100 veces.
+    - `etiqueta`: debe aparecer mínimo 1 vez y máximo 5 veces.
+
+</details>
+
+:::
+
+#### Grupos
+
+Los grupos son una forma de agrupar varios elementos y/o atributos y asignarles un nombre común. Esto permite **reutilizar** ese grupo de elementos y/o atributos en varias partes de un esquema.
+
+Las ventajas de utilizar grupos son varias:
+
+- **Reduce** la cantidad de **código redundante**, ya que permite reutilizar el ya escrito.
+- Permite una **mejor estructuración del código**, facilitando la lectura.
+- Facilita el **mantenimiento**, ya que al eliminar partes duplicadas, no se pueden producir errores al tener que modificar un valor en varios lugares del esquema.
+
+##### Grupos de elementos (`xs:group`)
+
+El elemento `group` permite nombrar **agrupaciones de elementos y atributos** para hacer referencia a ellas con un **identificador**. Se utiliza para definir un conjunto de elementos que son comunes en varias partes de un esquema y se pueden reutilizar en lugar de tener que definirlos varias veces.
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="persona" type="datos-personales" />
+
+  <xs:complexType name="datos-personales">
+    <xs:sequence>
+      <xs:group ref="datos-basicos"/>
+      <xs:element name="telefono" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="datos-basicos">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="fecha-nacimiento" type="xs:date"/>
+    </xs:sequence>
+  </xs:group>
+</xs:schema>
+```
+
+El elemento `group` se puede utilizar para:
+
+- **Definir el grupo**. Para la definición, se utiliza el atributo `name` para asignarle un nombre y se incluyen las reglas en su contenido.
+- **Utilizar el grupo**. Para utilizar un grupo definido dentro del esquema, se debe utilizar el atributo `ref` con el nombre del grupo.
+
+En el caso anterior, se está definiendo un grupo `datos-basicos` que incluye una secuencia de dos elementos:` <nombre>` y `<fecha-nacimiento>`. A continuación, se utiliza ese grupo dentro de un tipo de dato llamado `datos-personales`, el cual es utilizado por el elemento `<persona>`.
+
+El tipo `datos-personales` define una secuencia:
+
+- El grupo `datos-basicos`, el cual está formado por una secuencia de dos elementos: `<nombre>` y `<fecha-nacimiento>`.
+- El elemento `<telefono>`.
+  
+Una definición equivalente a la de `datos-personales` es la siguiente:
+
+```xml
+<xs:complexType name="datos-personales">
+  <xs:sequence>
+    <xs:element name="nombre" type="xs:string"/>
+    <xs:element name="fecha-nacimiento" type="xs:date"/>
+    <xs:element name="telefono" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType>
+```
+
+Un ejemplo de documento XML válido es el siguiente:
+
+```xml
+<persona>
+  <nombre>Fátima</nombre>
+  <fecha-nacimiento>1991-12-31</fecha-nacimiento>
+  <telefono>+34 666777888</telefono>
+</persona>
+```
+
+##### Grupos de atributos (`xs:attributeGroup`)
+
+El elemento `attributeGroup` permite nombrar **agrupaciones de atributos** para hacer referencia a ellas con un **identificador**.
+
+Consideremos el siguiente documento XSD:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="persona" type="datos-personales" />
+
+  <xs:complexType name="datos-personales">
+    <xs:attributeGroup ref="datos-basicos"/>
+  </xs:complexType>
+
+  <xs:attributeGroup name="datos-basicos">
+    <xs:attribute name="nombre" type="xs:string"/>
+    <xs:attribute name="edad" type="xs:positiveInteger"/>
+  </xs:attributeGroup>
+</xs:schema>
+```
+
+El elemento `attributeGroup` se puede utilizar para:
+
+- **Definir el grupo**. Para la definición, se utiliza el atributo `name` para asignarle un nombre y se incluyen las reglas en su contenido.
+- **Utilizar el grupo**. Para utilizar un grupo definido dentro del esquema, se debe utilizar el atributo `ref` con el nombre del grupo.
+
+En el caso anterior, se está definiendo un grupo `datos-basicos` que incluye dos atributos: `nombre` y `edad`. A continuación, se utiliza ese grupo de atributos dentro de un tipo de dato llamado `datos-personales`, el cual es utilizado por el elemento `<persona>`.
+
+Un ejemplo de documento XML válido es el siguiente:
+
+<persona nombre="Eugenio" edad="25"/>
+
+## Documentación
+
+La documentación de un esquema consiste en añadir **información adicional sobre el esquema**, como **comentarios**, **información de autoría** o **versiones**.
+
+Podemos pensar que un método para añadir esta información es utilizar comentarios. El problema es que los analizadores no garantizan que los comentarios no se modifiquen al procesar los documentos y, por tanto, que los datos añadidos no se pierdan en algún proceso de transformación del documento.
+
+### `xs:annotation`
+
+En lugar de usar los comentarios, XML Schema tiene definido un elemento `annotation` que permite guardar información adicional. El elemento `annotation` se coloca como **hijo de los elementos a documentar**, como elementos, atributos, tipos de datos y reglas de validación.
+
+Este elemento, a su vez, puede contener una combinación de otros:
+
+- `documentation`
+- `appinfo`
+  
+### `xs:documentation`
+
+El elemento `documentation` se utiliza para proporcionar información de **documentación humanamente legible** sobre el esquema o una parte específica del esquema. Puede contener elementos XSD y elementos XML.
+
+También permite determinar el **idioma** del documento mediante el atributo **xml:lang**.
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="software" type="tipo-software">
+    <xs:annotation>
+      <xs:documentation xml:lang="es-es"><b>Nombre</b> del editor de texto.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="tipo-software">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="os" type="xs:string">
+          <xs:annotation>
+            <xs:documentation xml:lang="es-es">Sistemas operativos soportados.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+```
+
+En Visual Studio Code, cuando se pone el cursor encima del elemento `<software>` del documento XML se muestra lo siguiente:
+
+![xs:documentation](/img/linguaxes-marcas/ud4/img/xsd_documentation.png)
+
+Como se puede observar, se muestra el contenido del elemento documentation del XSD asociado al elemento `software`.
+
+Por otro lado, cuando se pone el cursor encima del atributo `os` del documento XML se muestra lo siguiente:
+
+![xs:documentation](/img/linguaxes-marcas/ud4/img/xsd_documentation_2.png)
+
+En esta ocasión, como se puede observar, se muestra el contenido del elemento documentation del XSD asociado al atributo `os`.
+
+El elemento documentation soporta algunos elementos HTML en el contenido.
+
+### `xs:appinfo`
+
+El elemento `appinfo` se utiliza para proporcionar **información adicional**. Esta información será utilizada por una aplicación para mostrar una ayuda contextual para elementos y atributos declarados en el esquema.
+
+La información en `appinfo` **no es necesariamente legible para un ser humano** y puede contener instrucciones para una aplicación específica o una herramienta de procesamiento.
+
+Un ejemplo de un XSD documentado sería el siguiente:
+
+```xml
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="software" type="tipo-software">
+    <xs:annotation>
+      <xs:appinfo>Nombre del editor de texto.</xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="tipo-software">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="os" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo>Sistemas operativos soportados.</xs:appinfo>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+```
+
+En Visual Studio Code, cuando se pone el cursor encima del elemento `<software>` del documento XML se muestra lo siguiente:
+
+![alt text](/img/linguaxes-marcas/ud4/img/xsd_appinfo.png)
+
+Como se puede observar, se muestra el contenido del elemento `appinfo` del XSD asociado al elemento `software`.
+
+Por otro lado, cuando se pone el cursor encima del atributo `os` del documento XML se muestra lo siguiente:
+
+![alt text](/img/linguaxes-marcas/ud4/img/xsd_appinfo_2.png)
+
+En esta ocasión, como se puede observar, se muestra el contenido del elemento `appinfo` del XSD asociado al atributo `os`.
+
+Para que un `appinfo` se muestre en la ayuda contextual de Visual Studio Code, el contenido del elemento debe ser simple (no puede contener otros elementos).
+
+## Validación
+
+La validación de XML mediante XML Schema consiste en el proceso de **comparar un documento XML con el esquema XSD**, con el fin de asegurar que el documento XML cumple con las restricciones y estructura especificada en el mismo. Si el documento XML no cumple con las restricciones definidas en el XSD, se genera un error o una advertencia indicando en qué parte del documento se encuentra el error.
+
+La validación es útil para asegurar la integridad del documento y que se esté utilizando de manera adecuada. También ayuda a detectar errores de formato y estructura en el documento, lo que puede ser útil en el desarrollo y mantenimiento del mismo.
+
+### Software
+
+Existen varias aplicaciones para poder validar documentos XML con XML Schema. Muchas de las que permiten validar documentos DTD, también permiten hacer lo mismo con XML Schema.
+
+#### Visual Studio Code
+
+Visual Studio Code permite validar documentos XML mediante XML Schema con la extensión XML desarrollada por Red Hat.
+
+![alt text](/img/linguaxes-marcas/ud4/img/xml_vscode.png)
+
+La [extensión XML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) realiza la validación mientras se escribe el documento o documentos, es decir, no necesitamos pulsar ningún botón para realizar la validación. La validación es continua. Si el documento es válido, no se muestra ningún error:
+
+![alt text](/img/linguaxes-marcas/ud4/img/xml_noerror.png)
+
+En el caso de que algo falle, se resaltan los errores:
+
+![alt text](/img/linguaxes-marcas/ud4/img/xml_error.png)
+
+Para vincular un XSD, debemos añadir los siguientes atributos en la raíz del documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<raiz 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" 
+  xs:noNamespaceSchemaLocation="esquema.xsd">
+  <!-- ... -->
+</raiz>
+```
+
+#### Liquid Technologies XML Validator
+
+[Liquid Technologies XML Validator](https://www.liquid-technologies.com/online-xsd-validator) es un validador XSD online. Es una herramienta útil si no tenemos la posibilidad de instalar ninguna de las anteriores.
+
+![alt text](/img/linguaxes-marcas/ud4/img/liquid_technologies_xml_val.png)
+
+Su uso es muy sencillo. Consiste en los siguientes pasos:
+
+- Copiar el código XML en el área de texto XML data to validate.
+- Copiar el el código XSD en el área de texto XML schema (XSD) data.
+- Resolver un captcha.
+- Pulsar en Validate.
+
+Si el documento XML es válido, se mostrará el mensaje «Document Valid». En caso contrario, se mostrará la lista de errores.
+
+#### XML Copy Editor
+
+[XML Copy Editor](http://xml-copy-editor.sourceforge.net/) es un editor de texto especializado en la edición de documentos XML. Es un software multiplataforma, gratuito, de código abierto que permite validar documentos XML con XSD.
+
+![alt text](/img/linguaxes-marcas/ud4/img/xml_copy_editor.png)
+
+Su uso también es muy sencillo: debemos escribir el documento XML o abrirlo en el editor y pulsar en el icono resaltado en la imagen. El documento XSD debe existir y debe estar correctamente enlazado.
+
+Si el documento XML es válido, se mostrará un mesaje que indica que el documento es válido.
