@@ -508,8 +508,6 @@ Diseña un esquema XSD para validar un **sistema de gestión de empleados** de u
 
 Crea un esquema XSD para validar un **catálogo de productos** de una tienda online que soporte diferentes tipos de productos. El esquema debe permitir:
 
-Crea un esquema XSD para validar un **catálogo de productos** de una tienda online que soporte diferentes tipos de productos. El esquema debe permitir:
-
 - Un elemento raíz `<catalogo>` con atributo `version` obligatorio (formato: número.número, ej: `1.0`, `2.5`).
 - Dentro de `<catalogo>`, múltiples elementos `<producto>`.
 - Cada `<producto>` tiene:

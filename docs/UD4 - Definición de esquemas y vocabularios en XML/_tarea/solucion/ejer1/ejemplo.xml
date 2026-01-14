@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<impresoras xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="ud4_tarea_ejercicio1.xsd">
+    
+    <impresora numSerie="i00245" tecnologia="láser" compra="2010">
+        <fabricante>Epson</fabricante>
+        <modelo>EPL300</modelo>
+        <peso unidad="kg">4.52</peso>
+        <tamaño>A4</tamaño>
+        <tamaño>A5</tamaño>
+        <cartucho>C-123BV</cartucho>
+        <enred/>
+    </impresora>
+    
+    <impresora numSerie="i00246" tecnologia="matricial">
+        <fabricante>HP</fabricante>
+        <modelo>LaserJet 2410</modelo>
+        <peso unidad="kg">3.2</peso>
+        <tamaño>A4</tamaño>
+        <cartucho>C-456P</cartucho>
+    </impresora>
+    
+    <impresora numSerie="i00247" tecnologia="tinta" compra="2022">
+        <fabricante>Canon</fabricante>
+        <modelo>Pixma MG3650</modelo>
+        <peso unidad="kg">4.8</peso>
+        <tamaño>A4</tamaño>
+        <tamaño>A5</tamaño>
+        <tamaño>Carta</tamaño>
+        <cartucho>C-789XY</cartucho>
+    </impresora>
+    
+</impresoras>

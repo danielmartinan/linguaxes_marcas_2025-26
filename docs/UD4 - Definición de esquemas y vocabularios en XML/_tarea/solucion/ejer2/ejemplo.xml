@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plataformaAlquiler xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:noNamespaceSchemaLocation="ud4_tarea_ejercicio2.xsd">
+    
+    <sucursales>
+        <sucursal id="suc001">
+            <nombre>Sucursal Centro</nombre>
+            <ciudad>Madrid</ciudad>
+            <telefono>914567890</telefono>
+            <direccion>
+                <calle>Calle Mayor</calle>
+                <numero>42</numero>
+                <ciudad>Madrid</ciudad>
+                <codigoPostal>28001</codigoPostal>
+            </direccion>
+            <horario>
+                <horaApertura>07:00:00</horaApertura>
+                <horaCierre>22:00:00</horaCierre>
+            </horario>
+            <plazasAparcamiento>150</plazasAparcamiento>
+        </sucursal>
+        
+        <sucursal id="suc002">
+            <nombre>Sucursal Aeropuerto</nombre>
+            <ciudad>Madrid</ciudad>
+            <telefono>917058901</telefono>
+            <direccion>
+                <calle>Avenida Logístico</calle>
+                <numero>1</numero>
+                <ciudad>Madrid</ciudad>
+                <codigoPostal>28042</codigoPostal>
+            </direccion>
+            <horario>
+                <horaApertura>06:00:00</horaApertura>
+                <horaCierre>23:59:00</horaCierre>
+            </horario>
+            <plazasAparcamiento>300</plazasAparcamiento>
+        </sucursal>
+    </sucursales>
+    
+    <seguros>
+        <seguro id="seg001">
+            <nombre>Seguro Básico</nombre>
+            <descripcion>Cobertura básica con franquicia</descripcion>
+            <cobertura>basica</cobertura>
+            <precioDia>9.99</precioDia>
+            <franquicia>600</franquicia>
+        </seguro>
+        
+        <seguro id="seg002">
+            <nombre>Seguro Integral Autónomo</nombre>
+            <descripcion>Cobertura integral para vehículos con automatización nivel 4-5</descripcion>
+            <cobertura>integral</cobertura>
+            <precioDia>24.99</precioDia>
+            <franquicia>0</franquicia>
+            <nivelAutomatizacionMinimo>4</nivelAutomatizacionMinimo>
+        </seguro>
+        
+        <seguro id="seg003">
+            <nombre>Seguro Premium</nombre>
+            <descripcion>Cobertura premium con asistencia 24/7</descripcion>
+            <cobertura>premium</cobertura>
+            <precioDia>17.50</precioDia>
+            <franquicia>300</franquicia>
+        </seguro>
+    </seguros>
+    
+    <vehiculos>
+        <vehiculo id="veh0001">
+            <marca>Tesla</marca>
+            <modelo>Model S</modelo>
+            <matricula>MAD0001</matricula>
+            <anoFabricacion>2024</anoFabricacion>
+            <tipo>turismo</tipo>
+            <combustible>electrico</combustible>
+            <caracteristicas>
+                <potencia>450</potencia>
+                <capacidadMaletero>600</capacidadMaletero>
+                <plazas>5</plazas>
+                <consumoMedio>18</consumoMedio>
+            </caracteristicas>
+            <automatizacion>
+                <nivel>5</nivel>
+                <sistemaActivo>conduccion-autonoma-completa</sistemaActivo>
+                <sistemaActivo>freno-automatico</sistemaActivo>
+                <sistemaActivo>cambio-carril-automatico</sistemaActivo>
+                <sistemaActivo>estacionamiento-automatico</sistemaActivo>
+                <anoUltimaRevisionSoftware>2024</anoUltimaRevisionSoftware>
+            </automatizacion>
+            <sucursal>suc001</sucursal>
+            <estado>disponible</estado>
+            <tarifaDiaria>89.99</tarifaDiaria>
+        </vehiculo>
+        
+        <vehiculo id="veh0002">
+            <marca>BMW</marca>
+            <modelo>X5</modelo>
+            <matricula>0002NNN</matricula>
+            <anoFabricacion>2023</anoFabricacion>
+            <tipo>suv</tipo>
+            <combustible>hibrido</combustible>
+            <caracteristicas>
+                <potencia>385</potencia>
+                <capacidadMaletero>750</capacidadMaletero>
+                <plazas>7</plazas>
+                <consumoMedio>6.5</consumoMedio>
+            </caracteristicas>
+            <automatizacion>
+                <nivel>3</nivel>
+                <sistemaActivo>conduccion-autonoma-autopista</sistemaActivo>
+                <sistemaActivo>freno-automatico</sistemaActivo>
+                <sistemaActivo>cambio-carril-automatico</sistemaActivo>
+                <anoUltimaRevisionSoftware>2023</anoUltimaRevisionSoftware>
+            </automatizacion>
+            <sucursal>suc001</sucursal>
+            <estado>alquilado</estado>
+            <tarifaDiaria>59.99</tarifaDiaria>
+        </vehiculo>
+        
+        <vehiculo id="veh0003">
+            <marca>Renault</marca>
+            <modelo>Clio</modelo>
+            <matricula>ABC1234</matricula>
+            <anoFabricacion>2022</anoFabricacion>
+            <tipo>turismo</tipo>
+            <combustible>gasolina</combustible>
+            <caracteristicas>
+                <potencia>120</potencia>
+                <capacidadMaletero>290</capacidadMaletero>
+                <plazas>5</plazas>
+                <consumoMedio>5.8</consumoMedio>
+            </caracteristicas>
+            <automatizacion>
+                <nivel>1</nivel>
+                <sistemaActivo>freno-automatico</sistemaActivo>
+                <anoUltimaRevisionSoftware>2023</anoUltimaRevisionSoftware>
+            </automatizacion>
+            <sucursal>suc002</sucursal>
+            <estado>disponible</estado>
+            <tarifaDiaria>35.50</tarifaDiaria>
+        </vehiculo>
+    </vehiculos>
+    
+    <clientes>
+        <cliente id="cli0001">
+            <nombre>Juan</nombre>
+            <apellidos>Pérez García</apellidos>
+            <dni>12345678A</dni>
+            <email>juan.perez@email.com</email>
+            <telefono>666123456</telefono>
+            <datosPersonales>
+                <fechaNacimiento>1985-03-15</fechaNacimiento>
+                <permisoConducir>
+                    <numero>1234567890</numero>
+                    <vigenciaHasta>2028-10-20</vigenciaHasta>
+                </permisoConducir>
+            </datosPersonales>
+            <direccion>
+                <calle>Avenida de la Paz</calle>
+                <numero>15</numero>
+                <ciudad>Madrid</ciudad>
+                <codigoPostal>28002</codigoPostal>
+            </direccion>
+        </cliente>
+        
+        <cliente id="cli0002">
+            <nombre>María</nombre>
+            <apellidos>López Martínez</apellidos>
+            <nie>X1234567B</nie>
+            <email>maria.lopez@email.com</email>
+            <telefono>655987123</telefono>
+            <datosPersonales>
+                <fechaNacimiento>1990-07-22</fechaNacimiento>
+                <permisoConducir>
+                    <numero>0987654321</numero>
+                    <vigenciaHasta>2027-05-15</vigenciaHasta>
+                </permisoConducir>
+            </datosPersonales>
+            <direccion>
+                <calle>Calle de la República</calle>
+                <numero>8B</numero>
+                <ciudad>Barcelona</ciudad>
+                <codigoPostal>08002</codigoPostal>
+            </direccion>
+        </cliente>
+        
+        <cliente id="cli0003">
+            <nombre>Carlos</nombre>
+            <apellidos>Ruiz Fernández</apellidos>
+            <dni>98765432Z</dni>
+            <email>carlos.ruiz@email.com</email>
+            <telefono>612345678</telefono>
+            <datosPersonales>
+                <fechaNacimiento>1988-11-10</fechaNacimiento>
+                <permisoConducir>
+                    <numero>5555555555</numero>
+                    <vigenciaHasta>2026-12-01</vigenciaHasta>
+                </permisoConducir>
+            </datosPersonales>
+            <direccion>
+                <calle>Paseo del Prado</calle>
+                <numero>25</numero>
+                <ciudad>Madrid</ciudad>
+                <codigoPostal>28014</codigoPostal>
+            </direccion>
+        </cliente>
+    </clientes>
+    
+    <reservas>
+        <reserva id="res0001">
+            <cliente>cli0001</cliente>
+            <vehiculo>veh0001</vehiculo>
+            <sucursalRecogida>suc001</sucursalRecogida>
+            <sucursalDevolucion>suc002</sucursalDevolucion>
+            <fechaHoraRecogida>2026-01-20T10:00:00</fechaHoraRecogida>
+            <fechaHoraDevolucionEstimada>2026-01-25T10:00:00</fechaHoraDevolucionEstimada>
+            <estado>confirmada</estado>
+            <seguroContratado>seg002</seguroContratado>
+            <precioEstimado>599.95</precioEstimado>
+        </reserva>
+        
+        <reserva id="res0002">
+            <cliente>cli0002</cliente>
+            <vehiculo>veh0003</vehiculo>
+            <sucursalRecogida>suc002</sucursalRecogida>
+            <sucursalDevolucion>suc002</sucursalDevolucion>
+            <fechaHoraRecogida>2026-01-15T14:30:00</fechaHoraRecogida>
+            <fechaHoraDevolucionEstimada>2026-01-18T14:30:00</fechaHoraDevolucionEstimada>
+            <estado>pendiente</estado>
+            <seguroContratado>seg001</seguroContratado>
+            <precioEstimado>213.00</precioEstimado>
+        </reserva>
+        
+        <reserva id="res0003">
+            <cliente>cli0003</cliente>
+            <vehiculo>veh0002</vehiculo>
+            <sucursalRecogida>suc001</sucursalRecogida>
+            <sucursalDevolucion>suc001</sucursalDevolucion>
+            <fechaHoraRecogida>2026-02-01T09:00:00</fechaHoraRecogida>
+            <fechaHoraDevolucionEstimada>2026-02-08T09:00:00</fechaHoraDevolucionEstimada>
+            <estado>confirmada</estado>
+            <seguroContratado>seg003</seguroContratado>
+            <precioEstimado>629.91</precioEstimado>
+        </reserva>
+    </reservas>
+    
+</plataformaAlquiler>

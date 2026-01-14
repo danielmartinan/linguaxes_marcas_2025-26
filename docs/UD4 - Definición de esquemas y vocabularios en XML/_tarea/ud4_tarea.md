@@ -1,4 +1,4 @@
-# Tarea UD3 - Definición de esquemas y vocabularios en XML
+# Tarea UD4 - Definición de esquemas y vocabularios en XML
 
 En esta tarea tendrás que realizar los siguientes ejercicios relacionados con la definición de esquemas y vocabularios en XML utilizando XSD (XML Schema Definition).
 
@@ -20,7 +20,7 @@ Un ejemplo de documento XML que contiene la información de dos impresoras es el
 
 ```xml
 <impresoras>
-    <impresora numSerie="i245" tecnologia="láser" compra="2010">
+    <impresora numSerie="i00245" tecnologia="láser" compra="2010">
         <fabricante>Epson</fabricante>
         <modelo>EPL300</modelo>
         <peso>4.52</peso>
@@ -29,7 +29,7 @@ Un ejemplo de documento XML que contiene la información de dos impresoras es el
         <cartucho>C-123BV</cartucho>
         <enred/>
     </impresora>
-        <impresora numSerie="i246" tecnologia="matricial">
+        <impresora numSerie="i00246" tecnologia="matricial">
         <fabricante>HP</fabricante>
         <modelo>LaserJet 2410</modelo>
         <peso>3.2</peso>
@@ -42,92 +42,103 @@ Un ejemplo de documento XML que contiene la información de dos impresoras es el
 Escribe un XML Schema para validar el tipo de documento XML descrito, eligiendo los **tipos de datos más apropiados** y teniendo en cuenta que:
 
 - En cada documento XML hay datos de **una impresora o más**.
-- Todos los elementos son **obligatorios**, excepto `<enred>`.
+- Todos los elementos son **obligatorios**, excepto `<enred>` y `compra`.
 - Una impresora puede trabajar con **uno o varios tamaños de papel**.
-- El peso es un **número positivo** y no puede tener más de **dos decimales**.
-- El elemento `cartucho` está formado por C- seguido de tres números y una o dos letras mayúsculas.
+- El peso es un **número positivo** y no puede tener más de **dos decimales**. Debe tener un atributo de unidad, que puede ser `kg`, `g` o `lb`.
+- El elemento `cartucho` está formado por `C-` seguido de tres números y una o dos letras mayúsculas.
 - El elemento `enred`, de estar presente, es un elemento vacío.
-- El atributo `tecnologia` es obligatorio. Sólo puede tomar los valores matricial, láser y tinta.
-- El atributo `numSerie` es obligatorio. Es un identificador de las impresoras. 
+- El atributo `tecnologia` es obligatorio. Sólo puede tomar los valores `matricial`, `láser` o `tinta`
+- El atributo `numSerie` es obligatorio. Es un identificador de las impresoras, con el formato `i` seguido de cinco números.
 - El atributo `compra` es opcional. De estar presente, guarda el **año de compra** (número entero positivo).
   
-Además, **documenta el esquema**.
+Además, **documenta el esquema** con comentarios explicando cada decisión tomada durante el diseño del XSD.
 
 ## Ejercicio 2 - Plataforma de alquiler de vehículos autónomos
 
 Una empresa de alquiler de vehículos quiere implementar un sistema XML para gestionar su flota de vehículos, incluyendo **vehículos autónomos con diferentes niveles de automatización**. El sistema debe registrar clientes, sucursales, vehículos disponibles, reservas y seguros.
 
-### Estructura de datos requerida:
+### Estructura de datos requerida
 
 **Vehículos:**
 
-- ID único (atributo)
-- Marca y modelo
-- Matrícula (placa)
-- Año de fabricación
-- Tipo de vehículo (turismo, suv, furgoneta, camión)
-- Tipo de combustible (gasolina, diésel, eléctrico, híbrido)
-- Características técnicas:
-  - Potencia en CV
-  - Capacidad de maletero (litros)
-  - Número de plazas
-  - Consumo medio (l/100km o kWh/100km)
-- **Automatización:**
-  - Nivel de automatización (0-5 según normas SAE - Sin automatización, Asistencia, Automatización parcial, Automatización condicional, Automatización alta, Automatización completa)
-  - Sistemas activos (freno automático, cambio de carril automático, estacionamiento automático, conducción autónoma en autopista, etc.)
-  - Año de última revisión de software
-- Sucursal donde se encuentra (referencia IDREF)
-- Estado (disponible, alquilado, en mantenimiento)
-- Tarifa diaria (número con dos decimales)
+- ID único (atributo) **obligatorio** con el formato `veh` seguido de cuatro números.
+- Marca y modelo (cadenas de texto, **obligatorios**)
+- Matrícula (placa) (**obligatorio**). No se impone un formato específico para aceptar matrículas de diferentes países, pero debe ser una cadena alfanumérica de entre 5 y 10 caracteres (patrón: `[A-Z0-9]{5,10}`).
+- Año de fabricación (**obligatorio**, número entero positivo entre 1900 y el año actual)
+- Tipo de vehículo (**obligatorio**, enumeración: `turismo`, `suv`, `furgoneta`, `camion`)
+- Tipo de combustible (**obligatorio**, enumeración: `gasolina`, `diesel`, `electrico`, `hibrido`)
+- Características técnicas (**obligatorio**):
+  - Potencia en CV (**obligatorio**, número entero positivo)
+  - Capacidad de maletero en litros (**obligatorio**, número entero positivo)
+  - Número de plazas (**obligatorio**, número entero positivo entre 1 y 9)
+  - Consumo medio en l/100km o kWh/100km (**obligatorio**, número decimal positivo con hasta 2 decimales)
+- Automatización (**obligatorio**):
+  - Nivel de automatización (**obligatorio**, enumeración: 0, 1, 2, 3, 4, 5 según normas [SAE](https://www.sae.org/standards/content/j3016_202104/) - Sin automatización, Asistencia, Automatización parcial, Automatización condicional, Automatización alta, Automatización completa)
+  - Sistemas activos (**opcional**, puede aparecer 0 o más veces. Valores permitidos: `freno-automatico`, `cambio-carril-automatico`, `estacionamiento-automatico`, `conduccion-autonoma-autopista`, `conduccion-autonoma-completa`)
+  - Año de última revisión de software (**obligatorio**, número entero positivo entre 2000 y el año actual)
+- Sucursal donde se encuentra (**obligatorio**, referencia IDREF a una sucursal existente)
+- Estado (**obligatorio**, enumeración: `disponible`, `alquilado`, `en-mantenimiento`)
+- Tarifa diaria (**obligatorio**, número decimal positivo con exactamente dos decimales)
 
 **Clientes:**
 
-- ID único (atributo)
-- Nombre y apellidos
-- DNI (patrón: 8 dígitos + letra mayúscula)
-- Email
-- Teléfono
-- Datos personales:
-  - Fecha de nacimiento
-  - Permiso de conducir (número de permiso + fecha de vigencia)
-  - Edad mínima requerida según nivel de automatización del vehículo
-- Dirección:
-  - Calle, número, ciudad, código postal (patrón: 5 dígitos)
+- ID único (atributo) **obligatorio** con el formato `cli` seguido de cuatro números.
+- Nombre (**obligatorio**, cadena de texto no vacía)
+- Apellidos (**obligatorio**, cadena de texto no vacía)
+- DNI (**obligatorio** para ciudadanos españoles, patrón: 8 dígitos + letra mayúscula) o, en caso de extranjeros, NIE (**obligatorio** para extranjeros, patrón: X/Y/Z + 7 dígitos + letra mayúscula). Solo uno de los dos debe aparecer.
+- Email (**obligatorio**, patrón básico de email: `[^@]+@[^@]+\.[^@]+` - debe contener un carácter `@` y un dominio)
+- Teléfono (**obligatorio**, patrón: 9 dígitos)
+- Datos personales (**obligatorio**):
+  - Fecha de nacimiento (**obligatorio**, formato fecha: YYYY-MM-DD)
+  - Permiso de conducir (**obligatorio**):
+    - Número de permiso (**obligatorio**, cadena alfanumérica de 10 caracteres)
+    - Fecha de vigencia (**obligatorio**, formato fecha: YYYY-MM-DD)
+- Dirección (**obligatorio**):
+  - Calle (**obligatorio**, cadena de texto no vacía)
+  - Número (**obligatorio**, cadena de texto no vacía - puede contener números y letras como "15B")
+  - Ciudad (**obligatorio**, cadena de texto no vacía)
+  - Código postal (**obligatorio**, patrón: 5 dígitos)
 
 **Sucursales:**
 
-- ID único (atributo)
-- Nombre
-- Ciudad
-- Teléfono
-- Dirección completa
-- Horario de apertura y cierre
-- Número de plazas de aparcamiento
+- ID único (atributo) **obligatorio** con el formato `suc` seguido de tres números .
+- Nombre (**obligatorio**, cadena de texto no vacía)
+- Ciudad (**obligatorio**, cadena de texto no vacía)
+- Teléfono (**obligatorio**, patrón: 9 dígitos)
+- Dirección (**obligatoria**):
+  - Calle (**obligatorio**, cadena de texto no vacía)
+  - Número (**obligatorio**, cadena de texto no vacía - puede contener números y letras como "42A")
+  - Ciudad (**obligatorio**, cadena de texto no vacía)
+  - Código postal (**obligatorio**, patrón: 5 dígitos)
+- Horario (**obligatorio**):
+  - Hora de apertura (**obligatorio**, formato hora: HH:MM:SS)
+  - Hora de cierre (**obligatorio**, formato hora: HH:MM:SS)
+- Número de plazas de aparcamiento (**obligatorio**, número entero positivo)
 
 **Reservas:**
 
-- ID único (atributo)
-- Cliente (referencia IDREF)
-- Vehículo (referencia IDREF)
-- Sucursal de recogida (referencia IDREF)
-- Sucursal de devolución (referencia IDREF)
-- Fecha y hora de recogida
-- Fecha y hora de devolución estimada
-- Estado de la reserva (confirmada, pendiente, completada, cancelada)
-- Seguro contratado (referencia IDREF)
-- Precio estimado
+- ID único (atributo) **obligatorio** con el formato `res` seguido de cuatro números.
+- Cliente (**obligatorio**, referencia IDREF a un cliente existente)
+- Vehículo (**obligatorio**, referencia IDREF a un vehículo existente)
+- Sucursal de recogida (**obligatorio**, referencia IDREF a una sucursal existente)
+- Sucursal de devolución (**obligatorio**, referencia IDREF a una sucursal existente)
+- Fecha y hora de recogida (**obligatorio**, formato fecha y hora: YYYY-MM-DDTHH:MM:SS)
+- Fecha y hora de devolución estimada (**obligatorio**, formato fecha y hora: YYYY-MM-DDTHH:MM:SS)
+- Estado de la reserva (**obligatorio**, enumeración: `confirmada`, `pendiente`, `completada`, `cancelada`)
+- Seguro contratado (**obligatorio**, referencia IDREF a un seguro existente)
+- Precio estimado (**obligatorio**, número decimal positivo con hasta dos decimales)
 
 **Seguros:**
 
-- ID único (atributo)
-- Nombre del seguro
-- Descripción
-- Cobertura (básica, estándar, premium, integral)
-- Precio por día
-- Franquicia (cantidad en euros)
-- Vehículos aplicables (puede restringirse según nivel de automatización)
+- ID único (atributo) **obligatorio** con el formato `seg` seguido de tres números.
+- Nombre del seguro (**obligatorio**, cadena de texto no vacía)
+- Descripción (**obligatorio**, cadena de texto no vacía)
+- Cobertura (**obligatorio**, enumeración: `basica`, `estandar`, `premium`, `integral`)
+- Precio por día (**obligatorio**, número decimal positivo con exactamente dos decimales)
+- Franquicia (**obligatorio**, número decimal no negativo con hasta dos decimales - cantidad en euros, puede ser 0 para seguros sin franquicia)
+- Nivel de automatización mínimo (**opcional**, número entero entre 0 y 5 - puede restringirse según nivel de automatización del vehículo al que se aplica el seguro)
 
-### Ejemplo de documento XML:
+### Ejemplo de documento XML
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -172,10 +183,10 @@ Una empresa de alquiler de vehículos quiere implementar un sistema XML para ges
     </seguros>
     
     <vehiculos>
-        <vehiculo id="veh001">
+        <vehiculo id="veh0001">
             <marca>Tesla</marca>
             <modelo>Model S</modelo>
-            <matricula>MAD-0001</matricula>
+            <matricula>MAD0001</matricula>
             <anoFabricacion>2024</anoFabricacion>
             <tipo>turismo</tipo>
             <combustible>electrico</combustible>
@@ -198,10 +209,10 @@ Una empresa de alquiler de vehículos quiere implementar un sistema XML para ges
             <tarifaDiaria>89.99</tarifaDiaria>
         </vehiculo>
         
-        <vehiculo id="veh002">
-            <marca>BMW</marca>
+        <vehiculo id="veh0002">
+            <marca>BMW</marca>tres
             <modelo>X5</modelo>
-            <matricula>MAD-0002</matricula>
+            <matricula>0002NNN</matricula>
             <anoFabricacion>2023</anoFabricacion>
             <tipo>suv</tipo>
             <combustible>hibrido</combustible>
@@ -225,7 +236,7 @@ Una empresa de alquiler de vehículos quiere implementar un sistema XML para ges
     </vehiculos>
     
     <clientes>
-        <cliente id="cli001">
+        <cliente id="cli0001">
             <nombre>Juan</nombre>
             <apellidos>Pérez García</apellidos>
             <dni>12345678A</dni>
@@ -248,9 +259,9 @@ Una empresa de alquiler de vehículos quiere implementar un sistema XML para ges
     </clientes>
     
     <reservas>
-        <reserva id="res001">
-            <cliente>cli001</cliente>
-            <vehiculo>veh001</vehiculo>
+        <reserva id="res0001">
+            <cliente>cli0001</cliente>
+            <vehiculo>veh0001</vehiculo>
             <sucursalRecogida>suc001</sucursalRecogida>
             <sucursalDevolucion>suc001</sucursalDevolucion>
             <fechaHoraRecogida>2026-01-10T10:00:00</fechaHoraRecogida>
@@ -266,18 +277,10 @@ Una empresa de alquiler de vehículos quiere implementar un sistema XML para ges
 
 ### Requisitos del esquema XSD
 
-- Define tipos complejos reutilizables para estructuras comunes (**datosPersonales**, **direccion**, **caracteristicas**, **automatizacion**).
+- Define tipos complejos reutilizables para estructuras comunes (**datosPersonales**, **direccion**, **caracteristicas**, **automatizacion**, **horario**, **permisoConducir**).
 - Utiliza **xs:ID** para identificadores únicos (sucursal, vehículo, cliente, reserva, seguro) e **xs:IDREF** para referencias entre elementos.
 - Define tipos simples personalizados con **patrones y restricciones** apropiadas:
-  - DNI: patrón `[0-9]{8}[A-Z]`
-  - Matrícula: patrón `[A-Z]{3}-[0-9]{4}`
-  - Código postal: patrón `[0-9]{5}`
-  - Email: patrón `[^@]+@[^@]+\.[^@]+`
-  - Teléfono: patrón `[0-9]{9}`
-  - Nivel de automatización: enumeración 0-5
-  - Estados: enumeración (disponible, alquilado, en mantenimiento, cancelada, etc.)
-- Utiliza **sequence** para el orden obligatorio de elementos y **minOccurs/maxOccurs** para cardinalidad.
-- Los elementos opcionales según la lógica del negocio (ej: diagnostico en citas, sistemas de automatización condicionales).
+- Utiliza **xs:choice** para permitir elegir, **sequence** para el orden obligatorio de elementos y **minOccurs/maxOccurs** para cardinalidad donde corresponda.
 - Documenta exhaustivamente con **xs:annotation** y **xs:documentation** explicando cada tipo y restricción.
 - Organiza el esquema de forma legible separando definiciones de tipos simples, complejos y elementos.
 
