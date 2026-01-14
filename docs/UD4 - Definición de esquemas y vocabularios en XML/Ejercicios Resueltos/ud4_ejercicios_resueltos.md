@@ -945,6 +945,9 @@ Diseña un esquema XSD completo para validar un **sistema de gestión hospitalar
 - Documenta exhaustivamente el esquema con `xs:annotation`, `xs:documentation` y `xs:appinfo`.
 - Organiza el esquema de forma legible y mantenible.
 
+<details>
+    <summary>Solución</summary>
+
 **Esquema XSD (hospital.xsd):**
 
 ```xml

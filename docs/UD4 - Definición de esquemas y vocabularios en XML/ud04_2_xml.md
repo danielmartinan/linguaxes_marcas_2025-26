@@ -290,7 +290,7 @@ Algunas **características** de un ejemplar son:
 </libro>
 ```
 
-Es decir, el nombre libro definido en <!DOCTYPE libro> debe coincidir libro definido en <libro>.
+Es decir, el nombre libro definido en <!DOCTYPE libro> debe coincidir libro definido en `<libro>`.
 
 Un documento XML está formado por texto plano (sin formato) y contiene marcas (etiquetas) definidas por el desarrollador.
 

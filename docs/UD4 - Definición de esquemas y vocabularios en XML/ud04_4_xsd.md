@@ -2546,7 +2546,7 @@ Consideremos este otro elemento XML:
 </magnitud>
 ```
 
-En este caso, el contenido del elemento <magnitud> es: `<electricidad>Potencia<electricidad>`
+En este caso, el contenido del elemento `<magnitud>` es: `<electricidad>Potencia<electricidad>`
 
 El contenido de un elemento puede ser de tres tipos:
 
