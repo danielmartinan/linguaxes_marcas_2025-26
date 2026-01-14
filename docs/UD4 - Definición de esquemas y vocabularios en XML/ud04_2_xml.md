@@ -290,7 +290,7 @@ Algunas **características** de un ejemplar son:
 </libro>
 ```
 
-Es decir, el nombre libro definido en <!DOCTYPE libro> debe coincidir libro definido en `<libro>`.
+Es decir, el nombre libro definido en `<!DOCTYPE libro>` debe coincidir libro definido en `<libro>`.
 
 Un documento XML está formado por texto plano (sin formato) y contiene marcas (etiquetas) definidas por el desarrollador.
 
@@ -311,7 +311,7 @@ Los elementos son la estructura básica de un documento XML y representan un blo
 
 Sus características son:
 
-- Se pueden crear elementos **vacíos**: <etiqueta></etiqueta> o <etiqueta/>. Es decir, se pueden crear elementos sin contenido.
+- Se pueden crear elementos **vacíos**: `<etiqueta></etiqueta>` o `<etiqueta/>`. Es decir, se pueden crear elementos sin contenido.
 - Un elemento (padre) puede contener a otro u otros elementos (hijos).
 - Un elemento puede contener contenido mixto, es decir, texto y otros elementos.
 - Todo documento XML tiene que tener un **único elemento raíz** (padre) del que desciendan todos los demás.
@@ -328,7 +328,7 @@ Algunas normas básicas de sintaxis son:
 - Detrás del nombre de una etiqueta se permite escribir un espacio en blanco o un salto de línea.
 - No puede haber un salto de línea o un espacio en blanco antes del nombre de una etiqueta.
 - Las letras no inglesas (á, Á, ñ, Ñ, etc.) están permitidas. Pero, al igual que el carácter guion medio (-) y el punto (.), se recomienda no utilizarlos para reducir posibles incompatibilidades o errores en programas que no los interpreten bien.
-- No puede comenzar por la cadena xml, ni ninguna de sus versiones en que se cambien mayúsculas y minúsculas (XML, XmL, xML, etc.).
+- No puede comenzar por la cadena `xml`, ni ninguna de sus versiones en que se cambien mayúsculas y minúsculas (`XML`, `XmL`, `xML`, etc.).
 
 ### Atributos
 
@@ -405,12 +405,9 @@ Los caracteres anteriores **no se pueden utilizar como contenido** de un element
 - Uso de la comilla doble `"` y de la comilla simple `'` en atributos:
     - `<dato caracter="comilla doble(&quot;)"/>`
     - `<dato caracter='comilla simple(&apos;)'/>`
-- Los valores de atributos escritos entre comillas dobles " sí pueden contener al carácter comilla simple ' y a la inversa:
+- Los valores de atributos escritos entre comillas dobles `"` sí pueden contener al carácter comilla simple `'` y a la inversa:
     - `<dato caracter="comilla simple(')"/>`
     - `<dato caracter='comilla doble(")'/>`
-
-## Espacios de nombres
-
 En XML, los espacios de nombres (*namespaces*) son un mecanismo para **evitar conflictos de nombres entre elementos y atributos** de diferentes vocabularios o esquemas, es decir, para evitar ambigüedades que podrían surgir en caso de que haya elementos o atributos con el mismo nombre. Esto ocurre cuando fusionamos varios ficheros XML en uno solo y se presentan elementos con el mismo nombre, pero con diferente significado.
 
 Los *namespaces* asignan un **prefijo único** a un conjunto de elementos y atributos de un vocabulario específico, permitiendo que los elementos y atributos de diferentes vocabularios coexistan en el mismo documento sin causar conflictos. Además, también nos permite agrupar todos los elementos y atributos relacionados de una aplicación XML para que el software pueda reconocerlos con facilidad.

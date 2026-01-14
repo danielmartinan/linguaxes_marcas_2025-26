@@ -372,9 +372,9 @@ Algunos ejemplos de documento XSD:
 </xsi:schema>
 ```
 
-En ambos documentos hay **dos elementos** definidos: **schema** y **element**. La estructura que se está definiendo es la misma. Lo único que cambia es el **prefijo** utilizado: en un caso es `xs` y en otro es `xsi`. Se puede utilizar el prefijo que se desee, aunque debemos asegurarnos de utilizar el mismo prefijo en todo el documento.
+En ambos documentos hay **dos elementos** definidos: **`schema`** y **`element`**. La estructura que se está definiendo es la misma. Lo único que cambia es el **prefijo** utilizado: en un caso es `xs` y en otro es `xsi`. Se puede utilizar el prefijo que se desee, aunque debemos asegurarnos de utilizar el mismo prefijo en todo el documento.
 
-El la documentación se presentarán los elementos como schema y element en lugar de por xs:schema y xs:element. El motivo de esto, como se acaba de comentar, es porque el prefijo puede variar.
+El la documentación se presentarán los elementos como `schema` y `element` en lugar de por `xs:schema` y `xs:element`. El motivo de esto, como se acaba de comentar, es porque el prefijo puede variar.
 
 :::
 
@@ -422,7 +422,7 @@ Recordemos que todo XSD tiene como elemento raíz `schema` y que este elemento c
 
 :::
 
-Los atributos que se pueden definir en element son:
+Los atributos que se pueden definir en `element` son:
 
 | Atributo | Descripción |
 |----------|-------------|
@@ -2738,7 +2738,7 @@ En este esquema:
 - Se está definiendo un elemento `<colores>` el cual es de tipo `lista-colores`.
 - El tipo `lista-colores` es un `complexContent`, es decir, un tipo de elemento que contiene otros elementos.
 - Los elementos de `lista-colores` se definen dentro de un elemento `restriction`, el cual debe ser del tipo `xs:anyType`.
-- Dentro de `restriction` se define un elemento `sequence` y un elemento `element`. De momento, ignoraremos cómo se utiliza sequence. Solo tenemos que saber que si queremos definir un `element`, debe ser dentro de un `sequence`.
+- Dentro de `restriction` se define un elemento `sequence` y un elemento `element`. De momento, ignoraremos cómo se utiliza `sequence`. Solo tenemos que saber que si queremos definir un `element`, debe ser dentro de un `sequence`.
 - El elemento `element` define un elemento `<color>`, el cual contiene una cadena de caracteres.
 - El elemento `<color>` puede aparecer tantas veces como sea necesario, así lo determina el atributo `maxOccurs`, que cuando toma el valor `unbounded` significa que no hay limitación de ocurrencias, es decir, las ocurrencias del elemento son ilimitadas.
 
@@ -3593,15 +3593,15 @@ En Visual Studio Code, cuando se pone el cursor encima del elemento `<software>`
 
 ![xs:documentation](/img/linguaxes-marcas/ud4/img/xsd_documentation.png)
 
-Como se puede observar, se muestra el contenido del elemento documentation del XSD asociado al elemento `software`.
+Como se puede observar, se muestra el contenido del elemento `documentation` del XSD asociado al elemento `software`.
 
 Por otro lado, cuando se pone el cursor encima del atributo `os` del documento XML se muestra lo siguiente:
 
 ![xs:documentation](/img/linguaxes-marcas/ud4/img/xsd_documentation_2.png)
 
-En esta ocasión, como se puede observar, se muestra el contenido del elemento documentation del XSD asociado al atributo `os`.
+En esta ocasión, como se puede observar, se muestra el contenido del elemento `documentation` del XSD asociado al atributo `os`.
 
-El elemento documentation soporta algunos elementos HTML en el contenido.
+El elemento `documentation` soporta algunos elementos HTML en el contenido.
 
 ### `xs:appinfo`
 
