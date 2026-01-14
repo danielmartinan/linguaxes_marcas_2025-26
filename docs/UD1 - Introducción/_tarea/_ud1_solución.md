@@ -59,7 +59,7 @@ Incorrecto: El contenido CDATA está mal formado (no puede contener `]]>` dentro
 Correcto:
 
 ```xml
-<![CDATA[ <[[aa]]> ]]>
+<![CDATA[ &lt;[[aa]]&gt; ]]>
 ```
 
 **g)**
