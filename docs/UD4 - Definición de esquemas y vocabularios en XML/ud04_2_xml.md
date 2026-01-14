@@ -392,11 +392,11 @@ Algunos ejemplos de entidades XML son:
 
 | Caracter reservado | Identificador | Entidad XML |
 |--------------------|---------------|-------------|
-| <                  | lt            | &lt;        |
-| >                  | gt            | &gt;        |
-| "                  | quot          | &quot;      |
-| '                  | apos          | &apos;      |
-| &                  | amp           | &amp;       |
+| `<`                | lt            | &lt;        |
+| `>`                | gt            | &gt;        |
+| `"`                | quot          | &quot;      |
+| `'`                | apos          | &apos;      |
+| `&`                | amp           | &amp;       |
 
 Los caracteres anteriores **no se pueden utilizar como contenido** de un elemento o como valor de un atributo. En su lugar, se deben utilizar sus entidades por los siguientes motivos:
 
