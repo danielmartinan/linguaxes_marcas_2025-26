@@ -2067,10 +2067,10 @@ Algunos patrones de expresiones regulares útiles:
 
 | Patrón | Descripción | Ejemplo |
 |--------|-------------|---------|
-| `[0-9]{{3}}-[0-9]{{3}}-[0-9]{{4}}` | Teléfono con guiones | `123-456-7890` |
+| `[0-9]{3}-[0-9]{3}-[0-9]{4}` | Teléfono con guiones | `123-456-7890` |
 | `[a-z]+@[a-z]+\.[a-z]+` | Email simple | `user@domain.com` |
-| `[A-Z]{{2}}[0-9]{{4}}` | Código: 2 letras + 4 números | `AB1234` |
-| `[0-9]{{4}}-[0-9]{{2}}-[0-9]{{2}}` | Fecha YYYY-MM-DD | `2025-12-31` |
+| `[A-Z]{2}[0-9]{4}` | Código: 2 letras + 4 números | `AB1234` |
+| `[0-9]{4}-[0-9]{2}-[0-9]{2}` | Fecha YYYY-MM-DD | `2025-12-31` |
 | `[A-Z][a-z]+` | Nombre con primera mayúscula | `Juan` |
 | `[a-z0-9_-]+` | Nombre de usuario | `user_name-123` |
 
@@ -2097,8 +2097,8 @@ En la siguiente tabla se muestran algunas de las expresiones más habituales par
 | [patrón] | Busca cualquier carácter del conjunto indicado entre [ y ]. | [cps]ala | pala, sala, cala |
 | [^patrón] | Busca cualquier carácter que no esté en el conjunto indicado entre [ y ]. | [^AEIOU] | Palanca, Hoy |
 | [a-z] | El guión simboliza un rango. | [a-m] | Palanca, Hoy |
-| {{num}} | Busca el elemento indicado antes de {{num}} tantas veces como indique num. | a{{3}} | aaa, baaa |
-| {{min,max}} | Busca el elemento indicado antes de {{min,max}} tantas veces como indique el rango min y max, ambos incluidos. | a{{2,3}} | aaa, baaa |
+| `{num}` | Busca el elemento indicado antes de `{num}` tantas veces como indique num. | `a{3}` | aaa, baaa |
+| `{min,max}` | Busca el elemento indicado antes de `{min,max}` tantas veces como indique el rango min y max, ambos incluidos. | `a{2,3}` | aaa, baaa |
 | \b | Busca la palabra exacta, siempre situado en el límite de la palabra, normalmente un espacio. | \bCambia\b | Cambia de página |
 | \d | Busca un dígito del 0 al 9. Tiene el mismo efecto que [0-9]. | \d | 8, 9, 567 |
 | \D | Busca una coincidencia que no sea un dígito. Tiene el mismo efecto que [^0-9]. | \D | 4 páginas, letras |
