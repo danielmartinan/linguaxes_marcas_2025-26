@@ -161,6 +161,7 @@ Cabe señalar que el estándar XPath 3.1 diferencia entre mayúsculas y minúscu
 - Gratuito y multiplataforma (Windows, Mac, Linux)
 
 **Instalación**:
+
 ```bash
 # Descargar desde https://basex.org/download/
 # Ejecutar BaseX.jar
@@ -266,24 +267,7 @@ Visual Studio Code es un editor de código gratuito y muy popular que se puede c
 <!-- Resultado: <titulo>El Quijote</titulo> -->
 ```
 
-#### 2. XPath Notebook
-
-**ID**: `tanhakabir.xslt-notebook`
-
-**Características**:
-
-- Notebooks interactivos para XPath
-- Combinación de documentación y código ejecutable
-- Ideal para aprendizaje y documentación
-- Visualización de resultados enriquecida
-
-**Uso**:
-
-- Crear archivo `.xpath-notebook`
-- Escribir celdas con expresiones XPath
-- Ejecutar y ver resultados interactivamente
-
-#### 3. XSLT/XPath for Visual Studio Code
+#### 2. XSLT/XPath for Visual Studio Code
 
 **ID**: `deltaxml.xslt-xpath`
 
@@ -301,7 +285,7 @@ Visual Studio Code es un editor de código gratuito y muy popular que se puede c
 - Actualizado regularmente
 - Buena integración con XSLT
 
-#### 4. Red Hat XML Extension
+#### 3. Red Hat XML Extension
 
 **ID**: `redhat.vscode-xml`
 
@@ -314,6 +298,7 @@ Visual Studio Code es un editor de código gratuito y muy popular que se puede c
 - Integración con Language Server Protocol
 
 **Configuración**:
+
 ```json
 // settings.json
 {
@@ -326,6 +311,7 @@ Visual Studio Code es un editor de código gratuito y muy popular que se puede c
 ### Configuración Recomendada de VSCode para XML/XPath
 
 **settings.json**:
+
 ```json
 {
   // Formateo XML
@@ -356,6 +342,7 @@ Visual Studio Code es un editor de código gratuito y muy popular que se puede c
 ### Flujo de Trabajo con VSCode
 
 **Paso 1: Estructura de proyecto**
+
 ```
 proyecto-xml/
 ├── data/
@@ -380,44 +367,29 @@ proyecto-xml/
 3. Escribir expresión
 4. Ver resultados en Output panel
 
-**Paso 4: Documentar consultas**
-Crear archivo `consultas.md`:
-```markdown
-# Consultas XPath para Catálogo
-
-## Obtener todos los libros
-```xpath
-//libro
-```
-
-## Libros con precio mayor a 20€
-```xpath
-//libro[precio > 20]
-```
-```
-
 ### Ventajas de VSCode para XPath
 
-✅ **Gratuito y de código abierto**
-✅ **Ligero y rápido**
-✅ **Gran ecosistema de extensiones**
-✅ **Multiplataforma (Windows, Mac, Linux)**
-✅ **Integración con Git**
-✅ **Terminal integrada**
-✅ **Edición de múltiples archivos simultáneamente**
-✅ **Soporte para proyectos grandes**
-✅ **Actualización constante**
+✅ **Gratuito y de código abierto**  
+✅ **Ligero y rápido**  
+✅ **Gran ecosistema de extensiones**  
+✅ **Multiplataforma (Windows, Mac, Linux)**  
+✅ **Integración con Git**  
+✅ **Terminal integrada**  
+✅ **Edición de múltiples archivos simultáneamente**  
+✅ **Soporte para proyectos grandes**  
+✅ **Actualización constante**  
 
 ### Limitaciones de VSCode para XPath
 
-⚠️ **No es un IDE específico para XML** (menos especializado que Oxygen o XMLSpy)
-⚠️ **Depende de extensiones** (calidad variable)
-⚠️ **Funcionalidades XPath limitadas** comparadas con herramientas especializadas
-⚠️ **No tiene depurador XPath visual** como Oxygen
+⚠️ **No es un IDE específico para XML** (menos especializado que Oxygen o XMLSpy)  
+⚠️ **Depende de extensiones** (calidad variable)  
+⚠️ **Funcionalidades XPath limitadas** comparadas con herramientas especializadas  
+⚠️ **No tiene depurador XPath visual** como Oxygen  
 
 ### Cuándo usar VSCode para XPath
 
 **✅ Usar VSCode cuando**:
+
 - Trabajas en proyectos pequeños a medianos
 - Necesitas editar XML junto con otros lenguajes
 - Prefieres herramientas gratuitas
@@ -425,6 +397,7 @@ Crear archivo `consultas.md`:
 - Ya usas VSCode para desarrollo
 
 **❌ Preferir herramientas especializadas cuando**:
+
 - Trabajas profesionalmente con XML/XSLT a diario
 - Necesitas depuración avanzada de XSLT
 - Trabajas con esquemas complejos
@@ -436,17 +409,26 @@ Crear archivo `consultas.md`:
 ### Firefox Developer Tools
 
 **Características**:
+
 - Consola JavaScript con evaluación XPath
 - Inspección del DOM con XPath
-- Función `$x()` en consola
+- Función `$x()` en consola: evalúa expresiones XPath. Por ejemplo:
+
+```javascript
+$x("//tagname")
+```
+
+devuelve una lista de nodos con el nombre `tagname`.
 
 **Uso**:
+
 1. Abrir página web
 2. Presionar `F12` (DevTools)
 3. Ir a pestaña "Console"
 4. Usar `$x("expresion-xpath")`
 
 **Ejemplo**:
+
 ```javascript
 // En la consola de Firefox/Chrome
 $x("//h1")                    // Todos los h1
@@ -487,81 +469,14 @@ $x("//div[@class='content']") // Divs con clase content
 
 *Depende de la extensión instalada
 
-## Recomendaciones por Perfil
-
-### Para Estudiantes
-
-1. **Comenzar con**: Code Beautify XPath Tester (online)
-2. **Practicar con**: BaseX (gratuito, completo)
-3. **Editor**: VSCode con extensión XML Tools
-4. **Si hay licencia educativa**: Oxygen XML Editor
-
-### Para Profesionales
-
-1. **Desarrollo ligero**: VSCode con extensiones
-2. **Trabajo intensivo XML**: Oxygen o XMLSpy
-3. **Bases de datos XML**: BaseX
-4. **Web scraping**: Navegadores con DevTools
-
-### Para Empresas
-
-1. **Herramienta principal**: Oxygen o XMLSpy (con soporte)
-2. **Base de datos**: BaseX o MarkLogic
-3. **Integración CI/CD**: Saxon (línea de comandos)
-4. **Validación**: Xerces
-
-## Herramientas de Línea de Comandos
-
-### Saxon
-
-**URL**: [https://www.saxonica.com/](https://www.saxonica.com/)
-
-**Características**:
-
-- Procesador XSLT y XQuery desde terminal
-- Soporte completo de XPath 3.1
-- Versiones HE (gratuita), PE y EE (pago)
-- Ideal para automatización y scripts
-
-**Instalación y uso**:
-```bash
-# Descargar Saxon-HE
-# Ejecutar consulta XPath
-java -cp saxon-he-12.x.jar net.sf.saxon.Query -q:"//libro" -s:catalogo.xml
-```
-
-### XMLStarlet
-
-**Herramienta de línea de comandos para Linux/Mac**
-
-**Instalación**:
-```bash
-# Ubuntu/Debian
-sudo apt-get install xmlstarlet
-
-# Mac con Homebrew
-brew install xmlstarlet
-```
-
-**Uso**:
-```bash
-# Ejecutar XPath
-xmlstarlet sel -t -v "//libro/titulo" catalogo.xml
-
-# Formatear XML
-xmlstarlet fo catalogo.xml
-
-# Validar XML
-xmlstarlet val catalogo.xml
-```
-
 ## Ejercicios Prácticos
 
-### Ejercicio 1: Comparar Herramientas
+Para familiarizarse con las herramientas mencionadas, se proponen los siguientes ejercicios prácticos:
 
 **Tarea**: Probar la misma consulta XPath en tres herramientas diferentes:
 
 **XML de prueba**:
+
 ```xml
 <tienda>
   <producto id="1">
@@ -583,27 +498,6 @@ xmlstarlet val catalogo.xml
 2. VSCode con XML Tools
 3. Navegador (consola con $x)
 
-### Ejercicio 2: Proyecto en VSCode
-
-**Tarea**: Crear un proyecto XML completo en VSCode
-
-1. Crear estructura de carpetas
-2. Instalar extensiones necesarias
-3. Crear archivo XML con datos
-4. Documentar consultas XPath útiles
-5. Crear snippet personalizado
-
-### Ejercicio 3: BaseX Database
-
-**Tarea**: Crear una base de datos XML con BaseX
-
-1. Instalar BaseX
-2. Crear base de datos con colección de libros
-3. Ejecutar consultas XPath avanzadas
-4. Exportar resultados
-
-## Recursos Adicionales
-
 ### Documentación Oficial
 
 - **W3C XPath Specification**: [https://www.w3.org/TR/xpath-31/](https://www.w3.org/TR/xpath-31/)
@@ -612,27 +506,4 @@ xmlstarlet val catalogo.xml
 ### Tutoriales Interactivos
 
 - **W3Schools XPath Tutorial**: [https://www.w3schools.com/xml/xpath_intro.asp](https://www.w3schools.com/xml/xpath_intro.asp)
-- **XPath Tutorial (TutorialsPoint)**: Ejemplos paso a paso
-
-### Comunidades
-
-- **Stack Overflow**: Tag [xpath]
-- **XML.com**: Artículos y tutoriales
-- **BaseX Mailing List**: Comunidad activa
-
-## Conclusiones
-
-La elección de la herramienta adecuada para trabajar con XPath depende de varios factores:
-
-- **Nivel de experiencia**: Principiantes → herramientas online; Avanzados → BaseX, Oxygen
-- **Frecuencia de uso**: Ocasional → online/VSCode; Diario → herramientas especializadas
-- **Presupuesto**: Limitado → VSCode, BaseX; Empresarial → Oxygen, XMLSpy
-- **Tipo de proyecto**: Web → navegadores; Bases de datos → BaseX; Transformaciones → Oxygen
-
-**Recomendación general**:
-
-- **Aprendizaje**: Code Beautify + BaseX
-- **Desarrollo diario**: VSCode + extensiones (gratis) u Oxygen (pago)
-- **Producción**: BaseX + Saxon (línea de comandos)
-
-VSCode es definitivamente una opción válida y muy recomendable para trabajar con XPath, especialmente cuando se combina con las extensiones adecuadas. Aunque no es tan especializado como Oxygen o XMLSpy, su versatilidad, precio (gratuito) y ecosistema de extensiones lo convierten en una excelente opción para la mayoría de los casos de uso.
+- **[XPath Tutorial (TutorialsPoint)](https://www.tutorialspoint.com/xpath/index.htm)**: Ejemplos paso a paso
