@@ -145,6 +145,14 @@ Existe también `xsl:include`, que funciona de forma similar pero las reglas inc
 
 Define una plantilla de transformación que se aplica a nodos específicos del documento XML de entrada. Es uno de los elementos más importantes en XSLT.
 
+La estructura básica de una plantilla es:
+
+```xml
+<xsl:template match="expresión_xpath" name="nombre_plantilla" mode="modo" priority="prioridad">
+  <!-- Contenido de la plantilla -->
+</xsl:template>
+```
+
 **Atributos principales**:
 
 - `match`: expresión **XPath** para identificar los nodos (p. ej., "//libro")
@@ -162,11 +170,166 @@ Define una plantilla de transformación que se aplica a nodos específicos del d
 </xsl:template>
 ```
 
+En este ejemplo, la plantilla se aplica a todos los nodos `<libro>` del documento de entrada y genera un nuevo elemento `<libro>` en la salida con solo el título. De esta forma, para un documento de entrada como:
+
+```xml
+<libros>
+  <libro>
+    <titulo>Aprendiendo XSLT</titulo>
+    <autor>Juan Pérez</autor>
+  </libro>
+  <libro>
+    <titulo>XML Avanzado</titulo>
+    <autor>Ana Gómez</autor>
+  </libro>
+</libros>
+
+```
+
+La salida generada sería:
+
+```xml
+<libro>
+  <titulo>Aprendiendo XSLT</titulo>
+</libro>
+<libro>
+  <titulo>XML Avanzado</titulo>
+</libro>
+```
+
+#### Seleccionar el elemento raíz
+
+Uno de los usos más comunes de `xsl:template` es definir una plantilla para el nodo raíz del documento XML de entrada. Esto se hace utilizando la expresión XPath `/` en el atributo `match`. Por ejemplo:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+
+  <xsl:template match="/">
+    <html>
+      <head>
+        <title>Mi Documento Transformado</title>
+      </head>
+      <body>
+        <h1>Contenido del Documento</h1>
+        <xsl:apply-templates/>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+Con esta plantilla, al procesar cualquier documento XML, se generará una estructura HTML básica con un título y un encabezado, y luego se aplicarán las plantillas a los nodos hijo del nodo raíz.
+
+#### Seleccionar un único elemento
+
+Veamos qué ocurre cuando creamos un template que solo selecciona un elemento (de varios) de un documento XML. Por ejemplo:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="text"/>
+  <xsl:template match="direccion"></xsl:template>
+</xsl:stylesheet>
+```
+
+Consideremos que tenemos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="508.xsl"?>
+<agenda>
+  <persona id="p01">
+    <identificadores>
+      <nombre>Inés</nombre>
+      <apellidos>López Pérez</apellidos>
+    </identificadores>
+    <direccion>
+      <calle>El Ranchito 24, 6B</calle>
+      <localidad>Santander</localidad>
+      <cp>39006</cp>
+    </direccion>
+    <telefonos>
+      <movil>970123123</movil>
+    </telefonos>
+  </persona>
+</agenda>
+```
+
+En ese caso, la transformación XSLT daría como resultado un documento de texto:
+
+```xml
+
+  
+    
+      Inés
+      López Pérez
+    
+    
+    
+      970123123
+    
+  
+
+```
+
+Podemos observar como solo se muestra el contenido del elemento `identificadores` y `telefonos` (con espacios en blanco). Estos se muestran porque no tienen ninguna plantilla asociada. Sin embargo, no ocurre lo mismo con `direccion`, la cual si que tiene una plantilla definida, aunque no tiene ningún elemento en su interior que permita dar formato al contenido del elemento. Es por eso que no se muestra ningún contenido.
+
+Como podemos apreciar, si no existe ninguna plantilla a un elemento concreto, por defecto, se va a mostrar su contenido.
+
+#### Prioridad de plantillas
+
+Si tenemos varios `template`donde su selección uno de ellos contiene al otro, se tendrá en cuenta aquel template cuyo elemento seleccionado está más próximo al nodo raíz.
+
+Por ejemplo, tenemos los siguientes `template`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="text" />
+  <xsl:template match="cd">
+    <xsl:value-of select="titulo"/>
+    <xsl:value-of select="artista"/>
+  </xsl:template>
+  <xsl:template match="titulo">TÍTULO</xsl:template>
+</xsl:stylesheet>
+```
+
+Considerando el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+  </cd>
+</catalogo>
+```
+
+En este caso, la salida generada sería:
+
+```xml
+
+  ThrillerMichael Jackson
+  The WallPink Floyd
+  Abbey RoadThe Beatles
+
+```
+
+Podemos observar que no se incluye el texto `TÍTULO` en la salida, ya que la plantilla que selecciona el elemento `cd` tiene mayor prioridad que la plantilla que selecciona el elemento `titulo`, ya que `cd` está más próximo al nodo raíz.
+
 ### decimal-format
-
-**Categoría**: Elemento de nivel superior
-
-**Descripción**:
 
 Define el formato de números decimales para la función `format-number()`. Permite personalizar separadores de miles, decimales, etc.
 
@@ -175,18 +338,60 @@ Define el formato de números decimales para la función `format-number()`. Perm
 - `name`: nombre del formato
 - `decimal-separator`: carácter separador decimal (defecto: ".")
 - `grouping-separator`: carácter separador de miles (defecto: ",")
+- `infinity`: cadena para representar infinito (defecto: "Infinity")
+- `minus-sign`: carácter para el signo negativo (defecto: "-")
+- `NaN`: cadena para representar "Not a Number" (defecto: "NaN")
+- `percent`: carácter para el símbolo de porcentaje (defecto: "%")
+- `per-mille`: carácter para el símbolo de por mil (defecto: "‰")
+- `zero-digit`: carácter para el dígito cero (defecto: "0")
+- `digit`: carácter comodín para dígitos (defecto: "#")
+- `pattern-separator`: carácter para separar patrones positivo y negativo (defecto: ";")
 
 **Ejemplo**:
 
 ```xml
-<xsl:decimal-format name="europeano" decimal-separator="," grouping-separator="."/>
+<xsl:decimal-format 
+  name="string" 
+  decimal-separator="char" 
+  grouping-separator="char" 
+  infinity="string" 
+  minus-sign="char" 
+  NaN="string" 
+  percent="char" 
+  per-mille="char" 
+  zero-digit="char" 
+  digit="char"
+  pattern-separator="char"
+/>
 ```
 
+Todos los atributos son opcionales.
+
+#### Función format-number()
+
+La función `format-number()` se utiliza para formatear números según un patrón específico y un formato decimal definido con `xsl:decimal-format`. Su sintaxis es:
+
+```xml
+format-number(number, pattern, [format-name])
+```
+
+- `number`: el número que se desea formatear.
+- `pattern`: una cadena que define el formato deseado (p. ej., "#,##0.00").
+- `format-name` (opcional): el nombre del formato decimal definido con `xsl:decimal-format`.
+  
+**Ejemplo de uso**:
+
+```xml
+<xsl:decimal-format name="miFormato" decimal-separator="," grouping-separator="."/>
+
+<xsl:value-of select="format-number(1234567.89, '#,##0.00', 'miFormato')"/>
+```
+
+En este ejemplo, el número `1234567.89` se formatearía como `1.234.567,89` utilizando el formato decimal personalizado definido.
+
+Más adelante veremos cómo utilizar esta función dentro de una plantilla XSLT.
+
 ### attribute-set
-
-**Categoría**: Elemento de nivel superior
-
-**Descripción**:
 
 Define conjuntos de atributos reutilizables que se pueden aplicar a múltiples elementos.
 
@@ -203,9 +408,84 @@ Define conjuntos de atributos reutilizables que se pueden aplicar a múltiples e
 </xsl:attribute-set>
 ```
 
----
-
 ## Instrucciones (Elementos de Control)
+
+Las instrucciones son elementos XSLT que controlan el flujo de la transformación y manipulan los datos. A continuación se describen las instrucciones más comunes
+
+### call-template
+
+Llama a una plantilla por nombre, pasándole parámetros. Permite reutilizar bloques de transformación. El funcionamiento de un `call-template`es similar al de una función en otros lenguajes de programación tradicionales.
+
+La estructura básica de un `call-template` es:
+
+```xml
+<xsl:call-template name="nombre_plantilla">
+  <xsl:with-param name="nombre_parametro" select="valor"/>
+</xsl:call-template>
+```
+
+**Atributos principales**:
+
+- `name`: nombre de la plantilla a llamar (obligatorio)
+
+Cuando se utiliza `call-template`, es necesario que exista un elemento `xsl:template` definido con el mismo nombre. Además, si la plantilla acepta parámetros, estos deben ser pasados utilizando `xsl:with-param`.
+
+Por ejemplo:
+
+```xml
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <xsl:call-template name="nombre-plantilla"/>
+  </xsl:template>
+  <xsl:template name="nombre-plantilla">
+    Contenido
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+En cualquier caso, un `template` con un atributo `name` solo puede ser invocado mediante `call-template`, y no se aplicará automáticamente a ningún nodo del documento de entrada.
+
+### Atributos de `call-template`
+
+El único atributo obligatorio de `xsl:call-template` es `name`. El uso de `with-param` es opcional y solo se incluye cuando la plantilla destino define parámetros.
+
+**Ejemplo**:
+
+```xml
+<xsl:call-template name="formatoTitulo">
+  <xsl:with-param name="texto" select="titulo"/>
+</xsl:call-template>
+```
+
+Un ejemplo de uso completo de `call-template` junto con `param` y `with-param` sería:
+
+```xml
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <xsl:call-template name="formatoTitulo">
+      <xsl:with-param name="texto" select="/libro/titulo"/>
+    </xsl:call-template>
+  </xsl:template>
+  <xsl:template name="formatoTitulo">
+    <xsl:param name="texto"/>
+    <h1><xsl:value-of select="$texto"/></h1>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+Dado un documento XML de entrada como:
+
+```xml
+<libro>
+  <titulo>Aprendiendo XSLT</titulo>
+</libro>
+```
+
+La salida generada sería:
+
+```xml
+<h1>Aprendiendo XSLT</h1>
+```
 
 ### apply-templates
 
@@ -340,27 +620,6 @@ Ordena nodos dentro de `apply-templates` o `for-each` según criterios específi
 </xsl:for-each>
 ```
 
-### call-template
-
-**Descripción**:
-
-Llama a una plantilla por nombre, pasándole parámetros. Permite reutilizar bloques de transformación.
-
-**Atributos principales**:
-
-- `name`: nombre de la plantilla a llamar (obligatorio)
-
-**Contiene**:
-
-- `with-param`: parámetros a pasar a la plantilla
-
-**Ejemplo**:
-
-```xml
-<xsl:call-template name="formatoTitulo">
-  <xsl:with-param name="texto" select="titulo"/>
-</xsl:call-template>
-```
 
 ### variable
 
