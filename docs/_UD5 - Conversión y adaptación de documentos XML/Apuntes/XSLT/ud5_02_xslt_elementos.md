@@ -445,7 +445,7 @@ Por ejemplo:
 
 En cualquier caso, un `template` con un atributo `name` solo puede ser invocado mediante `call-template`, y no se aplicará automáticamente a ningún nodo del documento de entrada.
 
-### Atributos de `call-template`
+#### Atributos de `call-template`
 
 El único atributo obligatorio de `xsl:call-template` es `name`. El uso de `with-param` es opcional y solo se incluye cuando la plantilla destino define parámetros.
 
@@ -495,14 +495,115 @@ Aplica plantillas a los nodos hijo del contexto actual. Es el mecanismo principa
 
 **Atributos principales**:
 
-- `select`: expresión XPath para seleccionar nodos (defecto: nodos hijo)
-- `mode`: modo de la plantilla a aplicar
+- `select`: expresión XPath para seleccionar nodos (defecto: nodos hijo). Mediante un asterisco (`*`) se seleccionan todos los nodos hijo. Si el atributo no se especifica, se aplican las plantillas a todos los nodos hijo del nodo actual.
+- `mode`: modo de la plantilla a aplicar (opcional)
 
-**Ejemplo**:
+Podemos **especificar el orden** en el que van a **ser procesados los nodos** mediante el elemento `sort`. Si no lo hacemos de este modo, se aplicarán en el orden utilizado por el intérprete al leer el documento XML, es decir, de arriba hacia abajo.
 
 ```xml
-<xsl:apply-templates select="libro"/>
+<xsl:apply-templates select="expresion-xpath">
+  <xsl:sort select="elemento">
+</xsl:apply-templates>
 ```
+
+Un ejemplo completo sería el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h2>Catálogo de CDs</h2>
+        <table border="1">
+          <tr bgcolor="#9acd32">
+            <th>Título</th>
+            <th>Artista</th>
+            <th>Precio</th>
+          </tr>
+          <xsl:apply-templates select="catalogo/cd"/>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+  <xsl:template match="cd">
+    <tr>
+      <td><xsl:value-of select="titulo"/></td>
+      <td><xsl:value-of select="artista"/></td>
+      <td><xsl:value-of select="precio"/></td>
+    </tr>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+En este caso, podemos ver dos elementos `template`:
+
+- Uno que tiene como `match` la raíz.
+- Otro que tiene como `match` los elementos `cd`.
+Por lo tanto, el documento final tendrá como base el código contenido dentro del primer `template` y los elementos `cd` se mostrarán formateados conforme al segundo `template`.
+
+Si no se utiliza el elemento `apply-templates`, solo se mostraría el código del primer `template` ya que el primero contiene el segundo.
+
+Consideremos que tenemos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+    <precio>12.99</precio>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+    <precio>9.99</precio>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+    <precio>14.99</precio>
+  </cd>
+</catalogo>
+```
+
+En ese caso, la transformación XSLT daría como resultado un documento HTML:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Catálogo de CDs</h2>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th>Título</th>
+        <th>Artista</th>
+        <th>Precio</th>
+      </tr>
+      <tr>
+        <td>Thriller</td>
+        <td>Michael Jackson</td>
+        <td>12.99</td>
+      </tr>
+      <tr>
+        <td>The Wall</td>
+        <td>Pink Floyd</td>
+        <td>9.99</td>
+      </tr>
+      <tr>
+        <td>Abbey Road</td>
+        <td>The Beatles</td>
+        <td>14.99</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+El documento HTML se visualizaría de la siguiente manera:
+
+![alt text](image.png)
 
 ### value-of
 
