@@ -75,7 +75,7 @@ La transformación con una hoja XSLT vacía produciría el siguiente documento d
 
 Como podemos ver, el documento de salida está formado por la declaración XML seguida del contenido de los nodos del documento de entrada, sin etiquetas ni atributos (se respetan incluso los espacios en blanco y saltos de línea).
 
-### output
+### `output`
 
 Define las características del documento de salida (formato, codificación, etc.). Controla cómo se genera el resultado de la transformación. Al ser un elemento de nivel superior, debe ir como hijo directo del elemento raíz (`stylesheet` o `transform`).
 
@@ -123,7 +123,7 @@ Para obtener un documento de texto plano, se podría usar:
 </xsl:stylesheet>
 ```
 
-### import
+### `import`
 
 Importa las reglas y definiciones de otra hoja XSLT. Las reglas importadas tienen menor prioridad que las de la hoja principal. Debe aparecer al principio de la hoja.
 
@@ -141,7 +141,7 @@ Importa las reglas y definiciones de otra hoja XSLT. Las reglas importadas tiene
 Existe también `xsl:include`, que funciona de forma similar pero las reglas incluidas tienen la misma prioridad que las locales.
 :::
 
-### template
+### `template`
 
 Define una plantilla de transformación que se aplica a nodos específicos del documento XML de entrada. Es uno de los elementos más importantes en XSLT.
 
@@ -329,7 +329,7 @@ En este caso, la salida generada sería:
 
 Podemos observar que no se incluye el texto `TÍTULO` en la salida, ya que la plantilla que selecciona el elemento `cd` tiene mayor prioridad que la plantilla que selecciona el elemento `titulo`, ya que `cd` está más próximo al nodo raíz.
 
-### decimal-format
+### `decimal-format`
 
 Define el formato de números decimales para la función `format-number()`. Permite personalizar separadores de miles, decimales, etc.
 
@@ -367,7 +367,7 @@ Define el formato de números decimales para la función `format-number()`. Perm
 
 Todos los atributos son opcionales.
 
-#### Función format-number()
+#### Función `format-number()`
 
 La función `format-number()` se utiliza para formatear números según un patrón específico y un formato decimal definido con `xsl:decimal-format`. Su sintaxis es:
 
@@ -391,7 +391,7 @@ En este ejemplo, el número `1234567.89` se formatearía como `1.234.567,89` uti
 
 Más adelante veremos cómo utilizar esta función dentro de una plantilla XSLT.
 
-### attribute-set
+### `attribute-set`
 
 Define conjuntos de atributos reutilizables que se pueden aplicar a múltiples elementos.
 
@@ -412,7 +412,7 @@ Define conjuntos de atributos reutilizables que se pueden aplicar a múltiples e
 
 Las instrucciones son elementos XSLT que controlan el flujo de la transformación y manipulan los datos. A continuación se describen las instrucciones más comunes
 
-### call-template
+### `call-template`
 
 Llama a una plantilla por nombre, pasándole parámetros. Permite reutilizar bloques de transformación. El funcionamiento de un `call-template`es similar al de una función en otros lenguajes de programación tradicionales.
 
@@ -487,7 +487,7 @@ La salida generada sería:
 <h1>Aprendiendo XSLT</h1>
 ```
 
-### apply-templates
+### `apply-templates`
 
 **Descripción**:
 
@@ -605,11 +605,13 @@ El documento HTML se visualizaría de la siguiente manera:
 
 ![alt text](image.png)
 
-### value-of
+### `value-of`
 
-**Descripción**:
+El elemento `value-of` extrae el valor de texto de un nodo y lo añade al resultado. Realiza la conversión a string automáticamente. Su estructura básica es:
 
-Extrae el valor de texto de un nodo y lo añade al resultado. Realiza la conversión a string automáticamente.
+```xml
+<xsl:value-of select="expresión_xpath" disable-output-escaping="yes|no"/>
+```
 
 **Atributos principales**:
 
@@ -618,15 +620,283 @@ Extrae el valor de texto de un nodo y lo añade al resultado. Realiza la convers
 
 **Ejemplo**:
 
+Consideremos el siguiente documento XML de entrada:
+
 ```xml
-<titulo><xsl:value-of select="titulo"/></titulo>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+  </cd>
+</catalogo>
 ```
 
-### copy-of
+Haciendo uso de `xsl:value-of`, podemos extraer y mostrar los títulos de los CDs:
 
-**Descripción**:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h2>Colección de música</h2>
+        <table border="1">
+          <tr bgcolor="#9acd32">
+            <th>Título</th>
+            <th>Artista</th>
+          </tr>
+          <tr>
+            <td>
+              <xsl:value-of select="catalogo/cd/titulo" />
+            </td>
+            <td>
+              <xsl:value-of select="catalogo/cd/artista" />
+            </td>
+          </tr>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+```
 
-Copia nodos completos del documento de entrada al resultado, incluyendo atributos e hijos.
+Aquí combinamos `xsl:value-of` con `xsl:template match="/"` para extraer y mostrar los títulos y artistas de los CDs en una tabla HTML. En este caso, la transformación daría como resultado:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Colección de música</h2>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th>Título</th>
+        <th>Artista</th>
+      </tr>
+      <tr>
+        <td>Thriller</td>
+        <td>Michael Jackson</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+#### Contexto de la selección
+
+Cuando se realiza una selección con el atributo match de template, el contexto actual es el del elemento seleccionado.
+
+Consideremos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<agenda>
+  <persona id="p01">
+    <datos>
+      <nombre>Inés</nombre>
+      <apellidos>López Pérez</apellidos>
+    </datos>
+  </persona>
+  <persona id="p02">
+    <datos>
+      <nombre>Roberto</nombre>
+      <apellidos>Gutiérrez Gómez</apellidos>
+    </datos>
+  </persona>
+</agenda>
+```
+
+Consideremos, ahora, la siguiente hoja XSL:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+  <xsl:output method="text" />
+
+  <xsl:template match="persona">
+    <xsl:value-of select="datos/apellidos"/>, <xsl:value-of select="datos/nombre"/>  
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+En ese caso, la transformación XSLT daría como resultado el siguiente documento de texto:
+
+```xml
+
+  López Pérez, Inés
+  Gutiérrez Gómez, Roberto
+
+```
+
+Cuando se utiliza `match="persona"`, las dos coincidencias que se encuentran son:
+
+```xml
+<persona id="p01">
+  <datos>
+    <nombre>Inés</nombre>
+    <apellidos>López Pérez</apellidos>
+  </datos>
+</persona>
+```
+
+```xml
+<persona id="p02">
+  <datos>
+    <nombre>Roberto</nombre>
+    <apellidos>Gutiérrez Gómez</apellidos>
+  </datos>
+</persona>
+```
+
+En ambos casos, el contexto actual es `persona` y, por lo tanto, si utilizamos una expresión XPath relativa en el atributo `select` de `value-of`, esta considerará que el contexto actual es `persona`. Es por ello que se debe utilizar `datos/nombre` para obtener el nombre de cada persona.
+
+### `variable`
+
+El elemento `variable` define variables locales que se pueden usar dentro del contexto actual. Se pueden asignar tanto valores estáticos como dinámicos, empleando expresiones XPath. Son inmutables una vez asignadas.
+
+La estructura es la siguiente:
+
+```xml
+<xsl:variable name="nombre_variable" select="expresión_xpath">
+  <!-- Contenido alternativo si no se usa select -->
+</xsl:variable>
+```
+
+**Atributos principales**:
+
+- `name`: nombre de la variable (obligatorio)
+- `select`: expresión XPath con el valor (alternativa a contenido). Es opcional; si no se usa, el valor se define mediante el contenido del elemento.
+
+**Ejemplo**:
+
+```xml
+<xsl:variable name="precioBase" select="100"/>
+<xsl:variable name="resultado">
+  <valor><xsl:value-of select="$precioBase * 1.21"/></valor>
+</xsl:variable>
+```
+
+En este ejemplo, se define una variable `precioBase` con un valor numérico y otra variable `resultado` que contiene un elemento XML con el valor calculado.
+
+#### Tipos de variable
+
+Existen dos tipos de variables:
+
+- Variable **global**: es declarada como un elemento de nivel superior
+- Variable **local**: es declarada dentro de un elemento template.
+
+Una vez declarado el valor de una variable, no podrá ser modificado. Es decir, aunque se denomine variable, su comportamiento es como el de una **constante**.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  
+  <xsl:variable name="color1" select="'rojo'" /> <!-- global -->
+  
+  <xsl:template match="/">
+    <xsl:variable name="color2" select='"verde"' /> <!-- local -->
+  </xsl:template>
+
+</xsl:stylesheet>
+```
+
+#### Atributro `select` con una cadena de texto
+
+Si el atributo select contiene una cadena de texto (string):
+
+- El elemento `variable` **no puede tener contenido**.
+- El valor de la variable debe ir entre **comillas**.
+
+A continuación, se muestran dos formas distintas de asignar el valor rojo a la variable color:
+
+```xml
+<xsl:variable name="color" select="'rojo'"/>
+<xsl:variable name="color" select='"rojo"'/>
+```
+
+Los siguientes ejemplos son incorrectos y producirán un error:
+
+```xml
+<xsl:variable name="color" select="rojo"/> <!-- Sin comillas -->
+<xsl:variable name="color" select="'rojo'">Contenido</xsl:variable> <!-- Con contenido -->
+```
+
+Un ejemplo de su uso sería el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:variable name="color1" select="'rojo'" />
+  <xsl:variable name="color2" select='"verde"' />
+  
+  <xsl:template match="/">
+    <html>
+      <body>
+        <ul>
+          <li><xsl:copy-of select="$color1"/></li>
+          <li><xsl:copy-of select="$color2"/></li>
+        </ul>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+Consideremos que tenemos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo></catalogo>
+```
+
+En ese caso, la transformación XSLT daría como resultado un documento HTML:
+
+```html
+<!DOCTYPE html>
+<html>
+   <body>
+      <ul>
+         <li>rojo</li>
+         <li>verde</li>
+      </ul>
+   </body>
+</html>
+```
+
+El documento HTML se visualizaría de la siguiente manera:
+
+![alt text](xslt_variable_select_texto.png)
+
+#### Omisión de contenido y del atributo select
+
+Si el elemento `variable` es un elemento vacío (no tiene contenido) y solo contiene el atributo name, el valor de la variable será la de una cadena de texto vacía.
+
+El siguiente ejemplo cumple con lo descrito:
+
+```xml
+<xsl:variable name="color" />
+```
+
+El código anterior sería equivalente al siguiente:
+
+```xml
+<xsl:variable name="color" select="''"/>
+```
+
+### `copy-of`
+
+El elemento `copy-of` copia **nodos completos** del documento de entrada al resultado, incluyendo atributos e hijos.
 
 **Atributos principales**:
 
@@ -638,7 +908,263 @@ Copia nodos completos del documento de entrada al resultado, incluyendo atributo
 <xsl:copy-of select="metadatos/*"/>
 ```
 
-### for-each
+Serán copiados de forma automática:
+
+- Los nodos que hacen referencia a namespaces.
+- Los nodos hijos.
+- Los atributos.
+
+Algunos usos son de `copy-of` son:
+
+- Copiar un elemento completo.
+- Copiar el contenido de una variable definida previamente.
+
+Un ejemplo completo de su uso sería el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:variable name="cabecera">
+    <tr bgcolor="#9acd32">
+      <th>Título</th>
+      <th>Artista</th>
+    </tr>
+  </xsl:variable>
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h2>Colección de música</h2>
+        <table border="1">
+          <xsl:copy-of select="$cabecera" />
+          <tr>
+            <td>
+              <xsl:value-of select="catalogo/cd/titulo" />
+            </td>
+            <td>
+              <xsl:value-of select="catalogo/cd/artista" />
+            </td>
+          </tr>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+En el ejemplo, definimos una variable `cabecera` que contiene una fila de tabla HTML con los encabezados "Título" y "Artista". Luego, utilizamos `xsl:copy-of` para copiar esa fila completa dentro de la tabla en la salida HTML. De esta manera, evitamos tener que repetir el código de la cabecera cada vez que queramos usarlo.
+
+### `param`
+
+El elemento `param` define parámetros de entrada en plantillas o en la hoja XSLT. Pueden tener valores por defecto. La sintaxis básica es:
+
+```xml
+<xsl:param name="nombre_parametro" select="valor_por_defecto">
+  <!-- template content if no select is used -->
+</xsl:param>
+```
+
+**Atributos principales**:
+
+- `name`: nombre del parámetro (obligatorio)
+- `select`: valor por defecto (opcional)
+- Contenido alternativo si no se usa select
+
+El elemento `param` puede ser introducido dentro de elementos `apply-template` o elementos `call-template`.
+
+Un ejemplo completo de su uso sería el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template name="mostrar_titulo">
+    <xsl:param name="titulo"/>
+    <p>Título: <xsl:value-of select="$titulo"/></p>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+#### Tipos de parámetros
+
+De forma muy similar que el elemento `variable`, existen dos tipos de parámetros:
+
+- Parámetro **global**: es declarada como un elemento de nivel superior.
+- Parámetro **local**: es declarada dentro de un elemento template.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:param name="titulo1"/> <!-- global -->
+  
+  <xsl:template name="mostrar_titulo">
+    <xsl:param name="titulo2"/> <!-- local -->
+  </xsl:template>
+  
+</xsl:stylesheet>
+```
+
+### `with-param`
+
+El elemento `with-param` se utiliza para pasar parámetros a plantillas llamadas con `call-template` o `apply-templates`. Los valores se asignan a los parámetros definidos con `param`. La sintaxis básica es:
+
+```xml
+<xsl:with-param name="nombre_parametro" select="valor"/>
+```
+
+**Atributos principales**:
+
+- `name`: nombre del parámetro (obligatorio)
+- `select`: valor a pasar
+
+:::warning[VALORES DE ATRIBUTOS `name`]
+
+El valor del atributo `name` tiene que coincidir con el atributo `name` de un elemento `param`. En el caso de que no exista esa asociación, el elemento `with-param` será ignorado.
+
+:::
+
+Un ejemplo completo de su uso sería el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <ul>
+        <xsl:for-each select="catalogo/cd">
+          <xsl:call-template name="mostrar-titulo">
+            <xsl:with-param name="titulo" select="titulo" />
+          </xsl:call-template>
+        </xsl:for-each>
+        </ul>
+      </body>
+    </html>
+  </xsl:template>
+  <xsl:template name="mostrar-titulo">
+    <xsl:param name="titulo" />
+    <li>Título: <xsl:value-of select="$titulo"/></li>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+En el xslt anterior, se define una plantilla llamada `mostrar-titulo` que acepta un parámetro `titulo`. Dentro del template principal (que coincide con la raíz), se itera sobre cada elemento `cd` en el catálogo y se llama a la plantilla `mostrar-titulo`, pasando el título de cada CD como parámetro. Ahora, si consideramos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+  </cd>
+</catalogo>
+```
+
+La transformación XSLT daría como resultado un documento HTML:
+
+```xml
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      <li>Título: Thriller</li>
+      <li>Título: The Wall</li>
+      <li>Título: Abbey Road</li>
+    </ul>
+  </body>
+</html>
+```
+
+### `attribute`
+
+El elemento `attribute` crea un atributo en el elemento de salida. Se usa para generar atributos dinámicamente. Su estructura básica es:
+
+```xml
+<xsl:attribute name="nombre_atributo" namespace="URI">
+  <!-- Contenido del atributo -->
+</xsl:attribute>
+```
+
+**Atributos principales**:
+
+- `name`: nombre del atributo (obligatorio)
+- `namespace`: espacio de nombres del atributo (opcional)
+
+Por ejemplo, para añadir un atributo `color` a un elemento `<pintura>`, se utilizaría el siguiente código:
+
+```xml
+<pintura>
+  <xsl:attribute name="color"/>
+</pintura>
+```
+
+El valor de un atributo se define en el contenido del elemento attribute:
+
+```xml
+<pintura>
+  <xsl:attribute name="color">Rojo</xsl:attribute>
+</pintura>
+```
+
+Opcionalmente, se puede obtener el valor mediante el elemento value-of:
+
+```xml
+<pintura>
+  <xsl:attribute name="color">
+    <xsl:value-of select="valor"/>
+  </xsl:attribute> 
+</pintura>
+```
+
+Si se añade un atributo a un elemento que tiene contenido, el elemento attribute debe ir en primer lugar:
+
+```xml
+<pintura>
+  <xsl:attribute name="color">
+    <xsl:value-of select="valor-atributo"/>
+  </xsl:attribute>
+  <xsl:value-of select="valor-elemento"/>
+</pintura>
+```
+
+Es decir, lo siguiente sería incorrecto:
+
+```xml
+<pintura>
+  <xsl:value-of select="valor-elemento"/>
+  <xsl:attribute name="color">
+    <xsl:value-of select="valor-atributo"/>
+  </xsl:attribute>
+</pintura>
+```
+
+#### Plantillas de valores de atributos
+
+Las plantillas de valores de atributos o [*Attribute Value Templates*](https://www.w3.org/TR/xslt20/#attribute-value-templates) son una característica de XSLT que permiten insertar **expresiones dinámicas** dentro de los valores de los atributos utilizando llaves (*curly braces*).
+
+La sintaxis sería la siguiente:
+
+```xml
+<pintura color="{valor-atributo}"></pintura>
+```
+
+Esta sintaxis permite simplificar las hojas XSL ya que permiten omitir el uso del elemento `attribute`. El código equivalente utilizando `attribute` sería el siguiente:
+
+```xml
+<pintura>
+  <xsl:attribute name="color" select="valor-atributo"/>
+</pintura>
+```
+
+### `for-each`
 
 **Descripción**:
 
@@ -656,7 +1182,7 @@ Itera sobre un conjunto de nodos seleccionados, aplicando el mismo procesamiento
 </xsl:for-each>
 ```
 
-### if
+### `if`
 
 **Descripción**:
 
@@ -678,7 +1204,7 @@ Evaluación condicional simple. Procesa su contenido solo si la condición es ve
 Para múltiples condiciones, usar `xsl:choose`.
 :::
 
-### choose
+### `choose`
 
 **Descripción**:
 
@@ -699,7 +1225,7 @@ Evaluación condicional múltiple (similar a switch/case). Contiene múltiples r
 </xsl:choose>
 ```
 
-### sort
+### `sort`
 
 **Descripción**:
 
@@ -722,109 +1248,28 @@ Ordena nodos dentro de `apply-templates` o `for-each` según criterios específi
 ```
 
 
-### variable
-
-**Descripción**:
-
-Define variables locales que se pueden usar dentro del contexto actual. Son inmutables una vez asignadas.
-
-**Atributos principales**:
-
-- `name`: nombre de la variable (obligatorio)
-- `select`: expresión XPath con el valor (alternativa a contenido)
-
-**Ejemplo**:
-
-```xml
-<xsl:variable name="precioBase" select="100"/>
-<xsl:variable name="resultado">
-  <valor><xsl:value-of select="$precioBase * 1.21"/></valor>
-</xsl:variable>
-```
-
-### param
-
-**Descripción**:
-
-Define parámetros de entrada en plantillas o en la hoja XSLT. Pueden tener valores por defecto.
-
-**Atributos principales**:
-
-- `name`: nombre del parámetro (obligatorio)
-- `select`: valor por defecto
-
-**Ejemplo**:
-
-```xml
-<xsl:template name="saludo">
-  <xsl:param name="nombre">Usuario</xsl:param>
-  <saludo>Hola, <xsl:value-of select="$nombre"/></saludo>
-</xsl:template>
-```
-
-### with-param
-
-**Descripción**:
-
-Paso de parámetros a plantillas llamadas con `call-template` o `apply-templates`. Los valores se asignan a los parámetros definidos con `param`.
-
-**Atributos principales**:
-
-- `name`: nombre del parámetro (obligatorio)
-- `select`: valor a pasar
-
-**Ejemplo**:
-
-```xml
-<xsl:call-template name="formatear">
-  <xsl:with-param name="estilo">negrita</xsl:with-param>
-</xsl:call-template>
-```
-
-### attribute
-
-**Descripción**:
-
-Crea un atributo en el elemento de salida. Se usa para generar atributos dinámicamente.
-
-**Atributos principales**:
-
-- `name`: nombre del atributo (obligatorio)
-- `namespace`: espacio de nombres del atributo (opcional)
-
-**Ejemplo**:
-
-```xml
-<elemento>
-  <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-  Contenido
-</elemento>
-```
-
----
-
 ## Resumen de Clasificación
 
 | Elemento | Tipo | Propósito |
 |----------|------|----------|
-| **stylesheet/transform** | Raíz | Contenedor principal de XSLT |
-| **output** | Nivel superior | Configuración del documento de salida |
-| **import** | Nivel superior | Importar reglas de otras hojas |
-| **template** | Nivel superior | Definir reglas de transformación |
-| **decimal-format** | Nivel superior | Formato de números |
-| **attribute-set** | Nivel superior | Conjuntos de atributos reutilizables |
-| **apply-templates** | Instrucción | Aplicar plantillas a nodos |
-| **value-of** | Instrucción | Extraer valor de texto |
-| **copy-of** | Instrucción | Copiar nodos |
-| **for-each** | Instrucción | Iterar sobre nodos |
-| **if** | Instrucción | Condicional simple |
-| **choose** | Instrucción | Condicional múltiple |
-| **sort** | Instrucción | Ordenar nodos |
-| **call-template** | Instrucción | Llamar plantilla por nombre |
-| **variable** | Instrucción | Definir variables |
-| **param** | Instrucción | Definir parámetros |
-| **with-param** | Instrucción | Pasar parámetros |
-| **attribute** | Instrucción | Crear atributos dinámicos |
+| **`stylesheet`/`transform`** | Raíz | Contenedor principal de XSLT |
+| **`output`** | Nivel superior | Configuración del documento de salida |
+| **`import`** | Nivel superior | Importar reglas de otras hojas |
+| **`template`** | Nivel superior | Definir reglas de transformación |
+| **`decimal-format`** | Nivel superior | Formato de números |
+| **`attribute-set`** | Nivel superior | Conjuntos de atributos reutilizables |
+| **`apply-templates`** | Instrucción | Aplicar plantillas a nodos |
+| **`value-of`** | Instrucción | Extraer valor de texto |
+| **`copy-of`** | Instrucción | Copiar nodos |
+| **`for-each`** | Instrucción | Iterar sobre nodos |
+| **`if`** | Instrucción | Condicional simple |
+| **`choose`** | Instrucción | Condicional múltiple |
+| **`sort`** | Instrucción | Ordenar nodos |
+| **`call-template`** | Instrucción | Llamar plantilla por nombre |
+| **`variable`** | Instrucción | Definir variables |
+| **`param`** | Instrucción | Definir parámetros |
+| **`with-param`** | Instrucción | Pasar parámetros |
+| **`attribute`** | Instrucción | Crear atributos dinámicos |
 
 ---
 
