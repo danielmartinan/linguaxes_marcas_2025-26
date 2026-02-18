@@ -150,14 +150,14 @@ En el árbol de nodos, el nodo raíz es el que está representado por `/`. Los v
 
 | Propiedad | |Valor | Tipo |
 |-----------|-------|-------|------|
-| children | <producto> | Nodo elemento |
+| children | `<producto>` | Nodo elemento |
 | string | Pantalla de 24 pulgadas19.992kg | xs:string |
 
-En este caso, los hijos directos del nodo raíz es uno solo: <producto>. Por otro lado, el valor de la propiedad string es la concatenación de todas las cadenas de caracteres de los nodos hijo.
+En este caso, los hijos directos del nodo raíz es uno solo: `<producto>`. Por otro lado, el valor de la propiedad string es la concatenación de todas las cadenas de caracteres de los nodos hijo.
 
 :::warning[XPATH Y XML]
 
-El término nodo raíz en XPath no coincide con el utilizado el XML, ya que en XML el nodo raíz sería <producto>. Sin embargo, en XPath, <producto> sería un hijo del nodo raíz.
+El término nodo raíz en XPath no coincide con el utilizado el XML, ya que en XML el nodo raíz sería `<producto>`. Sin embargo, en XPath, `<producto>` sería un hijo del nodo raíz.
 
 :::
 
