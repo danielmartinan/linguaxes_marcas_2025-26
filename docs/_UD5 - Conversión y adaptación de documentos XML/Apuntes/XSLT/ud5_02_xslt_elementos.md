@@ -603,7 +603,7 @@ En ese caso, la transformación XSLT daría como resultado un documento HTML:
 
 El documento HTML se visualizaría de la siguiente manera:
 
-![alt text](image.png)
+![alt text](/img/linguaxes-marcas/ud5/xslt_apply-templates.png)
 
 ### `value-of`
 
@@ -876,7 +876,7 @@ En ese caso, la transformación XSLT daría como resultado un documento HTML:
 
 El documento HTML se visualizaría de la siguiente manera:
 
-![alt text](xslt_variable_select_texto.png)
+![alt text](/img/linguaxes-marcas/ud5/xslt_variable_select_texto.png)
 
 #### Omisión de contenido y del atributo select
 
@@ -1164,72 +1164,372 @@ Esta sintaxis permite simplificar las hojas XSL ya que permiten omitir el uso de
 </pintura>
 ```
 
+### `attribute-set`
+
+El elemento `attribute-set` permite crear un **conjunto de atributos** que pueden ser aplicados a cualquier elemento de salida.
+
+Por ejemplo:
+
+```xml
+<xsl:attribute-set name="tipoLetra">
+  <xsl:attribute name="nombre">Arial</xsl:attribute>
+  <xsl:attribute name="tamano">14px</xsl:attribute>
+  <xsl:attribute name="color">rojo</xsl:attribute>
+</xsl:attribute-set>
+```
+
 ### `for-each`
 
-**Descripción**:
+El elemento `for-each` itera sobre un conjunto de nodos seleccionados, aplicando el mismo procesamiento a cada uno. Útil para procesar listas de elementos. La estructura básica es:
 
-Itera sobre un conjunto de nodos seleccionados, aplicando el mismo procesamiento a cada uno. Útil para procesar listas de elementos.
+```xml
+<xsl:for-each select="expresión_xpath">
+  <!-- Contenido a repetir para cada nodo -->
+  <!-- <xsl:value-of select="subelemento"/> -->
+</xsl:for-each>
+```
 
 **Atributos principales**:
 
 - `select`: expresión XPath de los nodos a iterar (obligatorio)
 
-**Ejemplo**:
+Dentro de este elemento podemos aplicar funciones de filtrado para limitar más el conjunto de nodos sobre los que se va iterar. Este filrtado se realizará mediante expresiones XPath por lo que lo veremos más en detalle en las siguientes secciones.
+
+Un ejemplo de su uso sería el siguiente:
 
 ```xml
-<xsl:for-each select="libro">
-  <elemento><xsl:value-of select="titulo"/></elemento>
-</xsl:for-each>
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h2>Mi Colección de CDs</h2>
+        <table border="1">
+          <tr bgcolor="#9acd32">
+            <th>Título</th>
+            <th>Artista</th>
+          </tr>
+          <xsl:for-each select="catalogo/cd">
+            <tr>
+              <td>
+                <xsl:value-of select="titulo" />
+              </td>
+              <td>
+                <xsl:value-of select="artista" />
+              </td>
+            </tr>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
 ```
+
+Consideremos que tenemos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+  </cd>
+</catalogo>
+```
+
+En ese caso, la transformación XSLT daría como resultado un documento HTML:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Colección de música</h2>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th>Título</th>
+        <th>Artista</th>
+      </tr>
+      <tr>
+        <td>Thriller</td>
+        <td>Michael Jackson</td>
+      </tr>
+      <tr>
+        <td>The Wall</td>
+        <td>Pink Floyd</td>
+      </tr>
+      <tr>
+        <td>Abbey Road</td>
+        <td>The Beatles</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+El documento HTML se visualizaría de la siguiente manera:
+
+![alt text](/img/linguaxes-marcas/ud5/xslt_for-each.png)
 
 ### `if`
 
-**Descripción**:
+El elemento if es un elemento condicional que permite modificar el XML de salida en función de si los datos de entrada cumplen una cierta condición. La estructura básica es la siguiente:
 
-Evaluación condicional simple. Procesa su contenido solo si la condición es verdadera.
+```xml
+<xsl:if test="expresión_xpath">
+  <!-- Contenido a incluir si la condición es verdadera -->
+</xsl:if>
+```
 
 **Atributos principales**:
 
 - `test`: expresión XPath que se evalúa (obligatorio)
 
-**Ejemplo**:
+Un ejemplo de su uso sería el siguiente:
 
 ```xml
-<xsl:if test="precio > 20">
-  <caro><xsl:value-of select="titulo"/></caro>
-</xsl:if>
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h1>Colección de música</h1>
+        <table border="1">
+          <tr bgcolor="#9acd32">
+            <th>Título</th>
+            <th>Artista</th>
+            <th>Precio</th>
+          </tr>
+          <xsl:for-each select="catalogo/cd">
+            <xsl:if test="precio>10">
+              <tr>
+                <td>
+                  <xsl:value-of select="titulo" />
+                </td>
+                <td>
+                  <xsl:value-of select="artista" />
+                </td>
+                <td>
+                  <xsl:value-of select="precio" />
+                </td>
+              </tr>
+            </xsl:if>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
 ```
 
-:::note
-Para múltiples condiciones, usar `xsl:choose`.
-:::
+En el ejemplo anterior, se mostrará el título, el nombre del artista y el precio de aquellos elementos cuyo valor del elemento precio sea mayor que 10.
 
-### `choose`
+También es posible utilizar la entidad `&gt;` en lugar de >:
 
-**Descripción**:
+```xml
+<xsl:if test="precio&gt;10">
+```
 
-Evaluación condicional múltiple (similar a switch/case). Contiene múltiples ramas `when` y una rama `otherwise`.
+Consideremos que tenemos el siguiente documento XML:
 
-**Estructura**:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+    <precio>12.99</precio>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+    <precio>9.99</precio>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+    <precio>14.99</precio>
+  </cd>
+</catalogo>
+```
 
-- `when`: condiciones alternativas
-- `otherwise`: rama por defecto (opcional)
+En ese caso, la transformación XSLT daría como resultado un documento HTML:
 
-**Ejemplo**:
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Mi Colección de música</h1>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th>Título</th>
+        <th>Artista</th>
+        <th>Precio</th>
+      </tr>
+      <tr>
+        <td>Thriller</td>
+        <td>Michael Jackson</td>
+        <td>12.99</td>
+      </tr>
+      <tr>
+        <td>Abbey Road</td>
+        <td>The Beatles</td>
+        <td>14.99</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+El documento HTML se visualizaría de la siguiente manera:
+
+![alt text](/img/linguaxes-marcas/ud5/xslt_if.png)
+
+### `choose`, `when` y `otherwise`
+
+El elemento `choose` es un elemento que suele utilizarse junto con los elementos `when` y `otherwise` permitiendo expresar múltiples condiciones. El elemento `otherwise` es opcional. La estructura básica es la siguiente:
 
 ```xml
 <xsl:choose>
-  <xsl:when test="precio > 50">Muy caro</xsl:when>
-  <xsl:when test="precio > 20">Moderado</xsl:when>
-  <xsl:otherwise>Barato</xsl:otherwise>
+  <xsl:when test="condición1">
+    <!-- Contenido si condición1 es verdadera -->
+  </xsl:when>
+  <xsl:when test="condición2">
+    <!-- Contenido si condición2 es verdadera -->
+  </xsl:when>
+  <!-- Más condiciones if necesarias -->
+  <xsl:otherwise>
+    <!-- Contenido si ninguna condición es verdadera -->
+  </xsl:otherwise>
 </xsl:choose>
 ```
 
+**Elementos principales**:
+
+- `when`: condiciones alternativas
+  - `test`: expresión XPath que se evalúa (obligatorio)
+- `otherwise`: rama por defecto (opcional)
+
+Existen varias posibilidades:
+
+- Si el valor evaluado por el elemento `when` es verdadero se añadirá a la salida el código que este contenga.
+- Si, por el contrario, el valor es falso y está presente el elemento `otherwise`, se añadirá a la salida el contenido de este último.
+- Si, por el contrario, ningún elemento `when` es verdadero y no está presente el elemento `otherwise`, no se añadirá nada a la salida.
+
+Un ejemplo de su uso sería el siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h1>Colección de música</h1>
+        <table border="1">
+          <tr bgcolor="#9acd32">
+            <th>Título</th>
+            <th>Artista</th>
+          </tr>
+          <xsl:for-each select="catalogo/cd">
+            <tr>
+              <td><xsl:value-of select="titulo"/></td>
+              <xsl:choose>
+                <xsl:when test="precio > 10">
+                  <td bgcolor="#ff00ff"><xsl:value-of select="artista"/></td>
+                </xsl:when>
+                <xsl:otherwise>
+                  <td><xsl:value-of select="artista"/></td>
+                </xsl:otherwise>
+              </xsl:choose>
+            </tr>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+El código anterior aplica un fondo rosa aquellos artistas que tengan CDs con un precio superior a 10.
+
+Consideremos que tenemos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+    <precio>12.99</precio>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+    <precio>9.99</precio>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+    <precio>14.99</precio>
+  </cd>
+</catalogo>
+```
+
+En ese caso, la transformación XSLT daría como resultado un documento HTML:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Colección de música</h1>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th>Título</th>
+        <th>Artista</th>
+      </tr>
+      <tr>
+        <td>Thriller</td>
+        <td bgcolor="#ff00ff">Michael Jackson</td>
+      </tr>
+      <tr>
+        <td>The Wall</td>
+        <td>Pink Floyd</td>
+      </tr>
+      <tr>
+        <td>Abbey Road</td>
+        <td bgcolor="#ff00ff">The Beatles</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+El documento HTML se visualizaría de la siguiente manera:
+
+![alt text](/img/linguaxes-marcas/ud5/xslt_choose.png)
+
 ### `sort`
 
-**Descripción**:
+El elemento `sort` ordena nodos dentro de `apply-templates` o `for-each` según criterios específicos. Debe aparecer como primer hijo de estos elementos. La estructura básica es la siguiente:
 
-Ordena nodos dentro de `apply-templates` o `for-each` según criterios específicos. Debe aparecer como primer hijo de estos elementos.
+```xml
+<xsl:sort 
+    select="expresión_xpath" 
+    order="ascending|descending" 
+    data-type="text|number" 
+    case-order="upper-first|lower-first"/>
+```
 
 **Atributos principales**:
 
@@ -1238,15 +1538,98 @@ Ordena nodos dentro de `apply-templates` o `for-each` según criterios específi
 - `data-type`: "text" (defecto), "number"
 - `case-order`: "upper-first" o "lower-first"
 
-**Ejemplo**:
+Un ejemplo de su uso sería el siguiente:
 
 ```xml
-<xsl:for-each select="libro">
-  <xsl:sort select="precio" data-type="number" order="descending"/>
-  <titulo><xsl:value-of select="titulo"/></titulo>
-</xsl:for-each>
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h2>Colección de música</h2>
+        <table border="1">
+          <tr bgcolor="#9acd32">
+            <th>Título</th>
+            <th>Artista</th>
+            <th>Precio</th>
+          </tr>
+          <xsl:for-each select="catalogo/cd">
+            <xsl:sort select="precio" data-type="number"/>
+            <tr>
+              <td><xsl:value-of select="titulo"/></td>
+              <td><xsl:value-of select="artista"/></td>
+              <td><xsl:value-of select="precio"/></td>
+            </tr>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
 ```
 
+El código anterior ordena los CDs de menor a mayor precio, es decir, en orden de precio ascendente. Se debe utilizar el valor number para el atributo data-type para que se ordenen correctamente, ya que se tratan de valores numéricos.
+
+Consideremos que tenemos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hoja.xsl"?>
+<catalogo>
+  <cd>
+    <titulo>Thriller</titulo>
+    <artista>Michael Jackson</artista>
+    <precio>12.99</precio>
+  </cd>
+  <cd>
+    <titulo>The Wall</titulo>
+    <artista>Pink Floyd</artista>
+    <precio>9.99</precio>
+  </cd>
+  <cd>
+    <titulo>Abbey Road</titulo>
+    <artista>The Beatles</artista>
+    <precio>14.99</precio>
+  </cd>
+</catalogo>
+```
+
+En ese caso, la transformación XSLT daría como resultado un documento HTML:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Colección de música</h2>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th>Título</th>
+        <th>Artista</th>
+        <th>Precio</th>
+      </tr>
+      <tr>
+        <td>The Wall</td>
+        <td>Pink Floyd</td>
+        <td>9.99</td>
+      </tr>
+      <tr>
+        <td>Thriller</td>
+        <td>Michael Jackson</td>
+        <td>12.99</td>
+      </tr>
+      <tr>
+        <td>Abbey Road</td>
+        <td>The Beatles</td>
+        <td>14.99</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+El documento HTML se visualizaría de la siguiente manera:
+
+![alt text](/img/linguaxes-marcas/ud5/xslt_sort.png)
 
 ## Resumen de Clasificación
 

@@ -50,13 +50,13 @@ Algunas funciones de XPath podrían no estar soportadas, especialmente en versio
 
 Pattern matching / XPath 3.1 / XQuery 3.1 / CSS 3 Selector Online Tester es una aplicación web que permite probar expresiones XPath. Para su funcionamiento, necesita un documento XML y la expresión a evaluar. Además, debemos asegurarnos de tener seleccionada la opción XPath 3.1.
 
-![alt text](xpath3_1_online.png)
+![alt text](/img/linguaxes-marcas/ud5/xpath3_1_online.png)
 
 ## Formato de salida
 
 Para que la salida se formatee correctamente, debemos tener seleccionada la siguiente opción:
 
-![alt text](xpath3_1_output.png)
+![alt text](/img/linguaxes-marcas/ud5/xpath3_1_output.png)
 
 De esta forma, por ejemplo, se mostrará una salida diferente para /elemento o /elemento/text().
 
@@ -71,7 +71,7 @@ Por ejemplo, la siguiente expresión no mostrará nada con la opción xml:
 
 Sin embargo, con la opción text sí que muestra la salida.
 
-![alt text](xpath3_1_attr_text.png)
+![alt text](/img/linguaxes-marcas/ud5/xpath3_1_attr_text.png)
 :::
 
 ## Compatibilidad
@@ -88,7 +88,7 @@ De manera predefinida, la aplicación web cuenta con varias extensiones activada
 
 Cabe señalar que el estándar XPath 3.1 diferencia entre mayúsculas y minúsculas (case sensitive), por lo que si se desea obtener una salida conforme a dicho estándar, es necesario seleccionar la opción Standard XQuery en el menú desplegable Compatibility.
 
-![alt text](xpath3_1_compatibility.png)
+![alt text](/img/linguaxes-marcas/ud5/xpath3_1_compatibility.png)
 
 ### Free Formatter XPath Tester
 

@@ -4,7 +4,7 @@
 
 Las **expresiones de ruta** (*path expressions*) son el mecanismo principal para **navegar** y **seleccionar** nodos en un documento XML usando **XPath**. Una expresión de ruta especifica una **secuencia de pasos** para localizar nodos en el árbol del documento.
 
-![alt text](xpath_expresiones_ruta.png)
+![alt text](/img/linguaxes-marcas/ud5/xpath_expresiones_ruta.png)
 
 ## Tipos de datos
 

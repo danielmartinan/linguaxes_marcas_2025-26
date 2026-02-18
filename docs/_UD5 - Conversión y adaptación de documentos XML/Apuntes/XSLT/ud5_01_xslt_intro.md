@@ -12,7 +12,7 @@ Para realizar las transformaciones, se utilizan unas reglas definidas previament
 
 El proceso de transformación XSLT consiste en la conversión de un documento XML a otro formato diferente. Esta conversión es llevada a cabo por un procesador XSLT.
 
-![alt text](xslt_process.png)
+![alt text](/img/linguaxes-marcas/ud5/xslt_process.png)
 
 Algunas tecnologías de la familia de XML que entran en juego en el proceso de transformación de documentos son:
 

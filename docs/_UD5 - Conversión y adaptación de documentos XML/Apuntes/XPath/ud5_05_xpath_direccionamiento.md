@@ -491,7 +491,7 @@ El orden de los predicados importa. `//libro[@idioma='español'][1]` selecciona 
 
 Los **ejes** (*axes*) definen la dirección de navegación desde el nodo de contexto y determinan qué nodos se seleccionan en relación con él. Cada eje especifica una relación particular entre el nodo de contexto y los nodos que selecciona. Por lo tanto, nos permiten seleccionar el subárbol dentro del nodo contexto que cumple un patrón determinado.
 
-![alt text](xpath_axis.png)
+![alt text](/img/linguaxes-marcas/ud5/xpath_axis.png)
 
 ### Sintaxis de ejes
 
