@@ -1,6 +1,6 @@
 # Ejercicios UD5 - Conversión y Adaptación de Documentos XML
 
-## Ejercicio 501
+## Ejercicio 1
 
 Consideremos el siguiente documento XML:
 
@@ -99,7 +99,7 @@ Construye las sentencias XPath que permitan obtener los siguientes datos:
 
 ---
 
-## Ejercicio 502
+## Ejercicio 2
 
 Consideremos el siguiente documento XML:
 
@@ -159,7 +159,7 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 
 ---
 
-## Ejercicio 503
+## Ejercicio 3
 
 Consideremos el siguiente documento XML:
 
@@ -221,7 +221,7 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 
 ---
 
-## Ejercicio 504
+## Ejercicio 4
 
 Consideremos el siguiente documento XML:
 
@@ -274,7 +274,7 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 
 ---
 
-## Ejercicio 505
+## Ejercicio 5
 
 Consideremos el siguiente documento XML:
 
@@ -329,7 +329,7 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 
 ---
 
-## Ejercicio 506
+## Ejercicio 6
 
 Consideremos el siguiente documento XML (documento extenso con estructura de universidad, carreras, asignaturas y alumnos):
 
@@ -550,7 +550,7 @@ Por su complejidad, aquí se presentan algunos ejemplos clave:
 
 ---
 
-## Ejercicio 507
+## Ejercicio 7
 
 Consideremos el siguiente documento XML:
 
@@ -629,7 +629,7 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 
 ---
 
-## Ejercicio 508
+## Ejercicio 8
 
 Consideremos el siguiente documento XML:
 
@@ -659,7 +659,7 @@ Diseña el fichero XSLT que permita obtener la siguiente salida en HTML (ver en 
 
 ---
 
-## Ejercicio 509
+## Ejercicio 9
 
 Consideremos el siguiente documento XML:
 
@@ -1303,33 +1303,6 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 8. Los nombre de las máquinas que emplee memoria con tecnología `DDR2`.
 9. Las máquinas con procesador de marca `Intel` y grabadora de DVD.
 10. La configuración de aquellas máquinas en las que figure un gateway.
-
-<details>
-<summary>Solución</summary>
-
-Ejercicio con expresiones XPath complejas sobre documento de máquinas. Véase el archivo XML original para referencias exactas.
-
-</details>
-
----
-
-## Ejercicio 519
-11. Las máquinas cuyo nombre comiencen por `PC`.
-12. El nombre de las máquinas con más de un disco duro.
-13. La suma de los GB de memoria RAM de todas las máquinas.
-14. La suma de las capacidades de los discos duros de tipo `SCSI`.
-15. Los nombre de las máquinas de las que se conozca su cantidad de memoria pero no su tecnología.
-16. Las máquinas con sistema operativo de la familia Windows y con grabadora de DVD.
-17. Las máquinas en las que no figure el sistema operativo.
-18. El nombre de las máquinas y de los sistemas operativos de aquellas máquinas que tengan más de un disco duro.
-19. La configuración de aquellas máquinas en las que figure una dirección IP pero no un gateway.
-20. Los elementos vacios (los que no contengan texto).
-21. Las direcciones IP dentro de la red `192.168.10.0/24`.
-22. Los nombre de las máquinas con procesador multinúcleo y 2GB o menos de memoria.
-23. Las máquinas que tengan disco duro (uno o más) con capacidad total mayor a `1000GB`.
-24. Las máquinas que tengan un disco duro (uno o varios) con capacidad total menor de `80GB`.
-
----
 
 ## Ejercicio 519
 
