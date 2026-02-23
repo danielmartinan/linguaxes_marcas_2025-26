@@ -322,7 +322,7 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 
 1. `/listado/fondo[cuentaasociada="20-A"]/datos/cantidaddepositada` → `20000`
 2. `/listado/fondo/datos/moneda/text()` → `Euros`, `Dólares`
-3. `/listado/cuenta[saldoactual/@moneda="euros" or //fondo/datos[moneda="Dólares"]]/titular/@dni` → Para este caso, se requiere lógica más compleja
+3. `/listado/cuenta[saldoactual[translate(@moneda, "DÓLARES", "dólares") = "dólares"]]/titular/@dni` → No devuelve resultados (en el XML todas las cuentas están en `euros`)
 4. `/listado/fondo[datos/moneda="Euros" and datos/cantidaddepositada < 2500]` → No devuelve ninguno (20000 no es < 2500)
 
 </details>
@@ -535,16 +535,33 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 <details>
 <summary>Solución</summary>
 
-Por su complejidad, aquí se presentan algunos ejemplos clave:
-
-1. `/universidad/carreras/carrera/nombre` → Todos los nombres de carreras
-2. `/universidad/carreras/carrera[subdirector]/nombre` → `Dipl. Relaciones Laborales`
-3. `/universidad/alumnos/alumno[estudios/proyecto]/nombre` → `Luisa`, `María`
-4. `/universidad/alumnos/alumno[@beca="si"]/(apellido1|apellido2|nombre)` → `Pérez Romero Fernando`
-5. `/universidad/asignaturas/asignatura[@titulacion="c04"]/nombre` → `Pedagogía`, `Tecnología de los Alimentos`
-6. `/universidad/asignaturas/asignatura[trimestre="2"]/nombre` → Asignaturas de segundo trimestre
-7. `/universidad/asignaturas/asignatura[creditos_teoricos != 4]/@id`
-8. `/universidad/alumnos/alumno[sexo="Mujer"]/estudios/asignaturas/asignatura/@codigo`
+1. `/universidad/nombre`
+2. `/universidad/pais`
+3. `/universidad/carreras/carrera/nombre`
+4. `/universidad/carreras/carrera/plan`
+5. `/universidad/alumnos/alumno/nombre`
+6. `/universidad/carreras/carrera/@id`
+7. `/universidad/carreras/carrera[@id="c01"]`
+8. `/universidad/carreras/carrera[@id="c02"]/centro`
+9. `/universidad/carreras/carrera[subdirector]/nombre`
+10. `/universidad/alumnos/alumno[estudios/proyecto]/nombre`
+11. `/universidad/alumnos/alumno/estudios/carrera/@codigo`
+12. `/universidad/alumnos/alumno[@beca="si"]/apellido1 | /universidad/alumnos/alumno[@beca="si"]/apellido2 | /universidad/alumnos/alumno[@beca="si"]/nombre`
+13. `/universidad/asignaturas/asignatura[@titulacion="c04"]/nombre`
+14. `/universidad/asignaturas/asignatura[trimestre="2"]/nombre`
+15. `/universidad/asignaturas/asignatura[creditos_teoricos != 4]/nombre`
+16. `/universidad/alumnos/alumno[last()]/estudios/carrera/@codigo`
+17. `/universidad/alumnos/alumno[sexo="Mujer"]/estudios/asignaturas/asignatura/@codigo`
+18. `/universidad/alumnos/alumno[estudios/asignaturas/asignatura[@codigo="a02"]]/nombre`
+19. `/universidad/alumnos/alumno[estudios/asignaturas/asignatura]/estudios/carrera/@codigo`
+20. `/universidad/alumnos/alumno[sexo="Hombre"]/apellido1`
+21. `/universidad/carreras/carrera[@id = /universidad/alumnos/alumno[nombre="Víctor Manuel"]/estudios/carrera/@codigo]/nombre`
+22. `/universidad/asignaturas/asignatura[@id = /universidad/alumnos/alumno[nombre="Luisa"]/estudios/asignaturas/asignatura/@codigo]/nombre`
+23. `/universidad/alumnos/alumno[estudios/asignaturas/asignatura[@codigo = /universidad/asignaturas/asignatura[nombre="Ingeniería del Software"]/@id]]/apellido1`
+24. `/universidad/carreras/carrera[@id = /universidad/alumnos/alumno[estudios/asignaturas/asignatura[@codigo = /universidad/asignaturas/asignatura[nombre="Tecnología de los Alimentos"]/@id]]/estudios/carrera/@codigo]/nombre`
+25. `/universidad/alumnos/alumno[estudios/carrera/@codigo = /universidad/carreras/carrera[not(subdirector)]/@id]/nombre`
+26. `/universidad/alumnos/alumno[estudios/carrera/@codigo = /universidad/carreras/carrera[nombre="I.T. Informática"]/@id and estudios/asignaturas/asignatura[@codigo = /universidad/asignaturas/asignatura[creditos_practicos = 0]/@id]]/nombre` → No devuelve resultados con este XML
+27. `/universidad/alumnos/alumno[estudios/carrera/@codigo = /universidad/carreras/carrera[plan < 2002]/@id]/nombre`
 
 </details>
 
@@ -619,11 +636,11 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 <details>
 <summary>Solución</summary>
 
-1. `/ies/ciclos/ciclo[nombre="Sistemas Microinformáticos y Redes"]/../modulos/modulo[ciclo="SMR"]/nombre` → `Aplicaciones web`
-2. `/ies/ciclos/ciclo[decretoTitulo/@año="2010"]/nombre` → Devolver nombre completo del ciclo
+1. `/ies/modulos/modulo[ciclo = /ies/ciclos/ciclo[nombre="Sistemas Microinformáticos y Redes"]/@id]/nombre` → `Aplicaciones web`
+2. `/ies/ciclos/ciclo[@id = /ies/modulos/modulo[nombre="Lenguajes de marcas y sistemas de gestión de información"]/ciclo]/nombre` → `Administración de Sistemas Informáticos en Red`, `Desarrollo de Aplicaciones Web`
 3. `/ies/modulos/modulo[ciclo=/ies/ciclos/ciclo[grado="Superior"]/@id]/nombre`
 4. `/ies/modulos/modulo[ciclo=/ies/ciclos/ciclo[decretoTitulo/@año="2008"]/@id]/nombre` → `Aplicaciones web`
-5. `/ies/ciclos/ciclo[modulos/modulo[curso="1"]]/@grado` → Valores únicos de grado
+5. `/ies/ciclos/ciclo[@id = /ies/modulos/modulo[curso="1"]/ciclo]/grado` → `Superior`
 
 </details>
 
@@ -656,6 +673,45 @@ Consideremos el siguiente documento XML:
 ### Tareas
 
 Diseña el fichero XSLT que permita obtener la siguiente salida en HTML (ver en el sitio web original).
+
+<details>
+<summary>Solución</summary>
+
+```xslt
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/inventario">
+    <html>
+      <head>
+        <title>Inventario de productos</title>
+      </head>
+      <body>
+        <h1>Inventario</h1>
+        <table border="1" cellpadding="6">
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Peso</th>
+            <th>Edificio</th>
+            <th>Aula</th>
+          </tr>
+          <xsl:for-each select="producto">
+            <tr>
+              <td><xsl:value-of select="@codigo"/></td>
+              <td><xsl:value-of select="nombre"/></td>
+              <td><xsl:value-of select="peso"/> <xsl:value-of select="peso/@unidad"/></td>
+              <td><xsl:value-of select="lugar/@edificio"/></td>
+              <td><xsl:value-of select="lugar/aula"/></td>
+            </tr>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+</details>
 
 ---
 
@@ -1275,11 +1331,271 @@ Diseña el fichero XSLT que permita obtener la siguiente salida en HTML (ver en 
 
 ## Ejercicio 517
 
-Consideremos el [siguiente documento XML](https://mp0373-lmsxi.vercel.app/assets/files/517-8b409ee6c1a0387d7c8fd3798ab052ea.xml).
+Consideremos el siguiente documento XML:
+
+```xml
+<android>
+  <aplicaciones>
+    <app id="a01">
+      <titulo>WhatsApp Messenger</titulo>
+      <categoria>Comunicación</categoria>
+      <pegi>+3</pegi>
+      <descargas>500.000.000+</descargas>
+      <desarrollador>WhatsApp Inc.</desarrollador>
+      <ultima-actualizacion>15 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a02">
+      <titulo>Instagram</titulo>
+      <categoria>Redes sociales</categoria>
+      <pegi>+12</pegi>
+      <descargas>1.000.000.000+</descargas>
+      <desarrollador>Instagram</desarrollador>
+      <ultima-actualizacion>14 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a03">
+      <titulo>YouTube</titulo>
+      <categoria>Entretenimiento</categoria>
+      <pegi>+12</pegi>
+      <descargas>5.000.000.000+</descargas>
+      <desarrollador>Google LLC</desarrollador>
+      <ultima-actualizacion>14 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a04">
+      <titulo>Facebook</titulo>
+      <categoria>Redes sociales</categoria>
+      <pegi>+12</pegi>
+      <descargas>5.000.000.000+</descargas>
+      <desarrollador>Facebook</desarrollador>
+      <ultima-actualizacion>12 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a05">
+      <titulo>TikTok</titulo>
+      <categoria>Entretenimiento</categoria>
+      <pegi>+12</pegi>
+      <descargas>1.000.000.000+</descargas>
+      <desarrollador>TikTok Pte. Ltd.</desarrollador>
+      <ultima-actualizacion>14 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a06">
+      <titulo>Netflix</titulo>
+      <categoria>Entretenimiento</categoria>
+      <pegi>+12</pegi>
+      <descargas>500.000.000+</descargas>
+      <desarrollador>Netflix, Inc.</desarrollador>
+      <ultima-actualizacion>14 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a07">
+      <titulo>Twitter</titulo>
+      <categoria>Redes sociales</categoria>
+      <pegi>+12</pegi>
+      <descargas>500.000.000+</descargas>
+      <desarrollador>Twitter, Inc.</desarrollador>
+      <ultima-actualizacion>13 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a08">
+      <titulo>WhatsApp Business</titulo>
+      <categoria>Negocios</categoria>
+      <pegi>+3</pegi>
+      <descargas>100.000.000+</descargas>
+      <desarrollador>WhatsApp Inc.</desarrollador>
+      <ultima-actualizacion>15 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a09">
+      <titulo>Google Maps</titulo>
+      <categoria>Viajes y guías</categoria>
+      <pegi>+3</pegi>
+      <descargas>5.000.000.000+</descargas>
+      <desarrollador>Google LLC</desarrollador>
+      <ultima-actualizacion>14 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a10">
+      <titulo>Zoom Cloud Meetings</titulo>
+      <categoria>Negocios</categoria>
+      <pegi>+3</pegi>
+      <descargas>500.000.000+</descargas>
+      <desarrollador>Zoom Video Communications, Inc.</desarrollador>
+      <ultima-actualizacion>13 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a11">
+      <titulo>Google Drive</titulo>
+      <categoria>Productividad</categoria>
+      <pegi>+3</pegi>
+      <descargas>1.000.000.000+</descargas>
+      <desarrollador>Google LLC</desarrollador>
+      <ultima-actualizacion>14 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a12">
+      <titulo>Microsoft Teams</titulo>
+      <categoria>Negocios</categoria>
+      <pegi>+3</pegi>
+      <descargas>500.000.000+</descargas>
+      <desarrollador>Microsoft Corporation</desarrollador>
+      <ultima-actualizacion>15 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a13">
+      <titulo>LinkedIn</titulo>
+      <categoria>Negocios</categoria>
+      <pegi>+12</pegi>
+      <descargas>500.000.000+</descargas>
+      <desarrollador>LinkedIn</desarrollador>
+      <ultima-actualizacion>13 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a14">
+      <titulo>Google Chrome</titulo>
+      <categoria>Comunicación</categoria>
+      <pegi>+3</pegi>
+      <descargas>5.000.000.000+</descargas>
+      <desarrollador>Google LLC</desarrollador>
+      <ultima-actualizacion>13 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a15">
+      <titulo>Telegram</titulo>
+      <categoria>Comunicación</categoria>
+      <pegi>+12</pegi>
+      <descargas>500.000.000+</descargas>
+      <desarrollador>Telegram FZ-LLC</desarrollador>
+      <ultima-actualizacion>15 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a16">
+      <titulo>Adobe Photoshop Express</titulo>
+      <categoria>Fotografía</categoria>
+      <pegi>+3</pegi>
+      <descargas>100.000.000+</descargas>
+      <desarrollador>Adobe</desarrollador>
+      <ultima-actualizacion>12 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a17">
+      <titulo>Shazam</titulo>
+      <categoria>Música y audio</categoria>
+      <pegi>+12</pegi>
+      <descargas>100.000.000+</descargas>
+      <desarrollador>Apple, Inc.</desarrollador>
+      <ultima-actualizacion>14 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a18">
+      <titulo>Amazon Shopping</titulo>
+      <categoria>Compras</categoria>
+      <pegi>+3</pegi>
+      <descargas>100.000.000+</descargas>
+      <desarrollador>Amazon Mobile LLC</desarrollador>
+      <ultima-actualizacion>15 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a19">
+      <titulo>Waze</titulo>
+      <categoria>Viajes y guías</categoria>
+      <pegi>+3</pegi>
+      <descargas>100.000.000+</descargas>
+      <desarrollador>Waze</desarrollador>
+      <ultima-actualizacion>12 de abril de 2023</ultima-actualizacion>
+    </app>
+    <app id="a20">
+      <titulo>Candy Crush Saga</titulo>
+      <categoria>Juegos</categoria>
+      <pegi>+3</pegi>
+      <descargas>1.000.000.000+</descargas>
+      <desarrollador>King</desarrollador>
+      <ultima-actualizacion>13 de abril de 2023</ultima-actualizacion>
+    </app>
+  </aplicaciones>
+  <usuarios>
+    <usuario id="u01" version-android="11">
+      <nombre>Juan Pérez</nombre>
+      <nick>perez90</nick>
+      <fecha-nacimiento>1990-04-15</fecha-nacimiento>
+      <apps>
+        <app id="a01"/>
+        <app id="a07"/>
+        <app id="a09"/>
+      </apps>
+    </usuario>
+    <usuario id="u02" version-android="10">
+      <nombre>María González</nombre>
+      <nick>gnz-98</nick>
+      <fecha-nacimiento>1998-06-10</fecha-nacimiento>
+      <apps>
+        <app id="a19"/>
+        <app id="a16"/>
+      </apps>
+    </usuario>
+    <usuario id="u03" version-android="12">
+      <nombre>Pablo Ruiz</nombre>
+      <nick>pablo.r</nick>
+      <fecha-nacimiento>1987-11-02</fecha-nacimiento>
+      <apps>
+        <app id="a01"/>
+        <app id="a03"/>
+        <app id="a04"/>
+      </apps>
+    </usuario>
+    <usuario id="u04" version-android="11">
+      <nombre>Sofía Díaz</nombre>
+      <nick>sofia95</nick>
+      <fecha-nacimiento>1995-08-20</fecha-nacimiento>
+      <apps>
+        <app id="a11"/>
+        <app id="a08"/>
+      </apps>
+    </usuario>
+    <usuario id="u05" version-android="9">
+      <nombre>Luisa Gómez</nombre>
+      <nick>luisa_gomez</nick>
+      <fecha-nacimiento>1982-03-25</fecha-nacimiento>
+      <apps>
+        <app id="a05"/>
+        <app id="a06"/>
+        <app id="a07"/>
+        <app id="a08"/>
+      </apps>
+    </usuario>
+    <usuario id="u06" version-android="12">
+      <nombre>Carlos Ramírez</nombre>
+      <nick>carlos7</nick>
+      <fecha-nacimiento>1978-12-01</fecha-nacimiento>
+      <apps>
+        <app id="a20"/>
+      </apps>
+    </usuario>
+  </usuarios>
+</android>
+```
 
 ### Tareas (salida esperada)
 
 Diseña el fichero XSLT que permita obtener el siguiente documento XML con estructura de usuarios y aplicaciones.
+
+<details>
+<summary>Solución</summary>
+
+```xslt
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/android">
+    <datos>
+      <usuarios>
+        <xsl:for-each select="usuarios/usuario">
+          <usuario id="{@id}" version-android="{@version-android}">
+            <nombre><xsl:value-of select="nombre"/></nombre>
+            <nick><xsl:value-of select="nick"/></nick>
+            <fecha-nacimiento><xsl:value-of select="fecha-nacimiento"/></fecha-nacimiento>
+            <aplicaciones>
+              <xsl:for-each select="apps/app">
+                <xsl:variable name="idApp" select="@id"/>
+                <aplicacion id="{$idApp}">
+                  <titulo><xsl:value-of select="/android/aplicaciones/app[@id = $idApp]/titulo"/></titulo>
+                  <categoria><xsl:value-of select="/android/aplicaciones/app[@id = $idApp]/categoria"/></categoria>
+                  <desarrollador><xsl:value-of select="/android/aplicaciones/app[@id = $idApp]/desarrollador"/></desarrollador>
+                </aplicacion>
+              </xsl:for-each>
+            </aplicaciones>
+          </usuario>
+        </xsl:for-each>
+      </usuarios>
+    </datos>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+</details>
 
 
 
@@ -1287,7 +1603,162 @@ Diseña el fichero XSLT que permita obtener el siguiente documento XML con estru
 
 ## Ejercicio 518
 
-Consideremos el [siguiente documento XML](https://mp0373-lmsxi.vercel.app/assets/files/518-094486cc2ec65643d6bf7329afd1fcba.xml).
+Consideremos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<equipos>
+  <maquina nombre="PC017">
+  <hardware>
+    <tipo>PC Sobremesa</tipo>
+    <fabricante>Dell</fabricante>
+    <procesador marca="Intel" num_nucleos="4" velocidad="3.1">i7</procesador>
+    <memoria tecnologia="DDR3">8</memoria>
+    <disco tecnologia="SATA" capacidad="2000"/>
+    <grabadora tipo="DVD"/>
+  </hardware>
+  <config>
+    <OS>Windows 7</OS>
+    <IP>192.168.20.105</IP>
+    <gateway>192.168.20.1</gateway>
+  </config>
+  </maquina>
+  <maquina nombre="PC053">
+  <hardware>
+    <tipo>Semitorre</tipo>
+    <memoria>0.5</memoria>
+    <disco capacidad="40"/>
+    <lectora tipo="CD"/>
+  </hardware>
+  <config>
+    <OS>Windows XP</OS>
+  </config>
+  </maquina>
+  <maquina nombre="PC007">
+  <hardware>
+    <tipo>Semitorre</tipo>
+    <memoria tecnologia="DDR">0.5</memoria>
+    <disco capacidad="40"/>
+    <lectora tipo="CD"/>
+  </hardware>
+  <config>
+    <OS>Windows XP</OS>
+  </config>
+  <notas>Sin tarjeta de red</notas>
+  </maquina>
+  <maquina nombre="PR003">
+  <hardware>
+    <tipo>Impresora Inyección</tipo>
+    <fabricante>Lexmark</fabricante>
+  </hardware>
+  <config/>
+  </maquina>
+  <maquina nombre="PC011">
+  <hardware>
+    <tipo>Semitorre</tipo>
+    <memoria>1</memoria>
+    <disco capacidad="80"/>
+    <lectora tipo="CD"/>
+  </hardware>
+  <config>
+    <OS>Windows 2000 SP4</OS>
+    <IP>192.168.10.221</IP>
+  </config>
+  </maquina>
+  <maquina nombre="PC019">
+  <hardware>
+    <tipo>Semitorre</tipo>
+    <procesador marca="AMD" velocidad="1.4">Athlon</procesador>
+    <memoria>0.5</memoria>
+    <disco capacidad="40"/>
+    <grabadora tipo="CD"/>
+  </hardware>
+  <config>
+    <OS>Mandriva 2007</OS>
+    <IP>192.168.10.45</IP>
+    <gateway>192.168.10.1</gateway>
+  </config>
+  </maquina>
+  <maquina nombre="PR007">
+  <hardware>
+    <tipo>Impresora Láser</tipo>
+    <fabricante>OKI</fabricante>
+  </hardware>
+  <config/>
+  <notas>Monocromo, dúplex, red</notas>
+  </maquina>
+  <maquina nombre="COPERNICO">
+  <hardware>
+    <tipo>Torre</tipo>
+    <fabricante>Fujitsu-Siemens</fabricante>
+    <procesador marca="Intel" num_nucleos="4" velocidad="3">Xeon</procesador>
+    <memoria tecnologia="DDR">2</memoria>
+    <disco tecnologia="SCSI" capacidad="500"/>
+    <disco tecnologia="SCSI" capacidad="500"/>
+    <grabadora tipo="DVD"/>
+  </hardware>
+  <config>
+    <role>Servidor de dominio</role>
+    <OS>Windows 2003 Server R2</OS>
+    <IP>192.168.20.11</IP>
+    <gateway>192.168.20.1</gateway>
+  </config>
+  </maquina>
+  <maquina nombre="GALILEO">
+  <hardware>
+    <tipo>Torre</tipo>
+    <fabricante>Fujitsu-Siemens</fabricante>
+    <procesador marca="Intel" num_nucleos="4" velocidad="3">Xeon</procesador>
+    <memoria tecnologia="DDR2">2</memoria>
+    <disco tecnologia="SCSI" capacidad="200"/>
+    <disco tecnologia="SCSI" capacidad="200"/>
+    <disco tecnologia="SCSI" capacidad="200"/>
+    <lectora tipo="DVD"/>
+  </hardware>
+  <config>
+    <role>Servidor de dominio</role>
+    <OS>Windows 2008 Server R2</OS>
+    <IP>192.168.20.10</IP>
+    <gateway>192.168.20.1</gateway>
+  </config>
+  </maquina>
+  <maquina nombre="KEPLER">
+  <hardware>
+    <tipo>Rack</tipo>
+    <fabricante>HP</fabricante>
+    <procesador marca="Intel" num_nucleos="2" velocidad="3">Core2 Duo</procesador>
+    <memoria tecnologia="DDR2">4</memoria>
+    <disco tecnologia="SATA" capacidad="500"/>
+    <disco tecnologia="SATA" capacidad="500"/>
+    <disco tecnologia="SATA" capacidad="500"/>
+    <grabadora tipo="DVD"/>
+  </hardware>
+  <config>
+    <role>Servidor de archivos</role>
+    <OS>Ubuntu 8.04 Server</OS>
+    <IP>192.168.10.10</IP>
+    <gateway>192.168.10.1</gateway>
+  </config>
+  </maquina>
+  <maquina nombre="NEWTON">
+  <hardware>
+    <tipo>Rack</tipo>
+    <fabricante>HP</fabricante>
+    <procesador marca="Intel" num_nucleos="2" velocidad="3">Core2 Duo</procesador>
+    <memoria tecnologia="DDR2">4</memoria>
+    <disco tecnologia="SATA" capacidad="500"/>
+    <disco tecnologia="SATA" capacidad="500"/>
+    <grabadora tipo="DVD"/>
+  </hardware>
+  <config>
+    <role>Servidor web</role>
+    <OS>Ubuntu 8.04 Server</OS>
+    <IP>192.168.10.11</IP>
+    <gateway>192.168.10.1</gateway>
+  </config>
+  </maquina>
+</equipos>
+```
 
 ### Tareas
 
@@ -1304,9 +1775,102 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 9. Las máquinas con procesador de marca `Intel` y grabadora de DVD.
 10. La configuración de aquellas máquinas en las que figure un gateway.
 
+<details>
+<summary>Solución</summary>
+
+1. `/equipos/maquina/hardware/disco[@tecnologia="SCSI"]`
+2. `/equipos/maquina[config/IP="192.168.10.45"]/config/OS`
+3. `/equipos/maquina/hardware/procesador[@marca="AMD"]/@*`
+4. `/equipos/maquina[@nombre="COPERNICO"]/config//text()`
+5. `/equipos/maquina[hardware/tipo="Semitorre" and config/OS="Windows XP"]`
+6. `/equipos/maquina[hardware/memoria[@tecnologia="DDR2" and text()="4"]]/hardware/fabricante`
+7. `/equipos/maquina[hardware/procesador/@num_nucleos]/config/OS`
+8. `/equipos/maquina[hardware/memoria/@tecnologia="DDR2"]/@nombre`
+9. `/equipos/maquina[hardware/procesador[@marca="Intel"] and hardware/grabadora[@tipo="DVD"]]`
+10. `/equipos/maquina[config/gateway]/config`
+
+</details>
+
+---
+
 ## Ejercicio 519
 
-Consideremos el [siguiente documento XML](https://mp0373-lmsxi.vercel.app/assets/files/519-1e1e198ecea3f8a7f622cbba163272d6.xml).
+Consideremos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<geografia>
+  <continentes>
+    <continente nombre="Europa">
+      <pais>España</pais>
+      <pais>Francia</pais>
+      <pais>Suiza</pais>
+    </continente>
+    <continente nombre="América">
+      <pais>Argentina</pais>
+      <pais>Jamaica</pais>
+      <pais>Uruguay</pais>
+    </continente>
+  </continentes>
+  <paises>
+    <pais nombre="España">
+      <sistema>monarquía</sistema>
+      <superficie>504645</superficie>
+      <moneda>euro</moneda>
+      <moneda antigua="antigua">peseta</moneda>
+      <idioma>español</idioma>
+    </pais>
+    <pais nombre="Francia">
+      <sistema>república</sistema>
+      <superficie>675417</superficie>
+      <moneda>euro</moneda>
+      <moneda antigua="antigua">franco francés</moneda>
+      <idioma>francés</idioma>
+    </pais>
+    <pais nombre="Suiza">
+      <sistema>república</sistema>
+      <superficie>41290</superficie>
+      <moneda>franco suizo</moneda>
+      <idioma>francés</idioma>
+    </pais>
+    <pais nombre="Uruguay">
+      <sistema>república</sistema>
+      <superficie>176215</superficie>
+      <moneda>peso uruguayo</moneda>
+      <idioma>español</idioma>
+    </pais>
+    <pais nombre="Argentina">
+      <sistema>república</sistema>
+      <superficie>2780400</superficie>
+      <moneda>peso argentino</moneda>
+      <idioma>español</idioma>
+    </pais>
+    <pais nombre="Jamaica">
+      <sistema>monarquía</sistema>
+      <superficie>10991</superficie>
+      <moneda>dólar jamaicano</moneda>
+      <idioma>inglés</idioma>
+    </pais>
+  </paises>
+  <rios>
+    <rio>
+      <nombre>Uruguay</nombre>
+      <pais>Argentina</pais>
+      <pais>Uruguay</pais>
+    </rio>
+    <rio>
+      <nombre>Ródano</nombre>
+      <pais>Suiza</pais>
+      <pais>Francia</pais>
+    </rio>
+    <rio>
+      <nombre>Bidasoa</nombre>
+      <pais>España</pais>
+      <pais>Francia</pais>
+    </rio>
+  </rios>
+</geografia>
+```
 
 ### Tareas
 
@@ -1321,7 +1885,11 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 <details>
 <summary>Solución</summary>
 
-Ejercicio con expresiones XPath sobre dokumento geográfico. Véase el archivo XML original.
+1. `/geografia/rios/rio/nombre`
+2. `/geografia/paises/pais[sistema="república"]/idioma`
+3. `/geografia/paises/pais[idioma="español"]/@nombre`
+4. `/geografia/paises/pais[@nombre = /geografia/rios/rio[nombre="Bidasoa"]/pais]/superficie`
+5. `/geografia/rios/rio[pais = /geografia/continentes/continente[@nombre="Europa"]/pais]/nombre`
 
 </details>
 
@@ -1329,7 +1897,67 @@ Ejercicio con expresiones XPath sobre dokumento geográfico. Véase el archivo X
 
 ## Ejercicio 520
 
-Consideremos el [siguiente documento XML](https://mp0373-lmsxi.vercel.app/assets/files/520-0b00f7bb59c546094a7c65c4623bd715.xml).
+Consideremos el siguiente documento XML:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<videoteca fecha-creacion="24/02/2023">
+  <pelicula id="1">
+    <importe moneda="dólar">13.56</importe>
+    <titulo>El santo</titulo>
+    <titulooriginal>The Saint</titulooriginal>
+    <ano>1997</ano>
+    <director>Phillip Noyce</director>
+    <genero>Acción</genero>
+    <duracion>111</duracion>
+    <actua id="51"/> <!--  Elisabeth Shue -->
+    <actua id="156"/> <!--  Val Kilmer -->
+  </pelicula>
+  <pelicula id="3">
+    <importe moneda="euro">22.18</importe>
+    <titulo>Leaving Las Vegas</titulo>
+    <titulooriginal>Leaving Las Vegas</titulooriginal>
+    <ano>1995</ano>
+    <director>Mike Figgis</director>
+    <genero>Drama</genero>
+    <duracion>107</duracion>
+    <actua id="187"/> <!--  Nicolas Cage -->
+    <actua id="51"/> <!--  Elisabeth Shue -->
+  </pelicula>
+  <pelicula id="4">
+    <importe moneda="dólar">11.52</importe>
+    <titulo>¿A quién ama Gilbert Grape?</titulo>
+    <titulooriginal>What's Eating Gilbert Grape?</titulooriginal>
+    <ano>1993</ano>
+    <director>Lasse Hallström</director>
+    <genero>Drama</genero>
+    <duracion>118</duracion>
+    <actua id="139"/> <!--  Johnny Depp  -->
+  </pelicula>
+  <actor id="51">
+    <nome>Elisabeth Shue</nome>
+    <sexo>mujer</sexo>
+    <fecha-nacimiento>06/10/1963</fecha-nacimiento>
+    <url>http://www.imdb.com/name/nm0000223/</url>
+  </actor>
+  <actor id="139">
+    <nome>Johnny Depp</nome>
+    <sexo>hombre</sexo>
+    <fecha-nacimiento>09/06/1963</fecha-nacimiento>
+    <url>http://www.imdb.com/name/nm0000136/</url>
+  </actor>
+  <actor id="156">
+    <nome>Val Kilmer</nome>
+    <sexo>hombre</sexo>
+    <fecha-nacimiento>31/12/1959</fecha-nacimiento>
+  </actor>
+  <actor id="187">
+    <nome>Nicolas Cage</nome>
+    <sexo>hombre</sexo>
+    <fecha-nacimiento>07/01/1964</fecha-nacimiento>
+  </actor>
+</videoteca>
+```
 
 ### Tareas
 
@@ -1352,7 +1980,19 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 <details>
 <summary>Solución</summary>
 
-Ejercicio con expresiones XPath complejas sobre catálogo de películas. Véase el archivo XML original para la estructura exacta.
+1. `//comment()`
+2. `/videoteca/pelicula[titulo="Leaving Las Vegas"]/comment()`
+3. `/videoteca/pelicula[genero="Drama"]`
+4. `/videoteca/actor[sexo="mujer"]/nome`
+5. `//*[normalize-space(text()) != ""]`
+6. `/videoteca/pelicula[titulo = titulooriginal]`
+7. `/videoteca/actor[nome="Elisabeth Shue"]/@id`
+8. `/videoteca/pelicula[actua[@id="51"]]/titulo`
+9. `/videoteca/pelicula[actua/@id = /videoteca/actor[nome="Elisabeth Shue"]/@id]/titulo`
+10. `/videoteca/pelicula[last()]/titulo`
+11. `sum(/videoteca/pelicula[importe/@moneda="dólar"]/importe)`
+12. `sum(/videoteca/pelicula[importe/@moneda="euro"]/importe) + sum(/videoteca/pelicula[importe/@moneda="dólar"]/importe) div 1.4`
+13. `/videoteca/actor[@id = /videoteca/pelicula[actua/@id = /videoteca/actriz[nome="Elisabeth Shue"]/@id]/actua/@id]/nome`
 
 </details>
 
@@ -1360,7 +2000,109 @@ Ejercicio con expresiones XPath complejas sobre catálogo de películas. Véase 
 
 ## Ejercicio 521
 
-Consideremos el [siguiente documento XML](https://mp0373-lmsxi.vercel.app/assets/files/521-195c4003226624430214ebd40845e57b.xml).
+Consideremos el siguiente documento XML:
+
+```xml
+<formula1>
+  <equipos>
+    <equipo>
+      <nombre>Mercedes-AMG Petronas F1 Team</nombre>
+      <motorista id="1"/>
+      <temporada>
+        <año>2020</año>
+        <piloto id="1"/>
+        <piloto id="2"/>
+      </temporada>
+      <temporada>
+        <año>2021</año>
+        <piloto id="1"/>
+        <piloto id="2"/>
+      </temporada>
+    </equipo>
+    <equipo>
+      <nombre>Red Bull Racing Honda</nombre>
+      <motorista id="2"/>
+      <temporada>
+        <año>2012</año>
+        <piloto id="6"/>
+        <piloto id="4"/>
+      </temporada>
+      <temporada>
+        <año>2020</año>
+        <piloto id="3"/>
+        <piloto id="4"/>
+      </temporada>
+      <temporada>
+        <año>2021</año>
+        <piloto id="3"/>
+        <piloto id="5"/>
+      </temporada>
+    </equipo>
+    <equipo>
+      <nombre>Scuderia Ferrari</nombre>
+      <motorista id="3"/>
+      <temporada>
+        <año>2020</año>
+        <piloto id="6"/>
+        <piloto id="7"/>
+      </temporada>
+      <temporada>
+        <año>2021</año>
+        <piloto id="7"/>
+        <piloto id="8"/>
+      </temporada>
+    </equipo>
+  </equipos>
+  <pilotos>
+    <piloto id="1">
+      <nombre>Lewis Hamilton</nombre>
+      <edad>37</edad>
+    </piloto>
+    <piloto id="2">
+      <nombre>Valtteri Bottas</nombre>
+      <edad>32</edad>
+    </piloto>
+    <piloto id="3">
+      <nombre>Max Verstappen</nombre>
+      <edad>24</edad>
+    </piloto>
+    <piloto id="4">
+      <nombre>Alexander Albon</nombre>
+      <edad>25</edad>
+    </piloto>
+    <piloto id="5">
+      <nombre>Sergio Pérez</nombre>
+      <edad>31</edad>
+    </piloto>
+    <piloto id="6">
+      <nombre>Sebastian Vettel</nombre>
+      <edad>34</edad>
+    </piloto>
+    <piloto id="7">
+      <nombre>Charles Leclerc</nombre>
+      <edad>23</edad>
+    </piloto>
+    <piloto id="8">
+      <nombre>Carlos Sainz Jr.</nombre>
+      <edad>27</edad>
+    </piloto>
+  </pilotos>
+  <motoristas>
+    <motorista id="1">
+      <nombre>Mercedes-Benz</nombre>
+      <año_fundacion>1926</año_fundacion>
+    </motorista>
+    <motorista id="2">
+      <nombre>Honda</nombre>
+      <año_fundacion>1948</año_fundacion>
+    </motorista>
+    <motorista id="3">
+      <nombre>Ferrari</nombre>
+      <año_fundacion>1947</año_fundacion>
+    </motorista>
+  </motoristas>
+</formula1>
+```
 
 ### Tareas
 
@@ -1378,7 +2120,14 @@ Construye las expresiones XPath que permitan obtener los siguientes datos:
 <details>
 <summary>Solución</summary>
 
-Ejercicio con expresiones XPath complejas sobre Fórmula 1. Véase el archivo XML original.
+1. `/formula1/pilotos/piloto[@id = /formula1/equipos/equipo[nombre="Mercedes-AMG Petronas F1 Team"]/temporada[año="2020"]/piloto/@id]/nombre`
+2. `/formula1/pilotos/piloto[@id = /formula1/equipos/equipo[motorista/@id = /formula1/motoristas/motorista[año_fundacion > 1947]/@id]/temporada/piloto/@id]/nombre`
+3. `/formula1/equipos/equipo[motorista/@id = /formula1/motoristas/motorista[año_fundacion > 1940]/@id]/nombre`
+4. `/formula1/pilotos/piloto[@id = /formula1/equipos/equipo/temporada[año="2021"]/piloto/@id]/nombre`
+5. `/formula1/motoristas/motorista[@id = /formula1/equipos/equipo[temporada/piloto/@id = /formula1/pilotos/piloto[nombre="Sebastian Vettel"]/@id]/motorista/@id]/nombre`
+6. `/formula1/pilotos/piloto[@id = /formula1/equipos/equipo[temporada/piloto/@id = /formula1/pilotos/piloto[nombre="Sebastian Vettel"]/@id]/temporada[piloto/@id = /formula1/pilotos/piloto[nombre="Sebastian Vettel"]/@id]/piloto/@id]/nombre`
+7. `/formula1/pilotos/piloto[@id = /formula1/equipos/equipo[temporada/piloto/@id = /formula1/pilotos/piloto[nombre="Sebastian Vettel"]/@id]/temporada[piloto/@id = /formula1/pilotos/piloto[nombre="Sebastian Vettel"]/@id]/piloto/@id and nombre != "Sebastian Vettel"]/nombre`
+8. `sum(/formula1/pilotos/piloto[@id = /formula1/equipos/equipo/temporada[año="2021"]/piloto/@id]/edad) div count(/formula1/pilotos/piloto[@id = /formula1/equipos/equipo/temporada[año="2021"]/piloto/@id]/edad)`
 
 </details>
 
@@ -1386,7 +2135,109 @@ Ejercicio con expresiones XPath complejas sobre Fórmula 1. Véase el archivo XM
 
 ## Ejercicio 522
 
-Consideremos el [siguiente documento XML](https://mp0373-lmsxi.vercel.app/assets/files/521-195c4003226624430214ebd40845e57b.xml).
+Consideremos el siguiente documento XML:
+
+```xml
+<formula1>
+  <equipos>
+    <equipo>
+      <nombre>Mercedes-AMG Petronas F1 Team</nombre>
+      <motorista id="1"/>
+      <temporada>
+        <año>2020</año>
+        <piloto id="1"/>
+        <piloto id="2"/>
+      </temporada>
+      <temporada>
+        <año>2021</año>
+        <piloto id="1"/>
+        <piloto id="2"/>
+      </temporada>
+    </equipo>
+    <equipo>
+      <nombre>Red Bull Racing Honda</nombre>
+      <motorista id="2"/>
+      <temporada>
+        <año>2012</año>
+        <piloto id="6"/>
+        <piloto id="4"/>
+      </temporada>
+      <temporada>
+        <año>2020</año>
+        <piloto id="3"/>
+        <piloto id="4"/>
+      </temporada>
+      <temporada>
+        <año>2021</año>
+        <piloto id="3"/>
+        <piloto id="5"/>
+      </temporada>
+    </equipo>
+    <equipo>
+      <nombre>Scuderia Ferrari</nombre>
+      <motorista id="3"/>
+      <temporada>
+        <año>2020</año>
+        <piloto id="6"/>
+        <piloto id="7"/>
+      </temporada>
+      <temporada>
+        <año>2021</año>
+        <piloto id="7"/>
+        <piloto id="8"/>
+      </temporada>
+    </equipo>
+  </equipos>
+  <pilotos>
+    <piloto id="1">
+      <nombre>Lewis Hamilton</nombre>
+      <edad>37</edad>
+    </piloto>
+    <piloto id="2">
+      <nombre>Valtteri Bottas</nombre>
+      <edad>32</edad>
+    </piloto>
+    <piloto id="3">
+      <nombre>Max Verstappen</nombre>
+      <edad>24</edad>
+    </piloto>
+    <piloto id="4">
+      <nombre>Alexander Albon</nombre>
+      <edad>25</edad>
+    </piloto>
+    <piloto id="5">
+      <nombre>Sergio Pérez</nombre>
+      <edad>31</edad>
+    </piloto>
+    <piloto id="6">
+      <nombre>Sebastian Vettel</nombre>
+      <edad>34</edad>
+    </piloto>
+    <piloto id="7">
+      <nombre>Charles Leclerc</nombre>
+      <edad>23</edad>
+    </piloto>
+    <piloto id="8">
+      <nombre>Carlos Sainz Jr.</nombre>
+      <edad>27</edad>
+    </piloto>
+  </pilotos>
+  <motoristas>
+    <motorista id="1">
+      <nombre>Mercedes-Benz</nombre>
+      <año_fundacion>1926</año_fundacion>
+    </motorista>
+    <motorista id="2">
+      <nombre>Honda</nombre>
+      <año_fundacion>1948</año_fundacion>
+    </motorista>
+    <motorista id="3">
+      <nombre>Ferrari</nombre>
+      <año_fundacion>1947</año_fundacion>
+    </motorista>
+  </motoristas>
+</formula1>
+```
 
 ### Tareas
 
