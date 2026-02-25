@@ -1,0 +1,187 @@
+// Cuestionario T2 - Lenguajes de Marcas
+// Contenidos: UD3 (JavaScript y DOM) + UD4 (XML Schema - XSD)
+// Total: 25 preguntas
+// Nota máxima: 10 puntos
+// Cada pregunta vale: 0.4 puntos
+// Penalización por respuesta incorrecta: -0.1333 puntos (1/3 del valor)
+
+$CATEGORY: $course$/T2 - UD3 y UD4
+
+// ==================== PREGUNTAS UD3 (JavaScript y DOM) ====================
+
+::UD3-01:: ¿Dónde se ejecuta principalmente JavaScript en el contexto de scripting de cliente? {
+=En el navegador web del usuario
+~%-33.33333%En el servidor de base de datos
+~%-33.33333%En el compilador de C++
+~%-33.33333%Solo en editores de texto
+}
+
+::UD3-02:: Tienes el siguiente HTML\: <code>&lt;div class\="caja"&gt;A&lt;/div&gt;&lt;div class\="caja"&gt;B&lt;/div&gt;</code><br>Si ejecutas <code>document.querySelector(".caja").textContent</code>, ¿qué obtienes? {
+~%-33.33333%"AB"
+="A"
+~%-33.33333%"B"
+~%-33.33333%Devuelve un error porque hay múltiples elementos
+}
+
+::UD3-03:: ¿Cuál es la forma correcta de asociar una función a un clic de botón en JavaScript moderno? {
+~%-33.33333%<code>button.onClick(fn)</code>
+=<code>button.addEventListener("click", fn)</code>
+~%-33.33333%<code>button.listen("click", fn)</code>
+~%-33.33333%<code>button.click = fn()</code>
+}
+
+::UD3-04:: ¿Qué hace <code>preventDefault()</code> dentro de un manejador de eventos? {
+~%-33.33333%Detiene la propagación del evento a elementos padre
+=Evita la acción por defecto del navegador para ese evento
+~%-33.33333%Elimina el evento del elemento
+~%-33.33333%Recarga automáticamente la página
+}
+
+::UD3-05:: Si tienes <code>&lt;p id\="texto"&gt;Hola &lt;b&gt;mundo&lt;/b&gt;&lt;/p&gt;</code> y ejecutas <code>document.getElementById("texto").textContent</code>, ¿qué valor obtienes? {
+~%-33.33333%"Hola &lt;b&gt;mundo&lt;/b&gt;"
+="Hola mundo"
+~%-33.33333%"Hola"
+~%-33.33333%Solo "mundo"
+}
+
+::UD3-06:: Si quieres añadir dinámicamente un nuevo elemento <code>&lt;li&gt;</code> a una lista <code>&lt;ul&gt;</code>, ¿cuál es el orden correcto de operaciones? {
+~%-33.33333%Crear elemento, añadir a <code>&lt;ul&gt;</code>, asignar texto
+=Crear elemento, asignar texto, añadir a <code>&lt;ul&gt;</code>
+~%-33.33333%Asignar texto, crear elemento, añadir a <code>&lt;ul&gt;</code>
+~%-33.33333%Añadir a <code>&lt;ul&gt;</code>, crear elemento, asignar texto
+}
+
+::UD3-07:: ¿Cuál es la diferencia principal entre <code>==</code> y <code>===</code> en JavaScript? {
+~%-33.33333%No hay diferencia
+~%-33.33333%<code>===</code> compara solo textos
+=<code>===</code> compara valor y tipo, mientras <code>==</code> permite coerción
+~%-33.33333%<code>==</code> es más estricto que <code>===</code>
+}
+
+::UD3-08:: Para depurar código JavaScript en el navegador, la herramienta más directa es: {
+~%-33.33333%El validador de XML
+=La consola de las herramientas de desarrollo (F12)
+~%-33.33333%El panel de impresión del navegador
+~%-33.33333%El bloc de notas del sistema
+}
+
+::UD3-09:: Observa el código\: <code>let i \= 0; while (i < 3) \{ console.log(i); i++; \}</code><br>¿Qué se mostrará en consola? {
+=0, 1, 2
+~%-33.33333%1, 2, 3
+~%-33.33333%0, 1, 2, 3
+~%-33.33333%Bucle infinito
+}
+
+::UD3-10:: Dado el array <code>[10, 25, 8, 30]</code>, ¿qué devuelve <code>filter(num =&gt; num &gt; 15)</code>? {
+~%-33.33333%<code>[10, 8]</code>
+=<code>[25, 30]</code>
+~%-33.33333%<code>[10, 25, 8, 30]</code>
+~%-33.33333%<code>true</code>
+}
+
+::UD3-11:: ¿Qué devuelve <code>querySelectorAll()</code>? {
+~%-33.33333%Un único elemento
+~%-33.33333%Un array normal de JavaScript
+=Una colección de nodos (NodeList)
+~%-33.33333%Un valor booleano
+}
+
+::UD3-12:: Tienes un campo <code>&lt;input id\="email"&gt;</code>. ¿Qué evento detecta cambios mientras el usuario escribe? {
+~%-33.33333%<code>change</code>
+=<code>input</code>
+~%-33.33333%<code>keyup</code> y <code>input</code> tienen el mismo efecto
+~%-33.33333%<code>blur</code>
+}
+
+::UD3-13:: Si guardas <code>localStorage.setItem("user", "Ana")</code> y cierras el navegador sin borrar datos, ¿qué sucede al volver a abrir la página? {
+=El valor "Ana" sigue disponible en <code>localStorage</code>
+~%-33.33333%El valor se ha eliminado automáticamente
+~%-33.33333%Solo estará disponible si vuelves antes de 24 horas
+~%-33.33333%Genera un error porque el navegador estaba cerrado
+}
+
+// ==================== PREGUNTAS UD4 (XML Schema - XSD) ====================
+
+::UD4-01:: ¿Cuál es el objetivo principal de un esquema XSD? {
+~%-33.33333%Transformar XML a HTML
+=Definir y validar la estructura y restricciones de un documento XML
+~%-33.33333%Comprimir archivos XML
+~%-33.33333%Cifrar documentos XML
+}
+
+::UD4-02:: Si necesitas que un elemento aparezca entre 1 y 5 veces en un documento XML validado con XSD, ¿qué configuración usarías? {
+=<code>minOccurs\="1" maxOccurs\="5"</code>
+~%-33.33333%<code>minOccurs\="0" maxOccurs\="5"</code>
+~%-33.33333%<code>minOccurs\="1" maxOccurs\="unbounded"</code>
+~%-33.33333%<code>occurs\="1-5"</code>
+}
+
+::UD4-03:: Tienes un XML con elemento raíz <code>&lt;catalogo&gt;</code>. En el XSD, ¿dónde debes declararlo para que sea válido? {
+=Como hijo directo de <code>&lt;xs\:schema&gt;</code> con <code>&lt;xs\:element name\="catalogo"&gt;</code>
+~%-33.33333%Dentro de <code>&lt;xs\:complexType&gt;</code>
+~%-33.33333%Como atributo de <code>&lt;xs\:schema&gt;</code>
+~%-33.33333%No es necesario declararlo si está en el XML
+}
+
+::UD4-04:: Si en tu XSD declaras el namespace <code>xmlns\:xs\="http\://www.w3.org/2001/XMLSchema"</code>, ¿qué prefijo debes usar para los elementos XSD? {
+~%-33.33333%No es necesario prefijo
+=<code>xs\:</code> (como en <code>&lt;xs\:element&gt;</code>)
+~%-33.33333%<code>xsd\:</code>
+~%-33.33333%<code>xml\:</code>
+}
+
+::UD4-05:: Un documento XML referencia su esquema con <code>xsi\:noNamespaceSchemaLocation\="libro.xsd"</code>. ¿Qué implica esto? {
+~%-33.33333%El esquema debe estar en un servidor remoto
+=El documento XML no utiliza namespace propio (solo namespace de instancia)
+~%-33.33333%El archivo XSD no puede tener prefijo <code>xs</code>
+~%-33.33333%Es obligatorio declarar un DTD adicional
+}
+
+::UD4-06:: ¿Qué describe mejor <code>minOccurs</code> y <code>maxOccurs</code> en XSD? {
+~%-33.33333%La longitud mínima y máxima de texto
+~%-33.33333%Los tamaños mínimo y máximo de archivo
+=El número mínimo y máximo de veces que puede aparecer un elemento
+~%-33.33333%El número de atributos permitidos en todo el documento
+}
+
+::UD4-07:: Si defines <code>&lt;xs\:element name\="telefono" minOccurs\="0" maxOccurs\="unbounded"/&gt;</code>, ¿qué significa? {
+~%-33.33333%Debe aparecer al menos una vez
+=Puede aparecer cero o más veces (es opcional y repetible)
+~%-33.33333%Debe aparecer exactamente una vez
+~%-33.33333%Solo puede aparecer si otro elemento está presente
+}
+
+::UD4-08:: ¿Qué elemento de XSD se usa para definir una restricción de tipo con valores concretos permitidos? {
+~%-33.33333%<code>&lt;xs:sequence&gt;</code>
+~%-33.33333%<code>&lt;xs:choice&gt;</code>
+=<code>&lt;xs:restriction&gt;</code>
+~%-33.33333%<code>&lt;xs:include&gt;</code>
+}
+
+::UD4-09:: Observa este fragmento XSD\: <code>&lt;xs\:element name\="edad" type\="xs\:integer"/&gt;</code><br>¿Cuál de los siguientes XML sería válido? {
+~%-33.33333%<code>&lt;edad&gt;25.5&lt;/edad&gt;</code>
+=<code>&lt;edad&gt;25&lt;/edad&gt;</code>
+~%-33.33333%<code>&lt;edad&gt;veinticinco&lt;/edad&gt;</code>
+~%-33.33333%<code>&lt;edad type\="integer"&gt;25&lt;/edad&gt;</code>
+}
+
+::UD4-10:: ¿Qué afirmación es correcta sobre XML bien formado y XML válido? {
+~%-33.33333%Si es válido, puede no ser bien formado
+=Todo XML válido debe estar bien formado
+~%-33.33333%Son exactamente lo mismo
+~%-33.33333%La validez solo depende de tener comentarios
+}
+
+::UD4-11:: Si necesitas restringir un campo "nota" para que solo acepte valores entre 0 y 10, ¿qué tipo de dato sería más apropiado? {
+~%-33.33333%<code>xs\:string</code> con <code>pattern</code>
+=<code>xs\:integer</code> con <code>restriction</code> (<code>minInclusive</code> y <code>maxInclusive</code>)
+~%-33.33333%<code>xs\:decimal</code> sin restricciones
+~%-33.33333%<code>xs\:boolean</code>
+}
+
+::UD4-12:: En un XSD defines\: <code>&lt;xs\:sequence&gt;&lt;xs\:element name\="nombre"/&gt;&lt;xs\:element name\="apellido"/&gt;&lt;/xs\:sequence&gt;</code><br>¿Qué XML es válido? {
+=<code>&lt;nombre&gt;Ana&lt;/nombre&gt;&lt;apellido&gt;García&lt;/apellido&gt;</code>
+~%-33.33333%<code>&lt;apellido&gt;García&lt;/apellido&gt;&lt;nombre&gt;Ana&lt;/nombre&gt;</code>
+~%-33.33333%Solo <code>&lt;nombre&gt;Ana&lt;/nombre&gt;</code>
+~%-33.33333%Ambos elementos pueden aparecer en cualquier orden
+}
