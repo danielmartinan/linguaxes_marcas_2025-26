@@ -23,7 +23,7 @@ $CATEGORY: $course$/T2 - UD3 y UD4
 ~%-33.33333%Devuelve un error porque hay múltiples elementos
 }
 
-::UD3-03:: ¿Cuál es la forma correcta de asociar una función a un clic de botón en JavaScript moderno? {
+::UD3-03:: ¿Cuál es la forma correcta de asociar una función `fn` a un clic de botón en JavaScript moderno? {
 ~%-33.33333%<code>button.onClick(fn)</code>
 =<code>button.addEventListener("click", fn)</code>
 ~%-33.33333%<code>button.listen("click", fn)</code>
@@ -54,7 +54,7 @@ $CATEGORY: $course$/T2 - UD3 y UD4
 ::UD3-07:: ¿Cuál es la diferencia principal entre <code>==</code> y <code>===</code> en JavaScript? {
 ~%-33.33333%No hay diferencia
 ~%-33.33333%<code>===</code> compara solo textos
-=<code>===</code> compara valor y tipo, mientras <code>==</code> permite coerción
+=<code>===</code> compara valor y tipo, mientras <code>==</code> permite coerción (conversión automática de tipos)
 ~%-33.33333%<code>==</code> es más estricto que <code>===</code>
 }
 
@@ -84,20 +84,6 @@ $CATEGORY: $course$/T2 - UD3 y UD4
 ~%-33.33333%Un array normal de JavaScript
 =Una colección de nodos (NodeList)
 ~%-33.33333%Un valor booleano
-}
-
-::UD3-12:: Tienes un campo <code>&lt;input id\="email"&gt;</code>. ¿Qué evento detecta cambios mientras el usuario escribe? {
-~%-33.33333%<code>change</code>
-=<code>input</code>
-~%-33.33333%<code>keyup</code> y <code>input</code> tienen el mismo efecto
-~%-33.33333%<code>blur</code>
-}
-
-::UD3-13:: Si guardas <code>localStorage.setItem("user", "Ana")</code> y cierras el navegador sin borrar datos, ¿qué sucede al volver a abrir la página? {
-=El valor "Ana" sigue disponible en <code>localStorage</code>
-~%-33.33333%El valor se ha eliminado automáticamente
-~%-33.33333%Solo estará disponible si vuelves antes de 24 horas
-~%-33.33333%Genera un error porque el navegador estaba cerrado
 }
 
 // ==================== PREGUNTAS UD4 (XML Schema - XSD) ====================
