@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<temporadaF1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="formula1.xsd">
+  <escuderia codigo="MER">
+    <nombre>Mercedes-AMG Petronas</nombre>
+    <paisBase>Alemania</paisBase>
+    <jefeEquipo>
+      <nombre>Toto Wolff</nombre>
+      <nacionalidad>Austriaco</nacionalidad>
+    </jefeEquipo>
+    <pilotos>
+      <piloto>
+        <nombre>Kimi Antonelli</nombre>
+        <dorsal>12</dorsal>
+        <nacionalidad>Italiano</nacionalidad>
+        <rol>titular</rol>
+      </piloto>
+      <piloto>
+        <nombre>George Russell</nombre>
+        <dorsal>63</dorsal>
+        <nacionalidad>Británico</nacionalidad>
+        <rol>titular</rol>
+      </piloto>
+    </pilotos>
+    <motor>Mercedes</motor>
+    <presupuesto>450.5</presupuesto>
+    <circuitosHabituales>
+      <circuitoHabitual>
+        <nombre>Silverstone</nombre>
+        <pais>Reino Unido</pais>
+        <longitudKm>5.891</longitudKm>
+        <tipo>permanente</tipo>
+      </circuitoHabitual>
+    </circuitosHabituales>
+  </escuderia>
+
+  <escuderia codigo="FER">
+    <nombre>Scuderia Ferrari</nombre>
+    <paisBase>Italia</paisBase>
+    <jefeEquipo>
+      <nombre>Frederic Vasseur</nombre>
+      <nacionalidad>Francés</nacionalidad>
+    </jefeEquipo>
+    <pilotos>
+      <piloto>
+        <nombre>Charles Leclerc</nombre>
+        <dorsal>16</dorsal>
+        <nacionalidad>Monegasco</nacionalidad>
+        <rol>titular</rol>
+      </piloto>
+      <piloto>
+        <nombre>Lewis Hamilton</nombre>
+        <dorsal>44</dorsal>
+        <nacionalidad>Británico</nacionalidad>
+        <rol>titular</rol>
+      </piloto>
+    </pilotos>
+    <motor>Ferrari</motor>
+    <presupuesto>400.0</presupuesto>
+    <circuitosHabituales>
+      <circuitoHabitual>
+        <nombre>Monza</nombre>
+        <pais>Italia</pais>
+        <longitudKm>5.793</longitudKm>
+        <tipo>permanente</tipo>
+      </circuitoHabitual>
+    </circuitosHabituales>
+  </escuderia>
+
+  <escuderia codigo="MCL">
+    <nombre>McLaren Formula 1 Team</nombre>
+    <paisBase>Reino Unido</paisBase>
+    <jefeEquipo>
+      <nombre>Andrea Stella</nombre>
+      <nacionalidad>Italiano</nacionalidad>
+    </jefeEquipo>
+    <pilotos>
+      <piloto>
+        <nombre>Lando Norris</nombre>
+        <dorsal>4</dorsal>
+        <nacionalidad>Británico</nacionalidad>
+        <rol>titular</rol>
+      </piloto>
+      <piloto>
+        <nombre>Oscar Piastri</nombre>
+        <dorsal>81</dorsal>
+        <nacionalidad>Australiano</nacionalidad>
+        <rol>titular</rol>
+      </piloto>
+      <piloto>
+        <nombre>Leonardo Fornaroli</nombre>
+        <dorsal>20</dorsal>
+        <nacionalidad>Italiano</nacionalidad>
+        <rol>reserva</rol>
+      </piloto>
+      <piloto>
+        <nombre>Patricio 'Pato' O'Ward</nombre>
+        <dorsal>5</dorsal>
+        <nacionalidad>Mexicano</nacionalidad>
+        <rol>reserva</rol>
+      </piloto>
+    </pilotos>
+    <motor>Mercedes</motor>
+    <presupuesto>420.0</presupuesto>
+    <circuitosHabituales>
+      <circuitoHabitual>
+        <nombre>Suzuka</nombre>
+        <pais>Japón</pais>
+        <longitudKm>5.807</longitudKm>
+        <tipo>permanente</tipo>
+      </circuitoHabitual>
+    </circuitosHabituales>
+  </escuderia>
+
+  <circuito>
+    <nombre>Bahrain International Circuit</nombre>
+    <pais>Baréin</pais>
+    <longitudKm>5.412</longitudKm>
+    <tipo>permanente</tipo>
+  </circuito>
+  <circuito>
+    <nombre>Circuit de Monaco</nombre>
+    <pais>Mónaco</pais>
+    <longitudKm>3.337</longitudKm>
+    <tipo>urbano</tipo>
+  </circuito>
+  <circuito>
+    <nombre>Yas Marina Circuit</nombre>
+    <pais>Emiratos Árabes Unidos</pais>
+    <longitudKm>5.281</longitudKm>
+    <tipo>semiurbano</tipo>
+  </circuito>
+</temporadaF1>

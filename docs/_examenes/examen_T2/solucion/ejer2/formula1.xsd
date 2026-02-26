@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:simpleType name="rolType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="titular"/>
+      <xs:enumeration value="reserva"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="motorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ferrari"/>
+      <xs:enumeration value="Mercedes"/>
+      <xs:enumeration value="Honda"/>
+      <xs:enumeration value="Ford"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipoCircuitoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="urbano"/>
+      <xs:enumeration value="permanente"/>
+      <xs:enumeration value="semiurbano"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="dorsalType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="99"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="presupuestoType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="longitudKmType">
+    <xs:restriction base="xs:decimal">
+      <xs:minExclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="personaType">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="nacionalidad" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pilotoType">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="dorsal" type="dorsalType"/>
+      <xs:element name="nacionalidad" type="xs:string"/>
+      <xs:element name="rol" type="rolType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="circuitoType">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="pais" type="xs:string"/>
+      <xs:element name="longitudKm" type="longitudKmType"/>
+      <xs:element name="tipo" type="tipoCircuitoType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="escuderiaType">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="paisBase" type="xs:string"/>
+      <xs:element name="jefeEquipo" type="personaType"/>
+      <xs:element name="pilotos">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="piloto" type="pilotoType" minOccurs="2" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="motor" type="motorType"/>
+      <xs:element name="presupuesto" type="presupuestoType"/>
+      <xs:element name="circuitosHabituales" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="circuitoHabitual" type="circuitoType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="codigo" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:element name="temporadaF1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="escuderia" type="escuderiaType" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="circuito" type="circuitoType" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:unique name="codigoEscuderiaUnico">
+      <xs:selector xpath="escuderia"/>
+      <xs:field xpath="@codigo"/>
+    </xs:unique>
+
+    <xs:unique name="dorsalPilotoUnico">
+      <xs:selector xpath="escuderia/pilotos/piloto"/>
+      <xs:field xpath="dorsal"/>
+    </xs:unique>
+  </xs:element>
+
+</xs:schema>

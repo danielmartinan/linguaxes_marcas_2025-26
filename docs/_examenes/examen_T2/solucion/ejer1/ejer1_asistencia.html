@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de asistencia</title>
+  <link rel="stylesheet" href="ejer1_asistencia.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Control de asistencia</h1>
+
+    <section class="alta-alumno" aria-label="Añadir alumno">
+      <label for="nombreAlumno">Nombre del alumno</label>
+      <div class="fila-alta">
+        <input id="nombreAlumno" type="text" placeholder="Ej.: Ana García" autocomplete="off">
+        <button id="btnAgregar" type="button">Añadir alumno</button>
+      </div>
+      <p id="mensaje" class="mensaje" aria-live="polite"></p>
+    </section>
+
+    <section class="resumen" aria-label="Resumen de asistencia">
+      <p>Total: <strong id="total">0</strong></p>
+      <p>Presentes: <strong id="presentes">0</strong></p>
+      <p>Ausentes: <strong id="ausentes">0</strong></p>
+    </section>
+
+    <section aria-label="Listado de alumnos">
+      <ul id="listaAlumnos" class="lista-alumnos"></ul>
+    </section>
+  </main>
+
+  <script src="ejer1_asistencia.js"></script>
+</body>
+</html>
