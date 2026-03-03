@@ -1,0 +1,362 @@
+// Cuestionario Alternativa T2 - Lenguajes de Marcas
+// Contenidos: UD3 (JavaScript y DOM) + UD4 (XML Schema - XSD)
+// Total: 50 preguntas
+// Nota máxima: 10 puntos
+// Cada pregunta vale: 0.2 puntos
+// Penalización por respuesta incorrecta: -0.0666667 puntos (1/3 del valor)
+
+$CATEGORY: $course$/T2 - UD3 y UD4 - Alternativa
+
+// ==================== PREGUNTAS UD3 (JavaScript y DOM) ====================
+
+::UD3-A01:: ¿Cuál es la forma correcta de declarar una constante en JavaScript moderno? {
+=<code>const limite = 10;</code>
+~%-33.33333%<code>constant limite = 10;</code>
+~%-33.33333%<code>var const limite = 10;</code>
+~%-33.33333%<code>final limite = 10;</code>
+}
+
+::UD3-A02:: ¿Qué método selecciona el elemento con id <code>"menu"</code>? {
+~%-33.33333%<code>document.querySelectorAll("#menu")</code>
+=<code>document.getElementById("menu")</code>
+~%-33.33333%<code>document.getElementsByClassName("menu")</code>
+~%-33.33333%<code>document.find("menu")</code>
+}
+
+::UD3-A03:: ¿Qué devuelve <code>document.querySelectorAll(".item")</code>? {
+~%-33.33333%Un único elemento
+=Un <code>NodeList</code> con todos los elementos que coinciden
+~%-33.33333%Un booleano
+~%-33.33333%Siempre <code>null</code>
+}
+
+::UD3-A04:: Según los apuntes, ¿qué diferencia describe mejor <code>innerText</code> frente a <code>textContent</code>? {
+~%-33.33333%<code>innerText</code> devuelve HTML y <code>textContent</code> no
+=<code>innerText</code> devuelve texto visible (respeta CSS) y <code>textContent</code> incluye todo el texto
+~%-33.33333%Son exactamente equivalentes siempre
+~%-33.33333%Ambos solo funcionan con formularios
+}
+
+::UD3-A05:: ¿Cuál es el objetivo principal de <code>addEventListener()</code>? {
+~%-33.33333%Crear elementos HTML
+=Asociar una función a un tipo de evento en un elemento
+~%-33.33333%Eliminar nodos del DOM automáticamente
+~%-33.33333%Convertir texto a JSON
+}
+
+::UD3-A06:: En un formulario, ¿qué evento suele usarse para validar justo antes del envío? {
+~%-33.33333%<code>load</code>
+=<code>submit</code>
+~%-33.33333%<code>changeStyle</code>
+~%-33.33333%<code>ready</code>
+}
+
+::UD3-A07:: ¿Qué hace <code>event.stopPropagation()</code>? {
+=Impide que el evento siga propagándose a elementos ancestro
+~%-33.33333%Evita la acción por defecto del navegador
+~%-33.33333%Elimina todos los listeners del documento
+~%-33.33333%Recarga la página actual
+}
+
+::UD3-A08:: ¿Qué propiedad se usa para cambiar el contenido HTML interno de un elemento? {
+~%-33.33333%<code>textNode</code>
+=<code>innerHTML</code>
+~%-33.33333%<code>nodeValueList</code>
+~%-33.33333%<code>htmlContent()</code>
+}
+
+::UD3-A09:: Dado <code>let n = 3; n++;</code>, el valor de <code>n</code> pasa a ser: {
+~%-33.33333%2
+=4
+~%-33.33333%3
+~%-33.33333%"4"
+}
+
+::UD3-A10:: ¿Qué método recorre un array y devuelve otro array transformado? {
+~%-33.33333%<code>forEach()</code>
+=<code>map()</code>
+~%-33.33333%<code>find()</code>
+~%-33.33333%<code>some()</code>
+}
+
+::UD3-A11:: ¿Qué devuelve <code>document.querySelector(".item")</code> cuando hay varios elementos con esa clase? {
+=El primer elemento que coincide
+~%-33.33333%Todos los elementos en un NodeList
+~%-33.33333%Un array con todos los elementos
+~%-33.33333%Siempre <code>null</code>
+}
+
+::UD3-A12:: ¿Cuál es la forma correcta de convertir un texto JSON a objeto JavaScript? {
+~%-33.33333%<code>JSON.toObject(texto)</code>
+=<code>JSON.parse(texto)</code>
+~%-33.33333%<code>texto.parseJSON()</code>
+~%-33.33333%<code>JSON.stringify(texto)</code>
+}
+
+::UD3-A13:: ¿Qué resultado produce <code>[1,2,3].length</code>? {
+~%-33.33333%2
+=3
+~%-33.33333%4
+~%-33.33333%"3"
+}
+
+::UD3-A14:: Si necesitas insertar un nodo al final de una lista <code>&lt;ul&gt;</code>, el método más habitual es: {
+=<code>appendChild()</code>
+~%-33.33333%<code>pushNode()</code>
+~%-33.33333%<code>addLast()</code>
+~%-33.33333%<code>insertFinal()</code>
+}
+
+::UD3-A15:: ¿Qué condición entra en el bloque <code>if</code> solo cuando ambos operandos son <code>true</code>? {
+~%-33.33333%Operador <code>||</code>
+=Operador <code>&amp;&amp;</code>
+~%-33.33333%Operador <code>!</code>
+~%-33.33333%Operador <code>??</code>
+}
+
+::UD3-A16:: Si <code>x = "5"</code> e <code>y = 5</code>, según los ejemplos de apuntes ¿qué muestran <code>x == y</code> y <code>x === y</code>? {
+=<code>x == y</code> es <code>true</code> y <code>x === y</code> es <code>false</code>
+~%-33.33333%Ambas comparaciones son <code>true</code>
+~%-33.33333%Ambas comparaciones son <code>false</code>
+~%-33.33333%<code>x == y</code> es <code>false</code> y <code>x === y</code> es <code>true</code>
+}
+
+::UD3-A17:: ¿Qué método de array devuelve solo el primer elemento que cumple una condición? {
+~%-33.33333%<code>filter()</code>
+=<code>find()</code>
+~%-33.33333%<code>map()</code>
+~%-33.33333%<code>reduce()</code>
+}
+
+::UD3-A18:: En <code>for (let i = 0; i &lt; 3; i++)</code>, ¿cuántas iteraciones se ejecutan? {
+~%-33.33333%2
+=3
+~%-33.33333%4
+~%-33.33333%Depende del navegador
+}
+
+::UD3-A19:: ¿Qué hace <code>classList.add("activo")</code> sobre un elemento? {
+~%-33.33333%Elimina todas sus clases
+=Añade la clase <code>activo</code> si no existe
+~%-33.33333%Reemplaza el id del elemento
+~%-33.33333%Crea un nuevo elemento HTML
+}
+
+::UD3-A20:: ¿Cuál es una ventaja principal de usar funciones para tareas repetidas? {
+~%-33.33333%Aumentar el tamaño del código
+=Reutilizar lógica y reducir duplicación
+~%-33.33333%Evitar por completo los eventos
+~%-33.33333%Impedir el uso de variables
+}
+
+::UD3-A21:: Dado <code>const nums = [2,4,6]; nums.includes(4)</code>, el resultado es: {
+~%-33.33333%<code>4</code>
+=<code>true</code>
+~%-33.33333%<code>false</code>
+~%-33.33333%<code>"true"</code>
+}
+
+::UD3-A22:: ¿Cuál es el valor de <code>"10" === 10</code>? {
+~%-33.33333%<code>true</code>
+=<code>false</code>
+~%-33.33333%<code>10</code>
+~%-33.33333%Error de sintaxis
+}
+
+::UD3-A23:: ¿Qué método elimina espacios al inicio y final de un texto? {
+~%-33.33333%<code>cut()</code>
+=<code>trim()</code>
+~%-33.33333%<code>stripSpaces()</code>
+~%-33.33333%<code>clear()</code>
+}
+
+::UD3-A24:: Para reaccionar cuando cambia un campo de entrada, el evento más usado es: {
+~%-33.33333%<code>hover</code>
+=<code>input</code>
+~%-33.33333%<code>draw</code>
+~%-33.33333%<code>compile</code>
+}
+
+::UD3-A25:: Si <code>document.querySelector("#noExiste")</code> no encuentra elemento, devuelve: {
+~%-33.33333%Una cadena vacía
+=<code>null</code>
+~%-33.33333%<code>false</code>
+~%-33.33333%Un error obligatorio
+}
+
+// ==================== PREGUNTAS UD4 (XML Schema - XSD) ====================
+
+::UD4-A01:: ¿Para qué sirve un archivo XSD en relación con XML? {
+~%-33.33333%Para comprimir etiquetas repetidas
+=Para definir reglas de estructura y tipos de datos
+~%-33.33333%Para ejecutar scripts en el navegador
+~%-33.33333%Para sustituir el documento XML original
+}
+
+::UD4-A02:: ¿Qué significa <code>maxOccurs="1"</code> en un elemento XSD? {
+=Que como máximo puede aparecer una vez
+~%-33.33333%Que debe aparecer al menos una vez
+~%-33.33333%Que se repite infinitamente
+~%-33.33333%Que solo puede ser atributo
+}
+
+::UD4-A03:: Si un elemento es obligatorio exactamente una vez, una configuración típica es: {
+=<code>minOccurs="1" maxOccurs="1"</code>
+~%-33.33333%<code>minOccurs="0" maxOccurs="1"</code>
+~%-33.33333%<code>minOccurs="0" maxOccurs="unbounded"</code>
+~%-33.33333%<code>minOccurs="2" maxOccurs="2"</code>
+}
+
+::UD4-A04:: ¿Qué tipo simple de XSD usarías para valores de texto libre? {
+~%-33.33333%<code>xs:integer</code>
+=<code>xs:string</code>
+~%-33.33333%<code>xs:boolean</code>
+~%-33.33333%<code>xs:dateTimeZone</code>
+}
+
+::UD4-A05:: ¿Cuál de estos valores es válido para un campo <code>xs:boolean</code>? {
+~%-33.33333%<code>si</code>
+=<code>true</code>
+~%-33.33333%<code>verdadero</code>
+~%-33.33333%<code>1.0</code>
+}
+
+::UD4-A06:: ¿Qué elemento XSD define una secuencia ordenada de hijos? {
+~%-33.33333%<code>&lt;xs:all&gt;</code>
+=<code>&lt;xs:sequence&gt;</code>
+~%-33.33333%<code>&lt;xs:union&gt;</code>
+~%-33.33333%<code>&lt;xs:list&gt;</code>
+}
+
+::UD4-A07:: Si en XSD usas <code>&lt;xs:choice&gt;</code>, significa que: {
+=Debe aparecer una opción entre varias alternativas definidas
+~%-33.33333%Deben aparecer todos los elementos en orden
+~%-33.33333%No se permite ningún elemento hijo
+~%-33.33333%Se mezclan texto y elementos sin restricciones
+}
+
+::UD4-A08:: ¿Qué etiqueta XSD se usa para declarar un atributo? {
+~%-33.33333%<code>&lt;xs:property&gt;</code>
+=<code>&lt;xs:attribute&gt;</code>
+~%-33.33333%<code>&lt;xs:attrdef&gt;</code>
+~%-33.33333%<code>&lt;xs:key&gt;</code>
+}
+
+::UD4-A09:: En XSD, ¿qué indica <code>use="required"</code> en un atributo? {
+~%-33.33333%Que es opcional
+=Que el atributo es obligatorio
+~%-33.33333%Que solo acepta números
+~%-33.33333%Que se repite múltiples veces
+}
+
+::UD4-A10:: ¿Cuál es la raíz habitual de un archivo XSD? {
+=<code>&lt;xs:schema&gt;</code>
+~%-33.33333%<code>&lt;xml:schema&gt;</code>
+~%-33.33333%<code>&lt;schema:xsd&gt;</code>
+~%-33.33333%<code>&lt;xs:root&gt;</code>
+}
+
+::UD4-A11:: Si un XML usa <code>xsi:noNamespaceSchemaLocation</code>, esto suele indicar que: {
+~%-33.33333%El XML usa obligatoriamente varios namespaces propios
+=El esquema asociado no se aplica mediante un namespace objetivo en el XML
+~%-33.33333%El XSD debe estar embebido dentro del XML
+~%-33.33333%No se puede validar con ningún parser
+}
+
+::UD4-A12:: ¿Qué restricción usarías para limitar la longitud mínima de una cadena a 5 caracteres? {
+~%-33.33333%<code>minOccurs="5"</code>
+=<code>&lt;xs:minLength value="5"/&gt;</code>
+~%-33.33333%<code>&lt;xs:minInclusive value="5"/&gt;</code>
+~%-33.33333%<code>&lt;xs:lengthMin value="5"/&gt;</code>
+}
+
+::UD4-A13:: Para permitir solo los valores <code>"A"</code>, <code>"B"</code> o <code>"C"</code>, usarías: {
+~%-33.33333%<code>&lt;xs:sequence&gt;</code>
+=<code>&lt;xs:enumeration&gt;</code> dentro de una <code>&lt;xs:restriction&gt;</code>
+~%-33.33333%<code>&lt;xs:keyref&gt;</code>
+~%-33.33333%<code>&lt;xs:annotation&gt;</code>
+}
+
+::UD4-A14:: ¿Qué tipo de dato XSD es más adecuado para una fecha tipo <code>2026-03-03</code>? {
+~%-33.33333%<code>xs:string</code>
+=<code>xs:date</code>
+~%-33.33333%<code>xs:time</code>
+~%-33.33333%<code>xs:year</code>
+}
+
+::UD4-A15:: Un XML puede ser bien formado pero no válido cuando: {
+~%-33.33333%Tiene declaración XML al inicio
+=Respeta sintaxis XML pero incumple reglas del XSD
+~%-33.33333%No contiene nodos de texto
+~%-33.33333%Incluye comentarios
+}
+
+::UD4-A16:: ¿Qué consigue <code>&lt;xs:pattern&gt;</code> en una restricción XSD? {
+~%-33.33333%Ordenar elementos por nombre
+=Validar el formato de un valor mediante expresión regular
+~%-33.33333%Crear atributos automáticamente
+~%-33.33333%Importar otro esquema
+}
+
+::UD4-A17:: Si defines <code>&lt;xs:element name="precio" type="xs:decimal"/&gt;</code>, ¿cuál es un valor válido? {
+~%-33.33333%<code>veinte</code>
+=<code>19.95</code>
+~%-33.33333%<code>true</code>
+~%-33.33333%<code>2026-03-03</code>
+}
+
+::UD4-A18:: ¿Qué elemento de XSD permite reutilizar la definición de tipos complejos entre varios elementos? {
+=<code>&lt;xs:complexType name="..."&gt;</code>
+~%-33.33333%<code>&lt;xs:comment&gt;</code>
+~%-33.33333%<code>&lt;xs:doctype&gt;</code>
+~%-33.33333%<code>&lt;xs:script&gt;</code>
+}
+
+::UD4-A19:: En un XSD base, ¿qué valor se usa en <code>xmlns:xs</code>? {
+~%-33.33333%<code>http://www.w3.org/2001/XMLSchema-instance</code>
+=<code>http://www.w3.org/2001/XMLSchema</code>
+~%-33.33333%<code>https://xmlschema.org/2001/xsd</code>
+~%-33.33333%<code>http://www.w3.org/XML/Schema</code>
+}
+
+::UD4-A20:: Si un elemento en XSD tiene <code>minOccurs="0"</code>, entonces: {
+~%-33.33333%Es obligatorio una vez
+=Es opcional
+~%-33.33333%Debe repetirse al menos dos veces
+~%-33.33333%Solo puede ir como atributo
+}
+
+::UD4-A21:: ¿Qué representa <code>maxOccurs="unbounded"</code>? {
+~%-33.33333%Máximo 10 repeticiones
+=Sin límite superior definido de repeticiones
+~%-33.33333%Exactamente una aparición
+~%-33.33333%Que el elemento no puede aparecer
+}
+
+::UD4-A22:: ¿Qué valor NO sería válido para <code>xs:integer</code>? {
+~%-33.33333%<code>0</code>
+~%-33.33333%<code>-8</code>
+=<code>3.14</code>
+~%-33.33333%<code>25</code>
+}
+
+::UD4-A23:: Si quieres restringir una nota para aceptar valores entre 0 y 10 (incluidos), ¿qué facetas usarías en XSD? {
+~%-33.33333%<code>xs:minLength</code> y <code>xs:maxLength</code>
+=<code>xs:minInclusive</code> y <code>xs:maxInclusive</code>
+~%-33.33333%<code>xs:pattern</code> y <code>xs:enumeration</code>
+~%-33.33333%<code>minOccurs</code> y <code>maxOccurs</code>
+}
+
+::UD4-A24:: ¿Qué elemento permite documentar el esquema con texto descriptivo? {
+~%-33.33333%<code>&lt;xs:describe&gt;</code>
+=<code>&lt;xs:annotation&gt;</code> (y opcionalmente <code>&lt;xs:documentation&gt;</code>)
+~%-33.33333%<code>&lt;xs:meta&gt;</code>
+~%-33.33333%<code>&lt;xs:info&gt;</code>
+}
+
+::UD4-A25:: En una <code>&lt;xs:sequence&gt;</code>, ¿qué afirmación es correcta? {
+=El orden de aparición de los elementos hijos importa
+~%-33.33333%Los elementos pueden aparecer en cualquier orden
+~%-33.33333%No se pueden repetir elementos
+~%-33.33333%Solo se permiten atributos, no elementos
+}
