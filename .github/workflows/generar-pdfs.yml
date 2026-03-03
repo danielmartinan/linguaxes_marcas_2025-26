@@ -75,16 +75,18 @@ jobs:
           curl -I http://localhost:3000 || (echo "Error: servidor no responde" && exit 1)
 
       - name: 🖨️ Generar PDFs con Puppeteer
+        if: |
+          steps.changed_files.outputs.mode == 'all' || 
+          steps.changed_files.outputs.changed_list != '' && 
+          steps.changed_files.outputs.changed_list != '[]'
         run: |
           if [ "${{ steps.changed_files.outputs.mode }}" == "all" ]; then
+            echo "📄 Modo: Regenerar TODOS los PDFs"
             npm run export-all-pdfs
           else
+            echo "📄 Modo: Regenerar solo archivos modificados"
             CHANGED_FILES='${{ steps.changed_files.outputs.changed_list }}'
-            if [ -z "$CHANGED_FILES" ] || [ "$CHANGED_FILES" == "[]" ]; then
-              npm run export-all-pdfs
-            else
-              node scripts/generate-pdf-puppeteer.js --files="$CHANGED_FILES"
-            fi
+            node scripts/generate-pdf-puppeteer.js --files="$CHANGED_FILES"
           fi
         env:
           BASE_URL: http://localhost:3000
