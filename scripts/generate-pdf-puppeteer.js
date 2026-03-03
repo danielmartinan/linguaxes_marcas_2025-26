@@ -35,6 +35,52 @@ function getAllMarkdownFiles(dir, baseDir = dir) {
     return results;
 }
 
+// Obtener lista de archivos a procesar desde argumentos de línea de comandos
+function getFilesToProcess() {
+    const args = process.argv.slice(2);
+    const filesArg = args.find(arg => arg.startsWith('--files='));
+    
+    if (!filesArg) {
+        // Si no se especifican archivos, procesar todos
+        return getAllMarkdownFiles(docsDir);
+    }
+    
+    try {
+        const jsonStr = filesArg.substring('--files='.length);
+        const changedFiles = JSON.parse(jsonStr);
+        
+        // Filtrar archivos válidos (que existan y no comiencen con _)
+        const validFiles = changedFiles.filter(file => {
+            // Ignorar archivos de directorios que comiencen con _
+            if (file.includes('_examenes') || file.includes('_tarea') || 
+                file.includes('_cuestionarios') || file.includes('_practica') ||
+                file.includes('_ejercicios_resueltos') || file.includes('_apuntes_distancia')) {
+                console.log(`⏭️  Ignorando: ${file} (directorio privado)`);
+                return false;
+            }
+            
+            const fullPath = path.join(docsDir, file);
+            if (!fs.existsSync(fullPath)) {
+                console.log(`⚠️  Archivo no encontrado: ${file}`);
+                return false;
+            }
+            
+            return true;
+        });
+        
+        if (validFiles.length === 0) {
+            console.log('⚠️  No hay archivos válidos para procesar. Procesando todos...');
+            return getAllMarkdownFiles(docsDir);
+        }
+        
+        return validFiles;
+    } catch (error) {
+        console.error('Error al parsear archivos JSON:', error.message);
+        console.log('Procesando todos los archivos...');
+        return getAllMarkdownFiles(docsDir);
+    }
+}
+
 (async () => {
     const browser = await puppeteer.launch({
         headless: true,
@@ -44,7 +90,7 @@ function getAllMarkdownFiles(dir, baseDir = dir) {
     await page.setViewport({ width: 1200, height: 1600 });
     await page.emulateMediaType('screen');
 
-    const files = getAllMarkdownFiles(docsDir);
+    const files = getFilesToProcess();
     console.log(`\n📚 Encontrados ${files.length} archivos para exportar\n`);
     
     for (let i = 0; i < files.length; i++) {

@@ -16,6 +16,12 @@ on:
       - 'scripts/export-single-doc.js'
       - 'static/print.css'
   workflow_dispatch:  # Permite ejecutar manualmente si es necesario
+    inputs:
+      regenerate_all:
+        description: 'Regenerar PDFs de todos los documentos'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   generar-pdfs:
@@ -38,6 +44,28 @@ jobs:
       - name: 🏗️ Compilar el sitio
         run: npm run build
 
+      - name: � Detectar archivos cambios
+        id: changed_files
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ "${{ inputs.regenerate_all }}" == "true" ]; then
+            echo "mode=all" >> $GITHUB_OUTPUT
+            echo "Modo: Regenerar TODOS los PDFs"
+          else
+            echo "mode=changed" >> $GITHUB_OUTPUT
+            # Detectar los archivos .md/.mdx cambiados en el último commit en docs/
+            CHANGED_FILES=$(git diff HEAD~1 HEAD --name-only -- 'docs/**/*.md' 'docs/**/*.mdx' 2>/dev/null || echo "")
+            if [ -z "$CHANGED_FILES" ]; then
+              # Si no hay commit anterior (ej: primer commit) o no hay cambios, procesar todos
+              echo "changed_list=" >> $GITHUB_OUTPUT
+              echo "Modo: Primer commit o sin cambios detectados. Se procesarán todos los PDFs."
+            else
+              CHANGED_JSON=$(echo "$CHANGED_FILES" | jq -R -s -c 'split("\n")[:-1]')
+              echo "changed_list=$CHANGED_JSON" >> $GITHUB_OUTPUT
+              echo "Archivos cambios detectados:"
+              echo "$CHANGED_FILES"
+            fi
+          fi
+
       - name: 🚀 Iniciar servidor Docusaurus en segundo plano
         run: |
           npm run serve &
@@ -47,7 +75,17 @@ jobs:
           curl -I http://localhost:3000 || (echo "Error: servidor no responde" && exit 1)
 
       - name: 🖨️ Generar PDFs con Puppeteer
-        run: npm run export-all-pdfs
+        run: |
+          if [ "${{ steps.changed_files.outputs.mode }}" == "all" ]; then
+            npm run export-all-pdfs
+          else
+            CHANGED_FILES='${{ steps.changed_files.outputs.changed_list }}'
+            if [ -z "$CHANGED_FILES" ] || [ "$CHANGED_FILES" == "[]" ]; then
+              npm run export-all-pdfs
+            else
+              node scripts/generate-pdf-puppeteer.js --files="$CHANGED_FILES"
+            fi
+          fi
         env:
           BASE_URL: http://localhost:3000
 
