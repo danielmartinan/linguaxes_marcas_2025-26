@@ -10,10 +10,10 @@ $CATEGORY: $course$/T2 - UD3 y UD4 - Alternativa
 // ==================== PREGUNTAS UD3 (JavaScript y DOM) ====================
 
 ::UD3-A01:: ¿Cuál es la forma correcta de declarar una constante en JavaScript moderno? {
-=<code>const limite = 10;</code>
-~%-33.33333%<code>constant limite = 10;</code>
-~%-33.33333%<code>var const limite = 10;</code>
-~%-33.33333%<code>final limite = 10;</code>
+=<code>const limite \= 10;</code>
+~%-33.33333%<code>constant limite \= 10;</code>
+~%-33.33333%<code>var const limite \= 10;</code>
+~%-33.33333%<code>final limite \= 10;</code>
 }
 
 ::UD3-A02:: ¿Qué método selecciona el elemento con id <code>"menu"</code>? {
@@ -115,10 +115,10 @@ $CATEGORY: $course$/T2 - UD3 y UD4 - Alternativa
 }
 
 ::UD3-A16:: Si <code>x = "5"</code> e <code>y = 5</code>, según los ejemplos de apuntes ¿qué muestran <code>x == y</code> y <code>x === y</code>? {
-=<code>x == y</code> es <code>true</code> y <code>x === y</code> es <code>false</code>
+=<code>x \=\= y</code> es <code>true</code> y <code>x \=\=\= y</code> es <code>false</code>
 ~%-33.33333%Ambas comparaciones son <code>true</code>
 ~%-33.33333%Ambas comparaciones son <code>false</code>
-~%-33.33333%<code>x == y</code> es <code>false</code> y <code>x === y</code> es <code>true</code>
+~%-33.33333%<code>x \=\= y</code> es <code>false</code> y <code>x \=\=\= y</code> es <code>true</code>
 }
 
 ::UD3-A17:: ¿Qué método de array devuelve solo el primer elemento que cumple una condición? {
@@ -201,10 +201,10 @@ $CATEGORY: $course$/T2 - UD3 y UD4 - Alternativa
 }
 
 ::UD4-A03:: Si un elemento es obligatorio exactamente una vez, una configuración típica es: {
-=<code>minOccurs="1" maxOccurs="1"</code>
-~%-33.33333%<code>minOccurs="0" maxOccurs="1"</code>
-~%-33.33333%<code>minOccurs="0" maxOccurs="unbounded"</code>
-~%-33.33333%<code>minOccurs="2" maxOccurs="2"</code>
+=<code>minOccurs\="1" maxOccurs\="1"</code>
+~%-33.33333%<code>minOccurs\="0" maxOccurs\="1"</code>
+~%-33.33333%<code>minOccurs\="0" maxOccurs\="unbounded"</code>
+~%-33.33333%<code>minOccurs\="2" maxOccurs\="2"</code>
 }
 
 ::UD4-A04:: ¿Qué tipo simple de XSD usarías para valores de texto libre? {
@@ -264,10 +264,10 @@ $CATEGORY: $course$/T2 - UD3 y UD4 - Alternativa
 }
 
 ::UD4-A12:: ¿Qué restricción usarías para limitar la longitud mínima de una cadena a 5 caracteres? {
-~%-33.33333%<code>minOccurs="5"</code>
-=<code>&lt;xs:minLength value="5"/&gt;</code>
-~%-33.33333%<code>&lt;xs:minInclusive value="5"/&gt;</code>
-~%-33.33333%<code>&lt;xs:lengthMin value="5"/&gt;</code>
+~%-33.33333%<code>minOccurs\="5"</code>
+=<code>&lt;xs:minLength value\="5"/&gt;</code>
+~%-33.33333%<code>&lt;xs:minInclusive value\="5"/&gt;</code>
+~%-33.33333%<code>&lt;xs:lengthMin value\="5"/&gt;</code>
 }
 
 ::UD4-A13:: Para permitir solo los valores <code>"A"</code>, <code>"B"</code> o <code>"C"</code>, usarías: {
@@ -306,7 +306,7 @@ $CATEGORY: $course$/T2 - UD3 y UD4 - Alternativa
 }
 
 ::UD4-A18:: ¿Qué elemento de XSD permite reutilizar la definición de tipos complejos entre varios elementos? {
-=<code>&lt;xs:complexType name="..."&gt;</code>
+=<code>&lt;xs:complexType name\="..."&gt;</code>
 ~%-33.33333%<code>&lt;xs:comment&gt;</code>
 ~%-33.33333%<code>&lt;xs:doctype&gt;</code>
 ~%-33.33333%<code>&lt;xs:script&gt;</code>
