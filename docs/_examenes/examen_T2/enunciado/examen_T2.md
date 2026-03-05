@@ -49,7 +49,9 @@ Partiendo del HTML base proporcionado en `ejer1/`, implementa en JavaScript lo s
    - El cambio de estado se realizará con un clic (comportamiento toggle). Si el alumno está marcado como presente, el botón mostrará "Marcar ausente" y viceversa.
    - El estado debe reflejarse visualmente en la interfaz:
 
-      ![alt text](image.png)
+      <div style="width: 550px">
+        <img src="image.png" alt="Ejemplo de interfaz con alumnos presentes y ausentes" style="width: 100%; height: auto;">
+      </div>  
 
 3. **Alta de alumno**
    - Incluye un campo de texto y un botón "Añadir alumno".
@@ -163,7 +165,7 @@ Tu archivo `formula1.xsd` debe contemplar, como mínimo:
 
 ### XML de ejemplo
 
-A continuación se muestra un ejemplo de XML válido, que debe ser validado correctamente por tu esquema XSD:
+A continuación se muestra un ejemplo de XML válido, que debe ser validado correctamente por tu esquema XSD (fragmento del XML adjunto en `recursos_examen_T2/`; puedes verlo completo en `ejer2/formula1.xml`):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -197,39 +199,6 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
         <nombre>Silverstone</nombre>
         <pais>Reino Unido</pais>
         <longitudKm>5.891</longitudKm>
-        <tipo>permanente</tipo>
-      </circuitoHabitual>
-    </circuitosHabituales>
-  </escuderia>
-
-  <escuderia codigo="FER">
-    <nombre>Scuderia Ferrari</nombre>
-    <paisBase>Italia</paisBase>
-    <jefeEquipo>
-      <nombre>Frederic Vasseur</nombre>
-      <nacionalidad>Francés</nacionalidad>
-    </jefeEquipo>
-    <pilotos>
-      <pilotoTitular>
-        <nombre>Charles Leclerc</nombre>
-        <dorsal>16</dorsal>
-        <nacionalidad>Monegasco</nacionalidad>
-        <rol>titular</rol>
-      </pilotoTitular>
-      <pilotoTitular>
-        <nombre>Lewis Hamilton</nombre>
-        <dorsal>44</dorsal>
-        <nacionalidad>Británico</nacionalidad>
-        <rol>titular</rol>
-      </pilotoTitular>
-    </pilotos>
-    <motor>Ferrari</motor>
-    <presupuesto>400.0</presupuesto>
-    <circuitosHabituales>
-      <circuitoHabitual>
-        <nombre>Monza</nombre>
-        <pais>Italia</pais>
-        <longitudKm>5.793</longitudKm>
         <tipo>permanente</tipo>
       </circuitoHabitual>
     </circuitosHabituales>
@@ -280,24 +249,16 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
     </circuitosHabituales>
   </escuderia>
 
+  ...
+
   <circuito>
     <nombre>Bahrain International Circuit</nombre>
     <pais>Baréin</pais>
     <longitudKm>5.412</longitudKm>
     <tipo>permanente</tipo>
   </circuito>
-  <circuito>
-    <nombre>Circuit de Monaco</nombre>
-    <pais>Mónaco</pais>
-    <longitudKm>3.337</longitudKm>
-    <tipo>urbano</tipo>
-  </circuito>
-  <circuito>
-    <nombre>Yas Marina Circuit</nombre>
-    <pais>Emiratos Árabes Unidos</pais>
-    <longitudKm>5.281</longitudKm>
-    <tipo>semiurbano</tipo>
-  </circuito>
+
+  ...
 </temporadaF1>
 
 ```
