@@ -9,18 +9,18 @@
       <nacionalidad>Austriaco</nacionalidad>
     </jefeEquipo>
     <pilotos>
-      <piloto>
+      <pilotoTitular>
         <nombre>Kimi Antonelli</nombre>
         <dorsal>12</dorsal>
         <nacionalidad>Italiano</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoTitular>
         <nombre>George Russell</nombre>
         <dorsal>63</dorsal>
         <nacionalidad>Británico</nacionalidad>
         <rol>titular</rol>
-      </piloto>
+      </pilotoTitular>
     </pilotos>
     <motor>Mercedes</motor>
     <presupuesto>450.5</presupuesto>
@@ -42,18 +42,18 @@
       <nacionalidad>Francés</nacionalidad>
     </jefeEquipo>
     <pilotos>
-      <piloto>
+      <pilotoTitular>
         <nombre>Charles Leclerc</nombre>
         <dorsal>16</dorsal>
         <nacionalidad>Monegasco</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoTitular>
         <nombre>Lewis Hamilton</nombre>
         <dorsal>44</dorsal>
         <nacionalidad>Británico</nacionalidad>
         <rol>titular</rol>
-      </piloto>
+      </pilotoTitular>
     </pilotos>
     <motor>Ferrari</motor>
     <presupuesto>400.0</presupuesto>
@@ -75,30 +75,30 @@
       <nacionalidad>Italiano</nacionalidad>
     </jefeEquipo>
     <pilotos>
-      <piloto>
+      <pilotoTitular>
         <nombre>Lando Norris</nombre>
         <dorsal>4</dorsal>
         <nacionalidad>Británico</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoTitular>
         <nombre>Oscar Piastri</nombre>
         <dorsal>81</dorsal>
         <nacionalidad>Australiano</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoReserva>
         <nombre>Leonardo Fornaroli</nombre>
         <dorsal>20</dorsal>
         <nacionalidad>Italiano</nacionalidad>
         <rol>reserva</rol>
-      </piloto>
-      <piloto>
+      </pilotoReserva>
+      <pilotoReserva>
         <nombre>Patricio 'Pato' O'Ward</nombre>
         <dorsal>5</dorsal>
         <nacionalidad>Mexicano</nacionalidad>
         <rol>reserva</rol>
-      </piloto>
+      </pilotoReserva>
     </pilotos>
     <motor>Mercedes</motor>
     <presupuesto>420.0</presupuesto>

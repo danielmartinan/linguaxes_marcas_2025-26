@@ -18,7 +18,7 @@
 
 Para la realización de este examen, dispones de un archivo base con la estructura inicial de trabajo (`recursos_examen_T2.zip`) en la plataforma.
 
-Podrás utilizar cualquier editor de texto o IDE de tu preferencia para la creación y edición de los archivos, aunque se recomienda el uso de Visual Studio Code. Tienes 5 minutos antes de comenzar el examen para preparar tu entorno de trabajo. Se recomiendan estas extensiones:
+Podrás utilizar cualquier editor de texto o IDE de tu preferencia para la creación y edición de los archivos, aunque se recomienda el uso de **Visual Studio Code**. Tienes 5 minutos antes de comenzar el examen para preparar tu entorno de trabajo. Se recomiendan estas extensiones:
 
 - XML Tools
 - JavaScript (ES6) code snippets
@@ -28,9 +28,9 @@ Podrás utilizar cualquier editor de texto o IDE de tu preferencia para la creac
 
 Puedes instalar cualquier otra extensión que consideres útil para la realización del examen. Ten en cuenta que el uso de completadores automáticos (tipo Copilot) está **terminantemente prohibido**.
 
-## Ejercicio 1: Interactividad con JavaScript y DOM (5 puntos)
+<div style="page-break-after: always;"></div>
 
-### Tiempo recomendado: 50 minutos
+## Ejercicio 1: Interactividad con JavaScript y DOM (5 puntos)
 
 Desarrolla una pequeña aplicación web de **control de asistencia** usando JavaScript en cliente y manipulación del DOM.
 
@@ -38,7 +38,7 @@ Se recomienda analizar detalladamente el HTML base proporcionado en `ejer1/` ant
 
 ### Requisitos funcionales
 
-Partiendo de un HTML base (proporcionado en `ejer1/`), implementa en JavaScript lo siguiente:
+Partiendo del HTML base proporcionado en `ejer1/`, implementa en JavaScript lo siguiente:
 
 1. **Listado inicial de alumnado**
    - Carga una lista inicial de entre 6 y 8 alumnos desde un array en JavaScript.
@@ -47,13 +47,25 @@ Partiendo de un HTML base (proporcionado en `ejer1/`), implementa en JavaScript 
 2. **Marcado de asistencia**
    - Cada alumno debe poder marcarse como `presente` o `ausente`.
    - El cambio de estado se realizará con un clic (comportamiento toggle). Si el alumno está marcado como presente, el botón mostrará "Marcar ausente" y viceversa.
-   - El estado debe reflejarse visualmente en la interfaz.
+   - El estado debe reflejarse visualmente en la interfaz:
+
+      ![alt text](image.png)
 
 3. **Alta de alumno**
    - Incluye un campo de texto y un botón "Añadir alumno".
    - No se permitirá añadir nombres vacíos ni duplicados exactos. Se mostrará un mensaje de error en caso de incumplir estas condiciones (*Introduce un nombre válido* o *El alumno ya existe*).
+
+    ![alt text](image-1.png)
+
+    ![alt text](image-2.png)
+
    - Al añadir un nuevo alumno, este se mostrará automáticamente en la lista con estado inicial `presente`.
+
+    ![alt text](image-3.png)
+
    - No se podrán añadir más de 10 alumnos en total. Si se intenta superar este límite, se mostrará un mensaje de error (*Límite de alumnos alcanzado*).
+
+    ![alt text](image-4.png)
 
 4. **Eliminación de alumno**
    - Cada alumno debe disponer de un botón "Eliminar".
@@ -76,19 +88,21 @@ Partiendo de un HTML base (proporcionado en `ejer1/`), implementa en JavaScript 
 
 Entregarás la carpeta `ejer1/` con los siguientes archivos:
 
-- `ejer1_asistencia.html`: el HTML base (proporcionado, no modificar excepto para añadir clases o atributos necesarios).
-- `ejer1_asistencia.css`: estilos (ya proporcionados)
+- `ejer1_asistencia.html`: el HTML base (proporcionado, no modificar excepto para añadir clases o atributos necesarios). Si añades algo, indícalo claramente en la memoria de tu solución.
+- `ejer1_asistencia.css`: estilos (ya proporcionados). No modificar.
 - `ejer1_asistencia.js`: tu código JavaScript con la implementación de la funcionalidad.
 
 Se evaluará solamente el código JavaScript.
 
+<div style="page-break-after: always;"></div>
+
 ## Ejercicio 2: Diseño de un esquema XSD y validación XML (5 puntos)
 
-### Tiempo recomendado: 55 minutos
-
-Debes definir un esquema XSD para validar un documento XML de **temporada de Fórmula 1**.
+Debes definir un esquema XSD para validar un documento XML que almacena información de una **temporada de Fórmula 1**.
 
 ### Requisitos del XML a validar
+
+El XML debe contener información sobre las escuderías participantes y los circuitos habituales de la temporada.
 
 Cada escudería debe incluir:
 
@@ -101,8 +115,8 @@ Cada escudería debe incluir:
   - **Nombre** (obligatorio)
   - **Dorsal** (entero entre 1 y 99)
   - **Nacionalidad** (obligatorio)
-  - **Rol** (`titular`, `reserva`)
-- **Motor** (`Ferrari`, `Mercedes`, `Honda`, `Ford`)
+  - **Rol**: a elegir entre `titular` o `reserva`
+- **Motor**: a elegir entre `Ferrari`, `Mercedes`, `Honda` o `Ford`
 - **Presupuesto** (decimal mayor o igual a 0)
 - **Circuitos habituales** (0 o más)
 
@@ -111,7 +125,7 @@ Cada circuito debe incluir:
 - **Nombre** (obligatorio)
 - **País** (obligatorio)
 - **LongitudKm** (decimal positivo)
-- **Tipo** (`urbano`, `permanente`, `semiurbano`)
+- **Tipo**: a elegir entre `urbano`, `permanente` o `semiurbano`
 
 ### Requisitos del esquema XSD
 
@@ -129,6 +143,20 @@ Tu archivo `formula1.xsd` debe contemplar, como mínimo:
    - El `codigo` debe declararse como atributo obligatorio de `escuderia`.
    - Debe garantizarse que no haya dos escuderías con el mismo `codigo`.
    - Debe garantizarse que no haya dos pilotos con el mismo `dorsal`.
+
+    > **Nota**: Para garantizar la unicidad de `codigo` y `dorsal`, puedes usar elementos `<xs:unique>` dentro de tu esquema XSD:
+    >
+    >```xml
+    ><xs:unique name="codigoEscuderiaUnico">
+    >  <xs:selector xpath="escuderia"/>
+    >  <xs:field xpath="@codigo"/>
+    ></xs:unique>
+    >
+    ><xs:unique name="dorsalPilotoUnico">
+    >  <xs:selector xpath="escuderia/pilotos/piloto"/>
+    >  <xs:field xpath="dorsal"/>
+    ></xs:unique>
+    >```
 
 4. **Cardinalidades**
    - `jefeEquipo` debe aparecer exactamente una vez por escudería.
@@ -280,7 +308,72 @@ Entregarás la carpeta `ejer2/` con los siguientes archivos:
 - Guarda el esquema como: `formula1.xsd`
 - `formula1.xml` ya proporcionado (para validación).
 
-### Criterios de evaluación del ejercicio 2
+<div style="page-break-after: always;"></div>
+
+## Criterios de calificación
+
+A continuación se detallan los criterios de evaluación para cada ejercicio:
+
+### Ejercicio 1 (5 puntos)
+
+Se recomienda aplicar la siguiente rúbrica orientativa:
+
+| Bloque | Criterio | Puntos |
+|---|---|---:|
+| Listado inicial y renderizado | Carga inicial correcta (6 a 8 alumnos) desde array JavaScript | 0,35 |
+| Listado inicial y renderizado | Representación en DOM del nombre y estado de cada alumno | 0,40 |
+| Marcado de asistencia (toggle) | Cambio de estado funcional por clic con `addEventListener` | 0,55 |
+| Marcado de asistencia (toggle) | Actualización del texto del botón según estado | 0,35 |
+| Marcado de asistencia (toggle) | Reflejo visual coherente del estado en interfaz | 0,35 |
+| Alta de alumno con validaciones | Alta correcta con estado inicial `presente` | 0,45 |
+| Alta de alumno con validaciones | Validación de nombre vacío + mensaje de error | 0,25 |
+| Alta de alumno con validaciones | Validación de duplicado exacto + mensaje de error | 0,25 |
+| Alta de alumno con validaciones | Límite máximo de 10 alumnos + mensaje de error | 0,30 |
+| Eliminación de alumno | Eliminación individual correcta del alumno seleccionado | 0,50 |
+| Resumen dinámico | Cálculo y actualización de total, presentes y ausentes tras cada operación | 0,75 |
+| Calidad técnica del código | Uso de funciones claras y reutilizables, sin eventos inline | 0,25 |
+| Calidad técnica del código | Sintaxis correcta, nombres legibles, limpieza/orden del código | 0,25 |
+|  | **Total Ejercicio 1** | **5,00** |
+
+**Corrección parcial y penalizaciones orientativas (Ejer. 1)**
+
+| Concepto | Aplicación |
+|---|---|
+| Corrección parcial | Si una funcionalidad está incompleta pero parcialmente operativa, se podrá asignar entre el 25% y el 75% de su apartado. |
+| Penalización por bloqueo global JS | Errores de JavaScript que bloqueen la ejecución global: hasta **-0,50** puntos. |
+| Penalización por modificar HTML/CSS fuera de lo permitido | Incumplir la restricción puede suponer hasta **-0,50** puntos. |
+
+### Ejercicio 2 (5 puntos)
+
+Se recomienda aplicar la siguiente rúbrica orientativa:
+
+| Bloque | Criterio | Puntos |
+|---|---|---:|
+| Estructura general del esquema | Definición de elemento raíz `temporadaF1` | 0,30 |
+| Estructura general del esquema | Inclusión y cardinalidad base de `escuderia` y `circuito` | 0,60 |
+| Modelado de tipos y reutilización | Uso correcto de tipos complejos para persona/piloto/circuito/escudería | 0,60 |
+| Modelado de tipos y reutilización | Uso de tipos simples cuando proceda (o diseño equivalente correctamente justificado) | 0,40 |
+| Restricciones de valores | `rol` con valores válidos (`titular`/`reserva`) | 0,30 |
+| Restricciones de valores | `motor` y `tipo` con valores cerrados válidos | 0,35 |
+| Restricciones de valores | `dorsal` entre 1 y 99 | 0,25 |
+| Restricciones de valores | `presupuesto` >= 0 y `longitudKm` > 0 | 0,30 |
+| Cardinalidades y obligatoriedad | `jefeEquipo` exactamente una vez por escudería | 0,25 |
+| Cardinalidades y obligatoriedad | Modelado correcto de pilotos (2 titulares y 0 o más reserva, o equivalente validable) | 0,45 |
+| Cardinalidades y obligatoriedad | `circuitosHabituales` (0 o más) correctamente resuelto | 0,20 |
+| Atributos y unicidad | Atributo `codigo` obligatorio en `escuderia` | 0,20 |
+| Atributos y unicidad | Unicidad de `codigo` entre escuderías | 0,25 |
+| Atributos y unicidad | Unicidad global de `dorsal` en pilotos | 0,25 |
+| Validación y calidad formal | XML de ejemplo valida correctamente contra el XSD | 0,20 |
+| Validación y calidad formal | Sintaxis XML/XSD limpia (indentación, etiquetas y estructura coherentes) | 0,10 |
+|  | **Total Ejercicio 2** | **5,00** |
+
+**Corrección parcial y penalizaciones orientativas (Ejer. 2)**
+
+| Concepto | Aplicación |
+|---|---|
+| Corrección parcial por bloques | Si el esquema valida parcialmente pero contiene errores puntuales en restricciones, se evaluará por bloques según esta rúbrica. |
+| Penalización por error de sintaxis XSD | Un XSD con errores de sintaxis que impida validar podrá penalizar hasta **-1,00** punto adicional. |
+| Sin puntuación del subapartado de unicidad | Si no se garantiza alguna unicidad pedida (`codigo` o `dorsal`), no se otorgará la puntuación de ese subapartado. |
 
 ## Entrega final
 
@@ -296,5 +389,3 @@ examen_T2_nombre_apellidos.zip
     ├── formula1.xsd
     └── formula1.xml
 ```
-
-**¡Mucha suerte!**

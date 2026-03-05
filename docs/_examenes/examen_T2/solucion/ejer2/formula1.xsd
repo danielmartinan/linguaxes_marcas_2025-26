@@ -51,13 +51,32 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="pilotoType">
+  <xs:complexType name="pilotoBaseType">
     <xs:sequence>
       <xs:element name="nombre" type="xs:string"/>
       <xs:element name="dorsal" type="dorsalType"/>
       <xs:element name="nacionalidad" type="xs:string"/>
-      <xs:element name="rol" type="rolType"/>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pilotoTitularType">
+    <xs:complexContent>
+      <xs:extension base="pilotoBaseType">
+        <xs:sequence>
+          <xs:element name="rol" type="xs:string" fixed="titular"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="pilotoReservaType">
+    <xs:complexContent>
+      <xs:extension base="pilotoBaseType">
+        <xs:sequence>
+          <xs:element name="rol" type="xs:string" fixed="reserva"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="circuitoType">
@@ -77,7 +96,8 @@
       <xs:element name="pilotos">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="piloto" type="pilotoType" minOccurs="2" maxOccurs="unbounded"/>
+            <xs:element name="pilotoTitular" type="pilotoTitularType" minOccurs="2" maxOccurs="2"/>
+            <xs:element name="pilotoReserva" type="pilotoReservaType" minOccurs="0" maxOccurs="unbounded"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -108,7 +128,7 @@
     </xs:unique>
 
     <xs:unique name="dorsalPilotoUnico">
-      <xs:selector xpath="escuderia/pilotos/piloto"/>
+      <xs:selector xpath="escuderia/pilotos/*"/>
       <xs:field xpath="dorsal"/>
     </xs:unique>
   </xs:element>
