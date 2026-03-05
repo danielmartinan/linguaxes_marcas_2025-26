@@ -6,6 +6,12 @@ const BASE_URL = 'http://localhost:3000';
 const docsDir = path.resolve(__dirname, '../docs');
 const outputBase = path.resolve(__dirname, '../static/pdfs');
 
+// Permitir pasar un directorio específico como argumento
+const dirArg = process.argv[2];
+const targetDir = dirArg 
+    ? path.resolve(__dirname, '../docs', dirArg) 
+    : docsDir;
+
 function sanitizeForFs(p) {
     return p
         .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // quita tildes
@@ -46,15 +52,27 @@ function getFilesToProcess() {
     }
     
     try {
-        const jsonStr = filesArg.substring('--files='.length);
-        const changedFiles = JSON.parse(jsonStr);
+        const jsonStr = filesArg.substring('--files='.length).trim();
+        let changedFiles = [];
+
+        try {
+            const parsed = JSON.parse(jsonStr);
+            changedFiles = Array.isArray(parsed) ? parsed : [parsed];
+        } catch {
+            // Fallback tolerante para PowerShell: acepta path simple o lista separada por comas
+            changedFiles = jsonStr
+                .replace(/^\[|\]$/g, '')
+                .split(',')
+                .map(s => s.trim().replace(/^['"]|['"]$/g, ''))
+                .filter(Boolean);
+        }
         
         // Filtrar archivos válidos (que existan y no comiencen con _)
         const validFiles = changedFiles.filter(file => {
-            // Ignorar archivos de directorios que comiencen con _
-            if (file.includes('_examenes') || file.includes('_tarea') || 
-                file.includes('_cuestionarios') || file.includes('_practica') ||
-                file.includes('_ejercicios_resueltos') || file.includes('_apuntes_distancia')) {
+            // Ignorar solo si algún directorio en la ruta empieza por "_"
+            const parts = file.replace(/\\/g, '/').split('/').filter(Boolean);
+            const hasPrivateDir = parts.slice(0, -1).some(part => part.startsWith('_'));
+            if (hasPrivateDir) {
                 console.log(`⏭️  Ignorando: ${file} (directorio privado)`);
                 return false;
             }
@@ -196,7 +214,42 @@ function getFilesToProcess() {
                 });
             });
 
+            // Forzar apertura de secciones colapsables en markdown (<details>)
+            await page.evaluate(() => {
+                document.querySelectorAll('details').forEach((detailsEl) => {
+                    detailsEl.open = true;
+                    detailsEl.setAttribute('open', '');
+                });
+            });
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
             await page.addStyleTag({ path: path.resolve(__dirname, '../static/print.css') });
+
+            // Inyectar estilos adicionales para forzar tamaños de fuente
+            await page.addStyleTag({
+                content: `
+                    h1 { font-size: 18pt !important; }
+                    h2 { font-size: 15pt !important; }
+                    h3, h4, h5, h6 { font-size: 13pt !important; }
+                    body, p, li, span, div, td, th, a, code { font-size: 11pt !important; }
+                    pre { font-size: 9pt !important; }
+
+                    /* Forzar contenido de <details> siempre visible en PDF */
+                    details { display: block !important; }
+                    details > summary { display: list-item !important; }
+                    details > :not(summary) { display: block !important; }
+                    details > summary ~ * {
+                        display: block !important;
+                        visibility: visible !important;
+                        opacity: 1 !important;
+                        max-height: none !important;
+                        height: auto !important;
+                        overflow: visible !important;
+                    }
+                    details:not([open]) > :not(summary) { display: block !important; }
+                `
+            });
 
             // Forzar visibilidad y ocultar navegación
             await page.evaluate(() => {
@@ -208,7 +261,9 @@ function getFilesToProcess() {
                     '.pagination-nav', 'footer', '.footer',
                     '.table-of-contents', '.theme-back-to-top-button',
                     '[class*="tocCollapsible"]', '[class*="sidebar"]',
-                    '[class*="breadcrumb"]'
+                    '[class*="breadcrumb"]', '[class*="tableOfContents"]',
+                    '[class*="toc"]', '[class*="docSidebarContainer"]',
+                    '[class*="docToc"]'
                 ];
                 
                 elementsToHide.forEach(selector => {
@@ -255,6 +310,60 @@ function getFilesToProcess() {
 
             await new Promise(resolve => setTimeout(resolve, 1000));
 
+            // Reforzar apertura justo antes de imprimir (evita re-colapsado por hidratación)
+            const detailsState = await page.evaluate(async () => {
+                const forceOpen = () => {
+                    document.querySelectorAll('details').forEach((detailsEl) => {
+                        const summaryEl = detailsEl.querySelector(':scope > summary');
+                        if (!detailsEl.open && summaryEl) {
+                            summaryEl.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+                        }
+
+                        detailsEl.open = true;
+                        detailsEl.setAttribute('open', '');
+
+                        if (detailsEl instanceof HTMLElement) {
+                            detailsEl.style.display = 'block';
+                            detailsEl.style.visibility = 'visible';
+                            detailsEl.style.opacity = '1';
+                            detailsEl.style.maxHeight = 'none';
+                            detailsEl.style.height = 'auto';
+                            detailsEl.style.overflow = 'visible';
+
+                            Array.from(detailsEl.children).forEach((child) => {
+                                if (child instanceof HTMLElement && child.tagName.toLowerCase() !== 'summary') {
+                                    child.style.display = 'block';
+                                    child.style.visibility = 'visible';
+                                    child.style.opacity = '1';
+                                    child.style.maxHeight = 'none';
+                                    child.style.height = 'auto';
+                                    child.style.overflow = 'visible';
+                                }
+                            });
+
+                            detailsEl.querySelectorAll('[hidden], [aria-hidden="true"]').forEach((el) => {
+                                if (el instanceof HTMLElement) {
+                                    el.removeAttribute('hidden');
+                                    el.setAttribute('aria-hidden', 'false');
+                                }
+                            });
+                        }
+                    });
+                };
+
+                forceOpen();
+                await new Promise(resolve => setTimeout(resolve, 150));
+                forceOpen();
+
+                const total = document.querySelectorAll('details').length;
+                const open = document.querySelectorAll('details[open]').length;
+                return { total, open };
+            });
+
+            if (detailsState.total > 0) {
+                console.log(`   ℹ️  Details abiertos: ${detailsState.open}/${detailsState.total}`);
+            }
+
             await page.pdf({
                 path: outputFile,
                 format: 'A4',
@@ -263,10 +372,10 @@ function getFilesToProcess() {
                 displayHeaderFooter: false,
                 omitBackground: false,
                 margin: {
-                    top: '20mm',
-                    bottom: '20mm',
-                    left: '15mm',
-                    right: '15mm'
+                    top: '16mm',
+                    bottom: '16mm',
+                    left: '14mm',
+                    right: '14mm'
                 },
             });
             

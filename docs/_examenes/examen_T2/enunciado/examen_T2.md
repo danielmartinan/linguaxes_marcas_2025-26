@@ -167,7 +167,8 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<temporadaF1>
+<temporadaF1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="formula1.xsd">
   <escuderia codigo="MER">
     <nombre>Mercedes-AMG Petronas</nombre>
     <paisBase>Alemania</paisBase>
@@ -176,18 +177,18 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
       <nacionalidad>Austriaco</nacionalidad>
     </jefeEquipo>
     <pilotos>
-      <piloto>
+      <pilotoTitular>
         <nombre>Kimi Antonelli</nombre>
         <dorsal>12</dorsal>
         <nacionalidad>Italiano</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoTitular>
         <nombre>George Russell</nombre>
         <dorsal>63</dorsal>
         <nacionalidad>Británico</nacionalidad>
         <rol>titular</rol>
-      </piloto>
+      </pilotoTitular>
     </pilotos>
     <motor>Mercedes</motor>
     <presupuesto>450.5</presupuesto>
@@ -198,7 +199,6 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
         <longitudKm>5.891</longitudKm>
         <tipo>permanente</tipo>
       </circuitoHabitual>
-      <!-- Más circuitos habituales -->
     </circuitosHabituales>
   </escuderia>
 
@@ -210,18 +210,18 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
       <nacionalidad>Francés</nacionalidad>
     </jefeEquipo>
     <pilotos>
-      <piloto>
+      <pilotoTitular>
         <nombre>Charles Leclerc</nombre>
         <dorsal>16</dorsal>
         <nacionalidad>Monegasco</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoTitular>
         <nombre>Lewis Hamilton</nombre>
         <dorsal>44</dorsal>
         <nacionalidad>Británico</nacionalidad>
         <rol>titular</rol>
-      </piloto>
+      </pilotoTitular>
     </pilotos>
     <motor>Ferrari</motor>
     <presupuesto>400.0</presupuesto>
@@ -243,30 +243,30 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
       <nacionalidad>Italiano</nacionalidad>
     </jefeEquipo>
     <pilotos>
-      <piloto>
+      <pilotoTitular>
         <nombre>Lando Norris</nombre>
         <dorsal>4</dorsal>
         <nacionalidad>Británico</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoTitular>
         <nombre>Oscar Piastri</nombre>
         <dorsal>81</dorsal>
         <nacionalidad>Australiano</nacionalidad>
         <rol>titular</rol>
-      </piloto>
-      <piloto>
+      </pilotoTitular>
+      <pilotoReserva>
         <nombre>Leonardo Fornaroli</nombre>
         <dorsal>20</dorsal>
         <nacionalidad>Italiano</nacionalidad>
         <rol>reserva</rol>
-      </piloto>
-      <piloto>
+      </pilotoReserva>
+      <pilotoReserva>
         <nombre>Patricio 'Pato' O'Ward</nombre>
         <dorsal>5</dorsal>
         <nacionalidad>Mexicano</nacionalidad>
         <rol>reserva</rol>
-      </piloto>
+      </pilotoReserva>
     </pilotos>
     <motor>Mercedes</motor>
     <presupuesto>420.0</presupuesto>
@@ -299,6 +299,7 @@ A continuación se muestra un ejemplo de XML válido, que debe ser validado corr
     <tipo>semiurbano</tipo>
   </circuito>
 </temporadaF1>
+
 ```
 
 ### Entrega del ejercicio 2
@@ -315,8 +316,6 @@ Entregarás la carpeta `ejer2/` con los siguientes archivos:
 A continuación se detallan los criterios de evaluación para cada ejercicio:
 
 ### Ejercicio 1 (5 puntos)
-
-Se recomienda aplicar la siguiente rúbrica orientativa:
 
 | Bloque | Criterio | Puntos |
 |---|---|---:|
@@ -335,17 +334,7 @@ Se recomienda aplicar la siguiente rúbrica orientativa:
 | Calidad técnica del código | Sintaxis correcta, nombres legibles, limpieza/orden del código | 0,25 |
 |  | **Total Ejercicio 1** | **5,00** |
 
-**Corrección parcial y penalizaciones orientativas (Ejer. 1)**
-
-| Concepto | Aplicación |
-|---|---|
-| Corrección parcial | Si una funcionalidad está incompleta pero parcialmente operativa, se podrá asignar entre el 25% y el 75% de su apartado. |
-| Penalización por bloqueo global JS | Errores de JavaScript que bloqueen la ejecución global: hasta **-0,50** puntos. |
-| Penalización por modificar HTML/CSS fuera de lo permitido | Incumplir la restricción puede suponer hasta **-0,50** puntos. |
-
 ### Ejercicio 2 (5 puntos)
-
-Se recomienda aplicar la siguiente rúbrica orientativa:
 
 | Bloque | Criterio | Puntos |
 |---|---|---:|
@@ -366,14 +355,6 @@ Se recomienda aplicar la siguiente rúbrica orientativa:
 | Validación y calidad formal | XML de ejemplo valida correctamente contra el XSD | 0,20 |
 | Validación y calidad formal | Sintaxis XML/XSD limpia (indentación, etiquetas y estructura coherentes) | 0,10 |
 |  | **Total Ejercicio 2** | **5,00** |
-
-**Corrección parcial y penalizaciones orientativas (Ejer. 2)**
-
-| Concepto | Aplicación |
-|---|---|
-| Corrección parcial por bloques | Si el esquema valida parcialmente pero contiene errores puntuales en restricciones, se evaluará por bloques según esta rúbrica. |
-| Penalización por error de sintaxis XSD | Un XSD con errores de sintaxis que impida validar podrá penalizar hasta **-1,00** punto adicional. |
-| Sin puntuación del subapartado de unicidad | Si no se garantiza alguna unicidad pedida (`codigo` o `dorsal`), no se otorgará la puntuación de ese subapartado. |
 
 ## Entrega final
 

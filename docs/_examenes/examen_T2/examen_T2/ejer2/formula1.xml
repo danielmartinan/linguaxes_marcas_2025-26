@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <temporadaF1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="formula1.xsd">
+            xsi:noNamespaceSchemaLocation="formula1.xsd">
   <escuderia codigo="MER">
     <nombre>Mercedes-AMG Petronas</nombre>
     <paisBase>Alemania</paisBase>
