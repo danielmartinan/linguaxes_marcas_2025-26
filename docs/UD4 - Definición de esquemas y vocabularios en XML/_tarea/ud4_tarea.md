@@ -290,9 +290,34 @@ Deberás entregar un fichero por cada ejercicio, con el nombre `ud4_tarea_ejerci
 
 ## Valoración
 
-Para la valoración de los ejercicios, se tendrán en cuenta los siguientes aspectos:
+La nota total de la tarea es de **10 puntos**:
 
-- Funcionalidad. El XSD debe validar correctamente cualquier documento XML que tenga las características descritas en el enunciado.
-- Documentación. Se deben añadir comentarios explicando las decisiones tomadas durante el diseño del XSD.
+- **Ejercicio 1:** 3,5 puntos (35% de la nota global)
+- **Ejercicio 2:** 6,5 puntos (65% de la nota global)
 
-Para esta práctica, el ejercicio 1 tendrá un valor de 3.5 puntos y el ejercicio 2 un valor de 6.5 puntos, sumando un total de 10 puntos.
+### Rúbrica del Ejercicio 1 (3,5 puntos sobre 10)
+
+| Apartado | Criterio de valoración | Puntos en el ejercicio |
+|---|---|---:|
+| Estructura y cardinalidad | Define correctamente raíz, secuencia de elementos obligatorios/opcionales y repeticiones (`impresora`, `tamaño`, `enred`, `compra`) | 1,00 |
+| Tipado y restricciones de contenido | Usa tipos adecuados y restricciones correctas (peso positivo con 2 decimales, unidad `kg/g/lb`, patrón de `cartucho`) | 1,00|
+| Atributos y enumeraciones | Implementa correctamente atributos (`numSerie`, `tecnologia`, `compra`) con obligatoriedad, patrones y enumeraciones | 1,00 |
+| Documentación del XSD | Incluye anotaciones/comentarios claros que justifican decisiones de modelado | 0,50 |
+| **Total Ejercicio 1** |  | **3,50** |
+
+### Rúbrica del Ejercicio 2 (6,5 puntos sobre 10)
+
+| Apartado | Criterio de valoración | Puntos en el ejercicio |
+|---|---|---:|
+| Estructura general del modelo | Define correctamente bloques principales (`sucursales`, `seguros`, `vehiculos`, `clientes`, `reservas`) y su organización | 1,00 |
+| Tipos complejos reutilizables | Crea y reutiliza tipos complejos solicitados (`datosPersonales`, `direccion`, `caracteristicas`, `automatizacion`, `horario`, `permisoConducir`) | 1,25 |
+| Tipos simples y restricciones | Aplica patrones, rangos, longitudes y enumeraciones de forma coherente en todos los datos solicitados | 1,25 |
+| Identificadores y referencias | Implementa correctamente `xs:ID` y `xs:IDREF` para integridad referencial entre entidades | 1,00 |
+| Cardinalidad y composición | Emplea correctamente `sequence`, `choice`, `minOccurs` y `maxOccurs` según requisitos | 1,00 |
+| Documentación y legibilidad | Incluye `xs:annotation`/`xs:documentation` y organiza el esquema en secciones legibles | 1,00 |
+| **Total Ejercicio 2** |  | **6,50** |
+
+### Criterios generales de calificación
+
+- Para obtener la puntuación completa de cada apartado, el XSD debe ser **válido**, **coherente con el enunciado** y estar **bien documentado**.
+- Los errores graves de validación o de diseño en un apartado impedirán alcanzar su puntuación máxima.
