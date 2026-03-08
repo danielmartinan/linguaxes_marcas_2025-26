@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  
+
   <!-- Documentación general del esquema -->
   <xs:annotation>
-    <xs:documentation>
-      Esquema XSD para una plataforma de alquiler de vehículos autónomos.
-      Define la estructura y restricciones para gestionar clientes, sucursales,
-      vehículos con diferentes niveles de automatización, reservas y seguros.
-    </xs:documentation>
+    <xs:documentation> Esquema XSD para una plataforma de alquiler de vehículos autónomos. Define la
+      estructura y restricciones para gestionar clientes, sucursales, vehículos con diferentes
+      niveles de automatización, reservas y seguros. </xs:documentation>
   </xs:annotation>
 
   <!-- ============================================ -->
@@ -15,287 +13,211 @@
   <!-- ============================================ -->
 
   <!-- Identificadores únicos con formatos específicos -->
-  
-  <xs:simpleType name="IDClienteTipo">
-    <xs:annotation>
-      <xs:documentation>
-        Identificador único de cliente: cli + 4 dígitos.
-        Ejemplo: cli0001, cli0042
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="cli[0-9]{4}"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="IDVehiculoTipo">
-    <xs:annotation>
-      <xs:documentation>
-        Identificador único de vehículo: veh + 4 dígitos.
-        Ejemplo: veh0001, veh0025
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="veh[0-9]{4}"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="IDSucursalTipo">
-    <xs:annotation>
-      <xs:documentation>
-        Identificador único de sucursal: suc + 3 dígitos.
-        Ejemplo: suc001, suc042
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="suc[0-9]{3}"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="IDReservaTipo">
-    <xs:annotation>
-      <xs:documentation>
-        Identificador único de reserva: res + 4 dígitos.
-        Ejemplo: res0001, res0100
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="res[0-9]{4}"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="IDSeguroTipo">
-    <xs:annotation>
-      <xs:documentation>
-        Identificador único de seguro: seg + 3 dígitos.
-        Ejemplo: seg001, seg042
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="seg[0-9]{3}"/>
-    </xs:restriction>
-  </xs:simpleType>
+  <!-- Los IDs usan xs:restriction base="xs:ID" con patrones para combinar:
+       - Validación de formato específico (cli0001, veh0001, etc.)
+       - Garantía de unicidad automática
+       - Integridad referencial con xs:IDREF -->
 
   <!-- Documentación personal -->
-  
+
   <xs:simpleType name="DNITipo">
     <xs:annotation>
-      <xs:documentation>
-        Documento Nacional de Identidad español: 8 dígitos + 1 letra mayúscula.
-        Ejemplo: 12345678A, 98765432Z
-      </xs:documentation>
+      <xs:documentation> Documento Nacional de Identidad español: 8 dígitos + 1 letra mayúscula.
+        Ejemplo: 12345678A, 98765432Z </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9]{8}[A-Z]"/>
+      <xs:pattern value="[0-9]{8}[A-Z]" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="NIETipo">
     <xs:annotation>
-      <xs:documentation>
-        Número de Identidad de Extranjero: X, Y o Z + 7 dígitos + 1 letra mayúscula.
-        Ejemplo: X1234567A, Y9876543Z
-      </xs:documentation>
+      <xs:documentation> Número de Identidad de Extranjero: X, Y o Z + 7 dígitos + 1 letra
+        mayúscula. Ejemplo: X1234567A, Y9876543Z </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[XYZ][0-9]{7}[A-Z]"/>
+      <xs:pattern value="[XYZ][0-9]{7}[A-Z]" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="EmailTipo">
     <xs:annotation>
-      <xs:documentation>
-        Email con patrón básico: caracteres @ dominio con punto.
-        Ejemplo: juan.perez@email.com
-      </xs:documentation>
+      <xs:documentation> Email con patrón básico: caracteres @ dominio con punto. Ejemplo:
+        juan.perez@email.com </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+      <xs:pattern value="[^@]+@[^@]+\.[^@]+" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="TelefonoTipo">
     <xs:annotation>
-      <xs:documentation>
-        Número de teléfono: exactamente 9 dígitos.
-        Ejemplo: 914567890, 666123456
-      </xs:documentation>
+      <xs:documentation> Número de teléfono: exactamente 9 dígitos. Ejemplo: 914567890, 666123456 </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9]{9}"/>
+      <xs:pattern value="[0-9]{9}" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="CodigoPostalTipo">
     <xs:annotation>
-      <xs:documentation>
-        Código postal: exactamente 5 dígitos.
-        Ejemplo: 28001, 08002
-      </xs:documentation>
+      <xs:documentation> Código postal: exactamente 5 dígitos. Ejemplo: 28001, 08002 </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9]{5}"/>
+      <xs:pattern value="[0-9]{5}" />
     </xs:restriction>
   </xs:simpleType>
 
   <!-- Vehículos -->
-  
+
   <xs:simpleType name="MatriculaTipo">
     <xs:annotation>
-      <xs:documentation>
-        Matrícula alfanumérica: 5 a 10 caracteres (letras mayúsculas y dígitos).
-        Acepta formatos internacionales.
-        Ejemplo: MAD0001, ABC1234, 0002NNN
-      </xs:documentation>
+      <xs:documentation> Matrícula alfanumérica: 5 a 10 caracteres (letras mayúsculas y dígitos).
+        Acepta formatos internacionales. Ejemplo: MAD0001, ABC1234, 0002NNN </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[A-Z0-9]{5,10}"/>
+      <xs:pattern value="[A-Z0-9]{5,10}" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="AnoFabricacionTipo">
     <xs:annotation>
-      <xs:documentation>
-        Año de fabricación: entero entre 1900 y año actual.
-        Ejemplo: 2023, 2024
-      </xs:documentation>
+      <xs:documentation> Año de fabricación: entero entre 1900 y año actual. Ejemplo: 2023, 2024 </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:int">
-      <xs:minInclusive value="1900"/>
-      <xs:maxInclusive value="2100"/>
+      <xs:minInclusive value="1900" />
+      <xs:maxInclusive value="2100" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="TipoVehiculoTipo">
     <xs:annotation>
-      <xs:documentation>
-        Tipo de vehículo disponible en la flota.
-      </xs:documentation>
+      <xs:documentation> Tipo de vehículo disponible en la flota. </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="turismo"/>
-      <xs:enumeration value="suv"/>
-      <xs:enumeration value="furgoneta"/>
-      <xs:enumeration value="camion"/>
+      <xs:enumeration value="turismo" />
+      <xs:enumeration value="suv" />
+      <xs:enumeration value="furgoneta" />
+      <xs:enumeration value="camion" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="TipoCombustibleTipo">
     <xs:annotation>
-      <xs:documentation>
-        Tipo de combustible o energía del vehículo.
-      </xs:documentation>
+      <xs:documentation> Tipo de combustible o energía del vehículo. </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="gasolina"/>
-      <xs:enumeration value="diesel"/>
-      <xs:enumeration value="electrico"/>
-      <xs:enumeration value="hibrido"/>
+      <xs:enumeration value="gasolina" />
+      <xs:enumeration value="diesel" />
+      <xs:enumeration value="electrico" />
+      <xs:enumeration value="hibrido" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="NivelAutomatizacionTipo">
     <xs:annotation>
-      <xs:documentation>
-        Nivel de automatización según normas SAE J3016:
-        0 - Sin automatización (conducción manual)
-        1 - Asistencia de conducción
-        2 - Automatización parcial
-        3 - Automatización condicional
-        4 - Automatización alta
-        5 - Automatización completa
-      </xs:documentation>
+      <xs:documentation> Nivel de automatización según normas SAE J3016: 0 - Sin automatización
+        (conducción manual) 1 - Asistencia de conducción 2 - Automatización parcial 3 -
+        Automatización condicional 4 - Automatización alta 5 - Automatización completa </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:int">
-      <xs:minInclusive value="0"/>
-      <xs:maxInclusive value="5"/>
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="5" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="SistemaActivoTipo">
     <xs:annotation>
-      <xs:documentation>
-        Sistemas de automatización activos en el vehículo.
-      </xs:documentation>
+      <xs:documentation> Sistemas de automatización activos en el vehículo. </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="freno-automatico"/>
-      <xs:enumeration value="cambio-carril-automatico"/>
-      <xs:enumeration value="estacionamiento-automatico"/>
-      <xs:enumeration value="conduccion-autonoma-autopista"/>
-      <xs:enumeration value="conduccion-autonoma-completa"/>
+      <xs:enumeration value="freno-automatico" />
+      <xs:enumeration value="cambio-carril-automatico" />
+      <xs:enumeration value="estacionamiento-automatico" />
+      <xs:enumeration value="conduccion-autonoma-autopista" />
+      <xs:enumeration value="conduccion-autonoma-completa" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="EstadoVehiculoTipo">
     <xs:annotation>
-      <xs:documentation>
-        Estado operativo del vehículo en la flota.
-      </xs:documentation>
+      <xs:documentation> Estado operativo del vehículo en la flota. </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="disponible"/>
-      <xs:enumeration value="alquilado"/>
-      <xs:enumeration value="en-mantenimiento"/>
+      <xs:enumeration value="disponible" />
+      <xs:enumeration value="alquilado" />
+      <xs:enumeration value="en-mantenimiento" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="PrecioTipo">
     <xs:annotation>
-      <xs:documentation>
-        Precio con exactamente 2 decimales (para euros).
-        Ejemplo: 89.99, 9.99, 100.00
-      </xs:documentation>
+      <xs:documentation> Precio con exactamente 2 decimales (para euros). Ejemplo: 89.99, 9.99,
+        100.00 </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:decimal">
-      <xs:minInclusive value="0"/>
-      <xs:pattern value="[0-9]+\.[0-9]{2}"/>
+      <xs:minInclusive value="0" />
+      <xs:pattern value="[0-9]+\.[0-9]{2}" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="ConsumoDiarioTipo">
     <xs:annotation>
-      <xs:documentation>
-        Consumo medio: número decimal positivo con hasta 2 decimales.
-        Unidad: l/100km o kWh/100km según combustible.
-        Ejemplo: 6.5, 18, 5.25
-      </xs:documentation>
+      <xs:documentation> Consumo medio: número decimal positivo con hasta 2 decimales. Unidad:
+        l/100km o kWh/100km según combustible. Ejemplo: 6.5, 18, 5.25 </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:decimal">
-      <xs:minInclusive value="0"/>
-      <xs:pattern value="[0-9]+(\.[0-9]{1,2})?"/>
+      <xs:minInclusive value="0" />
+      <xs:pattern value="[0-9]+(\.[0-9]{1,2})?" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PlazasTipo">
+    <xs:annotation>
+      <xs:documentation> Número de plazas del vehículo: entre 1 y 9. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="1" />
+      <xs:maxInclusive value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FranquiciaTipo">
+    <xs:annotation>
+      <xs:documentation> Franquicia del seguro: número decimal no negativo con hasta 2 decimales.
+        Puede ser 0 para seguros sin franquicia. Ejemplo: 0, 600.00, 1200.50 </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0" />
+      <xs:fractionDigits value="2" />
     </xs:restriction>
   </xs:simpleType>
 
   <!-- Seguros -->
-  
+
   <xs:simpleType name="CoberturaSeguroTipo">
     <xs:annotation>
-      <xs:documentation>
-        Nivel de cobertura disponible en los seguros.
-      </xs:documentation>
+      <xs:documentation> Nivel de cobertura disponible en los seguros. </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="basica"/>
-      <xs:enumeration value="estandar"/>
-      <xs:enumeration value="premium"/>
-      <xs:enumeration value="integral"/>
+      <xs:enumeration value="basica" />
+      <xs:enumeration value="estandar" />
+      <xs:enumeration value="premium" />
+      <xs:enumeration value="integral" />
     </xs:restriction>
   </xs:simpleType>
 
   <!-- Reservas -->
-  
+
   <xs:simpleType name="EstadoReservaTipo">
     <xs:annotation>
-      <xs:documentation>
-        Estado de una reserva en el sistema.
-      </xs:documentation>
+      <xs:documentation> Estado de una reserva en el sistema. </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="confirmada"/>
-      <xs:enumeration value="pendiente"/>
-      <xs:enumeration value="completada"/>
-      <xs:enumeration value="cancelada"/>
+      <xs:enumeration value="confirmada" />
+      <xs:enumeration value="pendiente" />
+      <xs:enumeration value="completada" />
+      <xs:enumeration value="cancelada" />
     </xs:restriction>
   </xs:simpleType>
 
@@ -306,9 +228,7 @@
   <!-- Dirección -->
   <xs:complexType name="DireccionTipo">
     <xs:annotation>
-      <xs:documentation>
-        Estructura común para direcciones (clientes y sucursales).
-      </xs:documentation>
+      <xs:documentation> Estructura común para direcciones (clientes y sucursales). </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="calle" type="xs:string">
@@ -337,9 +257,7 @@
   <!-- Horario -->
   <xs:complexType name="HorarioTipo">
     <xs:annotation>
-      <xs:documentation>
-        Define horario de apertura y cierre de sucursales.
-      </xs:documentation>
+      <xs:documentation> Define horario de apertura y cierre de sucursales. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="horaApertura" type="xs:time">
@@ -358,9 +276,7 @@
   <!-- Permiso de conducir -->
   <xs:complexType name="PermisoConducirTipo">
     <xs:annotation>
-      <xs:documentation>
-        Información del permiso de conducir del cliente.
-      </xs:documentation>
+      <xs:documentation> Información del permiso de conducir del cliente. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="numero" type="xs:string">
@@ -379,9 +295,7 @@
   <!-- Datos personales del cliente -->
   <xs:complexType name="DatosPersonalesTipo">
     <xs:annotation>
-      <xs:documentation>
-        Datos personales y de conducción del cliente.
-      </xs:documentation>
+      <xs:documentation> Datos personales y de conducción del cliente. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="fechaNacimiento" type="xs:date">
@@ -400,9 +314,7 @@
   <!-- Identificación del cliente (DNI o NIE) -->
   <xs:complexType name="IdentificacionClienteTipo">
     <xs:annotation>
-      <xs:documentation>
-        Permite elegir entre DNI (español) o NIE (extranjero).
-      </xs:documentation>
+      <xs:documentation> Permite elegir entre DNI (español) o NIE (extranjero). </xs:documentation>
     </xs:annotation>
     <xs:choice>
       <xs:element name="dni" type="DNITipo">
@@ -418,13 +330,71 @@
     </xs:choice>
   </xs:complexType>
 
+  <xs:simpleType name="IDClienteTipo">
+    <xs:annotation>
+      <xs:documentation>
+        Identificador único de cliente: cli + 4 dígitos.
+        Ejemplo: cli0001, cli0042
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:ID">
+      <xs:pattern value="cli[0-9]{4}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="IDVehiculoTipo">
+    <xs:annotation>
+      <xs:documentation>
+        Identificador único de vehículo: veh + 4 dígitos.
+        Ejemplo: veh0001, veh0025
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:ID">
+      <xs:pattern value="veh[0-9]{4}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="IDSucursalTipo">
+    <xs:annotation>
+      <xs:documentation>
+        Identificador único de sucursal: suc + 3 dígitos.
+        Ejemplo: suc001, suc042
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:ID">
+      <xs:pattern value="suc[0-9]{3}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="IDReservaTipo">
+    <xs:annotation>
+      <xs:documentation>
+        Identificador único de reserva: res + 4 dígitos.
+        Ejemplo: res0001, res0100
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:ID">
+      <xs:pattern value="res[0-9]{4}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="IDSeguroTipo">
+    <xs:annotation>
+      <xs:documentation>
+        Identificador único de seguro: seg + 3 dígitos.
+        Ejemplo: seg001, seg042
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:ID">
+      <xs:pattern value="seg[0-9]{3}" />
+    </xs:restriction>
+  </xs:simpleType>
+
   <!-- Cliente completo -->
   <xs:complexType name="ClienteTipo">
     <xs:annotation>
-      <xs:documentation>
-        Información completa de un cliente incluyendo datos personales,
-        documentación e información de contacto.
-      </xs:documentation>
+      <xs:documentation> Información completa de un cliente incluyendo datos personales,
+        documentación e información de contacto. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="nombre" type="xs:string">
@@ -476,17 +446,15 @@
       <xs:documentation>Grupo que permite elegir DNI o NIE</xs:documentation>
     </xs:annotation>
     <xs:choice>
-      <xs:element name="dni" type="DNITipo"/>
-      <xs:element name="nie" type="NIETipo"/>
+      <xs:element name="dni" type="DNITipo" />
+      <xs:element name="nie" type="NIETipo" />
     </xs:choice>
   </xs:group>
 
   <!-- Sucursal -->
   <xs:complexType name="SucursalTipo">
     <xs:annotation>
-      <xs:documentation>
-        Información completa de una sucursal de alquiler.
-      </xs:documentation>
+      <xs:documentation> Información completa de una sucursal de alquiler. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="nombre" type="xs:string">
@@ -530,22 +498,20 @@
   <!-- Características técnicas del vehículo -->
   <xs:complexType name="CaracteristicasTipo">
     <xs:annotation>
-      <xs:documentation>
-        Especificaciones técnicas del vehículo.
-      </xs:documentation>
+      <xs:documentation> Especificaciones técnicas del vehículo. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="potencia" type="xs:int">
+      <xs:element name="potencia" type="xs:positiveInteger">
         <xs:annotation>
           <xs:documentation>Potencia en CV (caballos de vapor)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="capacidadMaletero" type="xs:int">
+      <xs:element name="capacidadMaletero" type="xs:positiveInteger">
         <xs:annotation>
           <xs:documentation>Capacidad de maletero en litros</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="plazas" type="xs:int">
+      <xs:element name="plazas" type="PlazasTipo">
         <xs:annotation>
           <xs:documentation>Número de plazas (1-9)</xs:documentation>
         </xs:annotation>
@@ -561,9 +527,7 @@
   <!-- Automatización del vehículo -->
   <xs:complexType name="AutomatizacionTipo">
     <xs:annotation>
-      <xs:documentation>
-        Información sobre los sistemas de automatización del vehículo.
-      </xs:documentation>
+      <xs:documentation> Información sobre los sistemas de automatización del vehículo. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="nivel" type="NivelAutomatizacionTipo">
@@ -587,10 +551,8 @@
   <!-- Vehículo -->
   <xs:complexType name="VehiculoTipo">
     <xs:annotation>
-      <xs:documentation>
-        Información completa de un vehículo en la flota,
-        incluyendo características técnicas y nivel de automatización.
-      </xs:documentation>
+      <xs:documentation> Información completa de un vehículo en la flota, incluyendo características
+        técnicas y nivel de automatización. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="marca" type="xs:string">
@@ -633,7 +595,7 @@
           <xs:documentation>Información de automatización</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="sucursal" type="xs:string">
+      <xs:element name="sucursal" type="xs:IDREF">
         <xs:annotation>
           <xs:documentation>Referencia IDREF a la sucursal donde está el vehículo</xs:documentation>
         </xs:annotation>
@@ -659,9 +621,7 @@
   <!-- Seguro -->
   <xs:complexType name="SeguroTipo">
     <xs:annotation>
-      <xs:documentation>
-        Información de un seguro disponible para el alquiler.
-      </xs:documentation>
+      <xs:documentation> Información de un seguro disponible para el alquiler. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="nombre" type="xs:string">
@@ -684,9 +644,9 @@
           <xs:documentation>Precio diario del seguro (2 decimales)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="franquicia" type="xs:decimal" minOccurs="0">
+      <xs:element name="franquicia" type="FranquiciaTipo">
         <xs:annotation>
-          <xs:documentation>Franquicia en euros (0 para sin franquicia)</xs:documentation>
+          <xs:documentation>Franquicia en euros (0 para sin franquicia, hasta 2 decimales)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="nivelAutomatizacionMinimo" type="NivelAutomatizacionTipo" minOccurs="0">
@@ -705,28 +665,26 @@
   <!-- Reserva -->
   <xs:complexType name="ReservaTipo">
     <xs:annotation>
-      <xs:documentation>
-        Información completa de una reserva incluyendo cliente, vehículo,
-        sucursales y fechas.
-      </xs:documentation>
+      <xs:documentation> Información completa de una reserva incluyendo cliente, vehículo,
+        sucursales y fechas. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="cliente" type="xs:string">
+      <xs:element name="cliente" type="xs:IDREF">
         <xs:annotation>
           <xs:documentation>Referencia IDREF al cliente que realiza la reserva</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="vehiculo" type="xs:string">
+      <xs:element name="vehiculo" type="xs:IDREF">
         <xs:annotation>
           <xs:documentation>Referencia IDREF al vehículo reservado</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="sucursalRecogida" type="xs:string">
+      <xs:element name="sucursalRecogida" type="xs:IDREF">
         <xs:annotation>
           <xs:documentation>Referencia IDREF a la sucursal de recogida</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="sucursalDevolucion" type="xs:string">
+      <xs:element name="sucursalDevolucion" type="xs:IDREF">
         <xs:annotation>
           <xs:documentation>Referencia IDREF a la sucursal de devolución</xs:documentation>
         </xs:annotation>
@@ -746,7 +704,7 @@
           <xs:documentation>Estado de la reserva</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="seguroContratado" type="xs:string">
+      <xs:element name="seguroContratado" type="xs:IDREF">
         <xs:annotation>
           <xs:documentation>Referencia IDREF al seguro contratado</xs:documentation>
         </xs:annotation>
@@ -771,10 +729,8 @@
   <!-- Elemento raíz: plataformaAlquiler -->
   <xs:element name="plataformaAlquiler">
     <xs:annotation>
-      <xs:documentation>
-        Elemento raíz que contiene toda la información de la plataforma:
-        sucursales, seguros, vehículos, clientes y reservas.
-      </xs:documentation>
+      <xs:documentation> Elemento raíz que contiene toda la información de la plataforma:
+        sucursales, seguros, vehículos, clientes y reservas. </xs:documentation>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
