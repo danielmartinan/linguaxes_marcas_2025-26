@@ -6,7 +6,7 @@ En esta tarea se plantean diferentes ejercicios para la práctica de las expresi
 
 Deberás añadir capturas de pantalla de cada consulta XQuery ejecutada en BaseX, mostrando el resultado obtenido. Estas capturas de pantalla se deben incluir en un documento de texto (puede ser un documento Word, PDF, etc.) que se entregará junto con los archivos .xq (ver instrucciones de entrega al final del enunciado).
 
-Puedes revisar estos videos del canal [DiscoDuroDeRoer](https://www.youtube.com/watch?v=LNtsKx8zm-4&list=PLaxZkGlLWHGV7_2FWz_mk7ias1p_ZG3YV) para revisar cómo utilizar BaseX y cómo ejecutar consultas XQuery.
+Puedes revisar estos videos del canal [DiscoDuroDeRoer](https://www.youtube.com/watch?v=LNtsKx8zm-4&list=PLaxZkGlLWHGV7_2FWz_mk7ias1p_ZG3YV)  para revisar cómo utilizar BaseX y [estos](https://www.youtube.com/watch?v=lnVLbrTrXpo&list=PLaxZkGlLWHGUubA2xwqNHQljbJkxUlJKZ) sobre cómo ejecutar consultas XQuery.
 
 ## Ejercicio 1
 
