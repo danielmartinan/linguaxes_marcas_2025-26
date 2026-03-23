@@ -111,7 +111,7 @@ El segundo paso es crear las claves primarias (*primary keys*) en el XML Schema.
 
 Pueden surgir **problemas de colisión** al crear claves primarias en el esquema XML, ya que a diferencia de las bases de datos relacionales, donde las claves primarias necesitan ser únicas sólo dentro de una tabla, un **atributo ID dentro de un documento XML debe ser único a través de todo el documento**. Para resolverlo, se puede agregar el nombre del elemento (nombre de la tabla), al valor de la clave primaria (valor del atributo). Esto asegura que el valor es único a través del documento XML.
 
-####Establecer las relaciones
+#### Establecer las relaciones
 
 Las relaciones entre tablas se pueden lograr mediante el **anidamiento de elementos bajo el elemento padre**. Un ID de XML Schema puede ser usado para apuntar a una estructura XML correspondiente conteniendo un IDREF. Pueden existir muchas variaciones de XML Schemas para representar la misma base de datos relacional.
 
