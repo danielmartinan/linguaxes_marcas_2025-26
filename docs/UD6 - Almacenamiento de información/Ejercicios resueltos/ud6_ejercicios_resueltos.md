@@ -1,6 +1,6 @@
 ﻿# Ejercicios UD6 - Almacenamiento de información
 
-## Ejercicio 601
+## Ejercicio 1
 
 Consideremos un documento XML con las siguientes características:
 
@@ -247,7 +247,7 @@ XML Pocket Reference
 
 ---
 
-## Ejercicio 602
+## Ejercicio 2
 
 Consideremos el siguiente documento XML:
 
@@ -524,7 +524,7 @@ return
 
 ---
 
-## Ejercicio 603
+## Ejercicio 3
 
 Consideremos el siguiente documento XML:
 
@@ -805,7 +805,7 @@ return <autor>{$autor}</autor>
 
 ---
 
-## Ejercicio 604
+## Ejercicio 4
 
 Consideremos el siguiente documento XML:
 
@@ -1060,7 +1060,7 @@ return
 
 ---
 
-## Ejercicio 605
+## Ejercicio 5
 
 Consideremos el siguiente documento XML:
 
@@ -1266,7 +1266,7 @@ return
 
 ---
 
-## Ejercicio 606
+## Ejercicio 6
 
 Consideremos el siguiente documento XML:
 
