@@ -468,3 +468,30 @@ lmsxi05_tarea.zip
 ├── lmsxi05_2.xsl
 └── lmsxi05_3.xsl
 ```
+
+## Valoración
+
+La nota total de la tarea es de **10 puntos**:
+
+- **Ejercicio 1:** 3,00 puntos (30% de la nota global)
+- **Ejercicio 2:** 3,00 puntos (30% de la nota global)
+- **Ejercicio 3:** 3,00 puntos (30% de la nota global)
+- **Documentación de las hojas XSL:** 1,00 punto (10% de la nota global)
+
+Esta distribución se ajusta al enunciado: el ejercicio 1 se valora exclusivamente por la funcionalidad de las expresiones XPath y los ejercicios 2 y 3 se valoran por funcionalidad, incorporando además la documentación solicitada.
+
+### Rúbrica propuesta para Moodle (10 puntos)
+
+| Apartado | Criterio de valoración | Puntos en la tarea |
+| --- | --- | ---: |
+| Ejercicio 1. Expresiones XPath | Las 15 expresiones XPath son funcionales y responden correctamente a los apartados planteados. Se tendrá en cuenta la corrección global de las consultas entregadas. | 3,00 |
+| Ejercicio 2. Transformación XSLT a XML | La hoja XSL genera correctamente el documento XML solicitado, respetando la estructura, los elementos, los atributos, el contenido requerido y la organización pedida en el enunciado. | 3,00 |
+| Ejercicio 3. Transformación XSLT a HTML | La hoja XSL genera correctamente el documento HTML solicitado, incluyendo la tabla con los datos de artistas y los enlaces requeridos, conforme al formato indicado. | 3,00 |
+| Documentación de las hojas XSL | Las hojas `lmsxi05_2.xsl` y `lmsxi05_3.xsl` incluyen comentarios breves, claros y útiles que ayudan a comprender la transformación. | 1,00 |
+| **Total tarea** | Suma de apartados | **10,00** |
+
+### Criterios generales de calificación
+
+- Para obtener la puntuación completa en cada apartado, la solución debe ser **funcional**, **coherente con el enunciado** y **ajustada al formato de entrega**.
+- Los errores graves que impidan ejecutar correctamente una transformación o que hagan incorrectas varias expresiones XPath reducirán de forma significativa la puntuación del apartado correspondiente.
+- La documentación solo se valorará en los ejercicios 2 y 3, tal y como se indica en el enunciado.

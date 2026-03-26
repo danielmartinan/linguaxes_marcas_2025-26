@@ -1,0 +1,65 @@
+,"This header row can be skipped","The user is prompted to enter an offset","Which defines how many rows to skip","And defaults to 1"
+1.1 XPath - Extrae todos los elementos producto,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.2 XPath - Tallas de Camiseta,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.3 XPath - Precio de Zapatos,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.4 XPath - Nombres con precio mayor o igual a 15,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.5 XPath - Todas las tallas,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.6 XPath - Nombre del producto con precio más alto,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.7 XPath - Precio promedio,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.8 XPath - Nombres que empiezan por P,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.9 XPath - Nombres con descripción deportiva,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.10 XPath - Tallas con precio menor a 20,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.11 XPath - Productos de categoría ropa,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.12 XPath - Precio de Gorra en USD,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.13 XPath - Nombres con precio en EUR,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.14 XPath - Tallas con precio mayor a 20 USD,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.15 XPath - Nombre y descripción con precio en USD,"Correcta y funcional","Incorrecta o no funcional",,
+,0.15,0.00,,
+1.F1 Formato - Fichero con 15 líneas exactas,"Cumple el requisito","No cumple el requisito",,
+,0.25,0.00,,
+1.F2 Formato - Una sola expresión por línea y sin texto extra,"Cumple el requisito","No cumple el requisito",,
+,0.25,0.00,,
+1.F3 Formato - Nombre de fichero correcto,"Cumple el requisito","No cumple el requisito",,
+,0.25,0.00,,
+2.1 XSLT XML - Estructura general del documento de salida,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+2.2 XSLT XML - Bloque productos,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+2.3 XSLT XML - Bloque ofertas,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+2.4 XSLT XML - Ventas y atributos de venta,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+2.5 XSLT XML - Productos dentro de venta por referencia,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+2.6 XSLT XML - Salida XML e indentación,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+3.1 XSLT HTML - Estructura base y metadatos,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+3.2 XSLT HTML - Filtrado y ordenación,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+3.3 XSLT HTML - Cabecera de tabla,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+3.4 XSLT HTML - Filas y datos de artistas,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+3.5 XSLT HTML - Tratamiento de fallecimiento no disponible,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+3.6 XSLT HTML - Enlace Wikipedia,"Implementación completa","Implementación alta con fallos menores","Implementación parcial","No implementado o incorrecto"
+,0.50,0.35,0.20,0.00
+2.D1 Documentación - Comentarios en lmsxi05_2.xsl,"Documentación clara y útil","Documentación suficiente","Documentación escasa","Sin documentación útil"
+,0.50,0.35,0.20,0.00
+3.D1 Documentación - Comentarios en lmsxi05_3.xsl,"Documentación clara y útil","Documentación suficiente","Documentación escasa","Sin documentación útil"
+,0.50,0.35,0.20,0.00

@@ -2,7 +2,7 @@
 
 Odoo es un ERP completo de código abierto (open source) y sin coste de licencias (en la versión Community).
 
-![Interfaz general de Odoo](image-2.png)
+![Interfaz general de Odoo](img/linguaxes-marcas/ud7/image-2.png)
 
 ## Áreas que cubre
 
@@ -169,7 +169,7 @@ docker compose up -d
 
 Una vez ejecutado, se arranca un servidor web. Si hemos instalado Odoo en la propia máquina, se puede acceder a través de `http://localhost`. Al acceder a esa URL, se podrá visualizar una pantalla similar a la siguiente:
 
-![Pantalla inicial de configuración de base de datos](image-1.png)
+![Pantalla inicial de configuración de base de datos](img/linguaxes-marcas/ud7/image-1.png)
 
 En este apartado, como mínimo, debemos rellenar los siguientes datos:
 
@@ -181,7 +181,7 @@ En este apartado, como mínimo, debemos rellenar los siguientes datos:
 
 Odoo es un software modular, lo que significa que está compuesto por varios módulos que se pueden activar o desactivar según las necesidades de cada empresa o usuario.
 
-![Pantalla de módulos de Odoo](image.png)
+![Pantalla de módulos de Odoo](img/linguaxes-marcas/ud7/image.png)
 
 Algunos de los módulos de Odoo son:
 
