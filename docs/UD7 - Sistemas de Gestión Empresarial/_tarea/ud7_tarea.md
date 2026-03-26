@@ -7,7 +7,7 @@ En esta tarea se propone la instalación y configuración de **Odoo**, un sistem
 Todo el proceso deberá documentarse con capturas de pantalla y explicaciones detalladas de cada paso.
 
 :::info Requisito previo
-Si no conoces Docker, consulta el [Anexo: Introducción a Docker](#anexo-introducción-a-docker) antes de comenzar.
+Si no conoces Docker, consulta el **Anexo de Introducción a Docker** antes de comenzar.
 :::
 
 ## Parte 1 — Despliegue de Odoo con Docker
