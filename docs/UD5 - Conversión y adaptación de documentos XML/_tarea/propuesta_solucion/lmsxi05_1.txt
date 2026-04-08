@@ -1,0 +1,15 @@
+/productos/producto
+/productos/producto[nombre='Camiseta']/tallas/talla
+/productos/producto[nombre='Zapatos']/precio
+/productos/producto[precio >= 15]/nombre
+/productos/producto/tallas/talla
+/productos/producto[not(precio < ../producto/precio)]/nombre
+sum(/productos/producto/precio) div count(/productos/producto/precio)
+/productos/producto[starts-with(nombre,'P')]/nombre
+/productos/producto[contains(descripcion,'deportiva')]/nombre
+/productos/producto[precio < 20]/tallas/talla
+/productos/producto[@categoria='ropa']
+/productos/producto[nombre='Gorra']/precio[@divisa='USD']
+/productos/producto[precio/@divisa='EUR']/nombre
+/productos/producto[precio/@divisa='USD' and precio > 20]/tallas/talla
+/productos/producto[precio/@divisa='USD']/nombre | /productos/producto[precio/@divisa='USD']/descripcion
