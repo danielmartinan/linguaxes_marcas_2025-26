@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<misiones>
+  <mision id="M001" estado="activa" prioridad="5">
+    <nombre>Cartografia de glaciares del norte</nombre>
+    <zona>Artico</zona>
+    <fechaInicio>1912-01-04</fechaInicio>
+    <equipo>
+      <miembro rol="jefa">Ada Holm</miembro>
+      <miembro rol="cartografo">Rene Vidal</miembro>
+      <miembro rol="tecnico">Emil Stark</miembro>
+    </equipo>
+    <resultados>
+      <resultado tipo="avance">12 rutas verificadas</resultado>
+    </resultados>
+  </mision>
+
+  <mision id="M002" estado="cerrada" prioridad="3">
+    <nombre>Catalogo de flora de altura</nombre>
+    <zona>Andes</zona>
+    <fechaInicio>1909-03-11</fechaInicio>
+    <fechaFin>1909-06-02</fechaFin>
+    <equipo>
+      <miembro rol="coordinadora">Irene Soto</miembro>
+      <miembro rol="botanico">Julian Paredes</miembro>
+    </equipo>
+    <resultados>
+      <resultado tipo="hallazgo">4 especies documentadas</resultado>
+    </resultados>
+  </mision>
+
+  <mision id="M003" estado="activa" prioridad="4">
+    <nombre>Estudio de corrientes polares</nombre>
+    <zona>Atlantico Norte</zona>
+    <fechaInicio>1911-10-20</fechaInicio>
+    <equipo>
+      <miembro rol="jefe">Henrik Olsen</miembro>
+      <miembro rol="oceanografa">Nadia Ruiz</miembro>
+      <miembro rol="analista">Rosa Linde</miembro>
+    </equipo>
+    <resultados>
+      <resultado tipo="avance">Serie inicial de mediciones</resultado>
+    </resultados>
+  </mision>
+
+  <mision id="M004" estado="cerrada" prioridad="2">
+    <nombre>Inventario geologico del Rift</nombre>
+    <zona>Africa Oriental</zona>
+    <fechaInicio>1908-01-15</fechaInicio>
+    <fechaFin>1908-05-03</fechaFin>
+    <equipo>
+      <miembro rol="jefe">Samuel Okoye</miembro>
+      <miembro rol="geologa">Marta Cid</miembro>
+    </equipo>
+    <resultados>
+      <resultado tipo="informe">Mapa de fallas y sedimentos</resultado>
+    </resultados>
+  </mision>
+
+  <mision id="M005" estado="activa" prioridad="5">
+    <nombre>Registro de biodiversidad costera</nombre>
+    <zona>Pacifico Sur</zona>
+    <fechaInicio>1912-06-08</fechaInicio>
+    <equipo>
+      <miembro rol="coordinador">Leo Navarro</miembro>
+      <miembro rol="biologa">Vera Kim</miembro>
+      <miembro rol="tecnico">Aitor Rios</miembro>
+    </equipo>
+    <resultados>
+      <resultado tipo="avance">76 muestras clasificadas</resultado>
+    </resultados>
+  </mision>
+</misiones>

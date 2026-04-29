@@ -1,0 +1,187 @@
+// Cuestionario T3 - UD5, UD6 y UD7
+// Total: 25 preguntas
+// Cada pregunta vale: 1 punto
+// Penalización por respuesta incorrecta: -0.3333 puntos (1/3 del valor)
+
+$CATEGORY: $course$/T3 - UD5-UD7
+
+// ==================== UD5: CONVERSIÓN Y ADAPTACIÓN XML ====================
+
+::UD5-01:: ¿Qué condición distingue a un XML bien formado de un XML válido? {
+~%-33.33333%El XML bien formado tiene declaración XML obligatoria y el válido no.
+=El XML válido cumple reglas de un esquema o DTD; el bien formado solo respeta la sintaxis XML.
+~%-33.33333%El XML válido solo puede usar codificación UTF-8.
+~%-33.33333%El XML bien formado permite etiquetas sin cerrar si hay sangría correcta.
+}
+
+::UD5-02:: En una transformación con XSLT, ¿cuál es la función principal de la hoja de estilo? {
+~%-33.33333%Convertir automáticamente XML en SQL.
+=Definir reglas para seleccionar nodos y generar un documento de salida.
+~%-33.33333%Validar el XML contra XSD antes de leerlo.
+~%-33.33333%Comprimir el tamaño final del documento.
+}
+
+::UD5-03:: ¿Qué ventaja aporta estructurar una transformación en varias plantillas xsl:template? {
+~%-33.33333%Obliga a procesar los nodos en orden alfabético.
+=Permite reutilización y mantenimiento más claro de la lógica.
+~%-33.33333%Evita el uso de XPath en toda la hoja de estilo.
+~%-33.33333%Garantiza mejor rendimiento en cualquier procesador XSLT.
+}
+
+::UD5-04:: ¿Qué hace xsl:apply-templates en un contexto típico? {
+~%-33.33333%Aplica solo la primera plantilla definida en el archivo.
+=Ejecuta las plantillas que coinciden con los nodos seleccionados.
+~%-33.33333%Copia nodos al resultado sin evaluarlos.
+~%-33.33333%Sustituye xsl:for-each cuando hay condiciones.
+}
+
+::UD5-05:: ¿Cuál es la diferencia más precisa entre xsl:value-of y xsl:copy-of? {
+~%-33.33333%xsl:value-of copia estructura XML completa y xsl:copy-of solo texto.
+=xsl:value-of devuelve el valor textual del nodo y xsl:copy-of clona nodos con su estructura.
+~%-33.33333%Ambos hacen exactamente lo mismo, pero con distinta sintaxis.
+~%-33.33333%xsl:copy-of solo puede usarse dentro de xsl:attribute.
+}
+
+::UD5-06:: En una hoja XSLT, XPath se usa principalmente para: {
+~%-33.33333%Definir tipos de datos de salida.
+=Seleccionar nodos y navegar por el árbol XML.
+~%-33.33333%Declarar variables globales en JavaScript.
+~%-33.33333%Importar hojas de estilo CSS externas.
+}
+
+::UD5-07:: ¿Qué combinación describe mejor el papel de xsl:for-each y xsl:sort? {
+=xsl:for-each itera nodos y xsl:sort permite ordenarlos antes de producir salida.
+~%-33.33333%xsl:for-each valida datos y xsl:sort elimina duplicados.
+~%-33.33333%xsl:for-each y xsl:sort solo funcionan en salida HTML.
+~%-33.33333%xsl:sort debe declararse fuera de xsl:for-each para ser válido.
+}
+
+::UD5-08:: ¿Qué implica transformar un XML a HTML con XSLT? {
+~%-33.33333%Sustituir la codificación por UTF-16 sin tocar el contenido.
+=Mapear nodos XML a una estructura de presentación web.
+~%-33.33333%Eliminar atributos para reducir el tamaño del documento.
+~%-33.33333%Cambiar etiquetas XML por comentarios HTML automáticamente.
+}
+
+::UD5-09:: ¿Por qué es importante fijar correctamente la codificación en una conversión? {
+=Porque evita errores de representación de caracteres, como tildes o eñes.
+~%-33.33333%Porque acelera siempre la transformación.
+~%-33.33333%Porque impide el uso de namespaces.
+~%-33.33333%Porque reemplaza la validación del documento.
+}
+
+::UD5-10:: ¿Qué beneficio clave tiene separar contenido XML y presentación XSL/CSS? {
+=Permite cambiar formato de salida sin reescribir los datos de origen.
+~%-33.33333%Elimina la necesidad de usar procesadores XSLT.
+~%-33.33333%Hace que XML y HTML sean el mismo lenguaje.
+~%-33.33333%Obliga a duplicar el contenido en cada vista.
+}
+
+// ==================== UD6: ALMACENAMIENTO DE INFORMACIÓN ====================
+
+::UD6-01:: Frente a una base relacional, ¿qué característica define mejor el almacenamiento en XML? {
+~%-33.33333%Siempre ocupa menos espacio en disco.
+=Modela bien estructuras jerárquicas y semiestructuradas.
+~%-33.33333%No necesita índices para consultar rápido.
+~%-33.33333%Impide redundancia por diseño.
+}
+
+::UD6-02:: Una base de datos nativa XML se caracteriza por: {
+=Guardar documentos XML preservando su estructura como unidad principal.
+~%-33.33333%Convertir todo XML en tablas antes de almacenarlo.
+~%-33.33333%Requerir SQL como único lenguaje de consulta.
+~%-33.33333%No permitir validación con esquemas.
+}
+
+::UD6-03:: ¿Para qué se utiliza XQuery en un entorno con múltiples documentos XML? {
+~%-33.33333%Para diseñar interfaces gráficas del gestor.
+=Para consultar, combinar y transformar información XML.
+~%-33.33333%Para reemplazar completamente XPath en cualquier contexto.
+~%-33.33333%Para comprimir colecciones grandes sin pérdida.
+}
+
+::UD6-04:: ¿Qué relación es correcta entre XPath y XQuery? {
+~%-33.33333%XPath consulta JSON y XQuery solo XML local.
+=XPath selecciona nodos; XQuery amplía esa capacidad con construcción y filtrado más complejos.
+~%-33.33333%Son lenguajes incompatibles que no comparten sintaxis.
+~%-33.33333%XQuery no puede usar expresiones XPath.
+}
+
+::UD6-05:: En una expresión FLWOR, ¿qué cláusula se usa para filtrar resultados? {
+~%-33.33333%order by
+~%-33.33333%return
+=where
+~%-33.33333%let
+}
+
+::UD6-06:: ¿Qué efecto suele tener un índice bien diseñado en consultas sobre grandes volúmenes? {
+=Reduce el tiempo de búsqueda al evitar recorridos completos.
+~%-33.33333%Impide realizar ordenaciones en resultados.
+~%-33.33333%Solo mejora inserciones, no consultas.
+~%-33.33333%Es útil únicamente en documentos pequeños.
+}
+
+::UD6-07:: ¿Qué práctica contribuye mejor a mantener integridad de datos XML almacenados? {
+~%-33.33333%Eliminar todos los atributos para simplificar.
+=Validar con esquemas y aplicar reglas de consistencia en actualización.
+~%-33.33333%Guardar siempre una copia sin validar.
+~%-33.33333%Cambiar nombres de etiquetas en cada versión.
+}
+
+::UD6-08:: ¿Qué ventaja aporta usar DTD o XML Schema antes de almacenar datos? {
+~%-33.33333%Garantiza compatibilidad con cualquier ERP sin mapeo.
+=Define restricciones de estructura y tipos para reducir errores de entrada.
+~%-33.33333%Sustituye la necesidad de hacer copias de seguridad.
+~%-33.33333%Evita toda redundancia entre documentos.
+}
+
+::UD6-09:: Si hay datos duplicados en distintos XML, ¿qué riesgo es más probable? {
+~%-33.33333%Mejor trazabilidad automática del dato maestro.
+=Inconsistencias al actualizar solo una de las copias.
+~%-33.33333%Menor necesidad de validación previa.
+~%-33.33333%Mayor independencia entre aplicaciones sin coste.
+}
+
+::UD6-10:: Para elegir entre relacional, XML nativo o híbrido, el criterio más sólido es: {
+~%-33.33333%Usar siempre relacional por ser más estándar.
+=Decidir según estructura de datos, tipo de consulta e integración requerida.
+~%-33.33333%Elegir XML nativo cuando haya más de 1 GB de información.
+~%-33.33333%Elegir híbrido solo si no existe personal técnico.
+}
+
+// ==================== UD7: SISTEMAS DE GESTIÓN EMPRESARIAL ====================
+
+::UD7-01:: ¿Cuál describe mejor el objetivo central de un ERP? {
+~%-33.33333%Gestionar únicamente el área contable con informes mensuales.
+=Integrar procesos y datos de la empresa en una plataforma común.
+~%-33.33333%Sustituir todos los sistemas externos de forma inmediata.
+~%-33.33333%Automatizar solo tareas de recursos humanos.
+}
+
+::UD7-02:: ¿Qué conjunto representa módulos habituales de un ERP? {
+=Compras, ventas, inventario, finanzas y recursos humanos.
+~%-33.33333%Navegador, antivirus, correo y videollamadas.
+~%-33.33333%Diseño gráfico, edición de vídeo y CAD.
+~%-33.33333%DNS, firewall, proxy y balanceador.
+}
+
+::UD7-03:: En una implantación ERP, ¿qué combinación refleja un escenario realista? {
+~%-33.33333%Beneficios rápidos sin cambios organizativos.
+=Mejora de trazabilidad, pero con necesidad de formación y ajuste de procesos.
+~%-33.33333%Coste inicial nulo y retorno inmediato.
+~%-33.33333%Eliminación completa de errores humanos desde el primer día.
+}
+
+::UD7-04:: ¿Por qué la integración de datos entre departamentos es crítica en un ERP? {
+~%-33.33333%Porque permite duplicar datos para aumentar la disponibilidad.
+=Porque evita islas de información y mejora la coordinación operativa.
+~%-33.33333%Porque reduce el número de usuarios del sistema.
+~%-33.33333%Porque impide el acceso en tiempo real a la información.
+}
+
+::UD7-05:: ¿Qué papel tiene XML en la integración de un ERP con otras aplicaciones? {
+=Actúa como formato de intercambio estructurado entre sistemas heterogéneos.
+~%-33.33333%Reemplaza por completo las API de integración.
+~%-33.33333%Elimina la necesidad de validar mensajes entrantes.
+~%-33.33333%Solo sirve para generar documentación interna.
+}

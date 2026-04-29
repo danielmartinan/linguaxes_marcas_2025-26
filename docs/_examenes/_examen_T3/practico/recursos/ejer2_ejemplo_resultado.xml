@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<centro-control>
+  <misiones-activas>
+    <mision id="M001" prioridad="5" duracionDias="362">Cartografia de glaciares del norte</mision>
+    <mision id="M005" prioridad="5" duracionDias="206">Registro de biodiversidad costera</mision>
+    <mision id="M003" prioridad="4" duracionDias="438">Estudio de corrientes polares</mision>
+  </misiones-activas>
+  <misiones-cerradas>
+    <mision id="M004" prioridad="2" duracionDias="109">Inventario geologico del Rift</mision>
+    <mision id="M002" prioridad="3" duracionDias="83">Catalogo de flora de altura</mision>
+  </misiones-cerradas>
+  <resumen>
+    <totalMisiones>5</totalMisiones>
+    <totalActivas>3</totalActivas>
+    <totalCerradas>2</totalCerradas>
+    <zonasUnicas>5</zonasUnicas>
+  </resumen>
+</centro-control>

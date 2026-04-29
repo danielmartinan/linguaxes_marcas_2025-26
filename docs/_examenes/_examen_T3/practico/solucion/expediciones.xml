@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expediciones>
+  <expedicion id="E001" region="Antartida">
+    <nombre>Aurora Austral</nombre>
+    <fechaInicio>1848-11-03</fechaInicio>
+    <fechaFin>1849-03-21</fechaFin>
+    <presupuesto moneda="GBP">125000</presupuesto>
+    <tripulacion>
+      <integrante rol="capitana" pais="UK">Amelia Crowe</integrante>
+      <integrante rol="cartografo" pais="UK">Henry Black</integrante>
+      <integrante rol="medica" pais="IE">Nora Quinn</integrante>
+      <integrante rol="naturalista" pais="NO">Erik Lund</integrante>
+      <integrante rol="tecnico" pais="DE">Karl Weiss</integrante>
+    </tripulacion>
+    <ruta>
+      <punto lat="-62.1" lon="-58.4"/>
+      <punto lat="-64.7" lon="-60.2"/>
+    </ruta>
+  </expedicion>
+
+  <expedicion id="E002" region="Artico">
+    <nombre>Meridiano Boreal</nombre>
+    <fechaInicio>1856-05-14</fechaInicio>
+    <fechaFin>1856-10-29</fechaFin>
+    <presupuesto moneda="GBP">178000</presupuesto>
+    <tripulacion>
+      <integrante rol="capitan" pais="SE">Lars Nyberg</integrante>
+      <integrante rol="cartografo" pais="ES">Diego Lamas</integrante>
+      <integrante rol="cartografo" pais="PT">Tomas Pereira</integrante>
+      <integrante rol="glaciologa" pais="FR">Claire Martin</integrante>
+      <integrante rol="medico" pais="IT">Giorgio Bassi</integrante>
+      <integrante rol="telegrafista" pais="UK">Edward Mills</integrante>
+    </tripulacion>
+    <ruta>
+      <punto lat="71.5" lon="-12.1"/>
+      <punto lat="74.2" lon="-8.9"/>
+      <punto lat="76.0" lon="-5.3"/>
+    </ruta>
+  </expedicion>
+
+  <expedicion id="E003" region="Amazonia">
+    <nombre>Cuenca Verde</nombre>
+    <fechaInicio>1862-01-08</fechaInicio>
+    <fechaFin>1862-06-12</fechaFin>
+    <presupuesto moneda="GBP">154000</presupuesto>
+    <tripulacion>
+      <integrante rol="capitana" pais="BR">Lia Monteiro</integrante>
+      <integrante rol="botanica" pais="ES">Paula Nogue</integrante>
+      <integrante rol="cartografo" pais="AR">Ramon Varela</integrante>
+      <integrante rol="zoologa" pais="PE">Ines Quispe</integrante>
+      <integrante rol="medico" pais="PT">Joao Faria</integrante>
+      <integrante rol="cronista" pais="CL">Elena Sotelo</integrante>
+      <integrante rol="tecnico" pais="BR">Rui Campos</integrante>
+    </tripulacion>
+    <ruta>
+      <punto lat="-3.2" lon="-60.0"/>
+      <punto lat="-2.4" lon="-58.8"/>
+    </ruta>
+  </expedicion>
+
+  <expedicion id="E004" region="Sahara">
+    <nombre>Mapa de Dunas</nombre>
+    <fechaInicio>1871-02-01</fechaInicio>
+    <fechaFin>1871-04-10</fechaFin>
+    <presupuesto moneda="GBP">201000</presupuesto>
+    <tripulacion>
+      <integrante rol="capitan" pais="FR">Louis Armand</integrante>
+      <integrante rol="cartografo" pais="MA">Idriss Benali</integrante>
+      <integrante rol="geologa" pais="DZ">Salma Haddad</integrante>
+      <integrante rol="medico" pais="ES">Tomas Calvo</integrante>
+    </tripulacion>
+    <ruta>
+      <punto lat="24.8" lon="8.3"/>
+      <punto lat="23.6" lon="10.2"/>
+    </ruta>
+  </expedicion>
+</expediciones>

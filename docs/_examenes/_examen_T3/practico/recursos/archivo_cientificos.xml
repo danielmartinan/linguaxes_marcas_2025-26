@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cientificos>
+  <cientifico id="C001">
+    <nombre>Ana Beltran</nombre>
+    <especialidad>botanica</especialidad>
+    <pais>ES</pais>
+    <nacimiento>1842</nacimiento>
+    <expediciones>
+      <expedicion ref="E001"/>
+      <expedicion ref="E002"/>
+      <expedicion ref="E003"/>
+      <expedicion ref="E004"/>
+    </expediciones>
+    <publicaciones>12</publicaciones>
+  </cientifico>
+
+  <cientifico id="C002">
+    <nombre>Pierre Martin</nombre>
+    <especialidad>geologia</especialidad>
+    <pais>FR</pais>
+    <nacimiento>1851</nacimiento>
+    <expediciones>
+      <expedicion ref="E002"/>
+      <expedicion ref="E004"/>
+    </expediciones>
+    <publicaciones>7</publicaciones>
+  </cientifico>
+
+  <cientifico id="C003">
+    <nombre>Thomas Reed</nombre>
+    <especialidad>cartografia</especialidad>
+    <pais>UK</pais>
+    <nacimiento>1838</nacimiento>
+    <expediciones>
+      <expedicion ref="E001"/>
+      <expedicion ref="E002"/>
+      <expedicion ref="E003"/>
+      <expedicion ref="E004"/>
+      <expedicion ref="E005"/>
+    </expediciones>
+    <publicaciones>15</publicaciones>
+  </cientifico>
+
+  <cientifico id="C004">
+    <nombre>Lucia Moretti</nombre>
+    <especialidad>zoologia</especialidad>
+    <pais>IT</pais>
+    <nacimiento>1860</nacimiento>
+    <expediciones>
+      <expedicion ref="E003"/>
+    </expediciones>
+    <publicaciones>3</publicaciones>
+  </cientifico>
+
+  <cientifico id="C005">
+    <nombre>Rui Esteves</nombre>
+    <especialidad>oceanografia</especialidad>
+    <pais>PT</pais>
+    <nacimiento>1855</nacimiento>
+    <expediciones>
+      <expedicion ref="E002"/>
+      <expedicion ref="E005"/>
+      <expedicion ref="E006"/>
+      <expedicion ref="E007"/>
+    </expediciones>
+    <publicaciones>9</publicaciones>
+  </cientifico>
+
+  <cientifico id="C006">
+    <nombre>Helena Costa</nombre>
+    <especialidad>botanica</especialidad>
+    <pais>ES</pais>
+    <nacimiento>1872</nacimiento>
+    <expediciones>
+      <expedicion ref="E003"/>
+      <expedicion ref="E006"/>
+    </expediciones>
+    <publicaciones>0</publicaciones>
+  </cientifico>
+</cientificos>
