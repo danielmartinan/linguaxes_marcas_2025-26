@@ -17,23 +17,7 @@
 
 ## Antes de comenzar
 
-Descarga y descomprime `recursos_examen_T3.zip`. Ese paquete incluye los recursos base del examen.
-
-En esta primera versión también tienes los XML listos en la carpeta local `../recursos/`:
-
-- `expediciones.xml`
-- `misiones.xml`
-- `archivo_cientificos.xml`
-- `ejer2_base.xsl` (plantilla base para el ejercicio 2)
-- `ejer2_ejemplo_resultado.xml` (ejemplo de resultado esperado para el ejercicio 2)
-
-Los tres ejercicios comparten temática (expediciones científicas), pero son **independientes** entre sí: puedes resolverlos en cualquier orden.
-
-Dispones de BaseX en tu equipo para probar tus soluciones. Asegúrate de cargar los XML en BaseX para validar tus consultas y transformaciones.
-
-## Recursos proporcionados
-
-En la carpeta `../recursos/` se proporcionan los siguientes archivos:
+Descarga y descomprime `recursos_examen_T3.zip`. Ese paquete incluye los recursos base del examen (se proporcionan los siguientes archivos):
 
 - `expediciones.xml` (datos del ejercicio 1)
 - `misiones.xml` (datos del ejercicio 2)
@@ -41,27 +25,50 @@ En la carpeta `../recursos/` se proporcionan los siguientes archivos:
 - `ejer2_base.xsl` (plantilla parcial para el ejercicio 2)
 - `ejer2_ejemplo_resultado.xml` (ejemplo de salida para el ejercicio 2)
 
+Los tres ejercicios comparten temática (expediciones científicas), pero son **independientes** entre sí: puedes resolverlos en cualquier orden.
+
+Dispones de BaseX en tu equipo para probar tus soluciones. Asegúrate de cargar los XML en BaseX para validar tus consultas y transformaciones.
+
 ## Comprobación con BaseX (paso a paso)
 
-1. Abre BaseX y crea una consulta nueva.
-2. Para comprobar una expresión XPath del ejercicio 1, ejecuta una consulta de este tipo:
+1. Abre BaseX: en el explorador de archivos, navega hasta `C:/Archivos de programa (x86)/BaseX` y haz doble click en `BaseX.jar`
 
-```xquery
-doc('C:/RUTA/AL/PROYECTO/recursos/expediciones.xml')/expediciones/expedicion
-```
+   ![alt text](image.png)
 
-3. Para comprobar el ejercicio 2 (XSLT), ejecuta esta consulta XQuery en BaseX:
+2. Carga el archivo xml correspondiente. Para ello, haz click en `Database>New` y selecciona el archivo deseado.
 
-```xquery
-import module namespace xslt = "http://basex.org/modules/xslt";
-xslt:transform(
-    doc("C:/RUTA/AL/PROYECTO/recursos/misiones.xml"),
-    "C:/RUTA/AL/PROYECTO/recursos/ejer2_transformacion.xsl"
-)
-```
+    <div style="width: 200px">
+        <img src="image-1.png">
+    </div>
 
-4. Guarda el resultado anterior como `ejer2_resultado.xml`.
+   ![alt text](image-2.png)
+
+3. Una vez cargado el xml, ya puedes crear consultas.  Para comprobar una expresión XPath del ejercicio 1, ejecuta una consulta de este tipo:
+
+    ```xquery
+    doc('C:/RUTA/AL/PROYECTO/recursos/archivo.xml')/cientificos/cientifico
+    ```
+
+    ![alt text](image-4.png)
+
+4. Para comprobar el ejercicio 2 (XSLT), ejecuta esta consulta XQuery en BaseX:
+
+    ```xquery
+    import module namespace xslt = "http://basex.org/modules/xslt";
+    xslt:transform(
+        doc("C:/RUTA/AL/PROYECTO/recursos/misiones.xml"),
+        "C:/RUTA/AL/PROYECTO/recursos/ejer2_transformacion.xsl"
+    )
+    ```
+
+    ![alt text](image-5.png)
+
 5. Para comprobar cada consulta del ejercicio 3, abre cada fichero `.xq`, ejecútalo en BaseX y verifica el resultado.
+
+    ![alt text](image-6.png)
+
+    ![alt text](image-7.png)
+
 6. Genera las capturas requeridas y guárdalas en `ejer1_capturas.pdf`, `ejer2_capturas.pdf` y `ejer3_capturas.pdf`.
 
 > Nota: Sustituye `C:/RUTA/AL/PROYECTO` por la ruta real de tu equipo.
@@ -82,7 +89,7 @@ En cada captura debe verse claramente:
 4. Panel de información/mensajes: confirmación de ejecución sin errores.
 5. Navegador de base de datos/proyecto: archivo de entrada correspondiente al ejercicio.
 
-<div style="height: 750px;"></div>
+<div style="height: 250px;"></div>
 
 ## Ejercicio 1: XPath (2,5 puntos)
 
@@ -113,7 +120,6 @@ Deberás ejecutar cada expresión en BaseX para comprobar su funcionamiento y gu
 
 ### Consideraciones
 
-- Se permite XPath 1.0 o 2.0.
 - Debes priorizar expresiones correctas y funcionales frente a expresiones largas.
 - No se evaluará formato visual ni comentarios en este ejercicio.
 
@@ -125,10 +131,8 @@ Deberás ejecutar cada expresión en BaseX para comprobar su funcionamiento y gu
 
 ### Criterios de evaluación
 
-- Funcionalidad y precisión de las expresiones XPath: **2,50 puntos**. Se indica el valor de cada apartado en la descripción de los requisitos.
+- Funcionalidad y precisión de las expresiones XPath: **2,00 puntos**. Se indica el valor de cada apartado en la descripción de los requisitos.
 - Evidencias de ejecución en BaseX (capturas): **0,50 puntos**. Se evaluará que las expresiones se han ejecutado correctamente y que el resultado es el esperado.
-
-<div style="height: 100px;"></div>
 
 ## Ejercicio 2: XSLT (4 puntos)
 
@@ -193,7 +197,7 @@ Debes completar el resto de la transformación (selección de nodos, estructura 
 - Claridad y comentarios mínimos en la XSL: **0,25 puntos**.
 - Captura de la ejecución en BaseX mostrando la consulta y el resultado: **0,25 puntos**.
 
-<div style="height: 780px;"></div>
+<div style="height: 770px;"></div>
 
 ## Ejercicio 3: XQuery (3,5 puntos)
 
@@ -230,7 +234,7 @@ Deberás ejecutar cada consulta en BaseX para comprobar su funcionamiento y guar
 - Funcionalidad y precisión de las consultas XQuery: **3,00 puntos**. Se indica el valor de cada apartado en la descripción de los requisitos.
 - Evidencias de ejecución en BaseX (capturas): **0,50 puntos**. Se evaluará que las consultas se han ejecutado correctamente y que el resultado es el esperado.
 
-<div style="height: 270px;"></div>
+<div style="height: 170px;"></div>
 
 ## Entrega final
 
@@ -251,11 +255,5 @@ examen_T3_nombre_apellidos.zip
     ├── ejer3_6.xq
     └── ejer3_capturas.pdf
 ```
-
-## Criterios generales de calificación
-
-- La solución debe ser funcional y ajustarse al formato de entrega.
-- Errores sintácticos graves o archivos mal nombrados pueden penalizarse.
-- Si un ejercicio no se puede evaluar por formato incorrecto, se calificará con 0 en ese apartado.
 
 **¡Mucha suerte!**
