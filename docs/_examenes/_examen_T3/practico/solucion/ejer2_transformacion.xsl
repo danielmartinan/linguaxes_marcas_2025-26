@@ -4,8 +4,11 @@
 
     <xsl:output method="xml" indent="yes" encoding="UTF-8" />
     <xsl:strip-space elements="*" />
+
+    <!-- Clave para calcular zonas únicas en XSLT 1.0 -->
     <xsl:key name="kZona" match="mision/zona" use="." />
 
+    <!-- Convierte una fecha YYYY-MM-DD a día juliano -->
     <xsl:template name="julian-day">
         <xsl:param name="fecha" />
 
@@ -21,6 +24,7 @@
             select="$d + floor((153 * $m2 + 2) div 5) + 365 * $y2 + floor($y2 div 4) - floor($y2 div 100) + floor($y2 div 400) - 32045" />
     </xsl:template>
 
+    <!-- Devuelve la diferencia en días entre dos fechas YYYY-MM-DD -->
     <xsl:template name="days-between">
         <xsl:param name="inicio" />
         <xsl:param name="fin" />

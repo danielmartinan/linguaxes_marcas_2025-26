@@ -170,11 +170,7 @@ Debes completar el resto de la transformación (selección de nodos, estructura 
 
 ### Requisitos
 
-- Implementar la transformación en una hoja XSLT.
-- Partir del fichero `ejer2_base.xsl` y completarlo.
-- Calcular `duracionDias`:
-    - Si hay `fechaFin`, diferencia entre `fechaInicio` y `fechaFin`.
-    - Si no hay `fechaFin`, usar la fecha fija `1912-12-31` como referencia.
+- Implementar la transformación en una hoja XSLT, partiendo del fichero `ejer2_base.xsl` y completarlo.
 - Ordenar las misiones activas por `prioridad` descendente y, a igualdad, por `fechaInicio` ascendente.
 - Ordenar las misiones cerradas por `fechaFin` ascendente.
 

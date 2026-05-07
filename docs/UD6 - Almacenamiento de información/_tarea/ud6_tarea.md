@@ -25,7 +25,7 @@ Puedes revisar estos videos del canal [DiscoDuroDeRoer](https://www.youtube.com/
 > for $x in elementos/elemento[@att="item"]
 > return $x/nombre
 > ```
->
+
 
 ## Ejercicio 1
 

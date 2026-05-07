@@ -1,4 +1,4 @@
-# NORMAS ESPECÍFICAS PARA LA REALIZACIÓN DEL EXAMEN DE ***LINGUAXES DE MARCAS E SISTEMAS DE XESTIÓN DA INFORMACIÓN*** EN EL RÉGIMEN DE ADULTOS MODALIDAD A DISTANCIA (TERCEIRO TRIMESTRE)
+# NORMAS ESPECÍFICAS PARA LA REALIZACIÓN DEL EXAMEN DE ***LINGUAXES DE MARCAS E SISTEMAS DE XESTIÓN DA INFORMACIÓN*** EN EL RÉGIMEN DE ADULTOS MODALIDAD A DISTANCIA (TERCER TRIMESTRE)
 
 ## Normas generales
 
@@ -29,7 +29,7 @@ El examen tendrá una duración total de **2 horas y 45 minutos** y se dividirá
     - El alumno será responsable de confirmar la entrega del examen teórico en el aula virtual.
     - Esta parte representa **2.5 puntos** de la calificación total del examen.
 - **Examen Práctico (2h 15’):**
-    - Consiste en la resolución de ejercicios prácticos relacionados con los contenidos de las unidades didácticas 5, 6 y 7, que podrán incluir, entre otros, los siguientes tipos de actividades:
+    - Consiste en la resolución de ejercicios prácticos relacionados con los contenidos de las unidades didácticas 5 y 6, que podrán incluir, entre otros, los siguientes tipos de actividades:
         - Conversión de documentos con XSLT.
         - Consultas con XPath.
         - Consultas con XQuery.
@@ -52,12 +52,10 @@ Durante el **examen práctico**:
 
 - El acceso a internet estará limitado, y solo podréis acceder al aula virtual. **En este caso, sí tendréis acceso a los recursos subidos al aula virtual (apuntes).**
 - Está estrictamente prohibido acceder a recursos externos, incluyendo páginas web, **salvo a los archivos subidos al aula virtual (incluidos archivos personales).**
-- Solo podréis hacer uso de las **herramientas** indicadas en el examen, que son las que se han ido utilizando durante las actividades de las unidades **3 y 4**. En concreto, para este examen se recomienda el uso de:
+- Solo podréis hacer uso de las **herramientas** indicadas en el examen, que son las que se han ido utilizando durante las actividades de las unidades **5 y 6**. En concreto, para este examen se recomienda el uso de:
   - **Visual Studio Code**.
-    - Extensiones de VS Code utilizadas en clase para trabajar con HTML/CSS/XML: **XML Tools**, **HTML CSS Support**, **Live Server**, **Auto Close Tag** y **CSS Peek**.
-    - Extensiones para trabajar con XSD: **XML Tools** y **XSD Schema Explorer**.
-    - Extensiones para trabajar con JavaScript: **ESLint**, **Prettier** y **JavaScript (ES6) code snippets**.
-    - Se podrán instalar otras extensiones de VSCode, salvo aquellas orientadas a la generación automática de código o autocompletado avanzado (como pueden ser las basadas en IA).
+    - Se podrán instalar las extensiones de VSCode deseadas, salvo aquellas orientadas a la generación automática de código o autocompletado avanzado (como pueden ser las basadas en IA).
+  - **BaseX** para la ejecución de consultas XPath y XQuery. Se darán indicaciones sobre su uso durante el examen, pero se recomienda su instalación previa para familiarizarse con la herramienta.
   - **Navegador web** y sus herramientas de desarrollo (consola/inspector) para pruebas y depuración de JavaScript y DOM.
   - **LibreOffice Writer** para la elaboración del informe y su exportación a **PDF**.
 - Debe consultarse con el profesor la posibilidad de hacer uso de algún otro software (idealmente, días antes del propio examen).
