@@ -26,7 +26,6 @@ Puedes revisar estos videos del canal [DiscoDuroDeRoer](https://www.youtube.com/
 > return $x/nombre
 > ```
 
-
 ## Ejercicio 1
 
 Un documento XML almacena la información de usuarios/as y tiene las siguientes características:
