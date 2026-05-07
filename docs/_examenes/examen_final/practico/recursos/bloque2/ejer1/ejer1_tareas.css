@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #1f2933;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.app-header,
+.task-form,
+.summary,
+.task-list-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 24px rgba(31, 41, 51, 0.08);
+  margin-bottom: 18px;
+}
+
+.task-form-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #cbd2d9;
+  border-radius: 8px;
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1769aa;
+  color: #ffffff;
+}
+
+.summary-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message {
+  min-height: 1.2em;
+  color: #b42318;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item.done .task-text {
+  text-decoration: line-through;
+  color: #52606d;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.secondary-button {
+  background: #7b8794;
+}
+
+.danger-button {
+  background: #d64545;
+}

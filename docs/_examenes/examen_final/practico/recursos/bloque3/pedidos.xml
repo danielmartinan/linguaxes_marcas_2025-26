@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pedidos>
+  <pedido codigo="P001" estado="pendiente">
+    <fecha>2026-01-15</fecha>
+    <cliente codigo="C001">Aula Norte S.L.</cliente>
+    <importe>245.50</importe>
+    <lineas>
+      <linea categoria="hardware">
+        <producto codigo="HW-101">Teclado mecanico</producto>
+        <cantidad>5</cantidad>
+        <precioUnitario>35.00</precioUnitario>
+      </linea>
+      <linea categoria="accesorios">
+        <producto codigo="AC-210">Alfombrilla XL</producto>
+        <cantidad>5</cantidad>
+        <precioUnitario>14.10</precioUnitario>
+      </linea>
+    </lineas>
+  </pedido>
+
+  <pedido codigo="P002" estado="completado">
+    <fecha>2026-02-02</fecha>
+    <cliente codigo="C002">Servicios Delta</cliente>
+    <importe>890.00</importe>
+    <lineas>
+      <linea categoria="hardware">
+        <producto codigo="HW-205">Monitor 27 pulgadas</producto>
+        <cantidad>4</cantidad>
+        <precioUnitario>222.50</precioUnitario>
+      </linea>
+    </lineas>
+  </pedido>
+
+  <pedido codigo="P003" estado="pendiente">
+    <fecha>2026-03-11</fecha>
+    <cliente codigo="C003">Innovacion Campus</cliente>
+    <importe>520.00</importe>
+    <lineas>
+      <linea categoria="software">
+        <producto codigo="SW-310">Licencia de analitica</producto>
+        <cantidad>10</cantidad>
+        <precioUnitario>52.00</precioUnitario>
+      </linea>
+    </lineas>
+  </pedido>
+
+  <pedido codigo="P004" estado="completado">
+    <fecha>2025-12-18</fecha>
+    <cliente codigo="C002">Servicios Delta</cliente>
+    <importe>610.00</importe>
+    <lineas>
+      <linea categoria="hardware">
+        <producto codigo="HW-150">Disco SSD 1TB</producto>
+        <cantidad>5</cantidad>
+        <precioUnitario>122.00</precioUnitario>
+      </linea>
+    </lineas>
+  </pedido>
+</pedidos>

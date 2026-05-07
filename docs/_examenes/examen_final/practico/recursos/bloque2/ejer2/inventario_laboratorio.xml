@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventario>
+  <equipo codigo="EQ-001">
+    <nombre>Microscopio digital</nombre>
+    <categoria>optica</categoria>
+    <estado>operativo</estado>
+    <fechaCompra>2025-09-01</fechaCompra>
+    <coste>1250.00</coste>
+    <responsable>Departamento de Biologia</responsable>
+  </equipo>
+  <equipo codigo="EQ-002">
+    <nombre>Osciloscopio</nombre>
+    <categoria>medicion</categoria>
+    <estado>revision</estado>
+    <fechaCompra>2024-11-15</fechaCompra>
+    <coste>980.00</coste>
+    <responsable>Departamento de Tecnologia</responsable>
+  </equipo>
+  <sala>
+    <identificador>S1</identificador>
+    <nombre>Laboratorio principal</nombre>
+    <capacidad>24</capacidad>
+  </sala>
+</inventario>

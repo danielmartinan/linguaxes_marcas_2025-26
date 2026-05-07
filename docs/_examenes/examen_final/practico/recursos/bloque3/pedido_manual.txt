@@ -1,0 +1,21 @@
+Pedido para importar en el sistema de gestion
+
+Identificador: P-IMPORT-01
+Fecha: 2026-04-20
+Cliente: Centro Formativo Atlantico
+
+Lineas de pedido:
+1. Codigo articulo: HW-330
+   Descripcion: Portatil 14 pulgadas
+   Cantidad: 3
+   Precio unitario: 699.00
+
+2. Codigo articulo: AC-120
+   Descripcion: Mochila para portatil
+   Cantidad: 3
+   Precio unitario: 42.50
+
+3. Codigo articulo: LIC-500
+   Descripcion: Licencia anual de ofimatica
+   Cantidad: 25
+   Precio unitario: 19.90
