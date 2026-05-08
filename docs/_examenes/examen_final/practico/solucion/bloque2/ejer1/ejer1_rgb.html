@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor RGB</title>
+  <link rel="stylesheet" href="ejer1_rgb.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Conversor de color RGB</h1>
+      <p>Completa la funcionalidad con JavaScript.</p>
+    </header>
+
+    <section class="color-form" aria-labelledby="color-form-titulo">
+      <h2 id="color-form-titulo">Introduce un color</h2>
+      <label for="rgbInput">Valor RGB (formato: <code>r, g, b</code>)</label>
+      <div class="form-row">
+        <input id="rgbInput" type="text" placeholder="Ej: 255, 128, 0">
+        <button id="applyButton" type="button">Aplicar</button>
+        <button id="resetButton" type="button" class="secondary-button">Restablecer</button>
+      </div>
+      <p id="errorMessage" class="message" aria-live="polite"></p>
+    </section>
+
+    <section class="color-display" aria-labelledby="color-display-titulo">
+      <h2 id="color-display-titulo">Vista previa</h2>
+      <div id="colorPreview" class="color-preview"></div>
+      <p>Equivalente HEX: <span id="hexLabel">—</span></p>
+    </section>
+  </main>
+
+  <script src="ejer1_rgb.js"></script>
+</body>
+</html>

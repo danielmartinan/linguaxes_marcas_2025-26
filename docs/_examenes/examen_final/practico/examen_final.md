@@ -1,7 +1,6 @@
-# Examen Final Práctico - Lenguajes de Marcas
+# Examen Final Práctico - Lenguajes de Marcas y Sistemas de Gestión de Información
 
-**Módulo:** Lenguajes de Marcas y Sistemas de Gestión de Información  
-**Unidades evaluadas:** UD1, UD2, UD3, UD4, UD5, UD6 y UD7  
+**Unidades evaluadas:** Bloque 1: UD1, UD2; Bloque 2: UD3, UD4; Bloque 3: UD5, UD6
 **Duración total:** 2 horas y 30 minutos  
 **Estructura:** 3 bloques de 50 minutos  
 **Puntuación:** 10 puntos por bloque
@@ -9,7 +8,7 @@
 **Herramientas permitidas:** Visual Studio Code, navegador web y BaseX.  
 **Herramienta obligatoria para el bloque 3:** **BaseX**.
 
-**IMPORTANTE**: Cada bloque se evaluará de forma independiente. Es obligatorio aprobar cada bloque realizado para superar la asignatura.
+**IMPORTANTE**: Cada bloque se evaluará de forma independiente. Es obligatorio aprobar cada bloque realizado para superar la asignatura. Cada alumno tendrá que realizar sólo los bloques pendientes de superar, disponiendo de 50 minutos para cada 1.
 
 ## Instrucciones generales
 
@@ -59,12 +58,6 @@ Debes incluir **2 actividades**, y cada una debe contener:
 
 - Archivo: `bloque1/ejer1_catalogo_cultural.xml`
 
-#### Criterios de evaluación 1.1
-
-- Sintaxis XML correcta: **1,00 punto**.
-- Estructura semántica adecuada: **1,00 punto**.
-- Completitud y legibilidad: **1,00 punto**.
-
 ### Ejercicio 1.2: Página HTML semántica de jornadas técnicas (3,5 puntos)
 
 Se proporciona un archivo HTML base llamado `ejer2_jornadas_tecnicas.html` ya estructurado. Debes **completar únicamente una parte del contenido** para anunciar unas **jornadas tecnológicas**.
@@ -98,12 +91,6 @@ El resultado esperado es el que se muestra a continuación:
 
 - Archivo completado: `bloque1/ejer2_jornadas_tecnicas.html`
 
-#### Criterios de evaluación 1.2
-
-- Inserción correcta del contenido solicitado en el HTML base: **1,50 puntos**.
-- Uso adecuado de etiquetas semánticas y jerarquía: **1,25 puntos**.
-- Limpieza y coherencia del marcado: **0,75 puntos**.
-
 ### Ejercicio 1.3: CSS de una tarjeta informativa responsive (3,5 puntos)
 
 Se proporcionan un HTML base `ejer3_tarjeta_evento.html` y una hoja `styles.css` ya iniciada. Debes **añadir únicamente los estilos que faltan** para completar la presentación de una **tarjeta informativa de evento**.
@@ -136,7 +123,7 @@ En la hoja CSS preconfigurada debes completar estos apartados:
   - Color `ffffff` para el texto del botón primario y `102a43` para el secundario
 - Ajuste responsive para móvil en pantallas menores de 600px.
   - Cambiar el tamaño de fuente del título principal (Foro de Innovación y Datos) a 1.55rem
-  - Cambiar la dirección `flex` de los eventos a columna
+  - Cambiar la dirección `flex` de los eventos a columna (clases .event-details y .event-actions)
 
 #### Consideraciones 1.3
 
@@ -147,57 +134,52 @@ En la hoja CSS preconfigurada debes completar estos apartados:
 
 - Archivo completado: `bloque1/styles/styles.css`
 
-#### Criterios de evaluación 1.3
-
-- Selectores y ampliación correcta del CSS base: **1,00 punto**.
-- Layout y estilos de los bloques solicitados: **1,50 puntos**.
-- Responsive y coherencia visual final: **1,00 punto**.
-
 ---
 
 ## Bloque 2: Interactividad y validación de documentos (UD3 y UD4) - 10 puntos - 50 minutos
 
 Este bloque combina programación en cliente con modelado de esquemas XML. Las funcionalidades exigidas son más acotadas que en el parcial T2.
 
-### Ejercicio 2.1: JavaScript DOM para gestor de tareas (6 puntos)
+### Ejercicio 2.1: JavaScript DOM - Conversor de color RGB (6 puntos)
 
-Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcionalidad de un **gestor simple de tareas**.
+Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcionalidad de un **conversor de color RGB**.
 
 #### Requisitos funcionales 2.1
 
-1. Cargar una lista inicial de **5 tareas** desde un array JavaScript.
-2. Mostrar cada tarea con:
-   - Texto descriptivo.
-   - Estado (`pendiente` o `hecha`).
-   - Botón para cambiar estado.
-   - Botón para eliminar.
-3. Permitir añadir nuevas tareas mediante un campo de texto y un botón.
-4. No permitir tareas vacías ni duplicadas exactas.
-5. Mostrar un resumen dinámico con:
-   - Total de tareas.
-   - Pendientes.
-   - Hechas.
+1. Leer un valor introducido en un campo de texto con el formato `r, g, b` (por ejemplo: `255, 128, 0`).
+2. Al pulsar el botón **Aplicar**:
+   - Si el valor es válido (tres enteros entre 0 y 255), aplicar el color al panel de vista previa y mostrar el valor equivalente hexadecimal.
+
+    ![alt text](image-3.png)
+
+   - Si el valor no es válido, mostrar un mensaje de error descriptivo.
+
+    ![alt text](image-4.png)
+
+3. Incluir un botón **Restablecer** que devuelva el panel al color por defecto y limpie el campo de información hexadecimal.
+
+  ![alt text](image-5.png)
 
 #### Restricciones técnicas 2.1
 
 - Usa `addEventListener`.
 - No se permiten eventos inline.
-- Organiza el código en funciones reutilizables.
+- Organiza el código en funciones reutilizables (`parseRGB`, `toHex`, `applyColor`, `resetColor`…).
 - Solo puedes modificar el HTML base para añadir clases o atributos si son necesarios.
 
 #### Entrega 2.1
 
-- `bloque2/ejer1/ejer1_tareas.html`
-- `bloque2/ejer1/ejer1_tareas.css` (proporcionado, no modificar)
-- `bloque2/ejer1/ejer1_tareas.js`
+- `bloque2/ejer1/ejer1_rgb.html`
+- `bloque2/ejer1/ejer1_rgb.css` (proporcionado, no modificar)
+- `bloque2/ejer1/ejer1_rgb.js`
 
 #### Criterios de evaluación 2.1
 
-- Renderizado inicial correcto: **1,00 punto**.
-- Cambio de estado funcional: **1,25 puntos**.
-- Alta con validaciones: **1,50 puntos**.
-- Eliminación individual: **0,75 puntos**.
-- Resumen dinámico: **1,00 punto**.
+- Lectura del input y llamada al manejador de eventos: **1,00 punto**.
+- Validación correcta del formato RGB: **1,50 puntos**.
+- Aplicación del color al panel de vista previa: **1,25 puntos**.
+- Cálculo y muestra del equivalente HEX: **1,00 punto**.
+- Botón de restablecer funcional: **0,75 puntos**.
 - Calidad del código: **0,50 puntos**.
 
 ### Ejercicio 2.2: Esquema XSD para un inventario de laboratorio (4 puntos)
@@ -377,9 +359,9 @@ examen_final_nombre_apellidos.zip
 │       └── styles.css
 ├── bloque2/
 │   ├── ejer1/
-│   │   ├── ejer1_tareas.html
-│   │   ├── ejer1_tareas.css
-│   │   └── ejer1_tareas.js
+│   │   ├── ejer1_rgb.html
+│   │   ├── ejer1_rgb.css
+│   │   └── ejer1_rgb.js
 │   └── ejer2/
 │       └── inventario_laboratorio.xsd
 └── bloque3/

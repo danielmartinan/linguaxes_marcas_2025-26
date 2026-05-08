@@ -10,15 +10,14 @@ body {
 }
 
 .app {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 24px 16px 40px;
 }
 
 .app-header,
-.task-form,
-.summary,
-.task-list-section {
+.color-form,
+.color-display {
   background: #ffffff;
   border-radius: 12px;
   padding: 20px;
@@ -26,7 +25,7 @@ body {
   margin-bottom: 18px;
 }
 
-.task-form-row {
+.form-row {
   display: flex;
   gap: 10px;
   margin-top: 8px;
@@ -50,52 +49,25 @@ button {
   border-radius: 8px;
   background: #1769aa;
   color: #ffffff;
-}
-
-.summary-grid {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.task-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.message {
-  min-height: 1.2em;
-  color: #b42318;
-}
-
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.task-item:last-child {
-  border-bottom: none;
-}
-
-.task-item.done .task-text {
-  text-decoration: line-through;
-  color: #52606d;
-}
-
-.task-actions {
-  display: flex;
-  gap: 8px;
+  cursor: pointer;
 }
 
 .secondary-button {
   background: #7b8794;
 }
 
-.danger-button {
-  background: #d64545;
+.message {
+  min-height: 1.2em;
+  color: #b42318;
+  margin-top: 6px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #cbd2d9;
+  background: #f4f6f8;
+  margin-bottom: 12px;
+  transition: background-color 0.3s ease;
 }
