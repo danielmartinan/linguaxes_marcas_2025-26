@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogoCultural>
+  <actividad id="A01" tipo="teatro">
+    <titulo>La casa de Bernarda Alba</titulo>
+    <fecha>2026-06-03</fecha>
+    <precio>18.50</precio>
+    <lugar>Teatro Principal</lugar>
+  </actividad>
+  <actividad id="A02" tipo="concierto">
+    <titulo>Noches de Jazz Atlantico</titulo>
+    <fecha>2026-06-12</fecha>
+    <precio>22.00</precio>
+    <lugar>Auditorio Municipal</lugar>
+  </actividad>
+</catalogoCultural>

@@ -1,0 +1,5 @@
+/pedidos/pedido[starts-with(fecha, '2026')]/cliente
+/pedidos/pedido[importe > 500]
+/pedidos/pedido/lineas/linea[@categoria = 'hardware']/producto
+/pedidos/pedido[not(importe < /pedidos/pedido/importe)]
+/pedidos/pedido[@estado = 'pendiente']/@codigo

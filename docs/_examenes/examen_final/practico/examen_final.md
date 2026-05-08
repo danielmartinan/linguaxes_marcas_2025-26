@@ -4,10 +4,12 @@
 **Unidades evaluadas:** UD1, UD2, UD3, UD4, UD5, UD6 y UD7  
 **Duración total:** 2 horas y 30 minutos  
 **Estructura:** 3 bloques de 50 minutos  
-**Puntuación total:** 30 puntos (10 puntos por bloque)
+**Puntuación:** 10 puntos por bloque
 
 **Herramientas permitidas:** Visual Studio Code, navegador web y BaseX.  
 **Herramienta obligatoria para el bloque 3:** **BaseX**.
+
+**IMPORTANTE**: Cada bloque se evaluará de forma independiente. Es obligatorio aprobar cada bloque realizado para superar la asignatura.
 
 ## Instrucciones generales
 
@@ -33,8 +35,6 @@ Los bloques son **independientes** entre sí. Puedes resolverlos en el orden que
 
 ## Bloque 1: Marcado y publicación web (UD1 y UD2) - 10 puntos - 50 minutos
 
-Este bloque evalúa la creación de documentos estructurados y páginas web semánticas. En este examen final, las tareas parten de materiales ya preparados y solo exigen completar una parte concreta de cada ejercicio.
-
 ### Ejercicio 1.1: XML bien formado de catálogo cultural (3 puntos)
 
 Escribe un documento XML llamado `ejer1_catalogo_cultural.xml` para almacenar información de un **catálogo de actividades culturales**.
@@ -51,7 +51,6 @@ Debes incluir **2 actividades**, y cada una debe contener:
 
 #### Consideraciones
 
-- Usa al menos **un atributo** en cada actividad.
 - El XML debe estar bien formado y ser fácil de procesar.
 - Incluye la declaración XML.
 - Utiliza nombres de etiquetas claros y coherentes.
@@ -81,11 +80,19 @@ Partiendo del HTML preconfigurado, debes añadir solo estos elementos en la zona
 2. Una tabla simple con horario de **3 actividades**.
 3. Un botón o enlace de inscripción dentro de la sección principal.
 
+El resultado esperado es el que se muestra a continuación:
+
+---
+
+![alt text](b1_ej1_2.png)
+
+---
+
 #### Consideraciones 1.2
 
 - No debes rehacer la página completa.
 - No es necesario aplicar CSS en este ejercicio.
-- Debes respetar la estructura semántica ya proporcionada.
+- Debes respetar la estructura semántica ya proporcionada y utilizar etiquetas adecuadas para cada tipo de contenido.
 
 #### Entrega 1.2
 
@@ -106,9 +113,30 @@ Se proporcionan un HTML base `ejer3_tarjeta_evento.html` y una hoja `styles.css`
 En la hoja CSS preconfigurada debes completar estos apartados:
 
 - Estilos de la cabecera de la tarjeta.
+  - Borde inferior de color `--border` y grosor de 1px.
+  - Padding y margin de 18px
 - Distribución en Flexbox de la zona de detalles.
+  - Gap de 12px entre detalles.
+  - Margen inferior de 22px
+  - Alineación vertical de los detalles.
+- Apariencia de cada detalle
+  - Color de fondo de cada item `--accent-soft`,
+  - Borde redondeado de 10px y padding de 12px.
+  - Títulos de cada detalle (`detail-label`)
+    - Transformación a mayúsculas
+    - Tamaño de la fuente: 0.82rem
+    - Peso de la fuente: 700
+    - Color `--accent`
+    - Margen inferior de 6px
 - Apariencia de los botones de acción.
+  - Eliminar decoración del texto
+  - Alineación central del texto
+  - Padding de 11px vertical y 16px horizontal
+  - Radio de bordes de 10px
+  - Color `ffffff` para el texto del botón primario y `102a43` para el secundario
 - Ajuste responsive para móvil en pantallas menores de 600px.
+  - Cambiar el tamaño de fuente del título principal (Foro de Innovación y Datos) a 1.55rem
+  - Cambiar la dirección `flex` de los eventos a columna
 
 #### Consideraciones 1.3
 

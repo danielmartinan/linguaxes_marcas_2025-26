@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resumen-pedidos>
+  <pendientes>
+    <pedido codigo="P001">Aula Norte S.L.</pedido>
+    <pedido codigo="P003">Innovacion Campus</pedido>
+  </pendientes>
+  <completados>
+    <pedido codigo="P002">Servicios Delta</pedido>
+    <pedido codigo="P004">Servicios Delta</pedido>
+  </completados>
+  <totales>
+    <totalPedidos>4</totalPedidos>
+    <totalPendientes>2</totalPendientes>
+    <totalCompletados>2</totalCompletados>
+  </totales>
+</resumen-pedidos>
