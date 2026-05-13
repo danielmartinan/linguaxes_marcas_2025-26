@@ -138,8 +138,6 @@ En la hoja CSS preconfigurada debes completar estos apartados:
 
 ## Bloque 2: Interactividad y validación de documentos (UD3 y UD4) - 10 puntos - 50 minutos
 
-Este bloque combina programación en cliente con modelado de esquemas XML. Las funcionalidades exigidas son más acotadas que en el parcial T2.
-
 ### Ejercicio 2.1: JavaScript DOM - Conversor de color RGB (6 puntos)
 
 Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcionalidad de un **conversor de color RGB**.
@@ -160,12 +158,16 @@ Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcion
 
   ![alt text](image-5.png)
 
-#### Restricciones técnicas 2.1
+#### Requisitos técnicos 2.1
 
-- Usa `addEventListener`.
-- No se permiten eventos inline.
-- Organiza el código en funciones reutilizables (`parseRGB`, `toHex`, `applyColor`, `resetColor`…).
-- Solo puedes modificar el HTML base para añadir clases o atributos si son necesarios.
+- El archivo **HTML base está completo** (no modificar estructura).
+- El archivo **CSS está completo** (no modificar estilos).
+- En JavaScript debes completar estas funciones:
+  - **`parseRGB(value)`**: Valida y parsea el string "r, g, b" devolviendo array `[r, g, b]` o `null` si es inválido.
+  - **`applyColor()`**: Usa `parseRGB()`, valida valores 0-255, aplica color a `colorPreview` y actualiza `hexLabel`.
+  - **`resetColor()`**: Restaura panel al color por defecto y limpia campos.
+  - **Event listeners**: Vincula clicks en botones a las funciones correspondientes (sin inline).
+- Usa `addEventListener` para manejar eventos.
 
 #### Entrega 2.1
 
@@ -175,43 +177,47 @@ Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcion
 
 #### Criterios de evaluación 2.1
 
-- Lectura del input y llamada al manejador de eventos: **1,00 punto**.
-- Validación correcta del formato RGB: **1,50 puntos**.
-- Aplicación del color al panel de vista previa: **1,25 puntos**.
-- Cálculo y muestra del equivalente HEX: **1,00 punto**.
-- Botón de restablecer funcional: **0,75 puntos**.
-- Calidad del código: **0,50 puntos**.
+- Parsing y validación (parseRGB): **1,50 puntos**.
+- Conversión a HEX y aplicación de color (applyColor): **1,50 puntos**.
+- Restablecimiento de valores (resetColor): **1,50 puntos**.
+- Manejo de eventos y UX: **1,50 puntos**.
 
 ### Ejercicio 2.2: Esquema XSD para un inventario de laboratorio (4 puntos)
 
-Debes definir un esquema `inventario_laboratorio.xsd` para validar un XML con información de **equipos de laboratorio**.
+Debes completar el esquema `inventario_laboratorio.xsd` proporcionado para validar un XML con información de **equipos de laboratorio**.
 
 #### Requisitos del XML 2.2
 
 Cada `equipo` debe incluir:
 
 - Atributo obligatorio `codigo`.
-- Nombre.
-- Categoría.
-- Estado (`operativo`, `revision` o `baja`).
-- Fecha de compra.
-- Coste.
-- Responsable.
+- Nombre, Categoría, Estado, Fecha de compra, Coste, Responsable (todos obligatorios).
 
-Además, el documento puede incluir una lista de `sala` con:
+El documento incluye además una lista de `sala` (ya modelada en el XSD base):
 
-- Identificador.
-- Nombre.
-- Capacidad.
+- Identificador, Nombre, Capacidad.
 
-#### Requisitos del esquema 2.2
+#### Partes a completar del esquema 2.2
 
-- Elemento raíz `inventario`.
-- Uso de tipos simples y complejos.
-- Restricción de valores cerrados para `estado`.
-- `coste` decimal mayor o igual que 0.
-- `capacidad` entera positiva.
-- Unicidad del atributo `codigo` en los equipos.
+El archivo base contiene una estructura incompleta. Debes completarla para que valide correctamente un XML con estas características:
+
+1. **Estado del equipo** (0,7 puntos):
+   - Puede tomar solo uno de estos valores: `operativo`, `revision` o `baja`.
+
+2. **Capacidad de una sala** (0,3 puntos):
+   - Debe ser un número entero mayor que 0.
+
+3. **Información de un equipo** (1,5 puntos):
+   - Cada equipo tiene un código (atributo obligatorio).
+   - Contiene nombre, categoría, estado, fecha de compra, coste y responsable (todos obligatorios).
+   - El coste debe ser un número decimal >= 0.
+   - La fecha de compra sigue el formato de fecha estándar.
+
+4. **Estructura raíz del inventario** (1,5 puntos):
+   - El elemento raíz es `inventario`.
+   - Contiene una colección de equipos (al menos uno).
+   - Puede contener opcionalmente una colección de salas.
+   - El código de cada equipo debe ser único en el documento.
 
 #### Entrega 2.2
 
@@ -219,10 +225,9 @@ Además, el documento puede incluir una lista de `sala` con:
 
 #### Criterios de evaluación 2.2
 
-- Estructura general del esquema: **1,00 punto**.
-- Tipos y restricciones bien definidos: **1,50 puntos**.
-- Atributos y unicidad: **1,00 punto**.
-- Claridad formal y sintaxis: **0,50 puntos**.
+- Correctitud sintáctica y tipos definidos: **2,00 puntos**.
+- Restricciones y atributos: **1,50 puntos**.
+- Estructura y legibilidad: **0,50 puntos**.
 
 ---
 
@@ -343,7 +348,7 @@ Incluye un PDF llamado `bloque3_capturas.pdf` donde se vea claramente:
 ## Resumen de tiempos recomendado
 
 - **Bloque 1**: 50 minutos. Ejercicio 1.1: 10 min. Ejercicio 1.2: 20 min. Ejercicio 1.3: 20 min.
-- **Bloque 2**: 50 minutos. Ejercicio 2.1: 30 min. Ejercicio 2.2: 20 min.
+- **Bloque 2**: 50 minutos. Ejercicio 2.1: 32 min. Ejercicio 2.2: 18 min.
 - **Bloque 3**: 50 minutos. Ejercicio 3.1: 10 min. Ejercicio 3.2: 12 min. Ejercicio 3.3: 18 min. Ejercicio 3.4: 10 min.
 
 ## Entrega final

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!--tipo para el estado del equipo: estadoEquipoType-->
+  <xs:simpleType name="estadoEquipoType">
+    <!-- A COMPLETAR -->
+  </xs:simpleType>
+  
+  <!-- tipo para la capacidad de la sala: capacidadType -->
+  <xs:simpleType name="capacidadType">
+    <!-- A COMPLETAR -->
+  </xs:simpleType>
+
+  <xs:complexType name="equipoType">
+    <!-- A COMPLETAR -->
+  </xs:complexType>
+
+  <xs:complexType name="salaType">
+    <xs:sequence>
+      <xs:element name="identificador" type="xs:string"/>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="capacidad" type="capacidadType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="inventario">
+    <xs:complexType>
+      <!-- A COMPLETAR -->
+    </xs:complexType>
+
+    <xs:unique name="codigoEquipoUnico">
+      <xs:selector xpath="equipo"/>
+      <xs:field xpath="@codigo"/>
+    </xs:unique>
+  </xs:element>
+</xs:schema>
