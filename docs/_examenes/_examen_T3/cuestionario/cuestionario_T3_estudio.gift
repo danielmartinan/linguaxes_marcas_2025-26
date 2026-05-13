@@ -1,0 +1,223 @@
+// Cuestionario T3 - Versión alternativa para estudio
+// Contenidos: UD5, UD6 y UD7
+// Total: 30 preguntas
+// Cada pregunta vale: 1 punto
+// Penalización por respuesta incorrecta: -0.3333 puntos (1/3 del valor)
+
+$CATEGORY: $course$/T3 - UD5-UD7 / Estudio
+
+// ==================== UD5: CONVERSIÓN Y ADAPTACIÓN XML ====================
+
+::UD5-01:: ¿Qué indica principalmente la coincidencia de una plantilla xsl:template con un nodo? {
+=Que esa plantilla se ejecutará cuando el procesador visite ese nodo.
+~%-33.33333%Que el nodo será eliminado del XML de entrada.
+~%-33.33333%Que el nodo se convertirá automáticamente en un atributo.
+~%-33.33333%Que la plantilla solo se aplicará si existe un DTD asociado.
+}
+
+::UD5-02:: ¿Para qué se usa normalmente el atributo match en una plantilla XSLT? {
+=Para indicar qué nodos o patrones de nodos activa la plantilla.
+~%-33.33333%Para definir el tipo MIME del resultado final.
+~%-33.33333%Para ordenar los elementos de salida por nombre.
+~%-33.33333%Para declarar el prefijo de un namespace XML.
+}
+
+::UD5-03:: ¿Qué función cumple xsl:output en una hoja XSLT? {
+~%-33.33333%Seleccionar los nodos que se van a recorrer.
+=Configurar cómo se serializará el documento resultante.
+~%-33.33333%Definir la estructura interna del XML de entrada.
+~%-33.33333%Validar el documento antes de transformarlo.
+}
+
+::UD5-04:: En XSLT, ¿qué diferencia práctica hay entre xsl:include y xsl:import? {
+~%-33.33333%xsl:include solo sirve para HTML y xsl:import solo para XML.
+=xsl:import permite gestionar prioridades de plantillas, mientras que xsl:include incorpora el contenido directamente.
+~%-33.33333%No existe ninguna diferencia entre ambos.
+~%-33.33333%xsl:include elimina la necesidad de declarar namespaces.
+}
+
+::UD5-05:: ¿Qué ventaja aporta declarar parámetros con xsl:param? {
+=Permite reutilizar la misma hoja con valores distintos sin cambiar el código.
+~%-33.33333%Obliga al procesador a ejecutar más rápido la transformación.
+~%-33.33333%Hace innecesario el uso de XPath.
+~%-33.33333%Convierte el documento de salida en un archivo binario.
+}
+
+::UD5-06:: ¿Qué describe mejor un selector XPath como /biblioteca/libro[1]/titulo? {
+~%-33.33333%Una validación de atributos obligatorios.
+=Una ruta que accede al título del primer libro dentro de biblioteca.
+~%-33.33333%Una orden para copiar el nodo completo al resultado.
+~%-33.33333%Una instrucción para crear un elemento nuevo.
+}
+
+::UD5-07:: ¿Qué papel tienen los namespaces cuando se transforman documentos XML con prefijos? {
+~%-33.33333%Sirven únicamente para ahorrar espacio en disco.
+=Evitan ambigüedades al distinguir elementos con nombres similares.
+~%-33.33333%Sustituyen a los atributos en todos los casos.
+~%-33.33333%Impedirán que XPath pueda recorrer el árbol.
+}
+
+::UD5-08:: ¿Qué hace xsl:choose en una transformación? {
+~%-33.33333%Combina nodos de varios documentos en uno solo.
+=Permite seleccionar una salida entre varias condiciones alternativas.
+~%-33.33333%Convierte texto en atributos automáticamente.
+~%-33.33333%Ordena los nodos por su profundidad en el árbol.
+}
+
+::UD5-09:: ¿Qué ocurre si una plantilla no encuentra una coincidencia explícita y no se define otra regla? {
+=El procesador puede aplicar plantillas integradas por defecto.
+~%-33.33333%La transformación se detiene siempre con error.
+~%-33.33333%El documento se convierte automáticamente en CSV.
+~%-33.33333%XSLT ignora todos los nodos hijos.
+}
+
+::UD5-10:: ¿Qué beneficio aporta separar el formato de salida en una transformación respecto al XML original? {
+=Facilita generar distintas vistas sin modificar la fuente de datos.
+~%-33.33333%Obliga a usar el mismo diseño para todas las salidas.
+~%-33.33333%Elimina la necesidad de procesar el árbol XML.
+~%-33.33333%Convierte la transformación en una operación irreversible.
+}
+
+// ==================== UD6: ALMACENAMIENTO DE INFORMACIÓN ====================
+
+::UD6-01:: ¿Qué rasgo hace útil XML como formato de persistencia en ciertos sistemas? {
+=Su capacidad para representar estructuras anidadas de forma natural.
+~%-33.33333%Su incapacidad para almacenar datos repetidos.
+~%-33.33333%Su dependencia exclusiva de tablas relacionales.
+~%-33.33333%Su eliminación automática de la jerarquía de datos.
+}
+
+::UD6-02:: ¿Qué se entiende por colección de documentos XML en una base nativa XML? {
+~%-33.33333%Un conjunto de tablas convertidas a formato SQL.
+=Un conjunto organizado de documentos XML gestionados como unidades.
+~%-33.33333%Un fichero comprimido que sustituye a todos los esquemas.
+~%-33.33333%Un único documento HTML con varios estilos.
+}
+
+::UD6-03:: ¿Qué ventaja ofrece XQuery frente a una consulta XPath simple? {
+=Puede realizar filtrado, ordenación y construcción de resultados más elaborados.
+~%-33.33333%Solo funciona si el documento tiene exactamente cinco nodos.
+~%-33.33333%No necesita saber nada sobre la estructura XML.
+~%-33.33333%Está pensado exclusivamente para modificar imágenes.
+}
+
+::UD6-04:: En FLWOR, ¿qué cláusula se usa normalmente para asociar una variable a una secuencia sin recorrerla todavía? {
+~%-33.33333%where
+=let
+~%-33.33333%return
+~%-33.33333%order by
+}
+
+::UD6-05:: ¿Qué objetivo tiene una consulta de actualización en un sistema XML? {
+~%-33.33333%Solo mostrar resultados en pantalla.
+=Insertar, eliminar o modificar nodos del documento.
+~%-33.33333%Convertir automáticamente XML en PDF.
+~%-33.33333%Renombrar el lenguaje a JSON.
+}
+
+::UD6-06:: ¿Qué papel cumplen los índices en un repositorio XML con muchas consultas? {
+=Reducir el coste de búsqueda sobre nodos o valores frecuentes.
+~%-33.33333%Reemplazar la necesidad de validar el contenido.
+~%-33.33333%Impedir que exista más de un documento.
+~%-33.33333%Eliminar la necesidad de rutas XPath.
+}
+
+::UD6-07:: ¿Qué riesgo aparece si una misma información se guarda en varios documentos sin control? {
+~%-33.33333%Que todas las copias se actualicen solas.
+=Que aparezcan desajustes cuando cambie una copia y las demás no.
+~%-33.33333%Que el sistema quede siempre más normalizado.
+~%-33.33333%Que la información sea imposible de consultar.
+}
+
+::UD6-08:: ¿Qué aporta una restricción de tipo sobre un elemento XML almacenado? {
+=Ayuda a controlar que el contenido cumpla el formato esperado.
+~%-33.33333%Elimina por completo la estructura jerárquica.
+~%-33.33333%Hace innecesarias las consultas.
+~%-33.33333%Convierte el documento en una hoja de cálculo.
+}
+
+::UD6-09:: ¿Qué diferencia básica hay entre un almacén híbrido y uno nativo XML? {
+=El híbrido combina XML con otro modelo, mientras el nativo está orientado al documento XML como unidad principal.
+~%-33.33333%El híbrido solo guarda archivos comprimidos.
+~%-33.33333%El nativo obliga a usar tablas para todo.
+~%-33.33333%No existe ningún criterio para distinguirlos.
+}
+
+::UD6-10:: ¿Qué criterio suele ser más razonable al diseñar el almacenamiento de información XML? {
+=Equilibrar estructura de los datos, volumen, consultas e interoperabilidad.
+~%-33.33333%Elegir siempre el formato más antiguo disponible.
+~%-33.33333%Evitar cualquier tipo de esquema para simplificar.
+~%-33.33333%Guardar cada dato en un documento diferente sin relación.
+}
+
+// ==================== UD7: SISTEMAS DE GESTIÓN EMPRESARIAL ====================
+
+::UD7-01:: ¿Qué idea resume mejor el valor de un ERP en una empresa? {
+=Centralizar la información y coordinar procesos de distintos departamentos.
+~%-33.33333%Sustituir todos los equipos informáticos por uno solo.
+~%-33.33333%Eliminar la necesidad de formación del personal.
+~%-33.33333%Evitar cualquier intercambio de datos con el exterior.
+}
+
+::UD7-02:: ¿Qué suele ocurrir al implantar un ERP sin adaptar procesos? {
+~%-33.33333%La empresa siempre gana eficiencia de inmediato.
+=Pueden surgir fricciones, resistencias y necesidad de rediseño operativo.
+~%-33.33333%Desaparece la necesidad de mantenimiento.
+~%-33.33333%No afecta en absoluto al trabajo diario.
+}
+
+::UD7-03:: ¿Qué módulo se relaciona más directamente con la gestión del stock? {
+~%-33.33333%Recursos humanos
+=Inventario
+~%-33.33333%Marketing externo
+~%-33.33333%Soporte técnico
+}
+
+::UD7-04:: ¿Por qué es importante que compras y ventas trabajen con datos comunes en un ERP? {
+=Porque mejora la coherencia de pedidos, existencias y facturación.
+~%-33.33333%Porque evita toda necesidad de permisos.
+~%-33.33333%Porque hace innecesaria la contabilidad.
+~%-33.33333%Porque permite borrar históricos automáticamente.
+}
+
+::UD7-05:: ¿Qué relación tiene la trazabilidad con un sistema de gestión empresarial? {
+=Permite seguir qué ha ocurrido con un proceso o registro a lo largo del tiempo.
+~%-33.33333%Impide saber quién ha hecho cambios.
+~%-33.33333%Solo sirve para imprimir informes.
+~%-33.33333%Se limita a la gestión del correo electrónico.
+}
+
+::UD7-06:: ¿Qué ventaja aporta la parametrización en un ERP? {
+=Adapta el sistema a la organización sin rehacer toda la aplicación.
+~%-33.33333%Hace obligatorio usar el mismo proceso para todas las empresas.
+~%-33.33333%Elimina la necesidad de usuarios autorizados.
+~%-33.33333%Sustituye por completo a los módulos funcionales.
+}
+
+::UD7-07:: ¿Qué papel suele tener la documentación interna durante una implantación ERP? {
+=Ayuda a formar usuarios y a dejar claras las reglas de trabajo.
+~%-33.33333%Sirve solo para decorar el proyecto.
+~%-33.33333%Hace que no sea necesario probar el sistema.
+~%-33.33333%Impide actualizar el software en el futuro.
+}
+
+::UD7-08:: ¿Qué problema resuelve mejor un sistema integrado frente a herramientas aisladas? {
+=Reduce duplicidades de datos y mejora la visión global del negocio.
+~%-33.33333%Hace que cada departamento trabaje con más versiones distintas.
+~%-33.33333%Elimina por completo la necesidad de respaldos.
+~%-33.33333%Sustituye la toma de decisiones por automatismos ciegos.
+}
+
+::UD7-09:: ¿Qué suele ser una buena práctica antes de poner en marcha un ERP? {
+=Analizar procesos, definir requisitos y planificar la migración de datos.
+~%-33.33333%Cambiar todos los datos sin comprobarlos.
+~%-33.33333%Desactivar los permisos de acceso.
+~%-33.33333%Evitar la participación de los usuarios finales.
+}
+
+::UD7-10:: ¿Qué describe mejor la integración de XML en sistemas empresariales? {
+=Facilita el intercambio estructurado de datos entre aplicaciones distintas.
+~%-33.33333%Reemplaza cualquier necesidad de validación.
+~%-33.33333%Convierte automáticamente un ERP en un CRM.
+~%-33.33333%Impide que los sistemas usen formatos comunes.
+}

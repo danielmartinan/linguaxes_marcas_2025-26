@@ -150,7 +150,7 @@ Cada consulta XQuery debe guardarse en un fichero llamado `ejer3_N.xq`, donde N 
 
 ## Instrucciones de entrega
 
-Ddeberás entregar un archivo comprimido (.zip, .tar o .7z) que contenga:
+Deberás entregar un archivo comprimido (.zip, .tar o .7z) que contenga:
 
 - Archivo PDF con las capturas de pantalla de cada consulta XQuery ejecutada en BaseX, mostrando el resultado obtenido.
 - Los archivos .xq con las consultas XQuery realizadas para cada ejercicio.
