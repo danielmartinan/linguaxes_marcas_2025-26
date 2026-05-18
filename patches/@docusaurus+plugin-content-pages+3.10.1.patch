@@ -1,0 +1,10 @@
+diff --git a/node_modules/@docusaurus/plugin-content-pages/README.md b/node_modules/@docusaurus/plugin-content-pages/README.md
+index 80f09cb..0e5571a 100644
+--- a/node_modules/@docusaurus/plugin-content-pages/README.md
++++ b/node_modules/@docusaurus/plugin-content-pages/README.md
+@@ -5,3 +5,5 @@ Pages plugin for Docusaurus.
+ ## Usage
+ 
+ See [plugin-content-pages documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-pages).
++
++

@@ -15,12 +15,13 @@
     "typecheck": "tsc",
     "generate-pdfs": "node scripts/generate-pdf.js",
     "export-all-pdfs": "node scripts/generate-pdf-puppeteer.js",
-    "export-pdf": "node scripts/export-single-doc.js"
+    "export-pdf": "node scripts/export-single-doc.js",
+    "postinstall": "patch-package"
   },
   "dependencies": {
-    "@docusaurus/core": "3.8.1",
-    "@docusaurus/preset-classic": "3.8.1",
-    "@docusaurus/theme-mermaid": "^3.8.1",
+    "@docusaurus/core": "^3.10.1",
+    "@docusaurus/preset-classic": "^3.10.1",
+    "@docusaurus/theme-mermaid": "^3.10.1",
     "@easyops-cn/docusaurus-search-local": "^0.51.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
@@ -35,10 +36,11 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.8.1",
-    "@docusaurus/tsconfig": "3.8.1",
-    "@docusaurus/types": "3.8.1",
+    "@docusaurus/module-type-aliases": "^3.10.1",
+    "@docusaurus/tsconfig": "^3.10.1",
+    "@docusaurus/types": "^3.10.1",
     "md-to-pdf": "^5.2.4",
+    "patch-package": "^8.0.1",
     "typescript": "~5.6.2"
   },
   "browserslist": {
