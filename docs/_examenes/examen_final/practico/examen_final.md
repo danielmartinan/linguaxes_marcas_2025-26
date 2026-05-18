@@ -6,7 +6,6 @@
 **Puntuación:** 10 puntos por bloque
 
 **Herramientas permitidas:** Visual Studio Code, navegador web y BaseX.  
-**Herramienta obligatoria para el bloque 3:** **BaseX**.
 
 **IMPORTANTE**: Cada bloque se evaluará de forma independiente. Es obligatorio aprobar cada bloque realizado para superar la asignatura. Cada alumno tendrá que realizar sólo los bloques pendientes de superar, disponiendo de 50 minutos para cada 1.
 
@@ -154,7 +153,7 @@ Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcion
 
     ![alt text](image-4.png)
 
-3. Incluir un botón **Restablecer** que devuelva el panel al color por defecto y limpie el campo de información hexadecimal.
+3. Al pulsar el botón **Restablecer** debe devolver al panel al color por defecto y limpiar el campo de información hexadecimal.
 
   ![alt text](image-5.png)
 
@@ -172,7 +171,7 @@ Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcion
 #### Entrega 2.1
 
 - `bloque2/ejer1/ejer1_rgb.html`
-- `bloque2/ejer1/ejer1_rgb.css` (proporcionado, no modificar)
+- `bloque2/ejer1/ejer1_rgb.css`
 - `bloque2/ejer1/ejer1_rgb.js`
 
 #### Criterios de evaluación 2.1
@@ -199,7 +198,7 @@ El documento incluye además una lista de `sala` (ya modelada en el XSD base):
 
 #### Partes a completar del esquema 2.2
 
-El archivo base contiene una estructura incompleta. Debes completarla para que valide correctamente un XML con estas características:
+El archivo base `inventario_laboratorio.xsd` contiene una estructura incompleta. Debes completarla para que valide correctamente un XML con estas características:
 
 1. **Estado del equipo** (0,7 puntos):
    - Puede tomar solo uno de estos valores: `operativo`, `revision` o `baja`.
@@ -207,13 +206,13 @@ El archivo base contiene una estructura incompleta. Debes completarla para que v
 2. **Capacidad de una sala** (0,3 puntos):
    - Debe ser un número entero mayor que 0.
 
-3. **Información de un equipo** (1,5 puntos):
+3. **Información de un equipo** (2 puntos):
    - Cada equipo tiene un código (atributo obligatorio).
    - Contiene nombre, categoría, estado, fecha de compra, coste y responsable (todos obligatorios).
    - El coste debe ser un número decimal >= 0.
    - La fecha de compra sigue el formato de fecha estándar.
 
-4. **Estructura raíz del inventario** (1,5 puntos):
+4. **Estructura raíz del inventario** (1 punto):
    - El elemento raíz es `inventario`.
    - Contiene una colección de equipos (al menos uno).
    - Puede contener opcionalmente una colección de salas.
@@ -223,36 +222,29 @@ El archivo base contiene una estructura incompleta. Debes completarla para que v
 
 - `bloque2/ejer2/inventario_laboratorio.xsd`
 
-#### Criterios de evaluación 2.2
-
-- Correctitud sintáctica y tipos definidos: **2,00 puntos**.
-- Restricciones y atributos: **1,50 puntos**.
-- Estructura y legibilidad: **0,50 puntos**.
-
 ---
 
 ## Bloque 3: Consulta, transformación e intercambio de datos (UD5, UD6 y UD7) - 10 puntos - 50 minutos
 
 Este bloque integra explotación de documentos XML y una pequeña tarea de intercambio de datos orientada a sistemas de gestión empresarial. Debe realizarse y comprobarse con **BaseX** en los ejercicios indicados.
 
-### Ejercicio 3.1: XPath sobre pedidos (2,5 puntos)
+### Ejercicio 3.1: XPath sobre pedidos (3 puntos)
 
 Dispones del documento `pedidos.xml`.
 
 Escribe expresiones XPath que devuelvan:
 
-1. Los nombres de clientes con pedidos del año 2026. **(0,5 puntos)**
-2. Los pedidos con importe superior a 500. **(0,5 puntos)**
-3. Los productos de la categoría `hardware`. **(0,5 puntos)**
-4. El pedido con mayor importe. **(0,5 puntos)**
-5. Los códigos de pedido cuyo estado sea `pendiente`. **(0,5 puntos)**
+1. Los nombres de clientes con pedidos del año 2026. **(0,75 puntos)**
+2. Los pedidos con importe superior a 500. **(0,75 puntos)**
+3. El pedido con mayor importe. **(0,75 puntos)**
+4. Los códigos de pedido cuyo estado sea `pendiente`. **(0,75 puntos)**
 
 #### Entrega 3.1
 
 - Archivo: `bloque3/ejer1_xpath.txt`
 - Debe contener **5 líneas exactas**, una expresión por línea.
 
-### Ejercicio 3.2: XSLT de resumen operativo (2,5 puntos)
+### Ejercicio 3.2: XSLT de resumen operativo (3,5 puntos)
 
 Dispones de `pedidos.xml` y de una plantilla parcial `ejer2_base.xsl`.
 
@@ -279,13 +271,13 @@ Cada elemento `pedido` del resultado debe incluir atributo `codigo` y texto con 
 - Selección de nodos y recuentos: **0,75 puntos**.
 - Claridad mínima de la XSLT: **0,25 puntos**.
 
-### Ejercicio 3.3: XQuery de explotación de datos (3 puntos)
+### Ejercicio 3.3: XQuery de explotación de datos (3.5 puntos)
 
 Escribe tres consultas XQuery independientes sobre `pedidos.xml`:
 
 1. Obtener los elementos `<pedido>` del cliente `C002`. **(1 punto)**
-2. Obtener nombre de cliente e importe de los pedidos `pendientes`. **(1 punto)**
-3. Obtener cuántos pedidos hay por estado. **(1 punto)**
+2. Obtener nombre de cliente e importe de los pedidos `pendientes`. **(1.25 puntos)**
+3. Obtener cuántos pedidos hay por estado. **(1.25 puntos)**
 
 #### Consideraciones 3.3
 
@@ -298,42 +290,6 @@ Escribe tres consultas XQuery independientes sobre `pedidos.xml`:
 - `bloque3/ejer3_2.xq`
 - `bloque3/ejer3_3.xq`
 
-### Ejercicio 3.4: Documento de intercambio para SGE (2 puntos)
-
-A partir de los datos proporcionados en `pedido_manual.txt`, crea un XML llamado `pedido_importacion.xml` pensado para ser importado en un **sistema de gestión empresarial**.
-
-#### Requisitos 3.4
-
-El documento debe contener:
-
-- Identificador de pedido.
-- Fecha.
-- Cliente.
-- Lista de líneas de pedido.
-- Para cada línea:
-  - Código de artículo.
-  - Descripción.
-  - Cantidad.
-  - Precio unitario.
-
-#### Consideraciones 3.4
-
-- Se valorará que la estructura sea clara, coherente y fácil de intercambiar entre aplicaciones.
-- No se pide XSD en este apartado.
-
-#### Entrega 3.4
-
-- `bloque3/pedido_importacion.xml`
-
-#### Criterios de evaluación 3.4
-
-- Estructura adecuada para intercambio de datos: **1,25 puntos**.
-- Corrección y completitud del contenido: **0,75 puntos**.
-
-### Comprobación con BaseX
-
-Debes verificar en BaseX, al menos, los ejercicios 3.1, 3.2 y 3.3.
-
 #### Evidencias de ejecución
 
 Incluye un PDF llamado `bloque3_capturas.pdf` donde se vea claramente:
@@ -342,14 +298,6 @@ Incluye un PDF llamado `bloque3_capturas.pdf` donde se vea claramente:
 2. La ejecución sin errores.
 3. El panel de resultados.
 4. El archivo XML cargado o referenciado.
-
----
-
-## Resumen de tiempos recomendado
-
-- **Bloque 1**: 50 minutos. Ejercicio 1.1: 10 min. Ejercicio 1.2: 20 min. Ejercicio 1.3: 20 min.
-- **Bloque 2**: 50 minutos. Ejercicio 2.1: 32 min. Ejercicio 2.2: 18 min.
-- **Bloque 3**: 50 minutos. Ejercicio 3.1: 10 min. Ejercicio 3.2: 12 min. Ejercicio 3.3: 18 min. Ejercicio 3.4: 10 min.
 
 ## Entrega final
 
@@ -370,15 +318,19 @@ examen_final_nombre_apellidos.zip
 │   └── ejer2/
 │       └── inventario_laboratorio.xsd
 └── bloque3/
-   ├── ejer1_xpath.txt
-   ├── ejer2_transformacion.xsl
-   ├── ejer2_resultado.xml
-   ├── ejer3_1.xq
-   ├── ejer3_2.xq
-   ├── ejer3_3.xq
-   ├── pedido_importacion.xml
-   └── bloque3_capturas.pdf
+    ├── ejer1/
+    │   ├── ejer1_xpath.txt
+    ├── ejer2/
+    │   ├── ejer2_transformacion.xsl
+    │   ├── ejer2_resultado.xml
+    └── ejer3/
+        ├── ejer3_1.xq
+        ├── ejer3_2.xq
+        ├── ejer3_3.xq
+        └── bloque3_capturas.pdf
 ```
+
+(entrega sólamente los bloques que hayas realizado).
 
 ## Observaciones para el profesorado
 
