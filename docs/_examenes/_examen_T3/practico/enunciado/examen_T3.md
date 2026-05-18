@@ -134,15 +134,15 @@ Deberás ejecutar cada expresión en BaseX para comprobar su funcionamiento y gu
 - Funcionalidad y precisión de las expresiones XPath: **2,00 puntos**. Se indica el valor de cada apartado en la descripción de los requisitos.
 - Evidencias de ejecución en BaseX (capturas): **0,50 puntos**. Se evaluará que las expresiones se han ejecutado correctamente y que el resultado es el esperado.
 
+<div style="height: 20px;"></div>
+
 ## Ejercicio 2: XSLT (4 puntos)
 
-Dispones de un documento XML llamado `misiones.xml` con esta estructura general:
+Dispones de un documento XML llamado `misiones.xml` con esta estructura general (puedes ver en detalle la estructura del XML en `/recursos/misiones.xml`):
 
 - Raíz: `misiones`.
 - Cada `mision` tiene atributos `id`, `estado` y `prioridad`.
 - Cada `mision` incluye `nombre`, `zona`, `fechaInicio`, `fechaFin` (opcional), `equipo` y `resultados`.
-
-(puedes ver en detalle la estructura del XML en `/recursos/misiones.xml`)
 
 Debes generar un nuevo XML llamado `informe_misiones.xml` con la estructura destino:
 
@@ -170,14 +170,8 @@ Debes completar el resto de la transformación (selección de nodos, estructura 
 
 ### Requisitos
 
-- Implementar la transformación en una hoja XSLT, partiendo del fichero `ejer2_base.xsl` y completarlo.
 - Ordenar las misiones activas por `prioridad` descendente y, a igualdad, por `fechaInicio` ascendente.
 - Ordenar las misiones cerradas por `fechaFin` ascendente.
-
-### Consideraciones
-
-- Debes usar XSLT 1.0 para asegurar compatibilidad con BaseX en este examen.
-- La salida debe estar indentada.
 - Añade comentarios breves en la hoja XSL para explicar las partes clave.
 
 ### Entrega
@@ -188,12 +182,9 @@ Debes completar el resto de la transformación (selección de nodos, estructura 
 
 ### Criterios de evaluación
 
-- Transformación correcta según el enunciado: **3,00 puntos**.
-- Ordenaciones, cálculos y estructura final: **0,50 puntos**.
+- Transformación correcta según el enunciado: **3,50 puntos**.
 - Claridad y comentarios mínimos en la XSL: **0,25 puntos**.
 - Captura de la ejecución en BaseX mostrando la consulta y el resultado: **0,25 puntos**.
-
-<div style="height: 770px;"></div>
 
 ## Ejercicio 3: XQuery (3,5 puntos)
 
@@ -216,7 +207,13 @@ Deberás ejecutar cada consulta en BaseX para comprobar su funcionamiento y guar
 
 ### Consideraciones
 
-- No se permite filtrar directamente en la cláusula `for` con predicados tipo `for $x in ...[...]`.
+- **No se permite filtrar directamente en la cláusula `for`** con predicados tipo `for $x in ...[...]`. Ejemplo de consulta no permitida:
+
+    ```xquery
+    for $c in doc('archivo_cientificos.xml')/cientificos/cientifico[count(expediciones/expedicion) > 3]
+    return $c
+    ```
+
 - Cada consulta debe ser independiente.
 
 ### Entrega
@@ -229,8 +226,6 @@ Deberás ejecutar cada consulta en BaseX para comprobar su funcionamiento y guar
 
 - Funcionalidad y precisión de las consultas XQuery: **3,00 puntos**. Se indica el valor de cada apartado en la descripción de los requisitos.
 - Evidencias de ejecución en BaseX (capturas): **0,50 puntos**. Se evaluará que las consultas se han ejecutado correctamente y que el resultado es el esperado.
-
-<div style="height: 170px;"></div>
 
 ## Entrega final
 
