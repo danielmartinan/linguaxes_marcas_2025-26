@@ -231,9 +231,65 @@ El archivo base contiene una estructura incompleta. Debes completarla para que v
 
 ---
 
-## Bloque 3: Consulta, transformación e intercambio de datos (UD5, UD6 y UD7) - 10 puntos - 50 minutos
+## Bloque 3: Consulta y transformación de datos (UD5, UD6) - 10 puntos - 50 minutos
 
-Este bloque integra explotación de documentos XML y una pequeña tarea de intercambio de datos orientada a sistemas de gestión empresarial. Debe realizarse y comprobarse con **BaseX** en los ejercicios indicados.
+Dispones de BaseX en tu equipo para probar tus soluciones. Asegúrate de cargar los XML en BaseX para validar tus consultas y transformaciones.
+
+## Comprobación con BaseX (paso a paso)
+
+1. Abre BaseX: en el explorador de archivos, navega hasta `C:/Archivos de programa (x86)/BaseX` y haz doble click en `BaseX.jar`
+
+   ![alt text](bximage.png)
+
+2. Carga el archivo xml correspondiente. Para ello, haz click en `Database>New` y selecciona el archivo deseado.
+
+    <div style="width: 300px">
+        <img src="bximage-1.png">
+    </div>
+
+   ![alt text](bximage-2.png)
+
+3. Una vez cargado el xml, ya puedes crear consultas.  Para comprobar una expresión XPath del ejercicio 1, ejecuta una consulta de este tipo:
+
+    ```xquery
+    doc('C:/RUTA/AL/PROYECTO/recursos/archivo.xml')/cientificos/cientifico
+    ```
+
+    ![alt text](bximage-4.png)
+
+4. Para comprobar el ejercicio 2 (XSLT), ejecuta esta consulta XQuery en BaseX:
+
+    ```xquery
+    import module namespace xslt = "http://basex.org/modules/xslt";
+    xslt:transform(
+        doc("C:/RUTA/AL/PROYECTO/recursos/misiones.xml"),
+        "C:/RUTA/AL/PROYECTO/recursos/ejer2_transformacion.xsl"
+    )
+    ```
+
+    ![alt text](bximage-5.png)
+
+5. Para comprobar cada consulta del ejercicio 3, abre cada fichero `.xq`, ejecútalo en BaseX y verifica el resultado.
+
+    ![alt text](bximage-6.png)
+
+    ![alt text](bximage-7.png)
+
+6. Genera las capturas requeridas y guárdalas en `ejer1_capturas.pdf`, `ejer2_capturas.pdf` y `ejer3_capturas.pdf`.
+
+> Nota: Sustituye `C:/RUTA/AL/PROYECTO` por la ruta real de tu equipo.
+
+## Evidencias de ejecución en BaseX (capturas)
+
+En cada captura debe verse claramente:
+
+1. Editor de consultas: consulta XPath/XQuery o llamada a `xslt:transform(...)`.
+2. Acción de ejecución: botón de ejecutar (`Run`) o ejecución equivalente.
+3. Panel de resultados: salida obtenida.
+4. Panel de información/mensajes: confirmación de ejecución sin errores.
+5. Navegador de base de datos/proyecto: archivo de entrada correspondiente al ejercicio.
+
+<div style="height: 250px;"></div>
 
 ### Ejercicio 3.1: XPath sobre pedidos (2,5 puntos)
 
@@ -241,18 +297,16 @@ Dispones del documento `pedidos.xml`.
 
 Escribe expresiones XPath que devuelvan:
 
-1. Los nombres de clientes con pedidos del año 2026. **(0,5 puntos)**
-2. Los pedidos con importe superior a 500. **(0,5 puntos)**
-3. Los productos de la categoría `hardware`. **(0,5 puntos)**
-4. El pedido con mayor importe. **(0,5 puntos)**
-5. Los códigos de pedido cuyo estado sea `pendiente`. **(0,5 puntos)**
+1. Los pedidos con importe superior a 500. **(0,75 puntos)**
+2. Los productos de la categoría `hardware`. **(0,75 puntos)**
+3. El pedido con mayor importe. **(1 punto)**
 
 #### Entrega 3.1
 
 - Archivo: `bloque3/ejer1_xpath.txt`
-- Debe contener **5 líneas exactas**, una expresión por línea.
+- Debe contener **3 líneas exactas**, una expresión por línea.
 
-### Ejercicio 3.2: XSLT de resumen operativo (2,5 puntos)
+### Ejercicio 3.2: XSLT de resumen operativo (4 puntos)
 
 Dispones de `pedidos.xml` y de una plantilla parcial `ejer2_base.xsl`.
 
@@ -275,8 +329,8 @@ Cada elemento `pedido` del resultado debe incluir atributo `codigo` y texto con 
 
 #### Criterios de evaluación 3.2
 
-- Estructura del resultado correcta: **1,50 puntos**.
-- Selección de nodos y recuentos: **0,75 puntos**.
+- Estructura del resultado correcta: **2 puntos**.
+- Selección de nodos y recuentos: **1..75 puntos**.
 - Claridad mínima de la XSLT: **0,25 puntos**.
 
 ### Ejercicio 3.3: XQuery de explotación de datos (3 puntos)
@@ -290,7 +344,15 @@ Escribe tres consultas XQuery independientes sobre `pedidos.xml`:
 #### Consideraciones 3.3
 
 - Cada consulta debe guardarse en un archivo distinto.
-- No reutilices varias consultas dentro de un mismo fichero.
+- **No se permite filtrar directamente en la cláusula `for`** con predicados tipo `for $x in ...[...]`. Ejemplo de consulta no permitida:
+
+    ```xquery
+    for $c in doc('archivo_cientificos.xml')/cientificos/cientifico[count(expediciones/expedicion) > 3]
+    return $c
+    ```
+
+- Cada consulta debe ser independiente.
+
 
 #### Entrega 3.3
 
@@ -298,58 +360,7 @@ Escribe tres consultas XQuery independientes sobre `pedidos.xml`:
 - `bloque3/ejer3_2.xq`
 - `bloque3/ejer3_3.xq`
 
-### Ejercicio 3.4: Documento de intercambio para SGE (2 puntos)
-
-A partir de los datos proporcionados en `pedido_manual.txt`, crea un XML llamado `pedido_importacion.xml` pensado para ser importado en un **sistema de gestión empresarial**.
-
-#### Requisitos 3.4
-
-El documento debe contener:
-
-- Identificador de pedido.
-- Fecha.
-- Cliente.
-- Lista de líneas de pedido.
-- Para cada línea:
-  - Código de artículo.
-  - Descripción.
-  - Cantidad.
-  - Precio unitario.
-
-#### Consideraciones 3.4
-
-- Se valorará que la estructura sea clara, coherente y fácil de intercambiar entre aplicaciones.
-- No se pide XSD en este apartado.
-
-#### Entrega 3.4
-
-- `bloque3/pedido_importacion.xml`
-
-#### Criterios de evaluación 3.4
-
-- Estructura adecuada para intercambio de datos: **1,25 puntos**.
-- Corrección y completitud del contenido: **0,75 puntos**.
-
-### Comprobación con BaseX
-
-Debes verificar en BaseX, al menos, los ejercicios 3.1, 3.2 y 3.3.
-
-#### Evidencias de ejecución
-
-Incluye un PDF llamado `bloque3_capturas.pdf` donde se vea claramente:
-
-1. La consulta XPath/XQuery o la llamada a `xslt:transform(...)`.
-2. La ejecución sin errores.
-3. El panel de resultados.
-4. El archivo XML cargado o referenciado.
-
 ---
-
-## Resumen de tiempos recomendado
-
-- **Bloque 1**: 50 minutos. Ejercicio 1.1: 10 min. Ejercicio 1.2: 20 min. Ejercicio 1.3: 20 min.
-- **Bloque 2**: 50 minutos. Ejercicio 2.1: 32 min. Ejercicio 2.2: 18 min.
-- **Bloque 3**: 50 minutos. Ejercicio 3.1: 10 min. Ejercicio 3.2: 12 min. Ejercicio 3.3: 18 min. Ejercicio 3.4: 10 min.
 
 ## Entrega final
 
@@ -380,11 +391,4 @@ examen_final_nombre_apellidos.zip
    └── bloque3_capturas.pdf
 ```
 
-## Observaciones para el profesorado
-
-- Esta propuesta mantiene los contenidos de todo el módulo, pero reduce la carga de cada tarea frente a los parciales.
-- El bloque 1 concentra creación y maquetación básica.
-- El bloque 2 separa claramente scripting y validación XSD.
-- El bloque 3 integra explotación XML y una tarea breve de intercambio de datos vinculada a SGE.
-
-**¡Mucha suerte!**
+(Añade sólamente los bloques de los que te examines).

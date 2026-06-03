@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pedidoImportacion>
-  <identificador>P-IMPORT-01</identificador>
+<pedido codigo="P-IMPORT-01" estado="pendiente">
   <fecha>2026-04-20</fecha>
-  <cliente>Centro Formativo Atlantico</cliente>
-  <lineasPedido>
-    <linea>
-      <codigoArticulo>HW-330</codigoArticulo>
-      <descripcion>Portatil 14 pulgadas</descripcion>
+  <cliente codigo="C004">Centro Formativo Atlantico</cliente>
+  <importe>2714.25</importe>
+  <lineas>
+    <linea categoria="hardware">
+      <producto codigo="HW-330">Portatil 14 pulgadas</producto>
       <cantidad>3</cantidad>
       <precioUnitario>699.00</precioUnitario>
     </linea>
-    <linea>
-      <codigoArticulo>AC-120</codigoArticulo>
-      <descripcion>Mochila para portatil</descripcion>
+    <linea categoria="accesorios">
+      <producto codigo="AC-120">Mochila para portatil</producto>
       <cantidad>3</cantidad>
       <precioUnitario>42.50</precioUnitario>
     </linea>
-    <linea>
-      <codigoArticulo>LIC-500</codigoArticulo>
-      <descripcion>Licencia anual de ofimatica</descripcion>
+    <linea categoria="software">
+      <producto codigo="LIC-500">Licencia anual de ofimatica</producto>
       <cantidad>25</cantidad>
       <precioUnitario>19.90</precioUnitario>
     </linea>
-  </lineasPedido>
-</pedidoImportacion>
+  </lineas>
+</pedido>
