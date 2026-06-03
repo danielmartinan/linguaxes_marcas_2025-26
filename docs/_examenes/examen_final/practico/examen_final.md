@@ -6,7 +6,6 @@
 **Puntuación:** 10 puntos por bloque
 
 **Herramientas permitidas:** Visual Studio Code, navegador web y BaseX.  
-**Herramienta obligatoria para el bloque 3:** **BaseX**.
 
 **IMPORTANTE**: Cada bloque se evaluará de forma independiente. Es obligatorio aprobar cada bloque realizado para superar la asignatura. Cada alumno tendrá que realizar sólo los bloques pendientes de superar, disponiendo de 50 minutos para cada 1.
 
@@ -154,7 +153,7 @@ Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcion
 
     ![alt text](image-4.png)
 
-3. Incluir un botón **Restablecer** que devuelva el panel al color por defecto y limpie el campo de información hexadecimal.
+3. Al pulsar el botón **Restablecer** debe devolver al panel al color por defecto y limpiar el campo de información hexadecimal.
 
   ![alt text](image-5.png)
 
@@ -172,7 +171,7 @@ Partiendo del HTML base proporcionado en `bloque2/ejer1/`, desarrolla la funcion
 #### Entrega 2.1
 
 - `bloque2/ejer1/ejer1_rgb.html`
-- `bloque2/ejer1/ejer1_rgb.css` (proporcionado, no modificar)
+- `bloque2/ejer1/ejer1_rgb.css`
 - `bloque2/ejer1/ejer1_rgb.js`
 
 #### Criterios de evaluación 2.1
@@ -199,7 +198,7 @@ El documento incluye además una lista de `sala` (ya modelada en el XSD base):
 
 #### Partes a completar del esquema 2.2
 
-El archivo base contiene una estructura incompleta. Debes completarla para que valide correctamente un XML con estas características:
+El archivo base `inventario_laboratorio.xsd` contiene una estructura incompleta. Debes completarla para que valide correctamente un XML con estas características:
 
 1. **Estado del equipo** (0,7 puntos):
    - Puede tomar solo uno de estos valores: `operativo`, `revision` o `baja`.
@@ -207,13 +206,13 @@ El archivo base contiene una estructura incompleta. Debes completarla para que v
 2. **Capacidad de una sala** (0,3 puntos):
    - Debe ser un número entero mayor que 0.
 
-3. **Información de un equipo** (1,5 puntos):
+3. **Información de un equipo** (2 puntos):
    - Cada equipo tiene un código (atributo obligatorio).
    - Contiene nombre, categoría, estado, fecha de compra, coste y responsable (todos obligatorios).
    - El coste debe ser un número decimal >= 0.
    - La fecha de compra sigue el formato de fecha estándar.
 
-4. **Estructura raíz del inventario** (1,5 puntos):
+4. **Estructura raíz del inventario** (1 punto):
    - El elemento raíz es `inventario`.
    - Contiene una colección de equipos (al menos uno).
    - Puede contener opcionalmente una colección de salas.
@@ -222,12 +221,6 @@ El archivo base contiene una estructura incompleta. Debes completarla para que v
 #### Entrega 2.2
 
 - `bloque2/ejer2/inventario_laboratorio.xsd`
-
-#### Criterios de evaluación 2.2
-
-- Correctitud sintáctica y tipos definidos: **2,00 puntos**.
-- Restricciones y atributos: **1,50 puntos**.
-- Estructura y legibilidad: **0,50 puntos**.
 
 ---
 
@@ -291,7 +284,7 @@ En cada captura debe verse claramente:
 
 <div style="height: 250px;"></div>
 
-### Ejercicio 3.1: XPath sobre pedidos (2,5 puntos)
+### Ejercicio 3.1: XPath sobre pedidos (2.5 puntos)
 
 Dispones del documento `pedidos.xml`.
 
@@ -330,16 +323,16 @@ Cada elemento `pedido` del resultado debe incluir atributo `codigo` y texto con 
 #### Criterios de evaluación 3.2
 
 - Estructura del resultado correcta: **2 puntos**.
-- Selección de nodos y recuentos: **1..75 puntos**.
+- Selección de nodos y recuentos: **1.75 puntos**.
 - Claridad mínima de la XSLT: **0,25 puntos**.
 
-### Ejercicio 3.3: XQuery de explotación de datos (3 puntos)
+### Ejercicio 3.3: XQuery de explotación de datos (3.5 puntos)
 
 Escribe tres consultas XQuery independientes sobre `pedidos.xml`:
 
 1. Obtener los elementos `<pedido>` del cliente `C002`. **(1 punto)**
-2. Obtener nombre de cliente e importe de los pedidos `pendientes`. **(1 punto)**
-3. Obtener cuántos pedidos hay por estado. **(1 punto)**
+2. Obtener nombre de cliente e importe de los pedidos `pendientes`. **(1.25 puntos)**
+3. Obtener cuántos pedidos hay por estado. **(1.25 puntos)**
 
 #### Consideraciones 3.3
 
@@ -352,7 +345,6 @@ Escribe tres consultas XQuery independientes sobre `pedidos.xml`:
     ```
 
 - Cada consulta debe ser independiente.
-
 
 #### Entrega 3.3
 
@@ -381,14 +373,16 @@ examen_final_nombre_apellidos.zip
 │   └── ejer2/
 │       └── inventario_laboratorio.xsd
 └── bloque3/
-   ├── ejer1_xpath.txt
-   ├── ejer2_transformacion.xsl
-   ├── ejer2_resultado.xml
-   ├── ejer3_1.xq
-   ├── ejer3_2.xq
-   ├── ejer3_3.xq
-   ├── pedido_importacion.xml
-   └── bloque3_capturas.pdf
+    ├── ejer1/
+    │   ├── ejer1_xpath.txt
+    ├── ejer2/
+    │   ├── ejer2_transformacion.xsl
+    │   ├── ejer2_resultado.xml
+    └── ejer3/
+        ├── ejer3_1.xq
+        ├── ejer3_2.xq
+        ├── ejer3_3.xq
+        └── bloque3_capturas.pdf
 ```
 
-(Añade sólamente los bloques de los que te examines).
+(entrega sólamente los bloques que hayas realizado).

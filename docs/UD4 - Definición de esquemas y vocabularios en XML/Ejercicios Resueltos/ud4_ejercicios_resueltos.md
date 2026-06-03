@@ -1256,3 +1256,749 @@ Diseña un esquema XSD completo para validar un **sistema de gestión hospitalar
 ```
 
 </details>
+
+## Ejercicio 4.7 - Agenda de contactos con grupos reutilizables
+
+Crea un esquema XSD para validar una **agenda de contactos** personal. El documento debe permitir almacenar varios contactos con información básica y datos de comunicación.
+
+**Requisitos:**
+
+- Un elemento raíz `<agenda>` con un atributo `propietario` obligatorio.
+- Uno o más elementos `<contacto>`.
+- Cada `<contacto>` debe incluir:
+  - Un atributo `id` obligatorio de tipo `xs:ID`.
+  - `<nombre>` y `<apellidos>` obligatorios.
+  - `<email>` opcional con formato básico.
+  - `<telefonos>` con de 1 a 3 elementos `<telefono>`.
+  - `<direccion>` opcional con calle, ciudad y codigoPostal.
+  - Un elemento `<tipo>` que solo pueda ser `personal`, `trabajo` o `familia`.
+
+**Ejemplo de documento XML válido:**
+
+```xml
+<agenda propietario="Ana Perez">
+    <contacto id="c1">
+        <nombre>Laura</nombre>
+        <apellidos>Fernández Soto</apellidos>
+        <email>laura@example.com</email>
+        <telefonos>
+            <telefono>666123123</telefono>
+            <telefono>986456456</telefono>
+        </telefonos>
+        <direccion>
+            <calle>Rúa Nova 12</calle>
+            <ciudad>Vigo</ciudad>
+            <codigoPostal>36201</codigoPostal>
+        </direccion>
+        <tipo>personal</tipo>
+    </contacto>
+</agenda>
+```
+
+<details>
+    <summary>Solución</summary>
+
+**Documento XML (agenda.xml):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<agenda propietario="Ana Perez"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="agenda.xsd">
+    <contacto id="c1">
+        <nombre>Laura</nombre>
+        <apellidos>Fernández Soto</apellidos>
+        <email>laura@example.com</email>
+        <telefonos>
+            <telefono>666123123</telefono>
+            <telefono>986456456</telefono>
+        </telefonos>
+        <direccion>
+            <calle>Rúa Nova 12</calle>
+            <ciudad>Vigo</ciudad>
+            <codigoPostal>36201</codigoPostal>
+        </direccion>
+        <tipo>personal</tipo>
+    </contacto>
+</agenda>
+```
+
+**Esquema XSD (agenda.xsd):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation>Esquema para una agenda de contactos personal.</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="agenda">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contacto" type="contactoType" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="propietario" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="contactoType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="apellidos" type="xs:string"/>
+            <xs:element name="email" type="emailType" minOccurs="0"/>
+            <xs:element name="telefonos">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="telefono" type="telefonoType" minOccurs="1" maxOccurs="3"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="direccion" type="direccionType" minOccurs="0"/>
+            <xs:element name="tipo" type="tipoContactoType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="direccionType">
+        <xs:sequence>
+            <xs:element name="calle" type="xs:string"/>
+            <xs:element name="ciudad" type="xs:string"/>
+            <xs:element name="codigoPostal" type="codigoPostalType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="telefonoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{9}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="codigoPostalType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoContactoType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="personal"/>
+            <xs:enumeration value="trabajo"/>
+            <xs:enumeration value="familia"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
+```
+
+</details>
+
+## Ejercicio 4.8 - Control de asistencia de cursos
+
+Diseña un esquema XSD para validar un **control de asistencia** de un curso presencial. El documento debe guardar la información de un curso, su profesor y la lista de alumnos matriculados.
+
+**Requisitos:**
+
+- Un elemento raíz `<curso>` con atributos `codigo` y `modalidad`.
+- `<titulo>`, `<profesor>` y `<alumnos>` como hijos obligatorios.
+- `<profesor>` con nombre, email y despacho.
+- `<alumnos>` con uno o más `<alumno>`.
+- Cada `<alumno>` debe tener nombre, apellidos, dni, asistencias y estado.
+- `estado` solo puede ser `apto`, `no-apto` o `pendiente`.
+- `asistencias` es un entero entre 0 y 100.
+
+**Ejemplo de documento XML válido:**
+
+```xml
+<curso codigo="XML2026" modalidad="presencial">
+    <titulo>Lenguajes de marcas</titulo>
+    <profesor>
+        <nombre>Mario</nombre>
+        <email>mario@centro.edu</email>
+        <despacho>D-12</despacho>
+    </profesor>
+    <alumnos>
+        <alumno>
+            <nombre>Lucía</nombre>
+            <apellidos>Varela Castro</apellidos>
+            <dni>12345678A</dni>
+            <asistencias>92</asistencias>
+            <estado>apto</estado>
+        </alumno>
+    </alumnos>
+</curso>
+```
+
+<details>
+    <summary>Solución</summary>
+
+**Documento XML (curso.xml):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<curso codigo="XML2026" modalidad="presencial"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="curso.xsd">
+    <titulo>Lenguajes de marcas</titulo>
+    <profesor>
+        <nombre>Mario</nombre>
+        <email>mario@centro.edu</email>
+        <despacho>D-12</despacho>
+    </profesor>
+    <alumnos>
+        <alumno>
+            <nombre>Lucía</nombre>
+            <apellidos>Varela Castro</apellidos>
+            <dni>12345678A</dni>
+            <asistencias>92</asistencias>
+            <estado>apto</estado>
+        </alumno>
+        <alumno>
+            <nombre>Diego</nombre>
+            <apellidos>Pérez Núñez</apellidos>
+            <dni>87654321B</dni>
+            <asistencias>68</asistencias>
+            <estado>pendiente</estado>
+        </alumno>
+    </alumnos>
+</curso>
+```
+
+**Esquema XSD (curso.xsd):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation>Esquema para controlar la asistencia de un curso.</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="curso">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="titulo" type="xs:string"/>
+                <xs:element name="profesor" type="profesorType"/>
+                <xs:element name="alumnos" type="alumnosType"/>
+            </xs:sequence>
+            <xs:attribute name="codigo" type="codigoCursoType" use="required"/>
+            <xs:attribute name="modalidad" type="modalidadType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="profesorType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="email" type="emailType"/>
+            <xs:element name="despacho" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="alumnosType">
+        <xs:sequence>
+            <xs:element name="alumno" type="alumnoType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="alumnoType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="apellidos" type="xs:string"/>
+            <xs:element name="dni" type="dniType"/>
+            <xs:element name="asistencias" type="asistenciasType"/>
+            <xs:element name="estado" type="estadoAlumnoType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="codigoCursoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{3}[0-9]{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="modalidadType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="presencial"/>
+            <xs:enumeration value="online"/>
+            <xs:enumeration value="mixto"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dniType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{8}[A-Z]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="asistenciasType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="estadoAlumnoType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="apto"/>
+            <xs:enumeration value="no-apto"/>
+            <xs:enumeration value="pendiente"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
+```
+
+</details>
+
+## Ejercicio 4.9 - Pedido online con productos y envío
+
+Elabora un esquema XSD para un **pedido online** que distinga entre productos físicos y digitales dentro de una misma compra.
+
+**Requisitos:**
+
+- Un elemento raíz `<pedido>` con atributo `numero` obligatorio.
+- `<cliente>`, `<fecha>`, `<lineasPedido>` y `<total>` obligatorios.
+- `<cliente>` con nombre, email y telefono.
+- `<lineasPedido>` con una o más `<linea>`.
+- Cada `<linea>` debe tener `cantidad` y un bloque de producto que sea:
+  - `fisico`: nombre, peso y stock.
+  - `digital`: nombre, formato y urlDescarga.
+- `<total>` debe ser un decimal positivo con 2 decimales.
+
+**Ejemplo de documento XML válido:**
+
+```xml
+<pedido numero="P-1001">
+    <cliente>
+        <nombre>Eva</nombre>
+        <email>eva@mail.com</email>
+        <telefono>666111222</telefono>
+    </cliente>
+    <fecha>2026-05-10</fecha>
+    <lineasPedido>
+        <linea cantidad="2">
+            <fisico>
+                <nombre>Cascos</nombre>
+                <peso>0.45</peso>
+                <stock>18</stock>
+            </fisico>
+        </linea>
+    </lineasPedido>
+    <total>39.90</total>
+</pedido>
+```
+
+<details>
+    <summary>Solución</summary>
+
+**Documento XML (pedido.xml):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<pedido numero="P-1001"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="pedido.xsd">
+    <cliente>
+        <nombre>Eva</nombre>
+        <email>eva@mail.com</email>
+        <telefono>666111222</telefono>
+    </cliente>
+    <fecha>2026-05-10</fecha>
+    <lineasPedido>
+        <linea cantidad="2">
+            <fisico>
+                <nombre>Cascos</nombre>
+                <peso>0.45</peso>
+                <stock>18</stock>
+            </fisico>
+        </linea>
+        <linea cantidad="1">
+            <digital>
+                <nombre>Manual PDF</nombre>
+                <formato>pdf</formato>
+                <urlDescarga>https://ejemplo.com/manual.pdf</urlDescarga>
+            </digital>
+        </linea>
+    </lineasPedido>
+    <total>39.90</total>
+</pedido>
+```
+
+**Esquema XSD (pedido.xsd):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation>Esquema para pedidos online con productos físicos y digitales.</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="pedido">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cliente" type="clienteType"/>
+                <xs:element name="fecha" type="xs:date"/>
+                <xs:element name="lineasPedido" type="lineasPedidoType"/>
+                <xs:element name="total" type="importeType"/>
+            </xs:sequence>
+            <xs:attribute name="numero" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="clienteType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="email" type="emailType"/>
+            <xs:element name="telefono" type="telefonoType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="lineasPedidoType">
+        <xs:sequence>
+            <xs:element name="linea" type="lineaType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="lineaType">
+        <xs:choice>
+            <xs:element name="fisico" type="productoFisicoType"/>
+            <xs:element name="digital" type="productoDigitalType"/>
+        </xs:choice>
+        <xs:attribute name="cantidad" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="productoFisicoType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="peso" type="pesoType"/>
+            <xs:element name="stock" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="productoDigitalType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="formato" type="xs:string"/>
+            <xs:element name="urlDescarga" type="xs:anyURI"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="telefonoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{9}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="pesoType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.01"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="importeType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
+```
+
+</details>
+
+## Ejercicio 4.10 - Inventario de laboratorio con muestras
+
+Crea un esquema XSD para controlar un **inventario de laboratorio** con muestras y ensayos. El objetivo es registrar materiales y resultados de pruebas básicas.
+
+**Requisitos:**
+
+- Un elemento raíz `<inventario>` con atributo `laboratorio` obligatorio.
+- Uno o más elementos `<muestra>`.
+- Cada `<muestra>` debe incluir:
+  - Atributo `codigo` obligatorio.
+  - `<nombre>`, `<tipo>`, `<fechaAlta>` y `<estado>`.
+  - `<medidas>` opcional con una o más `<medida>`.
+- `tipo` solo puede ser `liquida`, `solida` o `gaseosa`.
+- `estado` solo puede ser `pendiente`, `analizada` o `descartada`.
+
+**Ejemplo de documento XML válido:**
+
+```xml
+<inventario laboratorio="BioLab">
+    <muestra codigo="M-001">
+        <nombre>Suero A</nombre>
+        <tipo>liquida</tipo>
+        <fechaAlta>2026-04-21</fechaAlta>
+        <estado>pendiente</estado>
+    </muestra>
+</inventario>
+```
+
+<details>
+    <summary>Solución</summary>
+
+**Documento XML (inventario.xml):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<inventario laboratorio="BioLab"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="inventario.xsd">
+    <muestra codigo="M-001">
+        <nombre>Suero A</nombre>
+        <tipo>liquida</tipo>
+        <fechaAlta>2026-04-21</fechaAlta>
+        <estado>pendiente</estado>
+    </muestra>
+    <muestra codigo="M-002">
+        <nombre>Polvo B</nombre>
+        <tipo>solida</tipo>
+        <fechaAlta>2026-04-18</fechaAlta>
+        <estado>analizada</estado>
+        <medidas>
+            <medida>12.4</medida>
+            <medida>12.6</medida>
+        </medidas>
+    </muestra>
+</inventario>
+```
+
+**Esquema XSD (inventario.xsd):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="inventario">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="muestra" type="muestraType" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="laboratorio" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="muestraType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="tipo" type="tipoMuestraType"/>
+            <xs:element name="fechaAlta" type="xs:date"/>
+            <xs:element name="estado" type="estadoMuestraType"/>
+            <xs:element name="medidas" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="medida" type="xs:decimal" minOccurs="1" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="codigo" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="tipoMuestraType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="liquida"/>
+            <xs:enumeration value="solida"/>
+            <xs:enumeration value="gaseosa"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="estadoMuestraType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="pendiente"/>
+            <xs:enumeration value="analizada"/>
+            <xs:enumeration value="descartada"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
+```
+
+</details>
+
+## Ejercicio 4.11 - Reserva de hotel con servicios opcionales
+
+Construye un esquema XSD para validar una **reserva de hotel** con información del cliente, la estancia y los servicios contratados.
+
+**Requisitos:**
+
+- Un elemento raíz `<reserva>` con atributo `localizador` obligatorio.
+- `<cliente>`, `<entrada>`, `<salida>`, `<habitacion>` y `<precioTotal>` obligatorios.
+- `<cliente>` con nombre, apellidos, email y telefono.
+- `<habitacion>` con número, tipo y ocupacion.
+- `tipo` debe ser `individual`, `doble` o `suite`.
+- `ocupacion` debe ser un entero entre 1 y 4.
+- `<servicios>` opcional con cero o más `<servicio>`.
+- Cada `<servicio>` debe tener nombre y precio.
+
+**Ejemplo de documento XML válido:**
+
+```xml
+<reserva localizador="H2026-01">
+    <cliente>
+        <nombre>Alba</nombre>
+        <apellidos>Rodríguez Díaz</apellidos>
+        <email>alba@mail.com</email>
+        <telefono>611223344</telefono>
+    </cliente>
+    <entrada>2026-07-12</entrada>
+    <salida>2026-07-15</salida>
+    <habitacion>
+        <numero>204</numero>
+        <tipo>doble</tipo>
+        <ocupacion>2</ocupacion>
+    </habitacion>
+    <precioTotal>315.00</precioTotal>
+</reserva>
+```
+
+<details>
+    <summary>Solución</summary>
+
+**Documento XML (reserva.xml):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<reserva localizador="H2026-01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="reserva.xsd">
+    <cliente>
+        <nombre>Alba</nombre>
+        <apellidos>Rodríguez Díaz</apellidos>
+        <email>alba@mail.com</email>
+        <telefono>611223344</telefono>
+    </cliente>
+    <entrada>2026-07-12</entrada>
+    <salida>2026-07-15</salida>
+    <habitacion>
+        <numero>204</numero>
+        <tipo>doble</tipo>
+        <ocupacion>2</ocupacion>
+    </habitacion>
+    <servicios>
+        <servicio>
+            <nombre>Desayuno</nombre>
+            <precio>12.50</precio>
+        </servicio>
+        <servicio>
+            <nombre>Parking</nombre>
+            <precio>10.00</precio>
+        </servicio>
+    </servicios>
+    <precioTotal>315.00</precioTotal>
+</reserva>
+```
+
+**Esquema XSD (reserva.xsd):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation>Esquema para reservas de hotel con servicios opcionales.</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="reserva">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cliente" type="clienteType"/>
+                <xs:element name="entrada" type="xs:date"/>
+                <xs:element name="salida" type="xs:date"/>
+                <xs:element name="habitacion" type="habitacionType"/>
+                <xs:element name="servicios" type="serviciosType" minOccurs="0"/>
+                <xs:element name="precioTotal" type="precioType"/>
+            </xs:sequence>
+            <xs:attribute name="localizador" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="clienteType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="apellidos" type="xs:string"/>
+            <xs:element name="email" type="emailType"/>
+            <xs:element name="telefono" type="telefonoType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="habitacionType">
+        <xs:sequence>
+            <xs:element name="numero" type="xs:positiveInteger"/>
+            <xs:element name="tipo" type="tipoHabitacionType"/>
+            <xs:element name="ocupacion" type="ocupacionType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="serviciosType">
+        <xs:sequence>
+            <xs:element name="servicio" type="servicioType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="servicioType">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="precio" type="precioType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="telefonoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{9}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoHabitacionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="individual"/>
+            <xs:enumeration value="doble"/>
+            <xs:enumeration value="suite"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ocupacionType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="precioType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
+```
+
+</details>

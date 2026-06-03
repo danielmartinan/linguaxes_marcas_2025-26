@@ -1824,8 +1824,6 @@ Crea una página con tres secciones de contenido que se puedan mostrar u ocultar
 
 ### Ejercicio 5: Formulario con validación
 
-#### Enunciado
-
 Crea un formulario de registro con validación en tiempo real:
 
 **Campos del formulario:**
@@ -2182,7 +2180,868 @@ Crea un formulario de registro con validación en tiempo real:
 
 ---
 
-## Ejercicios de Proyecto: Calculadora y Lista de Tareas
+### Ejercicio 6: Control de asistencia de alumnado
+
+Crea una pequeña aplicación web para gestionar la asistencia de un grupo de alumnado. La interfaz debe permitir:
+
+1. Cargar una lista inicial de entre 6 y 8 alumnos desde un array de JavaScript.
+2. Mostrar cada alumno con su estado inicial `presente`.
+3. Cambiar el estado de cada alumno entre `presente` y `ausente` con un botón.
+4. Añadir nuevos alumnos mediante un campo de texto y un botón.
+5. Eliminar alumnos individualmente.
+6. Mostrar un resumen dinámico con el total de alumnos, presentes y ausentes.
+
+**Estructura HTML requerida:**
+
+- Un `<ul>` con id `listaAlumnos` para mostrar el listado.
+- Un `<input>` con id `inputAlumno` para escribir el nombre del alumno.
+- Un botón con id `btnAgregarAlumno` para añadir un alumno.
+- Tres contadores con los ids `totalAlumnos`, `alumnosPresentes` y `alumnosAusentes`.
+- Un `<div>` o `<p>` con id `mensajeError` para mostrar validaciones.
+
+**Requisitos adicionales:**
+
+- No permitir nombres vacíos ni duplicados exactos.
+- No permitir superar los 10 alumnos en total.
+- Usa `addEventListener()` para todos los eventos.
+- Organiza el código en funciones reutilizables.
+
+<details>
+<summary>Solución</summary>
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Asistencia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f7fb;
+        }
+
+        .container {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .resumen {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .tarjeta {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .tarjeta span {
+            display: block;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .entrada {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .entrada input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
+        .entrada button,
+        .alumno button {
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 10px 14px;
+        }
+
+        .entrada button {
+            background: #2563eb;
+            color: white;
+        }
+
+        #mensajeError {
+            min-height: 24px;
+            color: #b91c1c;
+            margin: 8px 0 0;
+        }
+
+        #listaAlumnos {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .alumno {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .alumno.presente {
+            border-left: 6px solid #16a34a;
+        }
+
+        .alumno.ausente {
+            border-left: 6px solid #dc2626;
+            opacity: 0.92;
+        }
+
+        .estado {
+            font-weight: bold;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-toggle {
+            background: #eab308;
+            color: #111827;
+        }
+
+        .btn-eliminar {
+            background: #ef4444;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Control de asistencia</h1>
+
+        <div class="resumen">
+            <div class="tarjeta">Total<span id="totalAlumnos">0</span></div>
+            <div class="tarjeta">Presentes<span id="alumnosPresentes">0</span></div>
+            <div class="tarjeta">Ausentes<span id="alumnosAusentes">0</span></div>
+        </div>
+
+        <div class="entrada">
+            <input type="text" id="inputAlumno" placeholder="Escribe el nombre del alumno">
+            <button id="btnAgregarAlumno">Añadir alumno</button>
+        </div>
+
+        <p id="mensajeError"></p>
+        <ul id="listaAlumnos"></ul>
+    </div>
+
+    <script>
+        let alumnos = [
+            { nombre: 'Ana', presente: true },
+            { nombre: 'Carlos', presente: true },
+            { nombre: 'Lucía', presente: false },
+            { nombre: 'Diego', presente: true },
+            { nombre: 'Marta', presente: false },
+            { nombre: 'Sergio', presente: true }
+        ];
+
+        const listaAlumnos = document.getElementById('listaAlumnos');
+        const inputAlumno = document.getElementById('inputAlumno');
+        const btnAgregarAlumno = document.getElementById('btnAgregarAlumno');
+        const mensajeError = document.getElementById('mensajeError');
+        const totalAlumnos = document.getElementById('totalAlumnos');
+        const alumnosPresentes = document.getElementById('alumnosPresentes');
+        const alumnosAusentes = document.getElementById('alumnosAusentes');
+
+        function normalizarNombre(nombre) {
+            return nombre.trim();
+        }
+
+        function mostrarError(mensaje) {
+            mensajeError.textContent = mensaje;
+        }
+
+        function limpiarError() {
+            mensajeError.textContent = '';
+        }
+
+        function actualizarResumen() {
+            const presentes = alumnos.filter(alumno => alumno.presente).length;
+            totalAlumnos.textContent = alumnos.length;
+            alumnosPresentes.textContent = presentes;
+            alumnosAusentes.textContent = alumnos.length - presentes;
+        }
+
+        function renderizarAlumnos() {
+            listaAlumnos.innerHTML = '';
+
+            alumnos.forEach((alumno, indice) => {
+                const li = document.createElement('li');
+                li.className = `alumno ${alumno.presente ? 'presente' : 'ausente'}`;
+
+                const contenido = document.createElement('div');
+                contenido.innerHTML = `<strong>${alumno.nombre}</strong> - <span class="estado">${alumno.presente ? 'presente' : 'ausente'}</span>`;
+
+                const acciones = document.createElement('div');
+                acciones.className = 'acciones';
+
+                const btnToggle = document.createElement('button');
+                btnToggle.className = 'btn-toggle';
+                btnToggle.textContent = alumno.presente ? 'Marcar ausente' : 'Marcar presente';
+                btnToggle.addEventListener('click', function() {
+                    alumnos[indice].presente = !alumnos[indice].presente;
+                    limpiarError();
+                    renderizarAlumnos();
+                    actualizarResumen();
+                });
+
+                const btnEliminar = document.createElement('button');
+                btnEliminar.className = 'btn-eliminar';
+                btnEliminar.textContent = 'Eliminar';
+                btnEliminar.addEventListener('click', function() {
+                    alumnos.splice(indice, 1);
+                    limpiarError();
+                    renderizarAlumnos();
+                    actualizarResumen();
+                });
+
+                acciones.appendChild(btnToggle);
+                acciones.appendChild(btnEliminar);
+                li.appendChild(contenido);
+                li.appendChild(acciones);
+                listaAlumnos.appendChild(li);
+            });
+        }
+
+        function agregarAlumno() {
+            const nombre = normalizarNombre(inputAlumno.value);
+
+            if (nombre === '') {
+                mostrarError('Introduce un nombre válido');
+                return;
+            }
+
+            if (alumnos.length >= 10) {
+                mostrarError('Límite de alumnos alcanzado');
+                return;
+            }
+
+            const existe = alumnos.some(alumno => alumno.nombre === nombre);
+            if (existe) {
+                mostrarError('El alumno ya existe');
+                return;
+            }
+
+            alumnos.push({ nombre, presente: true });
+            inputAlumno.value = '';
+            limpiarError();
+            renderizarAlumnos();
+            actualizarResumen();
+        }
+
+        btnAgregarAlumno.addEventListener('click', agregarAlumno);
+        inputAlumno.addEventListener('keypress', function(evento) {
+            if (evento.key === 'Enter') {
+                agregarAlumno();
+            }
+        });
+
+        renderizarAlumnos();
+        actualizarResumen();
+    </script>
+</body>
+</html>
+```
+
+</details>
+
+**Conceptos practicados:**
+
+- Arrays de objetos
+- Renderizado dinámico de listas con DOM
+- Eventos con `addEventListener()`
+- Validación de entradas y control de duplicados
+- Actualización de contadores en tiempo real
+
+---
+
+### Ejercicio 7: Lista de tareas con filtros
+
+Crea una aplicación de lista de tareas que permita gestionar tareas pendientes y completadas. Debe incluir una vista filtrable para mostrar solo las tareas activas, completadas o todas.
+
+**Estructura HTML requerida:**
+
+- Un `<input>` con id `inputTarea`.
+- Un botón con id `btnAgregarTarea`.
+- Tres botones de filtro con los ids `btnTodas`, `btnPendientes` y `btnCompletadas`.
+- Un `<ul>` con id `listaTareas`.
+- Un `<span>` con id `contadorTareas` para mostrar el número total.
+
+**Requisitos adicionales:**
+
+- No permitir tareas vacías.
+- Cada tarea debe poder marcarse como completada o pendiente.
+- Cada tarea debe poder eliminarse.
+- El filtro activo debe resaltarse visualmente.
+
+<details>
+<summary>Solución</summary>
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas con Filtros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+
+        .contenedor {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .entrada {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .entrada input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
+        .entrada button,
+        .filtros button,
+        .tarea button {
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .entrada button {
+            padding: 12px 18px;
+            background: #0f766e;
+            color: white;
+        }
+
+        .filtros {
+            display: flex;
+            gap: 10px;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .filtros button {
+            padding: 10px 14px;
+            background: #e2e8f0;
+        }
+
+        .filtros button.activo {
+            background: #2563eb;
+            color: white;
+        }
+
+        #listaTareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tarea {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .tarea.completada {
+            background: #ecfdf5;
+            text-decoration: line-through;
+            color: #64748b;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-completar {
+            background: #f59e0b;
+            color: white;
+            padding: 8px 12px;
+        }
+
+        .btn-eliminar {
+            background: #ef4444;
+            color: white;
+            padding: 8px 12px;
+        }
+
+        #mensajeTareas {
+            min-height: 24px;
+            color: #b91c1c;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Lista de tareas</h1>
+        <p>Total de tareas: <strong id="contadorTareas">0</strong></p>
+
+        <div class="entrada">
+            <input type="text" id="inputTarea" placeholder="Escribe una tarea">
+            <button id="btnAgregarTarea">Agregar</button>
+        </div>
+
+        <div id="mensajeTareas"></div>
+
+        <div class="filtros">
+            <button id="btnTodas" class="activo">Todas</button>
+            <button id="btnPendientes">Pendientes</button>
+            <button id="btnCompletadas">Completadas</button>
+        </div>
+
+        <ul id="listaTareas"></ul>
+    </div>
+
+    <script>
+        const listaTareas = document.getElementById('listaTareas');
+        const inputTarea = document.getElementById('inputTarea');
+        const btnAgregarTarea = document.getElementById('btnAgregarTarea');
+        const contadorTareas = document.getElementById('contadorTareas');
+        const mensajeTareas = document.getElementById('mensajeTareas');
+        const btnTodas = document.getElementById('btnTodas');
+        const btnPendientes = document.getElementById('btnPendientes');
+        const btnCompletadas = document.getElementById('btnCompletadas');
+
+        let tareas = [
+            { texto: 'Repasar DOM', completada: false },
+            { texto: 'Practicar eventos', completada: true },
+            { texto: 'Revisar arrays', completada: false }
+        ];
+        let filtroActual = 'todas';
+
+        function mostrarMensaje(mensaje) {
+            mensajeTareas.textContent = mensaje;
+        }
+
+        function limpiarMensaje() {
+            mensajeTareas.textContent = '';
+        }
+
+        function actualizarContador() {
+            contadorTareas.textContent = tareas.length;
+        }
+
+        function aplicarFiltro(clave) {
+            filtroActual = clave;
+            [btnTodas, btnPendientes, btnCompletadas].forEach(boton => boton.classList.remove('activo'));
+            if (clave === 'todas') btnTodas.classList.add('activo');
+            if (clave === 'pendientes') btnPendientes.classList.add('activo');
+            if (clave === 'completadas') btnCompletadas.classList.add('activo');
+            renderizarTareas();
+        }
+
+        function tareasFiltradas() {
+            if (filtroActual === 'pendientes') {
+                return tareas.filter(tarea => !tarea.completada);
+            }
+            if (filtroActual === 'completadas') {
+                return tareas.filter(tarea => tarea.completada);
+            }
+            return tareas;
+        }
+
+        function renderizarTareas() {
+            listaTareas.innerHTML = '';
+
+            const visibles = tareasFiltradas();
+
+            if (visibles.length === 0) {
+                const vacia = document.createElement('li');
+                vacia.textContent = 'No hay tareas para mostrar';
+                listaTareas.appendChild(vacia);
+                return;
+            }
+
+            visibles.forEach((tareaVisible) => {
+                const indiceReal = tareas.indexOf(tareaVisible);
+                const li = document.createElement('li');
+                li.className = `tarea ${tareaVisible.completada ? 'completada' : ''}`;
+
+                const texto = document.createElement('span');
+                texto.textContent = tareaVisible.texto;
+
+                const acciones = document.createElement('div');
+                acciones.className = 'acciones';
+
+                const btnCompletar = document.createElement('button');
+                btnCompletar.className = 'btn-completar';
+                btnCompletar.textContent = tareaVisible.completada ? 'Marcar pendiente' : 'Marcar completada';
+                btnCompletar.addEventListener('click', function() {
+                    tareas[indiceReal].completada = !tareas[indiceReal].completada;
+                    limpiarMensaje();
+                    renderizarTareas();
+                });
+
+                const btnEliminar = document.createElement('button');
+                btnEliminar.className = 'btn-eliminar';
+                btnEliminar.textContent = 'Eliminar';
+                btnEliminar.addEventListener('click', function() {
+                    tareas.splice(indiceReal, 1);
+                    actualizarContador();
+                    limpiarMensaje();
+                    renderizarTareas();
+                });
+
+                acciones.appendChild(btnCompletar);
+                acciones.appendChild(btnEliminar);
+                li.appendChild(texto);
+                li.appendChild(acciones);
+                listaTareas.appendChild(li);
+            });
+        }
+
+        function agregarTarea() {
+            const texto = inputTarea.value.trim();
+
+            if (texto === '') {
+                mostrarMensaje('Introduce una tarea válida');
+                return;
+            }
+
+            tareas.push({ texto, completada: false });
+            inputTarea.value = '';
+            limpiarMensaje();
+            actualizarContador();
+            renderizarTareas();
+        }
+
+        btnAgregarTarea.addEventListener('click', agregarTarea);
+        inputTarea.addEventListener('keypress', function(evento) {
+            if (evento.key === 'Enter') {
+                agregarTarea();
+            }
+        });
+
+        btnTodas.addEventListener('click', function() { aplicarFiltro('todas'); });
+        btnPendientes.addEventListener('click', function() { aplicarFiltro('pendientes'); });
+        btnCompletadas.addEventListener('click', function() { aplicarFiltro('completadas'); });
+
+        actualizarContador();
+        renderizarTareas();
+    </script>
+</body>
+</html>
+```
+
+</details>
+
+**Conceptos practicados:**
+
+- Manipulación del DOM con `createElement()` y `appendChild()`
+- Filtros de estado con arrays
+- Gestión de clases con `classList`
+- Eventos de teclado y clic
+- Renderizado condicional según el estado de los datos
+
+---
+
+### Ejercicio 8: Panel de validación y resumen de formulario
+
+Crea una página con un formulario de registro sencillo que valide los campos principales y muestre un resumen de los datos introducidos cuando todo sea correcto.
+
+**Campos requeridos:**
+
+1. Nombre y apellidos.
+2. Correo electrónico.
+3. Edad.
+4. Contraseña.
+5. Confirmación de contraseña.
+
+**Requisitos funcionales:**
+
+- Validar los campos al perder el foco.
+- Mostrar mensajes de error junto a cada campo incorrecto.
+- Deshabilitar el botón de envío mientras existan errores.
+- Mostrar un resumen en pantalla con los datos válidos al pulsar enviar.
+
+**Estructura HTML requerida:**
+
+- Un `<form>` con id `formRegistro`.
+- Inputs con ids `nombreCompleto`, `email`, `edad`, `password` y `confirmPassword`.
+- Un botón con id `btnEnviar`.
+- Un `<div>` con id `resumen`.
+- Cinco elementos para errores con clase `error`.
+
+<details>
+<summary>Solución</summary>
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Validación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+
+        .contenedor {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .campo {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
+        .error {
+            display: block;
+            min-height: 20px;
+            color: #b91c1c;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #7c3aed;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        #resumen {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            background: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Registro de usuario</h1>
+
+        <form id="formRegistro" novalidate>
+            <div class="campo">
+                <label for="nombreCompleto">Nombre y apellidos</label>
+                <input type="text" id="nombreCompleto">
+                <span class="error" id="errorNombre"></span>
+            </div>
+
+            <div class="campo">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email">
+                <span class="error" id="errorEmail"></span>
+            </div>
+
+            <div class="campo">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad">
+                <span class="error" id="errorEdad"></span>
+            </div>
+
+            <div class="campo">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password">
+                <span class="error" id="errorPassword"></span>
+            </div>
+
+            <div class="campo">
+                <label for="confirmPassword">Confirmar contraseña</label>
+                <input type="password" id="confirmPassword">
+                <span class="error" id="errorConfirmacion"></span>
+            </div>
+
+            <button type="submit" id="btnEnviar" disabled>Enviar</button>
+        </form>
+
+        <div id="resumen">Rellena el formulario para ver el resumen.</div>
+    </div>
+
+    <script>
+        const formRegistro = document.getElementById('formRegistro');
+        const nombreCompleto = document.getElementById('nombreCompleto');
+        const email = document.getElementById('email');
+        const edad = document.getElementById('edad');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const btnEnviar = document.getElementById('btnEnviar');
+        const resumen = document.getElementById('resumen');
+
+        const errores = {
+            nombre: document.getElementById('errorNombre'),
+            email: document.getElementById('errorEmail'),
+            edad: document.getElementById('errorEdad'),
+            password: document.getElementById('errorPassword'),
+            confirmacion: document.getElementById('errorConfirmacion')
+        };
+
+        function validarNombre() {
+            const valor = nombreCompleto.value.trim();
+            if (valor.length < 3) {
+                errores.nombre.textContent = 'Introduce un nombre válido';
+                return false;
+            }
+            errores.nombre.textContent = '';
+            return true;
+        }
+
+        function validarEmail() {
+            const patron = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!patron.test(email.value.trim())) {
+                errores.email.textContent = 'Introduce un correo válido';
+                return false;
+            }
+            errores.email.textContent = '';
+            return true;
+        }
+
+        function validarEdad() {
+            const valor = Number(edad.value);
+            if (Number.isNaN(valor) || valor < 18 || valor > 100) {
+                errores.edad.textContent = 'La edad debe estar entre 18 y 100';
+                return false;
+            }
+            errores.edad.textContent = '';
+            return true;
+        }
+
+        function validarPassword() {
+            if (password.value.length < 6) {
+                errores.password.textContent = 'La contraseña debe tener al menos 6 caracteres';
+                return false;
+            }
+            errores.password.textContent = '';
+            return true;
+        }
+
+        function validarConfirmacion() {
+            if (confirmPassword.value !== password.value || confirmPassword.value === '') {
+                errores.confirmacion.textContent = 'Las contraseñas no coinciden';
+                return false;
+            }
+            errores.confirmacion.textContent = '';
+            return true;
+        }
+
+        function actualizarEstadoBoton() {
+            const formularioValido = validarNombre() && validarEmail() && validarEdad() && validarPassword() && validarConfirmacion();
+            btnEnviar.disabled = !formularioValido;
+            return formularioValido;
+        }
+
+        function mostrarResumen() {
+            resumen.innerHTML = `
+                <h3>Resumen de datos</h3>
+                <p><strong>Nombre:</strong> ${nombreCompleto.value.trim()}</p>
+                <p><strong>Email:</strong> ${email.value.trim()}</p>
+                <p><strong>Edad:</strong> ${edad.value}</p>
+            `;
+        }
+
+        nombreCompleto.addEventListener('blur', actualizarEstadoBoton);
+        email.addEventListener('blur', actualizarEstadoBoton);
+        edad.addEventListener('blur', actualizarEstadoBoton);
+        password.addEventListener('blur', actualizarEstadoBoton);
+        confirmPassword.addEventListener('blur', actualizarEstadoBoton);
+
+        formRegistro.addEventListener('input', actualizarEstadoBoton);
+
+        formRegistro.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            if (actualizarEstadoBoton()) {
+                mostrarResumen();
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+</details>
+
+**Conceptos practicados:**
+
+- Validación de formularios con `blur` e `input`
+- Expresiones regulares para correo electrónico
+- Control del estado del botón de envío
+- `preventDefault()` en formularios
+- Resumen dinámico de datos válidos
+
+---
+
+## Ejercicios de Proyecto
 
 ### Ejercicio 1: Calculadora Básica
 
@@ -2360,7 +3219,7 @@ document.addEventListener('keydown', (e) => {
 
 </details>
 
-## Ejercicio 2: Lista de Tareas Interactiva
+### Ejercicio 2: Lista de Tareas Interactiva
 
 Crear una aplicación de lista de tareas que permita agregar, marcar como completadas y eliminar tareas. Las tareas completadas deben mostrarse con un estilo diferente.
 
@@ -2764,7 +3623,7 @@ Crear una aplicación de lista de tareas que permita agregar, marcar como comple
 
 </details>
 
-## Ejercicio 3: Galería de Imágenes con Lightbox
+### Ejercicio 3: Galería de Imágenes con Lightbox
 
 Crear una galería de imágenes con efecto lightbox. Al hacer clic en una miniatura, debe abrirse la imagen en tamaño completo con navegación entre imágenes.
 
@@ -3098,3 +3957,4 @@ Crear una galería de imágenes con efecto lightbox. Al hacer clic en una miniat
 - Deshabilitar scroll del body
 - Array de objetos con datos
 - Template strings para HTML dinámico
+

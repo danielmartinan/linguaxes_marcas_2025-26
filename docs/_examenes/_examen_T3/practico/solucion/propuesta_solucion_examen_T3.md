@@ -9,7 +9,7 @@ Esta propuesta está alineada con los recursos de `../recursos/` y con ejecució
 /expediciones/expedicion[fechaInicio >= '1850-01-01']
 /expediciones/expedicion/tripulacion/integrante[translate(@rol, 'ó', 'o') = 'cartografo']
 /expediciones/expedicion[count(tripulacion/integrante) > 5]
-/expediciones/expedicion[not(number(presupuesto) < /expediciones/expedicion/presupuesto)]
+/expediciones/expedicion[presupuesto = max(/expediciones/expedicion/presupuesto)]
 /expediciones/expedicion[@id='E002']/ruta/punto/@lat
 ```
 
