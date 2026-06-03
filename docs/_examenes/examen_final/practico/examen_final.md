@@ -29,13 +29,13 @@ Descarga y descomprime `recursos_examen_final.zip`. Ese paquete incluye los mate
 
 Los bloques son **independientes** entre sí. Puedes resolverlos en el orden que prefieras.
 
----
+<div style="height: 200px;"></div>
 
-## Bloque 1: Marcado y publicación web (UD1 y UD2) - 10 puntos - 50 minutos
+## Bloque 1: Marcado y publicación web (UD1 y UD2)
 
 ### Ejercicio 1.1: XML bien formado de catálogo cultural (3 puntos)
 
-Escribe un documento XML llamado `ejer1_catalogo_cultural.xml` para almacenar información de un **catálogo de actividades culturales**.
+Escribe un documento XML bien formado llamado `ejer1_catalogo_cultural.xml` para almacenar información de un **catálogo de actividades culturales**.
 
 #### Requisitos
 
@@ -133,9 +133,7 @@ En la hoja CSS preconfigurada debes completar estos apartados:
 
 - Archivo completado: `bloque1/styles/styles.css`
 
----
-
-## Bloque 2: Interactividad y validación de documentos (UD3 y UD4) - 10 puntos - 50 minutos
+## Bloque 2: Interactividad y validación de documentos (UD3 y UD4)
 
 ### Ejercicio 2.1: JavaScript DOM - Conversor de color RGB (6 puntos)
 
@@ -222,9 +220,9 @@ El archivo base `inventario_laboratorio.xsd` contiene una estructura incompleta.
 
 - `bloque2/ejer2/inventario_laboratorio.xsd`
 
----
+<div style="height: 880px;"></div>
 
-## Bloque 3: Consulta y transformación de datos (UD5, UD6) - 10 puntos - 50 minutos
+## Bloque 3: Consulta y transformación de datos (UD5, UD6)
 
 Dispones de BaseX en tu equipo para probar tus soluciones. Asegúrate de cargar los XML en BaseX para validar tus consultas y transformaciones.
 
@@ -281,8 +279,6 @@ En cada captura debe verse claramente:
 3. Panel de resultados: salida obtenida.
 4. Panel de información/mensajes: confirmación de ejecución sin errores.
 5. Navegador de base de datos/proyecto: archivo de entrada correspondiente al ejercicio.
-
-<div style="height: 250px;"></div>
 
 ### Ejercicio 3.1: XPath sobre pedidos (2.5 puntos)
 

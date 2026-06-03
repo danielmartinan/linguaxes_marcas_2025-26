@@ -35,7 +35,7 @@ El examen tendrá una duración total de **3 horas** y estará dividido en **3 b
   - Representa **7.5 puntos** de la calificación total del bloque.
   - Se darán más indicaciones y directrices sobre el funcionamiento del examen al principio del mismo.
 - **Pausa entre Partes del Examen**:
-  - No habrá pausa entre exámenes, pudiendo el alumno gestionar el tiempo dedicado a cada parte del examen de cada bloque. Tampoco habrá pausa entre bloques, por lo que el alumno deberá gestionar el tiempo dedicado a cada bloque en su conjunto.
+  - Habrá una pausa entre el bloque de exámenes teóricos (30 minutos) y el bloque de exámenes prácticos, de manera que todos los estudiantes empezarán la parte práctica al mismo tiempo.
 
 *Recordatorio sobre los contenidos por bloques*:
 
@@ -52,13 +52,13 @@ El examen tendrá una duración total de **3 horas** y estará dividido en **3 b
 
 ### Restricciones durante el Examen
 
-Durante el **examen teórico**:
+Durante el bloque de **exámenes teóricos**:
 
 - Solo podréis acceder al aula virtual para realizar el test de cada bloque. **No tendréis acceso a los recursos subidos en la plataforma.**
 - El acceso a internet estará limitado exclusivamente al aula virtual.
 - Está **estrictamente prohibido acceder a recursos externos** de cualquier tipo, incluyendo páginas web, documentos PDF, código SQL, documentos de texto plano u otros. Esto incluye **cualquier recurso disponible en el aula virtual, incluyendo los archivos personales**.
 
-Durante el **examen práctico**:
+Durante el bloque de **exámenes prácticos**:
 
 - El acceso a internet estará limitado, y solo podréis acceder al aula virtual. **En este caso, sí tendréis acceso a los recursos subidos al aula virtual (apuntes).**
 - Está estrictamente prohibido acceder a recursos externos, incluyendo páginas web, **salvo a los archivos subidos al aula virtual (incluidos archivos personales).**
