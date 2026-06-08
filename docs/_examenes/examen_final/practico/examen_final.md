@@ -29,7 +29,7 @@ Descarga y descomprime `recursos_examen_final.zip`. Ese paquete incluye los mate
 
 Los bloques son **independientes** entre sí. Puedes resolverlos en el orden que prefieras.
 
-<div style="height: 200px;"></div>
+<div style="height: 210px;"></div>
 
 ## Bloque 1: Marcado y publicación web (UD1 y UD2)
 
@@ -132,6 +132,8 @@ En la hoja CSS preconfigurada debes completar estos apartados:
 #### Entrega 1.3
 
 - Archivo completado: `bloque1/styles/styles.css`
+
+<div style="height: 10px;"></div>
 
 ## Bloque 2: Interactividad y validación de documentos (UD3 y UD4)
 
